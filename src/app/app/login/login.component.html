@@ -1,0 +1,35 @@
+<ion-content class="login-content">
+  <img src="assets/banner-img2.png" alt="Login Banner" class="login-banner-responsive" />
+  <div class="login-center-wrapper">
+    <form class="login-form" (ngSubmit)="onLogin()">
+      <h2 class="login-title">Welcome back!</h2>
+      <div class="login-field">
+        <label>Email</label>
+        <input type="email" [(ngModel)]="email" name="email" required autocomplete="username" />
+      </div>
+      <div class="login-field password-field">
+        <label>Password</label>
+        <div class="password-input-wrapper">
+          <input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="password" name="password" required
+            autocomplete="current-password" />
+          <button type="button" class="show-password-btn" (click)="toggleShowPassword()">
+            <ion-icon [name]="showPassword ? 'eye-off' : 'eye'" slot="icon-only"></ion-icon>
+          </button>
+        </div>
+        <a class="forgot-password" href="#">forgot Password?</a>
+      </div>
+      <button type="submit" class="login-btn">LOGIN</button>
+      <div class="or-divider">
+        <span>OR</span>
+      </div>
+      <button type="button" class="google-signin-btn">
+        <img src="assets/google.svg" alt="Google" class="google-logo" />
+        <span>Sign in with Google</span>
+      </button>
+      <div class="signup-link">
+        Don't have an account? <a href="#" class="signup-anchor">Sign up</a>
+      </div>
+      <div class="signup-link-space"></div>
+    </form>
+  </div>
+</ion-content>

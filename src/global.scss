@@ -1,3 +1,10 @@
+ion-toolbar[color="primary"], ion-header ion-toolbar[color="primary"] {
+  --background: #083d7c !important;
+  --ion-color-base: #083d7c !important;
+}
+ion-header, ion-toolbar[color="primary"] {
+  --background: #083d7c !important;
+}
 /*
  * App Global CSS
  * ----------------------------------------------------------------------------
@@ -102,13 +109,11 @@
    */
   
   .ios body {
-    --ion-background-color: #000000;
-    --ion-background-color-rgb: 0,0,0;
-  
-    --ion-text-color: #ffffff;
-    --ion-text-color-rgb: 255,255,255;
-  
-    --ion-color-step-50: #0d0d0d;
+    --ion-background-color: #ffffff;
+    --ion-background-color-rgb: 255,255,255;
+
+    --ion-text-color: #000000;
+    --ion-text-color-rgb: 0,0,0;    --ion-color-step-50: #0d0d0d;
     --ion-color-step-100: #1a1a1a;
     --ion-color-step-150: #262626;
     --ion-color-step-200: #333333;
@@ -128,10 +133,10 @@
     --ion-color-step-900: #e6e6e6;
     --ion-color-step-950: #f2f2f2;
   
-    --ion-toolbar-background: #0d0d0d;
-  
-    --ion-item-background: #1c1c1c;
-    --ion-item-background-activated: #313131;
+    --ion-toolbar-background: #f8f8f8;
+
+    --ion-item-background: #ffffff;
+    --ion-item-background-activated: #f0f0f0;
   }
   
   

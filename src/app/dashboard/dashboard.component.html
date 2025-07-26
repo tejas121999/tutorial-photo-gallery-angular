@@ -1,0 +1,43 @@
+<ion-menu side="start" menuId="first" contentId="main-content">
+  <ion-header>
+    <ion-toolbar class="menu-toolbar">
+      <div class="menu-header-vertical">
+        <ion-avatar class="menu-avatar">
+          <img src="assets/icon/favicon.png" alt="Avatar" />
+        </ion-avatar>
+        <div class="menu-title">Demo</div>
+        <div class="menu-note">Demo&#64;gmail.com</div>
+      </div>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="menu-content">
+    <ion-list>
+      <ion-item routerLink="/dashboard/home" routerDirection="root" (click)="closeMenu()">Home</ion-item>
+      <ion-item-group>
+        <ion-item button (click)="showMaster = !showMaster" detail="false">
+          <ion-label>Master</ion-label>
+          <ion-icon slot="end" name="chevron-down-outline" *ngIf="!showMaster"></ion-icon>
+          <ion-icon slot="end" name="chevron-up-outline" *ngIf="showMaster"></ion-icon>
+        </ion-item>
+        <div *ngIf="showMaster">
+          <ion-item routerLink="/dashboard/master/tax" routerDirection="root" (click)="closeMenu()">Tax</ion-item>
+        </div>
+      </ion-item-group>
+
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<div id="main-content">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-menu-button menu="first"></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Dashboard</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <router-outlet></router-outlet>
+  </ion-content>
+</div>
