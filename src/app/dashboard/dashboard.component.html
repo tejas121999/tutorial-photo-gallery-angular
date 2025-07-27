@@ -14,15 +14,15 @@
     <ion-list>
       <ion-item routerLink="/dashboard/home" routerDirection="root" (click)="closeMenu()" lines="none"
         class="sidebar-menu-item">
-        <span style="display: flex; align-items: center; margin-right: 8px;">
-          <img src="assets/Vector.svg" alt="Home" style="width: 22px; height: 22px;" />
+        <span class="sidebar-icon-wrapper">
+          <img src="assets/Vector.svg" alt="Home" class="sidebar-icon" />
         </span>
         Home
       </ion-item>
       <ion-item-group>
         <ion-item button (click)="showMaster = !showMaster" detail="false" lines="none" class="sidebar-menu-item">
-          <span style="display: flex; align-items: center; margin-right: 8px;">
-            <img src="assets/crown.svg" alt="Crown" style="width: 22px; height: 22px;" />
+          <span class="sidebar-icon-wrapper">
+            <img src="assets/crown.svg" alt="Crown" class="sidebar-icon" />
           </span>
           <ion-label>Master</ion-label>
           <ion-icon slot="end" name="chevron-down-outline" *ngIf="!showMaster"></ion-icon>
@@ -31,157 +31,168 @@
         <div *ngIf="showMaster">
           <ion-item routerLink="/dashboard/master/tax" routerDirection="root" (click)="closeMenu()" lines="none"
             class="sidebar-menu-item">
-            <span style="display: flex; align-items: center; margin-right: 8px;">
-              <img src="assets/tax.png" alt="Tax" style="width: 22px; height: 22px;" />
+            <span class="sidebar-icon-wrapper">
+              <img src="assets/tax.png" alt="Tax" class="sidebar-icon" />
             </span>
             Tax
           </ion-item>
           <ion-item routerLink="/dashboard/master/supplier" routerDirection="root" (click)="closeMenu()" lines="none"
             class="sidebar-menu-item">
-            <span style="display: flex; align-items: center; margin-right: 8px;">
-              <img src="assets/truck.svg" alt="Supplier" style="width: 22px; height: 22px;" />
+            <span class="sidebar-icon-wrapper">
+              <img src="assets/truck.svg" alt="Supplier" class="sidebar-icon" />
             </span>
             Supplier
           </ion-item>
           <ion-item routerLink="/dashboard/master/custommer" routerDirection="root" (click)="closeMenu()" lines="none"
             class="sidebar-menu-item">
-            <span style="display: flex; align-items: center; margin-right: 8px;">
-              <img src="assets/user.svg" alt="Customer" style="width: 22px; height: 22px;" />
+            <span class="sidebar-icon-wrapper">
+              <img src="assets/user.svg" alt="Customer" class="sidebar-icon" />
             </span>
             Customer
           </ion-item>
           <ion-item routerLink="/dashboard/master/sales-account" routerDirection="root" (click)="closeMenu()"
             lines="none" class="sidebar-menu-item">
-            <span style="display: flex; align-items: center; margin-right: 8px;">
-              <img src="assets/Leaderboard.svg" alt="Sales Account" style="width: 22px; height: 22px;" />
+            <span class="sidebar-icon-wrapper">
+              <img src="assets/Leaderboard.svg" alt="Sales Account" class="sidebar-icon" />
             </span>
             Sales Account
           </ion-item>
           <ion-item routerLink="/dashboard/master/purchase-account" routerDirection="root" (click)="closeMenu()"
             lines="none" class="sidebar-menu-item">
-            <span style="display: flex; align-items: center; margin-right: 8px;">
-              <img src="assets/Shopping cart checkout.svg" alt="Purchase Account" style="width: 22px; height: 22px;" />
+            <span class="sidebar-icon-wrapper">
+              <img src="assets/Shopping cart checkout.svg" alt="Purchase Account" class="sidebar-icon" />
             </span>
             Purchase Account
           </ion-item>
           <ion-item routerLink="/dashboard/master/stock-item" routerDirection="root" (click)="closeMenu()" lines="none"
             class="sidebar-menu-item">
-            <span style="display: flex; align-items: center; margin-right: 8px;">
-              <img src="assets/package.svg" alt="Stock Item" style="width: 22px; height: 22px;" />
+            <span class="sidebar-icon-wrapper">
+              <img src="assets/package.svg" alt="Stock Item" class="sidebar-icon" />
             </span>
             Stock Item
           </ion-item>
           <ion-item routerLink="/dashboard/master/stock-groups" routerDirection="root" (click)="closeMenu()"
             lines="none" class="sidebar-menu-item">
-            <span style="display: flex; align-items: center; margin-right: 8px;">
-              <img src="assets/fluent-mdl2_engineering-group.svg" alt="Stock Groups"
-                style="width: 22px; height: 22px;" />
+            <span class="sidebar-icon-wrapper">
+              <img src="assets/fluent-mdl2_engineering-group.svg" alt="Stock Groups" class="sidebar-icon" />
             </span>
             Stock Groups
           </ion-item>
           <ion-item routerLink="/dashboard/master/stock-category" routerDirection="root" (click)="closeMenu()"
             lines="none" class="sidebar-menu-item">
-            <span style="display: flex; align-items: center; margin-right: 8px;">
-              <img src="assets/layers.svg" alt="Stock Category" style="width: 22px; height: 22px;" />
+            <span class="sidebar-icon-wrapper">
+              <img src="assets/layers.svg" alt="Stock Category" class="sidebar-icon" />
             </span>
             Stock Category
           </ion-item>
           <ion-item routerLink="/dashboard/master/unit" routerDirection="root" (click)="closeMenu()" lines="none"
             class="sidebar-menu-item">
-            <span style="display: flex; align-items: center; margin-right: 8px;">
-              <img src="assets/lucide_weight.svg" alt="Unit" style="width: 22px; height: 22px;" />
+            <span class="sidebar-icon-wrapper">
+              <img src="assets/lucide_weight.svg" alt="Unit" class="sidebar-icon" />
             </span>
             Unit
           </ion-item>
           <ion-item routerLink="/dashboard/master/voucher-type" routerDirection="root" (click)="closeMenu()"
             lines="none" class="sidebar-menu-item">
-            <span style="display: flex; align-items: center; margin-right: 8px;">
-              <img src="assets/file-text.svg" alt="Voucher Type" style="width: 22px; height: 22px;" />
+            <span class="sidebar-icon-wrapper">
+              <img src="assets/file-text.svg" alt="Voucher Type" class="sidebar-icon" />
             </span>
             Voucher Type
           </ion-item>
           <ion-item routerLink="/dashboard/master/discount" routerDirection="root" (click)="closeMenu()" lines="none"
             class="sidebar-menu-item">
-            <span style="display: flex; align-items: center; margin-right: 8px;">
-              <img src="assets/mdi_discount-outline.svg" alt="Discount" style="width: 22px; height: 22px;" />
+            <span class="sidebar-icon-wrapper">
+              <img src="assets/mdi_discount-outline.svg" alt="Discount" class="sidebar-icon" />
             </span>
             Discount
           </ion-item>
           <ion-item routerLink="/dashboard/master/other-charges" routerDirection="root" (click)="closeMenu()"
             lines="none" class="sidebar-menu-item">
-            <span style="display: flex; align-items: center; margin-right: 8px;">
-              <span
-                style="display: inline-block; width: 22px; height: 22px; font-size: 22px; color: #083D7C; line-height: 22px; text-align: center; font-family: 'Open Sans', sans-serif; font-weight: 400;">₹</span>
+            <span class="sidebar-icon-wrapper">
+              <span class="sidebar-rupee">₹</span>
             </span>
             Other Charges
           </ion-item>
           <ion-item routerLink="/dashboard/master/round-off" routerDirection="root" (click)="closeMenu()" lines="none"
             class="sidebar-menu-item">
-            <span style="display: flex; align-items: center; margin-right: 8px;">
-              <img src="assets/refresh-cw.svg" alt="Round Off" style="width: 22px; height: 22px;" />
+            <span class="sidebar-icon-wrapper">
+              <img src="assets/refresh-cw.svg" alt="Round Off" class="sidebar-icon" />
             </span>
             Round Off
           </ion-item>
           <ion-item routerLink="/dashboard/master/cost-center" routerDirection="root" (click)="closeMenu()" lines="none"
             class="sidebar-menu-item">
-            <span style="display: flex; align-items: center; margin-right: 8px;">
-              <img src="assets/material-symbols_money-bag-outline.svg" alt="Round Off"
-                style="width: 22px; height: 22px;" />
+            <span class="sidebar-icon-wrapper">
+              <img src="assets/material-symbols_money-bag-outline.svg" alt="Round Off" class="sidebar-icon" />
             </span>
             Cost Center
           </ion-item>
           <ion-item routerLink="/dashboard/master/godown" routerDirection="root" (click)="closeMenu()" lines="none"
             class="sidebar-menu-item">
-            <span style="display: flex; align-items: center; margin-right: 8px;">
-              <img src="assets/lsicon_marketplace-outline.svg" alt="Godown" style="width: 22px; height: 22px;" />
+            <span class="sidebar-icon-wrapper">
+              <img src="assets/lsicon_marketplace-outline.svg" alt="Godown" class="sidebar-icon" />
             </span>
             Godown
           </ion-item>
           <ion-item routerLink="/dashboard/master/miscellaneous" routerDirection="root" (click)="closeMenu()"
             lines="none" class="sidebar-menu-item">
-            <span style="display: flex; align-items: center; margin-right: 8px;">
-              <img src="assets/codex_menu.svg" alt="Miscellaneous" style="width: 22px; height: 22px;" />
+            <span class="sidebar-icon-wrapper">
+              <img src="assets/codex_menu.svg" alt="Miscellaneous" class="sidebar-icon" />
             </span>
             Miscellaneous
           </ion-item>
         </div>
       </ion-item-group>
+      <ion-item routerLink="/dashboard/payment" routerDirection="root" (click)="closeMenu()" lines="none"
+        class="sidebar-menu-item">
+        <span class="sidebar-icon-wrapper">
+          <img src="assets/Frame 1366.svg" alt="Home" class="sidebar-icon" />
+        </span>
+        Payment
+      </ion-item>
+      <ion-item routerLink="/dashboard/transaction" routerDirection="root" (click)="closeMenu()" lines="none"
+        class="sidebar-menu-item">
+        <span class="sidebar-icon-wrapper">
+          <img src="assets/proicons_arrow-swap.svg" alt="Home" class="sidebar-icon" />
+        </span>
+        Transaction
+      </ion-item>
       <ion-item routerLink="/dashboard/settings" routerDirection="root" (click)="closeMenu()" lines="none"
         class="sidebar-menu-item">
-        <span style="display: flex; align-items: center; margin-right: 8px;">
-          <img src="assets/Vector2.svg" alt="Settings" style="width: 22px; height: 22px;" />
+        <span class="sidebar-icon-wrapper">
+          <img src="assets/Vector2.svg" alt="Settings" class="sidebar-icon" />
         </span>
         Settings
       </ion-item>
       <ion-item routerLink="/dashboard/rate-us" routerDirection="root" (click)="closeMenu()" lines="none"
         class="sidebar-menu-item">
-        <span style="display: flex; align-items: center; margin-right: 8px;">
-          <img src="assets/Vector3.svg" alt="Rate Us" style="width: 22px; height: 22px;" />
+        <span class="sidebar-icon-wrapper">
+          <img src="assets/Vector3.svg" alt="Rate Us" class="sidebar-icon" />
         </span>
         Rate Us
       </ion-item>
       <ion-item lines="none" class="sidebar-menu-item">
-        <span style="display: flex; align-items: center; margin-right: 8px;">
-          <img src="assets/Vector5.svg" alt="Share with Friends" style="width: 22px; height: 22px;" />
+        <span class="sidebar-icon-wrapper">
+          <img src="assets/Vector5.svg" alt="Share with Friends" class="sidebar-icon" />
         </span>
         Share with Friends
       </ion-item>
       <ion-item lines="none" class="sidebar-menu-item">
-        <span style="display: flex; align-items: center; margin-right: 8px;">
-          <img src="assets/Vector6.svg" alt="Share with Friends" style="width: 22px; height: 22px;" />
+        <span class="sidebar-icon-wrapper">
+          <img src="assets/Vector6.svg" alt="Share with Friends" class="sidebar-icon" />
         </span>
         Feedback
       </ion-item>
       <ion-item routerLink="/dashboard/configuration" routerDirection="root" (click)="closeMenu()" lines="none"
         class="sidebar-menu-item">
-        <span style="display: flex; align-items: center; margin-right: 8px;">
-          <img src="assets/Vector2.svg" alt="Configuration" style="width: 22px; height: 22px;" />
+        <span class="sidebar-icon-wrapper">
+          <img src="assets/Vector2.svg" alt="Configuration" class="sidebar-icon" />
         </span>
         Configuration
       </ion-item>
       <ion-item routerLink="/" routerDirection="root" (click)="closeMenu()" lines="none" class="sidebar-menu-item">
-        <span style="display: flex; align-items: center; margin-right: 8px;">
-          <img src="assets/Vector4.svg" alt="Logout" style="width: 22px; height: 22px;" />
+        <span class="sidebar-icon-wrapper">
+          <img src="assets/Vector4.svg" alt="Logout" class="sidebar-icon" />
         </span>
         Logout
       </ion-item>

@@ -1,3 +1,30 @@
+// Merged from dashboard.component.css
+.sidebar-icon-wrapper {
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.sidebar-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.sidebar-rupee {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  font-size: 22px;
+  color: #083D7C;
+  line-height: 22px;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+}
+
+.sidebar-icon-themes {
+  filter: invert(24%) sepia(97%) saturate(2092%) hue-rotate(199deg) brightness(92%) contrast(101%);
+}
 // Sidebar menu item custom style
 .sidebar-menu-item {
   color: #083D7C !important;
