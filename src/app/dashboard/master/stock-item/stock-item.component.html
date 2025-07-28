@@ -1,1 +1,162 @@
-<p>Stock Item works!</p>
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-button routerLink="/dashboard/home">
+                <ion-icon name="arrow-back-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title class="stock-item-title">Stock Item</ion-title>
+        <ion-buttons slot="end">
+            <ion-button>
+                Save
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="centered-form-wrapper-stock-item">
+        <form [formGroup]="stockItemForm">
+            <ion-item>
+                <ion-label position="floating">Name *</ion-label>
+                <ion-input formControlName="name"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Under</ion-label>
+                <ion-select formControlName="under" interface="action-sheet">
+                    <ion-select-option value="Primary">Primary</ion-select-option>
+                    <ion-select-option value="Fruits">Fruits</ion-select-option>
+                    <ion-select-option value="Vegetables">Vegetables</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Category *</ion-label>
+                <ion-select formControlName="category" interface="action-sheet">
+                    <ion-select-option value="Dairy">Dairy</ion-select-option>
+                    <ion-select-option value="Frozen Foods">Frozen Foods</ion-select-option>
+                    <ion-select-option value="Beverages">Beverages</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Unit *</ion-label>
+                <ion-select formControlName="unit" interface="action-sheet">
+                    <ion-select-option value="Units">Units</ion-select-option>
+                    <ion-select-option value="Pcs">Pcs</ion-select-option>
+                    <ion-select-option value="Kg.">Kg.</ion-select-option>
+                    <ion-select-option value="Box">Box</ion-select-option>
+                    <ion-select-option value="Dos.">Dos.</ion-select-option>
+                    <ion-select-option value="Nos.">Nos.</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Alternate Unit</ion-label>
+                <ion-select formControlName="alternateUnit" interface="action-sheet">
+                    <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
+                    <ion-select-option value="Pcs">Pcs</ion-select-option>
+                    <ion-select-option value="Kg.">Kg.</ion-select-option>
+                    <ion-select-option value="Box">Box</ion-select-option>
+                    <ion-select-option value="Dos.">Dos.</ion-select-option>
+                    <ion-select-option value="Nos.">Nos.</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">GST Applicable *</ion-label>
+                <ion-select formControlName="gstApplicable" interface="action-sheet">
+                    <ion-select-option value="Applicable">Applicable</ion-select-option>
+                    <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item *ngIf="stockItemForm.get('gstApplicable')?.value === 'Applicable'">
+                <ion-label position="floating">HSN Details*</ion-label>
+                <ion-select formControlName="HSNDetails" interface="action-sheet">
+                    <ion-select-option value="As Per Company/Group">As Per Company/Group</ion-select-option>
+                    <ion-select-option value="Specify Details">Specify Details</ion-select-option>
+                    <ion-select-option value="Use GST Classification">Use GST Classification</ion-select-option>
+                    <ion-select-option value="Specify in Voucher">Specify in Voucher</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item *ngIf="stockItemForm.get('HSNDetails')?.value === 'Specify Details'">
+                <ion-label position="floating">HSN *</ion-label>
+                <ion-input formControlName="hsn"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="stockItemForm.get('HSNDetails')?.value === 'Specify Details'">
+                <ion-label position="floating">Description</ion-label>
+                <ion-input formControlName="description"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="stockItemForm.get('gstApplicable').value === 'Applicable'">
+                <ion-label position="floating">GST Rate Details *</ion-label>
+                <ion-select formControlName="gstRateDetails" interface="action-sheet">
+                    <ion-select-option value="As Per Company/Group">As Per Company/Group</ion-select-option>
+                    <ion-select-option value="Specify Details">Specify Details</ion-select-option>
+                    <ion-select-option value="Use GST Classification">Use GST Classification</ion-select-option>
+                    <ion-select-option value="Specify in Voucher">Specify in Voucher</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item *ngIf="stockItemForm.get('gstRateDetails')?.value === 'Specify Details'">
+                <ion-label position="floating">Taxability Type *</ion-label>
+                <ion-select formControlName="taxabilityType" interface="action-sheet">
+                    <ion-select-option value="Taxable">Taxable</ion-select-option>
+                    <ion-select-option value="Exempted">Exempted</ion-select-option>
+                    <ion-select-option value="Nil Rated">Nil Rated</ion-select-option>
+                    <ion-select-option value="Non - GST">Non - GST</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item *ngIf="stockItemForm.get('gstRateDetails')?.value === 'Specify Details'">
+                <ion-label position="floating">GST Rate *</ion-label>
+                <ion-input formControlName="gstRate"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="stockItemForm.get('taxabilityType')?.value === 'Taxable'">
+                <ion-label position="floating">Cess Valuation *</ion-label>
+                <ion-select formControlName="cessValuation" interface="action-sheet">
+                    <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
+                    <ion-select-option value="Based on Value">Based on Value</ion-select-option>
+                    <ion-select-option value="Based on Quantity">Based on Quantity</ion-select-option>
+                    <ion-select-option value="Based on Value and Quantity">Based on Value and
+                        Quantity</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item *ngIf="stockItemForm.get('cessValuation')?.value === 'Based on Value'">
+                <ion-label position="floating">Cess Rate *</ion-label>
+                <ion-input formControlName="cessRate"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="stockItemForm.get('cessValuation')?.value === 'Based on Value and Quantity'">
+                <ion-label position="floating">Cess Rate(Value) *</ion-label>
+                <ion-input formControlName="cessRateValue"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="stockItemForm.get('cessValuation')?.value === 'Based on Value and Quantity'">
+                <ion-label position="floating">Cess Rate(Unit) *</ion-label>
+                <ion-input formControlName="cessRateUnit"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="stockItemForm.get('gstRateDetails')?.value === 'Specify Details'">
+                <ion-label position="floating">Supply Type *</ion-label>
+                <ion-select formControlName="supplyType" interface="action-sheet">
+                    <ion-select-option value="Capital Goods">Capital Goods</ion-select-option>
+                    <ion-select-option value="Goods">Goods</ion-select-option>
+                    <ion-select-option value="Service">Service</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Opening Balance *</ion-label>
+                <ion-input formControlName="openingBalance"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Quantity *</ion-label>
+                <ion-input formControlName="quantity"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Rate *</ion-label>
+                <ion-input formControlName="rate"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Value</ion-label>
+                <ion-input formControlName="value"></ion-input>
+            </ion-item>
+        </form>
+        <!-- Item list with checkbox at right -->
+        <ion-list class="stock-item-list">
+            <ion-item *ngFor="let item of itemList; let i = index">
+                <ion-label>{{ item.name }}</ion-label>
+                <ion-checkbox slot="end" [checked]="item.checked" (ionChange)="item.checked = $event.detail.checked"></ion-checkbox>
+            </ion-item>
+        </ion-list>
+    </div>
+</ion-content>

@@ -1,3 +1,16 @@
+// Margin for master section items and container
+ion-header,
+ion-toolbar[color="primary"],
+ion-toolbar {
+  --background: #034099 !important;
+  --ion-color-base: #034099 !important;
+  --border-color: transparent !important;
+}
+
+.master-margin {
+  margin-left: 10px !important;
+}
+
 // Merged from dashboard.component.css
 .sidebar-icon-wrapper {
   display: flex;
@@ -25,6 +38,7 @@
 .sidebar-icon-themes {
   filter: invert(24%) sepia(97%) saturate(2092%) hue-rotate(199deg) brightness(92%) contrast(101%);
 }
+
 // Sidebar menu item custom style
 .sidebar-menu-item {
   color: #083D7C !important;
@@ -48,6 +62,7 @@
   margin: 0 !important;
   box-shadow: none !important;
 }
+
 .menu-header-vertical {
   display: flex;
   flex-direction: column;
@@ -56,21 +71,24 @@
   width: 100%;
   padding: 24px 0 16px 0;
 }
+
 .menu-avatar {
   margin-bottom: 16px;
   width: 80px;
   height: 80px;
   border-radius: 50%;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
   border: 3px solid #fff;
 }
+
 .menu-avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
+
 .menu-title {
   margin-bottom: 2px;
   font-size: 1.25rem;
@@ -80,6 +98,7 @@
   letter-spacing: 0.5px;
   margin-top: 8px;
 }
+
 .menu-note {
   color: #e0eafc !important;
   font-size: 1rem;
@@ -88,6 +107,7 @@
   margin-bottom: 0;
   margin-top: 2px;
 }
+
 .menu-content {
   --background: #fff !important;
 }

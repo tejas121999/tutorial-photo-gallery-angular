@@ -1,3 +1,45 @@
+ion-action-sheet .action-sheet-wrapper {
+  max-height: 50vh !important;
+  top: 25vh !important;
+  bottom: auto !important;
+  border-radius: 16px !important;
+  overflow-y: auto !important;
+}
+.action-sheet-cancel .action-sheet-button-inner.sc-ion-action-sheet-ios {
+  color: #fff !important;
+  background: #034099 !important;
+}
+.action-sheet-cancel.sc-ion-action-sheet-ios::after {
+  background: #034099 !important;
+  opacity: 1 !important;
+}
+ion-action-sheet .action-sheet-cancel {
+  background: #fff !important;
+  color: #fff !important;
+}
+.action-sheet-selected.sc-ion-action-sheet-ios::after {
+  background: #f2f2f2 !important;
+  opacity: 1 !important;
+}
+ion-action-sheet .action-sheet-selected {
+  background: #f2f2f2 !important;
+  color: #222 !important;
+}
+ion-action-sheet .action-sheet-group,
+ion-action-sheet .action-sheet-wrapper,
+ion-action-sheet .action-sheet-container {
+  background: #fff !important;
+  color: #222 !important;
+}
+
+ion-action-sheet .action-sheet-title,
+ion-action-sheet .action-sheet-button {
+  color: #222 !important;
+}
+ion-alert .alert-wrapper {
+  background: #fff !important;
+  color: #222 !important;
+}
 body, html, ion-app, ion-content, ion-label, ion-title, ion-item, div, span, p, h1, h2, h3, h4, h5, h6 {
   font-family: 'Open Sans', sans-serif !important;
 }
