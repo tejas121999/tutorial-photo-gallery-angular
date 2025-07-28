@@ -1,7 +1,17 @@
-div.home-page, .home-page h2, .home-page p {
+ion-header,
+ion-toolbar[color="primary"],
+ion-toolbar {
+  --background: #034099 !important;
+  --ion-color-base: #034099 !important;
+}
+
+div.home-page,
+.home-page h2,
+.home-page p {
   color: #222 !important;
   background: #fff !important;
 }
+
 /* Home page styles */
 
 .custom-header {

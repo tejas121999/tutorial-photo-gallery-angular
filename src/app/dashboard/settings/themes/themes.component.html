@@ -7,6 +7,185 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
-  <h2>Themes</h2>
-  <p>This is the Themes page under Settings.</p>
+  <ion-list>
+    <ion-radio-group (ionChange)="onThemeChange($event.detail.value)">
+      <ion-item class="theme-item" lines="none">
+        <span class="theme-svg" style="width:36px;height:34px;flex-shrink:0;display:inline-flex;align-items:center;">
+          <img src="assets/themes/Group 337.svg" alt="theme preview" style="width:36px;height:34px;display:block;" />
+        </span>
+        <ion-label>System Default</ion-label>
+        <ion-radio value="#034099" class="custom-radio"></ion-radio>
+      </ion-item>
+      <!-- ----------------------------------------- -->
+      <ion-item class="theme-item" lines="none">
+        <span class="theme-svg" style="width:36px;height:34px;flex-shrink:0;display:inline-flex;align-items:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="34" viewBox="0 0 36 34" fill="none">
+            <ellipse cx="18" cy="17" rx="18" ry="17" fill="#083D7C" />
+          </svg>
+        </span>
+        <ion-label>Cyan-Bluish-Blue</ion-label>
+        <ion-radio value="#083D7C" class="custom-radio"></ion-radio>
+      </ion-item>
+      <!-- ----------------------------------------- -->
+      <ion-item class="theme-item" lines="none">
+        <span class="theme-svg" style="width:36px;height:34px;flex-shrink:0;display:inline-flex;align-items:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="34" viewBox="0 0 36 34" fill="none">
+            <ellipse cx="18" cy="17" rx="18" ry="17" fill="#206CDC" />
+          </svg>
+        </span>
+        <ion-label>Tealish-Blue</ion-label>
+        <ion-radio value="#206CDC" class="custom-radio"></ion-radio>
+      </ion-item>
+      <!-- ----------------------------------------- -->
+      <ion-item class="theme-item" lines="none">
+        <span class="theme-svg" style="width:36px;height:34px;flex-shrink:0;display:inline-flex;align-items:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="34" viewBox="0 0 36 34" fill="none">
+            <ellipse cx="18" cy="17" rx="18" ry="17" fill="#26A2AF" />
+          </svg>
+        </span>
+        <ion-label>Bluish-Cyan</ion-label>
+        <ion-radio value="#26A2AF" class="custom-radio"></ion-radio>
+      </ion-item>
+      <!-- ----------------------------------------- -->
+      <ion-item class="theme-item" lines="none">
+        <span class="theme-svg" style="width:36px;height:34px;flex-shrink:0;display:inline-flex;align-items:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="34" viewBox="0 0 36 34" fill="none">
+            <ellipse cx="18" cy="17" rx="18" ry="17" fill="#07678D" />
+          </svg>
+        </span>
+        <ion-label>Bluish-Purple</ion-label>
+        <ion-radio value="#07678D" class="custom-radio"></ion-radio>
+      </ion-item>
+      <!-- ----------------------------------------- -->
+      <ion-item class="theme-item" lines="none">
+        <span class="theme-svg" style="width:36px;height:34px;flex-shrink:0;display:inline-flex;align-items:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="34" viewBox="0 0 36 34" fill="none">
+            <ellipse cx="18" cy="17" rx="18" ry="17" fill="#005F41" />
+          </svg>
+        </span>
+        <ion-label>Greenish-Cyan</ion-label>
+        <ion-radio value="#005F41" class="custom-radio"></ion-radio>
+      </ion-item>
+      <!-- ----------------------------------------- -->
+      <ion-item class="theme-item" lines="none">
+        <span class="theme-svg" style="width:36px;height:34px;flex-shrink:0;display:inline-flex;align-items:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="34" viewBox="0 0 36 34" fill="none">
+            <ellipse cx="18" cy="17" rx="18" ry="17" fill="#F57AB3" />
+          </svg>
+        </span>
+        <ion-label>Magenta-Red</ion-label>
+        <ion-radio value="#F57AB3" class="custom-radio"></ion-radio>
+      </ion-item>
+      <!-- ----------------------------------------- -->
+      <ion-item class="theme-item" lines="none">
+        <span class="theme-svg" style="width:36px;height:34px;flex-shrink:0;display:inline-flex;align-items:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="34" viewBox="0 0 36 34" fill="none">
+            <ellipse cx="18" cy="17" rx="18" ry="17" fill="#10527F" />
+          </svg>
+        </span>
+        <ion-label>Cyan-Blue</ion-label>
+        <ion-radio value="#10527F" class="custom-radio"></ion-radio>
+      </ion-item>
+      <!-- ----------------------------------------- -->
+      <ion-item class="theme-item" lines="none">
+        <span class="theme-svg" style="width:36px;height:34px;flex-shrink:0;display:inline-flex;align-items:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="34" viewBox="0 0 36 34" fill="none">
+            <ellipse cx="18" cy="17" rx="18" ry="17" fill="#4D2B89" />
+          </svg>
+        </span>
+        <ion-label>Bluish-Purple</ion-label>
+        <ion-radio value="#4D2B89" class="custom-radio"></ion-radio>
+      </ion-item>
+      <!-- ----------------------------------------- -->
+      <ion-item class="theme-item" lines="none">
+        <span class="theme-svg" style="width:36px;height:34px;flex-shrink:0;display:inline-flex;align-items:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="34" viewBox="0 0 36 34" fill="none">
+            <ellipse cx="18" cy="17" rx="18" ry="17" fill="#25A0A7" />
+          </svg>
+        </span>
+        <ion-label>Cyan</ion-label>
+        <ion-radio value="#25A0A7" class="custom-radio"></ion-radio>
+      </ion-item>
+      <!-- ----------------------------------------- -->
+      <ion-item class="theme-item" lines="none">
+        <span class="theme-svg" style="width:36px;height:34px;flex-shrink:0;display:inline-flex;align-items:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="34" viewBox="0 0 36 34" fill="none">
+            <ellipse cx="18" cy="17" rx="18" ry="17" fill="#E36135" />
+          </svg>
+        </span>
+        <ion-label>Red-Orange</ion-label>
+        <ion-radio value="#E36135" class="custom-radio"></ion-radio>
+      </ion-item>
+      <!-- ----------------------------------------- -->
+      <ion-item class="theme-item" lines="none">
+        <span class="theme-svg" style="width:36px;height:34px;flex-shrink:0;display:inline-flex;align-items:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="34" viewBox="0 0 36 34" fill="none">
+            <ellipse cx="18" cy="17" rx="18" ry="17" fill="#FF9801" />
+          </svg>
+        </span>
+        <ion-label>Yellowish-Orange</ion-label>
+        <ion-radio value="#FF9801" class="custom-radio"></ion-radio>
+      </ion-item>
+      <!-- ----------------------------------------- -->
+      <ion-item class="theme-item" lines="none">
+        <span class="theme-svg" style="width:36px;height:34px;flex-shrink:0;display:inline-flex;align-items:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="34" viewBox="0 0 36 34" fill="none">
+            <ellipse cx="18" cy="17" rx="18" ry="17" fill="#6F022C" />
+          </svg>
+        </span>
+        <ion-label>Pinkish-Red-Vibrant</ion-label>
+        <ion-radio value="#6F022C" class="custom-radio"></ion-radio>
+      </ion-item>
+      <!-- ----------------------------------------- -->
+      <ion-item class="theme-item" lines="none">
+        <span class="theme-svg" style="width:36px;height:34px;flex-shrink:0;display:inline-flex;align-items:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="34" viewBox="0 0 36 34" fill="none">
+            <ellipse cx="18" cy="17" rx="18" ry="17" fill="#00203F" />
+          </svg>
+        </span>
+        <ion-label>Cyan-Blue-Vibrant</ion-label>
+        <ion-radio value="#083D7C" class="custom-radio"></ion-radio>
+      </ion-item>
+      <!-- ----------------------------------------- -->
+      <ion-item class="theme-item" lines="none">
+        <span class="theme-svg" style="width:36px;height:34px;flex-shrink:0;display:inline-flex;align-items:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="34" viewBox="0 0 36 34" fill="none">
+            <ellipse cx="18" cy="17" rx="18" ry="17" fill="#481B3E" />
+          </svg>
+        </span>
+        <ion-label>Reddish-Magenta</ion-label>
+        <ion-radio value="#481B3E" class="custom-radio"></ion-radio>
+      </ion-item>
+      <!-- ----------------------------------------- -->
+      <ion-item class="theme-item" lines="none">
+        <span class="theme-svg" style="width:36px;height:34px;flex-shrink:0;display:inline-flex;align-items:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="34" viewBox="0 0 36 34" fill="none">
+            <ellipse cx="18" cy="17" rx="18" ry="17" fill="#16414B" />
+          </svg>
+        </span>
+        <ion-label>Bluish-Cyan</ion-label>
+        <ion-radio value="#16414B" class="custom-radio"></ion-radio>
+      </ion-item>
+      <!-- ----------------------------------------- -->
+      <ion-item class="theme-item" lines="none">
+        <span class="theme-svg" style="width:36px;height:34px;flex-shrink:0;display:inline-flex;align-items:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="34" viewBox="0 0 36 34" fill="none">
+            <ellipse cx="18" cy="17" rx="18" ry="17" fill="#9346D6" />
+          </svg>
+        </span>
+        <ion-label>Purple</ion-label>
+        <ion-radio value="#9346D6" class="custom-radio"></ion-radio>
+      </ion-item>
+      <!-- ----------------------------------------- -->
+      <ion-item class="theme-item" lines="none">
+        <span class="theme-svg" style="width:36px;height:34px;flex-shrink:0;display:inline-flex;align-items:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="34" viewBox="0 0 36 34" fill="none">
+            <ellipse cx="18" cy="17" rx="18" ry="17" fill="#6F3C07" />
+          </svg>
+        </span>
+        <ion-label>Brown</ion-label>
+        <ion-radio value="#6F3C07" class="custom-radio"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
 </ion-content>

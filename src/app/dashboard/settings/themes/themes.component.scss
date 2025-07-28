@@ -1,1 +1,56 @@
+// Center the list and equalize left/right spacing
+ion-content {
+  --padding-start: 0 !important;
+  --padding-end: 0 !important;
+}
+ion-list {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 400px;
+}
+// Center align ion-item contents and add margin between SVG and label
+.theme-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  --border-width: 0;
+}
+
+// Remove bottom border from ion-item using ::part(native)
+.theme-item::part(native) {
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+.theme-svg {
+  margin-right: 16px;
+}
+// Custom radio button styles
+.custom-radio::part(container) {
+  border: 2px solid #083D7C;
+  border-radius: 50%;
+  background: #fff;
+  width: 22px;
+  height: 22px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.custom-radio::part(mark) {
+  background: #083D7C;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  display: none;
+}
+.custom-radio[aria-checked="true"]::part(mark) {
+  display: block;
+}
+.custom-radio {
+  --color-checked: #083D7C;
+  --color: #083D7C;
+  --border-color: #083D7C;
+  --background: #fff;
+  --size: 22px;
+}
 /* Styles for Themes page */
