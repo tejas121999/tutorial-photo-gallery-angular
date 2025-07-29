@@ -1,75 +1,80 @@
 <ion-header>
-    <ion-toolbar color="primary">
-        <ion-buttons slot="start">
-            <ion-button routerLink="/dashboard/home">
-                <ion-icon name="arrow-back-outline" slot="icon-only"></ion-icon>
-            </ion-button>
-        </ion-buttons>
-        <ion-title class="supplier-title">Supplier</ion-title>
-        <ion-buttons slot="end">
-            <ion-button>
-                Save
-            </ion-button>
-        </ion-buttons>
-    </ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button fill="clear" routerLink="/dashboard/home">
+        <span slot="icon-only">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M14.25 9H3.75" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 14.25L3.75 9L9 3.75" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </ion-button>
+      <ion-title class="toolbar-title-text">Supplier</ion-title>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>
+        Save
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 <ion-content>
     <div class="centered-form-wrapper">
         <form [formGroup]="supplierForm">
-            <ion-item>
-                <ion-label position="floating">Supplier Name *</ion-label>
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">Supplier Name *</ion-label>
                 <ion-input formControlName="supplierName"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label position="floating">Alias *</ion-label>
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">Alias *</ion-label>
                 <ion-input formControlName="alias"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label position="floating">Billwise Balance</ion-label>
-                <ion-select formControlName="billwiseBalance" interface="action-sheet">
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">Billwise Balance</ion-label>
+                <ion-select formControlName="billwiseBalance"  interface="action-sheet">
                     <ion-select-option value="Yes">Yes</ion-select-option>
                     <ion-select-option value="No">No</ion-select-option>
                 </ion-select>
             </ion-item>
-            <ion-item>
-                <ion-label position="floating">Credit Limit</ion-label>
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">Credit Limit</ion-label>
                 <ion-input formControlName="creditLimit"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label position="floating">Name</ion-label>
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">Name</ion-label>
                 <ion-input formControlName="name"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label position="floating">Mobile</ion-label>
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">Mobile</ion-label>
                 <ion-input formControlName="mobile"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label position="floating">Address</ion-label>
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">Address</ion-label>
                 <ion-input formControlName="address"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label position="floating">State</ion-label>
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">State</ion-label>
                 <ion-input formControlName="state"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label position="floating">Country</ion-label>
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">Country</ion-label>
                 <ion-input formControlName="country"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label position="floating">Pincode</ion-label>
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">Pincode</ion-label>
                 <ion-input formControlName="pincode"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label position="floating">PAN</ion-label>
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">PAN</ion-label>
                 <ion-input formControlName="pan"></ion-input>
             </ion-item>
             <!-- <ion-item>
                 <ion-label position="floating">Registration Type *</ion-label>
                 <ion-input formControlName="registrationType"></ion-input>
             </ion-item> -->
-            <ion-item>
-                <ion-label position="floating">Registration Type *</ion-label>
-                <ion-select formControlName="registrationType" interface="action-sheet">
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">Registration Type *</ion-label>
+                <ion-select formControlName="registrationType"  interface="action-sheet">
                     <ion-select-option value="Unknown">Unknown</ion-select-option>
                     <ion-select-option value="Regular">Regular</ion-select-option>
                     <ion-select-option value="Unregistered/Consumer">Unregistered/Consumer</ion-select-option>
@@ -83,16 +88,16 @@
                     <ion-select-option value="Non - Resident Taxpayer">Non - Resident Taxpayer</ion-select-option>
                 </ion-select>
             </ion-item>
-            <ion-item>
-                <ion-label position="floating">GSTIN/UIN *</ion-label>
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">GSTIN/UIN *</ion-label>
                 <ion-input formControlName="gstin"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label position="floating">Bank Details</ion-label>
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">Bank Details</ion-label>
                 <ion-input formControlName="bankDetails"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label position="floating">Opening Balance</ion-label>
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">Opening Balance</ion-label>
                 <ion-input formControlName="openingBalance"></ion-input>
             </ion-item>
         </form>

@@ -1,11 +1,18 @@
 <ion-header>
     <ion-toolbar color="primary">
         <ion-buttons slot="start">
-            <ion-button routerLink="/dashboard/home">
-                <ion-icon name="arrow-back-outline" slot="icon-only"></ion-icon>
+            <ion-button fill="clear" routerLink="/dashboard/home">
+                <span slot="icon-only">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <path d="M14.25 9H3.75" stroke="white" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M9 14.25L3.75 9L9 3.75" stroke="white" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </span>
             </ion-button>
+            <ion-title class="toolbar-title-text">Godown</ion-title>
         </ion-buttons>
-        <ion-title class="godown-title">Godown</ion-title>
         <ion-buttons slot="end">
             <ion-button>
                 Save
@@ -16,42 +23,42 @@
 <ion-content>
     <div class="centered-form-wrapper">
         <form [formGroup]="godownForm">
-            <ion-item>
-                <ion-label position="floating">Name *</ion-label>
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">Name *</ion-label>
                 <ion-input formControlName="name"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label position="floating">Alias *</ion-label>
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">Alias *</ion-label>
                 <ion-input formControlName="alias"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label position="floating">Under *</ion-label>
-                <ion-select formControlName="under" interface="action-sheet">
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">Under *</ion-label>
+                <ion-select formControlName="under"  interface="action-sheet">
                     <ion-select-option value="Primary">Primary</ion-select-option>
                     <ion-select-option value="Main Location">Main Location</ion-select-option>
                 </ion-select>
             </ion-item>
-            <ion-item>
-                <ion-label position="floating">Excise Tax Unit</ion-label>
-                <ion-select formControlName="exciseTaxUnit" interface="action-sheet">
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">Excise Tax Unit</ion-label>
+                <ion-select formControlName="exciseTaxUnit"  interface="action-sheet">
                     <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
                     <ion-select-option value="TOM">TOM</ion-select-option>
                 </ion-select>
             </ion-item>
-            <ion-item>
-                <ion-label position="floating">Address</ion-label>
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">Address</ion-label>
                 <ion-input formControlName="address"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label position="floating">Allow Material Storage</ion-label>
-                <ion-select formControlName="allowMaterialStorage" interface="action-sheet">
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">Allow Material Storage</ion-label>
+                <ion-select formControlName="allowMaterialStorage"  interface="action-sheet">
                     <ion-select-option value="Yes">Yes</ion-select-option>
                     <ion-select-option value="No">No</ion-select-option>
                 </ion-select>
             </ion-item>
-            <ion-item>
-                <ion-label position="floating">Set Job For Job Posting</ion-label>
-                <ion-select formControlName="setJobForJobPosting" interface="action-sheet">
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">Set Job For Job Posting</ion-label>
+                <ion-select formControlName="setJobForJobPosting"  interface="action-sheet">
                     <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
                 </ion-select>
             </ion-item>
@@ -65,13 +72,13 @@
             <ion-icon slot="end" name="chevron-up-outline" *ngIf="showAdditionalDetails"></ion-icon>
         </ion-item>
         <div *ngIf="showAdditionalDetails">
-            <ion-item>
+            <ion-item class="internal-form-item">
                 <ion-checkbox class="godown-checkbox" slot="end" [(ngModel)]="checkBox1"></ion-checkbox>
-                <ion-label>Use Stock With Third party</ion-label>
+                <ion-label class="internal-form-label">Use Stock With Third party</ion-label>
             </ion-item>
-            <ion-item>
+            <ion-item class="internal-form-item">
                 <ion-checkbox class="godown-checkbox" slot="end" [(ngModel)]="checkBox2"></ion-checkbox>
-                <ion-label>Use Third Party Stock With Us</ion-label>
+                <ion-label class="internal-form-label">Use Third Party Stock With Us</ion-label>
             </ion-item>
         </div>
     </ion-item-group>

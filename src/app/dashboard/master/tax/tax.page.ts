@@ -31,4 +31,10 @@ export class TaxPage {
       bankName: [""],
     });
   }
+
+  goBack() {
+    // Logic to navigate back to the previous page
+    // This could be a router navigation or a service call depending on your routing setup
+    window.history.back(); // Simple way to go back in history
+  }
 }

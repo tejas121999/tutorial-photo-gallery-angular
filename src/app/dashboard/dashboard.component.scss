@@ -54,7 +54,7 @@ ion-toolbar {
   --background: #083d7c !important;
   border-top-left-radius: 0 !important;
   border-top-right-radius: 0 !important;
-  min-height: 188px;
+  min-height: 188px !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -110,4 +110,14 @@ ion-toolbar {
 
 .menu-content {
   --background: #fff !important;
+}
+
+.menu-content ion-list {
+  margin-top: 125px;
+}
+
+@media (max-width: 600px) {
+  .menu-content ion-list {
+    margin-top: 125px; // Smaller margin for mobile screens
+  }
 }

@@ -28,4 +28,9 @@ export class SupplierComponent {
       openingBalance: [""],
     });
   }
+  goBack() {
+    // Logic to navigate back to the previous page
+    // This could be a router navigation or any other method based on your app's routing setup
+    
+  }
 }
