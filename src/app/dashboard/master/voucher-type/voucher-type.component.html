@@ -1,1 +1,90 @@
-<p>Voucher Type works!</p>
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-button routerLink="/dashboard/home">
+                <ion-icon name="arrow-back-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title class="voucher-type-title">Voucher Type</ion-title>
+        <ion-buttons slot="end">
+            <ion-button>
+                Save
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="centered-form-wrapper">
+        <form [formGroup]="voucherTypeForm">
+            <ion-item>
+                <ion-label position="floating">Name *</ion-label>
+                <ion-input formControlName="name"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Alias *</ion-label>
+                <ion-input formControlName="alias"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Voucher Type *</ion-label>
+                <ion-select formControlName="voucherType" interface="action-sheet">
+                    <ion-select-option value="Attendance">Attendance</ion-select-option>
+                    <ion-select-option value="Contra">Contra</ion-select-option>
+                    <ion-select-option value="Credit Note">Credit Note</ion-select-option>
+                    <ion-select-option value="Debit Note">Debit Note</ion-select-option>
+                    <ion-select-option value="Purchase Order">Purchase Order</ion-select-option>
+                    <ion-select-option value="Sales Order">Sales Order</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Abbreviation *</ion-label>
+                <ion-input formControlName="abbreviation"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Activate Voucher *</ion-label>
+                <ion-select formControlName="activeVoucher" interface="action-sheet">
+                    <ion-select-option value="Yes">Yes</ion-select-option>
+                    <ion-select-option value="No">No</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Voucher Numbering Method</ion-label>
+                <ion-select formControlName="voucherNumberingMethod" interface="action-sheet">
+                    <ion-select-option value="Automatic">Automatic</ion-select-option>
+                    <ion-select-option value="Automatic (Manual Override)">Automatic (Manual
+                        Override)</ion-select-option>
+                    <ion-select-option value="Manual">Manual</ion-select-option>
+                    <ion-select-option value="Multi-User Auto">Multi-User Auto</ion-select-option>
+                    <ion-select-option value="None">None</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <div *ngIf="voucherTypeForm.get('voucherNumberingMethod')?.value !== 'None'">
+                <ion-item
+                    *ngIf="voucherTypeForm.get('voucherNumberingMethod')?.value === 'Automatic (Manual Override)'">
+                    <ion-label position="floating">Preventing Duplicate Voucher Creation *</ion-label>
+                    <ion-select formControlName="preventingDuplicateVoucherCreation" interface="action-sheet">
+                        <ion-select-option value="Yes">Yes</ion-select-option>
+                        <ion-select-option value="No">No</ion-select-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item
+                    *ngIf="voucherTypeForm.get('voucherNumberingMethod')?.value === 'Automatic (Manual Override)'">
+                    <ion-label position="floating">Numbering Behavior *</ion-label>
+                    <ion-select formControlName="numberingBehavior" interface="action-sheet">
+                        <ion-select-option value="Renumber Vouchers">Renumber Vouchers</ion-select-option>
+                        <ion-select-option value="Retain Original Voucher No.">Retain Original Voucher
+                            No.</ion-select-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item
+                    *ngIf="voucherTypeForm.get('preventingDuplicateVoucherCreation')?.value === 'Automatic (Manual Override)'">
+                    <ion-label position="floating">Additional Numbering Details*</ion-label>
+                    <ion-input formControlName="additionalNumberingDetails"></ion-input>
+                </ion-item>
+                <ion-item *ngIf="voucherTypeForm.get('numberingBehavior')?.value === 'Retain Original Voucher No.'">
+                    <ion-label position="floating">Retain Original Voucher No. *</ion-label>
+                    <ion-input formControlName="retainOriginalVoucherNo"></ion-input>
+                </ion-item>
+            </div>
+        </form>
+    </div>
+</ion-content>

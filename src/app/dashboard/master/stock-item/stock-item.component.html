@@ -152,11 +152,131 @@
             </ion-item>
         </form>
         <!-- Item list with checkbox at right -->
-        <ion-list class="stock-item-list">
-            <ion-item *ngFor="let item of itemList; let i = index">
-                <ion-label>{{ item.name }}</ion-label>
-                <ion-checkbox slot="end" [checked]="item.checked" (ionChange)="item.checked = $event.detail.checked"></ion-checkbox>
+        <ion-item-group>
+            <ion-item button (click)="showAdditionalDetails = !showAdditionalDetails" detail="false" lines="none">
+                <ion-label class="additional-details-label">Additional Details</ion-label>
+                <ion-icon slot="end" name="chevron-down-outline" *ngIf="!showAdditionalDetails"></ion-icon>
+                <ion-icon slot="end" name="chevron-up-outline" *ngIf="showAdditionalDetails"></ion-icon>
             </ion-item>
-        </ion-list>
+            <div *ngIf="showAdditionalDetails">
+                <ion-item>
+                    <ion-checkbox class="square-checkbox" slot="end" value="Maintain in Batches"></ion-checkbox>
+                    <ion-label>Maintain in Batches</ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-checkbox class="square-checkbox" slot="end" value="Track Date Of Manufacture"></ion-checkbox>
+                    <ion-label>Track Date Of Manufacture</ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-checkbox class="square-checkbox" slot="end" value="Use Expiry Dates"></ion-checkbox>
+                    <ion-label>Use Expiry Dates</ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-checkbox class="square-checkbox" slot="end" value="Enable Cost Tracking"></ion-checkbox>
+                    <ion-label>Enable Cost Tracking</ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-checkbox class="square-checkbox" slot="end"
+                        value="Is Inclusive Of Duties and Taxes"></ion-checkbox>
+                    <ion-label>Is Inclusive Of Duties and Taxes</ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-checkbox class="square-checkbox" slot="end" [(ngModel)]="setComponentsBOM"
+                        name="setComponentsBOM"></ion-checkbox>
+                    <ion-label>Set Components(BOM)</ion-label>
+                </ion-item>
+                <div *ngIf="setComponentsBOM">
+                    <form>
+                        <ion-item>
+                            <ion-label position="floating">BOM Name *</ion-label>
+                            <ion-input></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="floating">Component Name *</ion-label>
+                            <ion-input></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="floating">Manufacturing Unit *</ion-label>
+                            <ion-input></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="floating">Item *</ion-label>
+                            <ion-select interface="action-sheet">
+                                <ion-select-option value="Capital Goods">Capital Goods</ion-select-option>
+                                <ion-select-option value="Goods">Goods</ion-select-option>
+                                <ion-select-option value="Service">Service</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="floating">Godown *</ion-label>
+                            <ion-select interface="action-sheet">
+                                <ion-select-option value="Capital Goods">Capital Goods</ion-select-option>
+                                <ion-select-option value="Goods">Goods</ion-select-option>
+                                <ion-select-option value="Service">Service</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="floating">Quantity *</ion-label>
+                            <ion-input></ion-input>
+                        </ion-item>
+                    </form>
+                </div>
+                <ion-item>
+                    <ion-checkbox class="square-checkbox" slot="end" [(ngModel)]="setMRPDetails"
+                        value="Set MRP Details"></ion-checkbox>
+                    <ion-label>Set MRP Details</ion-label>
+                </ion-item>
+                <div *ngIf="setMRPDetails">
+                    <form>
+                        <ion-item>
+                            <ion-label position="floating">MRP *</ion-label>
+                            <ion-input></ion-input>
+                        </ion-item>
+                    </form>
+                </div>
+                <ion-item>
+                    <ion-checkbox class="square-checkbox" slot="end" [(ngModel)]="setStandardRates"
+                        value="Set Standard Rates"></ion-checkbox>
+                    <ion-label>Set Standard Rates</ion-label>
+                </ion-item>
+                <div *ngIf="setStandardRates">
+                    <ion-label class="standard-cost-label">Standard Cost</ion-label>
+                    <form>
+                        <ion-item>
+                            <ion-label>Date</ion-label>
+                            <ion-datetime displayFormat="MM/DD/YYYY" value="2024-01-01T11:06:04.025Z"></ion-datetime>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="floating">Rate *</ion-label>
+                            <ion-input></ion-input>
+                        </ion-item>
+                    </form>
+                    <ion-label class="standard-cost-label">Standard Selling Price</ion-label>
+                    <form>
+                        <ion-item>
+                            <ion-label>Date</ion-label>
+                            <ion-datetime displayFormat="MM/DD/YYYY" value="2024-01-01T11:06:04.025Z"></ion-datetime>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="floating">Rate *</ion-label>
+                            <ion-input></ion-input>
+                        </ion-item>
+                    </form>
+                </div>
+                <ion-item>
+                    <ion-checkbox class="square-checkbox" slot="end" [(ngModel)]="rateOfDuty"
+                        name="rateOfDuty"></ion-checkbox>
+                    <ion-label>Rate Of Duty</ion-label>
+                </ion-item>
+                <div *ngIf="rateOfDuty">
+                    <form>
+                        <ion-item>
+                            <ion-label position="floating">Rate *</ion-label>
+                            <ion-input></ion-input>
+                        </ion-item>
+                    </form>
+                </div>
+            </div>
+        </ion-item-group>
     </div>
 </ion-content>

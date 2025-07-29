@@ -1,1 +1,83 @@
-<p>Cost Center works!</p>
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-button routerLink="/dashboard/home">
+                <ion-icon name="arrow-back-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title class="cost-center-title">Cost Center</ion-title>
+        <ion-buttons slot="end">
+            <ion-button>
+                Save
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="centered-form-wrapper">
+        <form [formGroup]="costCenterForm">
+            <!-- Example fields, adapt as needed for cost center -->
+            <ion-item>
+                <ion-label position="floating">Cost Center Name *</ion-label>
+                <ion-input formControlName="costCenterName"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Alias *</ion-label>
+                <ion-input formControlName="alias"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Under *</ion-label>
+                <ion-select formControlName="under" interface="action-sheet">
+                    <ion-select-option value="Primary">Primary</ion-select-option>
+                    <ion-select-option value="Secondary">Secondary</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Email ID</ion-label>
+                <ion-input formControlName="emailId"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Bank Details</ion-label>
+                <ion-select formControlName="bankDetails" interface="action-sheet">
+                    <ion-select-option value="Cheque">Cheque</ion-select-option>
+                    <ion-select-option value="e - fund Transfer">e - fund Transfer</ion-select-option>
+                    <ion-select-option value="Other">Other</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item *ngIf="costCenterForm.get('bankDetails').value === 'Cheque'">
+                <ion-label position="floating">Cross Using</ion-label>
+                <ion-input formControlName="crossUsing"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="costCenterForm.get('bankDetails').value === 'e - fund Transfer'">
+                <ion-label position="floating">A/C Number</ion-label>
+                <ion-input formControlName="accountNumber"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="costCenterForm.get('bankDetails').value === 'e - fund Transfer'">
+                <ion-label position="floating">IFSC Code</ion-label>
+                <ion-input formControlName="ifscCode"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="costCenterForm.get('bankDetails').value === 'e - fund Transfer'">
+                <ion-label position="floating">Bank Name</ion-label>
+                <ion-input formControlName="bankName"></ion-input>
+            </ion-item>
+        </form>
+    </div>
+    <!-- Additional Details copied from stock-item -->
+    <ion-item-group>
+        <ion-item button (click)="showAdditionalDetails = !showAdditionalDetails" detail="false" lines="none">
+            <ion-label class="cost-center-additional-details-label">Additional Details</ion-label>
+            <ion-icon slot="end" name="chevron-down-outline" *ngIf="!showAdditionalDetails"></ion-icon>
+            <ion-icon slot="end" name="chevron-up-outline" *ngIf="showAdditionalDetails"></ion-icon>
+        </ion-item>
+        <div *ngIf="showAdditionalDetails">
+            <ion-item>
+                <ion-checkbox class="cost-center-checkbox" slot="end" [(ngModel)]="checkBox1"></ion-checkbox>
+                <ion-label>Use For Job Costing</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-checkbox class="cost-center-checkbox" slot="end" [(ngModel)]="checkBox2"></ion-checkbox>
+                <ion-label>Showing opening Balance For Revenue Items In Reports</ion-label>
+            </ion-item>
+        </div>
+    </ion-item-group>
+</ion-content>

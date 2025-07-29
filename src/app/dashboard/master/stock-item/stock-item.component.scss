@@ -1,14 +1,61 @@
+/* Standard Cost label style moved from inline */
+.standard-cost-label {
+    margin-left: 16px;
+    color: #000 !important;
+    font-size: 12px !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    line-height: normal !important;
+}
+
+/* Make label use custom style when checkbox is checked */
+ion-item .square-checkbox[aria-checked="true"]~ion-label,
+ion-item .square-checkbox:checked~ion-label {
+    color: #000 !important;
+    font-family: "Open Sans", sans-serif !important;
+    font-size: 13px !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    line-height: normal !important;
+}
+
+/* Square style for ion-checkbox */
+/* Square style for ion-checkbox */
+/* Square style for ion-checkbox */
+.square-checkbox {
+    --size: 14px;
+    width: 14px;
+    height: 14px;
+    --border-radius: 0;
+    --checkmark-color: #ffffff;
+    --background-checked: #034099;
+}
+
+/* Style for Additional Details label */
+.additional-details-label {
+    color: #000 !important;
+    font-size: 13px !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    line-height: normal !important;
+}
+
+/* Style for square checkboxes in stock-item-list */
+/* Style for square checkboxes in stock-item-list */
 /* Style for square checkboxes in stock-item-list */
 .stock-item-list ion-checkbox {
-  --size: 14px;
-  width: 14px;
-  height: 14px;
-  min-width: 14px;
-  min-height: 14px;
-  max-width: 14px;
-  max-height: 14px;
-  --border-radius: 2px;
+    --size: 14px;
+    width: 14px;
+    height: 14px;
+    min-width: 14px;
+    min-height: 14px;
+    max-width: 14px;
+    max-height: 14px;
+    --border-radius: 2px;
+    --checkmark-color: #034099;
+    --background-checked: #034099;
 }
+
 ion-toolbar {
     display: flex !important;
     align-items: flex-end !important;

@@ -9,12 +9,14 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
   styleUrls: ["./stock-item.component.scss"],
 })
 export class StockItemComponent {
+  setComponentsBOM: boolean = false;
+  setMRPDetails: boolean = false;
+  rateOfDuty: boolean = false;
+  setStandardRates: boolean = false;
   stockItemForm: FormGroup;
-  itemList:any = [
-    { name: 'Item 1', checked: false },
-    { name: 'Item 2', checked: false },
-    { name: 'Item 3', checked: false }
-  ];
+  additionalDetailsForm: FormGroup;
+  showAdditionalDetails: boolean = false;
+  checkboxes: any
 
   constructor(private fb: FormBuilder) {
     this.stockItemForm = this.fb.group({
@@ -39,6 +41,9 @@ export class StockItemComponent {
       quantity: [""],
       rate: [""],
       value: [""],
+    });
+    this.additionalDetailsForm = this.fb.group({
+
     });
   }
 }
