@@ -20,7 +20,7 @@
         Home
       </ion-item>
       <ion-item-group>
-        <ion-item button (click)="showMaster = !showMaster" detail="false" lines="none" class="sidebar-menu-item " >
+        <ion-item button (click)="showMaster = !showMaster" detail="false" lines="none" class="sidebar-menu-item">
           <span class="sidebar-icon-wrapper">
             <img src="assets/crown.svg" alt="Crown" class="sidebar-icon" />
           </span>
@@ -123,7 +123,7 @@
           <ion-item routerLink="/dashboard/master/cost-center" routerDirection="root" (click)="closeMenu()" lines="none"
             class="sidebar-menu-item master-margin">
             <span class="sidebar-icon-wrapper">
-              <img src="assets/material-symbols_money-bag-outline.svg" alt="Round Off" class="sidebar-icon" />
+              <img src="assets/material-symbols_money-bag-outline.svg" alt="Cost Center" class="sidebar-icon" />
             </span>
             Cost Center
           </ion-item>
@@ -146,14 +146,14 @@
       <ion-item routerLink="/dashboard/payment" routerDirection="root" (click)="closeMenu()" lines="none"
         class="sidebar-menu-item">
         <span class="sidebar-icon-wrapper">
-          <img src="assets/Frame 1366.svg" alt="Home" class="sidebar-icon" />
+          <img src="assets/Frame 1366.svg" alt="Payment" class="sidebar-icon" />
         </span>
         Payment
       </ion-item>
       <ion-item routerLink="/dashboard/transaction" routerDirection="root" (click)="closeMenu()" lines="none"
         class="sidebar-menu-item">
         <span class="sidebar-icon-wrapper">
-          <img src="assets/proicons_arrow-swap.svg" alt="Home" class="sidebar-icon" />
+          <img src="assets/proicons_arrow-swap.svg" alt="Transaction" class="sidebar-icon" />
         </span>
         Transaction
       </ion-item>
@@ -179,7 +179,7 @@
       </ion-item>
       <ion-item lines="none" class="sidebar-menu-item">
         <span class="sidebar-icon-wrapper">
-          <img src="assets/Vector6.svg" alt="Share with Friends" class="sidebar-icon" />
+          <img src="assets/Vector6.svg" alt="Feedback" class="sidebar-icon" />
         </span>
         Feedback
       </ion-item>
@@ -199,16 +199,14 @@
     </ion-list>
   </ion-content>
 </ion-menu>
-<div id="main-content">
-  <ion-header>
-    <ion-toolbar color="primary">
-      <ion-buttons slot="start">
-        <ion-menu-button menu="first"></ion-menu-button>
-      </ion-buttons>
-      <!-- <ion-title>Dashboard</ion-title> -->
-    </ion-toolbar>
-  </ion-header>
-  <ion-content>
-    <router-outlet></router-outlet>
-  </ion-content>
-</div>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="first"></ion-menu-button>
+    </ion-buttons>
+    <!-- <ion-title>Dashboard</ion-title> -->
+  </ion-toolbar>
+</ion-header>
+<ion-content id="main-content">
+  <router-outlet></router-outlet>
+</ion-content>

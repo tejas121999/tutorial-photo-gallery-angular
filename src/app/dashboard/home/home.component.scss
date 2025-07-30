@@ -5,11 +5,32 @@ ion-toolbar {
   --ion-color-base: #034099 !important;
 }
 
-div.home-page,
-.home-page h2,
+
+.home-page {
+  color: #222;
+  background: #fff;
+  min-height: 100vh;
+  padding: 32px 16px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  margin-top: 16px;
+}
+
+.home-page h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5em;
+  color: #034099;
+}
+
 .home-page p {
-  color: #222 !important;
-  background: #fff !important;
+  font-size: 1.1rem;
+  margin-bottom: 0;
+  color: #444;
 }
 
 /* Home page styles */
