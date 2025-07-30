@@ -1,24 +1,41 @@
 <ion-content class="login-content">
   <img src="assets/banner-img2.png" alt="Login Banner" class="login-banner-responsive" />
   <div class="login-center-wrapper">
-    <form class="login-form" (ngSubmit)="onLogin()">
+    <form [formGroup]="loginForm" class="login-form" (ngSubmit)="onLogin()">
       <h2 class="login-title">Welcome back!</h2>
       <div class="login-field">
         <label>Email</label>
-        <input type="email" [(ngModel)]="email" name="email" required autocomplete="username" />
+        <input 
+          type="email" 
+          formControlName="user_name" 
+          autocomplete="username"
+          [class.error]="user_name?.invalid && user_name?.touched"
+        />
+        <div class="error-message" *ngIf="user_name?.invalid && user_name?.touched">
+          <span *ngIf="user_name?.errors?.['required']">Email is required</span>
+          <span *ngIf="user_name?.errors?.['email']">Please enter a valid email</span>
+        </div>
       </div>
       <div class="login-field password-field">
         <label>Password</label>
         <div class="password-input-wrapper">
-          <input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="password" name="password" required
-            autocomplete="current-password" />
+          <input 
+            [type]="showPassword ? 'text' : 'password'" 
+            formControlName="user_password" 
+            autocomplete="current-password"
+            [class.error]="user_password?.invalid && user_password?.touched"
+          />
           <button type="button" class="show-password-btn" (click)="toggleShowPassword()">
             <ion-icon [name]="showPassword ? 'eye-off' : 'eye'" slot="icon-only"></ion-icon>
           </button>
         </div>
+        <div class="error-message" *ngIf="user_password?.invalid && user_password?.touched">
+          <span *ngIf="user_password?.errors?.['required']">Password is required</span>
+          <span *ngIf="user_password?.errors?.['minlength']">Password must be at least 6 characters</span>
+        </div>
         <a class="forgot-password" href="#">forgot Password?</a>
       </div>
-      <button type="submit" class="login-btn">LOGIN</button>
+      <button type="submit" class="login-btn" [disabled]="loginForm.invalid">LOGIN</button>
       <div class="or-divider">
         <span>OR</span>
       </div>

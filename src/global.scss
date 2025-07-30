@@ -340,3 +340,36 @@ form {
     min-height: 60vh;
 }
 /* === End global form styles === */
+
+/* === Global form validation styles === */
+.error-message {
+    color: #e53e3e;
+    font-size: 0.85rem;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    font-family: "Open Sans", sans-serif;
+}
+
+input.error,
+ion-input.error,
+ion-textarea.error {
+    border-bottom: 2px solid #e53e3e !important;
+    border-color: #e53e3e !important;
+}
+
+input.error:focus,
+ion-input.error:focus,
+ion-textarea.error:focus {
+    border-bottom: 2px solid #e53e3e !important;
+    border-color: #e53e3e !important;
+    --highlight-color-focused: #e53e3e !important;
+}
+
+.form-field input.error {
+    border-bottom: 2px solid #e53e3e;
+}
+
+.form-field input.error:focus {
+    border-bottom: 2px solid #e53e3e;
+}
+/* === End global form validation styles === */

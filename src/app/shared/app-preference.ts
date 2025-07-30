@@ -20,6 +20,7 @@ export class AppPreference {
   }
 
   private _storage: Storage | null = null;
+  isLoggedIn: boolean = false;
 
   async init() {
     // If using, define driver order here (SQLite first)
@@ -47,6 +48,15 @@ export class AppPreference {
     return (await this.get(PreferenceKeys.ACCESS_TOKEN)) || null;
   }
 
+  isLogin() {
+    const accessToken: any = this.getAccessToken();
+    if (accessToken) {
+      this.isLoggedIn = true;
+    } else {
+      this.isLoggedIn = false;
+    }
+  }
+
   async isUserLoggedIn() {
     const accessToken: any = this.getAccessToken();
     return accessToken && accessToken != "";
@@ -55,12 +65,19 @@ export class AppPreference {
   async presentToast(
     message: string,
     duration: number = 2000,
-    position: "top" | "bottom" | "middle" = "bottom"
+    position: "top" | "bottom" | "middle" = "bottom",
+    color:
+      | "warning"
+      | "success"
+      | "danger"
+      | "primary"
+      | "secondary" = "primary"
   ) {
     const toast = await this.toastController.create({
       message,
       duration,
       position,
+      color,
     });
     toast.present();
   }

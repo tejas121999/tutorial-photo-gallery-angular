@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { AppPreference } from "../../shared/app-preference";
 import { ApiServiceService } from "../../services/api-service.service";
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from "@angular/common/http";
 
 @Component({
   selector: "app-login",
@@ -10,15 +11,22 @@ import { HttpClientModule } from '@angular/common/http';
   styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent implements OnInit {
-  email: string = "";
-  password: string = "";
+  loginForm: FormGroup;
   showPassword: boolean = false;
 
   constructor(
     private router: Router,
     private appPreference: AppPreference,
     private apiService: ApiServiceService
-  ) {}
+  ) {
+    this.loginForm = new FormGroup({
+      user_name: new FormControl("", [Validators.required]),
+      user_password: new FormControl("", [
+        Validators.required,
+        Validators.minLength(6),
+      ]),
+    });
+  }
 
   ngOnInit() {}
 
@@ -27,32 +35,65 @@ export class LoginComponent implements OnInit {
   }
 
   async onLogin() {
-    // Store email and password
-    // await this.appPreference.set("email", this.email);
-    // await this.appPreference.set("password", this.password);
+    if (this.loginForm.valid) {
+      var temp = [
+        {
+          user_name: this.loginForm.get("user_name")?.value,
+          user_password: this.loginForm.get("user_password")?.value,
+          user_desk_url: "temp",
+        },
+      ];
+      this.apiService.userLogin(temp).subscribe(
+        async (response: any) => {
+          console.log("Login successful", response);
+          // Store the authorization token from response
+          if (response && response?._AuthoriseToken) {
+            await this.appPreference.set(
+              "ACCESS_TOKEN",
+              response._AuthoriseToken
+            );
+            await this.appPreference.set("_LoginToken", response._LoginToken);
+            this.router.navigate(["/dashboard"]);
+            await this.appPreference.presentToast(
+              "Login Successfully!",
+              2000,
+              "bottom",
+              "success"
+            );
+          } else {
+            await this.appPreference.presentToast(
+              response?._Message,
+              2000,
+              "bottom",
+              "danger"
+            );
+          }
+        },
+        (error) => {
+          console.error("Login failed", error);
+          this.appPreference.presentToast(
+            "Login failed. Please try again.",
+            2000,
+            "bottom",
+            "danger"
+          );
+        }
+      );
+    } else {
+      this.appPreference.presentToast(
+        "Please fill in all required fields correctly.",
+        2000,
+        "bottom",
+        "danger"
+      );
+    }
+  }
 
-    var temp = [
-      {
-        user_name: this.email,
-        user_password: this.password,
-        user_desk_url: "temp",
-      },
-    ];
-    this.apiService.userLogin(temp).subscribe(
-      async (response) => {
-        console.log("Login successful", response);
-        // Handle successful login, e.g., navigate to dashboard
-        this.router.navigate(["/dashboard"]);
-        await this.appPreference.presentToast("Login Successfully!");
-      },
-      (error) => {
-        console.error("Login failed", error);
-        // Handle login failure, e.g., show error message
-        this.appPreference.presentToast("Login failed. Please try again.");
-      }
-    );
-    
-    // this.router.navigate(["/dashboard"]);
+  // Getter methods for easy access to form controls
+  get user_name() {
+    return this.loginForm.get("user_name");
+  }
+  get user_password() {
+    return this.loginForm.get("user_password");
   }
 }
-

@@ -1,6 +1,8 @@
 import { Component, ViewChild, AfterViewInit, ElementRef } from "@angular/core";
 import { IonMenu } from "@ionic/angular";
 import { register } from "swiper/element/bundle";
+import { AppPreference } from "../shared/app-preference";
+import { Router } from "@angular/router";
 
 register();
 @Component({
@@ -12,6 +14,11 @@ export class DashboardComponent implements AfterViewInit {
   showMaster = false;
   @ViewChild(IonMenu) menu: IonMenu;
   @ViewChild("dashboardMain", { static: true }) dashboardMain: ElementRef;
+
+  constructor(
+    private appPreference: AppPreference,
+    private router: Router
+  ) {}
 
   closeMenu() {
     if (this.menu) {
@@ -27,6 +34,17 @@ export class DashboardComponent implements AfterViewInit {
           document.activeElement.blur();
         }
       });
+    }
+  }
+
+  async onLogout() {
+    try {
+      await this.appPreference.clear();
+      await this.appPreference.presentToast("Logged out successfully!");
+      this.router.navigate(["/"]);
+    } catch (error) {
+      console.error("Logout failed", error);
+      await this.appPreference.presentToast("Logout failed. Please try again.", 2000, "bottom", "danger");
     }
   }
 }
