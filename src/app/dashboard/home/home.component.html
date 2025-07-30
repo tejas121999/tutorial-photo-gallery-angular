@@ -1,81 +1,275 @@
-<div class="top-white-line"></div>
-<ion-content class="ion-padding">
-  <div class="custom-header">
-    <ion-grid>
-      <ion-row>
-        <ion-col size="4">
-          <span>Overview</span>
-        </ion-col>
-        <ion-col size="3">
-          <div class="header-item-div">
-            <span>TODAY</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="9" viewBox="0 0 13 9" fill="none">
+<ion-page>
+  <div class="top-white-line"></div>
+  <ion-content class="ion-padding">
+    <div class="custom-header">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4">
+            <span>Overview</span>
+          </ion-col>
+          <ion-col size="3">
+            <div class="header-item-div">
+              <span>TODAY</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="9" viewBox="0 0 13 9" fill="none">
+                <path
+                  d="M1.46243 0.143523L6.25706 5.03103L10.9331 0.0299026L12.406 1.53461L6.29372 8.08614L0.0260568 1.68313L1.46243 0.143523Z"
+                  fill="white" />
+              </svg>
+            </div>
+          </ion-col>
+          <ion-col size="3">
+            <div class="header-item-div-overall">
+              <span>OVERALL</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="9" viewBox="0 0 13 9" fill="none">
+                <path
+                  d="M1.46243 0.143523L6.25706 5.03103L10.9331 0.0299026L12.406 1.53461L6.29372 8.08614L0.0260568 1.68313L1.46243 0.143523Z"
+                  fill="white" />
+              </svg>
+            </div>
+          </ion-col>
+          <ion-col size="2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="23" viewBox="0 0 21 23" fill="none">
               <path
-                d="M1.46243 0.143523L6.25706 5.03103L10.9331 0.0299026L12.406 1.53461L6.29372 8.08614L0.0260568 1.68313L1.46243 0.143523Z"
+                d="M17.0333 16.1584C16.1703 16.1584 15.3981 16.5027 14.8076 17.0421L6.71113 12.2795C6.76791 12.0155 6.81333 11.7516 6.81333 11.4762C6.81333 11.2007 6.76791 10.9368 6.71113 10.6728L14.7168 5.95613C15.33 6.52994 16.1362 6.8857 17.0333 6.8857C18.9184 6.8857 20.44 5.34789 20.44 3.44285C20.44 1.53781 18.9184 0 17.0333 0C15.1483 0 13.6267 1.53781 13.6267 3.44285C13.6267 3.71828 13.6721 3.98223 13.7289 4.24618L5.7232 8.96289C5.11 8.38908 4.30376 8.03332 3.40667 8.03332C1.52164 8.03332 0 9.57113 0 11.4762C0 13.3812 1.52164 14.919 3.40667 14.919C4.30376 14.919 5.11 14.5633 5.7232 13.9894L13.8084 18.7635C13.7516 19.0045 13.7175 19.257 13.7175 19.5095C13.7175 21.3571 15.2051 22.8605 17.0333 22.8605C18.8616 22.8605 20.3492 21.3571 20.3492 19.5095C20.3492 17.6618 18.8616 16.1584 17.0333 16.1584ZM17.0333 2.29523C17.6579 2.29523 18.1689 2.81166 18.1689 3.44285C18.1689 4.07404 17.6579 4.59047 17.0333 4.59047C16.4088 4.59047 15.8978 4.07404 15.8978 3.44285C15.8978 2.81166 16.4088 2.29523 17.0333 2.29523ZM3.40667 12.6238C2.78211 12.6238 2.27111 12.1074 2.27111 11.4762C2.27111 10.845 2.78211 10.3286 3.40667 10.3286C4.03122 10.3286 4.54222 10.845 4.54222 11.4762C4.54222 12.1074 4.03122 12.6238 3.40667 12.6238ZM17.0333 20.6801C16.4088 20.6801 15.8978 20.1636 15.8978 19.5324C15.8978 18.9013 16.4088 18.3848 17.0333 18.3848C17.6579 18.3848 18.1689 18.9013 18.1689 19.5324C18.1689 20.1636 17.6579 20.6801 17.0333 20.6801Z"
                 fill="white" />
             </svg>
-          </div>
-        </ion-col>
-        <ion-col size="3">
-          <div class="header-item-div-overall">
-            <span>OVERALL</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="9" viewBox="0 0 13 9" fill="none">
-              <path
-                d="M1.46243 0.143523L6.25706 5.03103L10.9331 0.0299026L12.406 1.53461L6.29372 8.08614L0.0260568 1.68313L1.46243 0.143523Z"
-                fill="white" />
-            </svg>
-          </div>
-        </ion-col>
-        <ion-col size="2">
-          <svg xmlns="http://www.w3.org/2000/svg" width="21" height="23" viewBox="0 0 21 23" fill="none">
-            <path
-              d="M17.0333 16.1584C16.1703 16.1584 15.3981 16.5027 14.8076 17.0421L6.71113 12.2795C6.76791 12.0155 6.81333 11.7516 6.81333 11.4762C6.81333 11.2007 6.76791 10.9368 6.71113 10.6728L14.7168 5.95613C15.33 6.52994 16.1362 6.8857 17.0333 6.8857C18.9184 6.8857 20.44 5.34789 20.44 3.44285C20.44 1.53781 18.9184 0 17.0333 0C15.1483 0 13.6267 1.53781 13.6267 3.44285C13.6267 3.71828 13.6721 3.98223 13.7289 4.24618L5.7232 8.96289C5.11 8.38908 4.30376 8.03332 3.40667 8.03332C1.52164 8.03332 0 9.57113 0 11.4762C0 13.3812 1.52164 14.919 3.40667 14.919C4.30376 14.919 5.11 14.5633 5.7232 13.9894L13.8084 18.7635C13.7516 19.0045 13.7175 19.257 13.7175 19.5095C13.7175 21.3571 15.2051 22.8605 17.0333 22.8605C18.8616 22.8605 20.3492 21.3571 20.3492 19.5095C20.3492 17.6618 18.8616 16.1584 17.0333 16.1584ZM17.0333 2.29523C17.6579 2.29523 18.1689 2.81166 18.1689 3.44285C18.1689 4.07404 17.6579 4.59047 17.0333 4.59047C16.4088 4.59047 15.8978 4.07404 15.8978 3.44285C15.8978 2.81166 16.4088 2.29523 17.0333 2.29523ZM3.40667 12.6238C2.78211 12.6238 2.27111 12.1074 2.27111 11.4762C2.27111 10.845 2.78211 10.3286 3.40667 10.3286C4.03122 10.3286 4.54222 10.845 4.54222 11.4762C4.54222 12.1074 4.03122 12.6238 3.40667 12.6238ZM17.0333 20.6801C16.4088 20.6801 15.8978 20.1636 15.8978 19.5324C15.8978 18.9013 16.4088 18.3848 17.0333 18.3848C17.6579 18.3848 18.1689 18.9013 18.1689 19.5324C18.1689 20.1636 17.6579 20.6801 17.0333 20.6801Z"
-              fill="white" />
-          </svg>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div>
-  <swiper-container [pagination]="true">
-    <swiper-slide>
-      <ion-card class="custom-card">
-        <ion-card-header>
-          <ion-card-title>Stored Credentials</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <div>Email: {{ email }}</div>
-          <div>Password: {{ password }}</div>
-        </ion-card-content>
-      </ion-card>
-    </swiper-slide>
-    <swiper-slide>
-      <ion-card class="custom-card">
-        <ion-card-header>
-          <ion-card-title>Slide 2</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <p>Content for Slide 2</p>
-        </ion-card-content>
-      </ion-card>
-    </swiper-slide>
-    <swiper-slide>
-      <ion-card class="custom-card">
-        <ion-card-header>
-          <ion-card-title>Slide 3</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <p>Content for Slide 3</p>
-        </ion-card-content>
-      </ion-card>
-    </swiper-slide>
-  </swiper-container>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Stored Credentials</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <div>Email: {{ email }}</div>
-      <div>Password: {{ password }}</div>
-    </ion-card-content>
-  </ion-card>
-</ion-content>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <swiper-container [pagination]="true">
+      <swiper-slide>
+        <ion-card class="custom-card">
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <span class="sales-title">
+                    Sales
+                  </span>
+                </ion-col>
+                <ion-col>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="143" height="40" viewBox="0 0 143 40" fill="none">
+                    <path
+                      d="M10.7006 21.3762C15.1412 15.9232 25.2068 6.65314 29.9435 13.1967C34.1375 17.1625 43.7096 24.3506 48.4463 21.3762C49.9266 17.9061 53.7751 13.048 57.3277 21.3762C58.8079 23.8548 62.8045 27.0275 66.9492 19.889C70.403 14.436 78.939 7.0993 85.452 21.3762C89.1525 24.8463 97.4418 28.6634 100.994 16.1711C104.942 8.23946 114.316 -5.2443 120.237 4.27365L129.119 16.1711L138 29.2564H132.079L7 30L10.7006 21.3762Z"
+                      fill="url(#paint0_linear_14_71)" stroke="#01822D" />
+                    <rect y="28" width="143" height="12" fill="white" />
+                    <defs>
+                      <linearGradient id="paint0_linear_14_71" x1="72.1299" y1="15.8718" x2="72.1299" y2="24.7949"
+                        gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#A7E4BC" />
+                        <stop offset="0.35" stop-color="#C9EFD6" stop-opacity="0.4" />
+                        <stop offset="0.900515" stop-color="white" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <div class="currency-amount">₹16,00,000.00</div>
+                </ion-col>
+                <ion-col>
+                  <span class="percentage-change">14% Previous 7 days</span>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-button class="custom-bottom-button">View</ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </swiper-slide>
+      <swiper-slide>
+        <ion-card class="custom-card">
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <span class="sales-title">
+                    Sales
+                  </span>
+                </ion-col>
+                <ion-col>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="143" height="40" viewBox="0 0 143 40" fill="none">
+                    <path
+                      d="M10.7006 21.3762C15.1412 15.9232 25.2068 6.65314 29.9435 13.1967C34.1375 17.1625 43.7096 24.3506 48.4463 21.3762C49.9266 17.9061 53.7751 13.048 57.3277 21.3762C58.8079 23.8548 62.8045 27.0275 66.9492 19.889C70.403 14.436 78.939 7.0993 85.452 21.3762C89.1525 24.8463 97.4418 28.6634 100.994 16.1711C104.942 8.23946 114.316 -5.2443 120.237 4.27365L129.119 16.1711L138 29.2564H132.079L7 30L10.7006 21.3762Z"
+                      fill="url(#paint0_linear_14_71)" stroke="#01822D" />
+                    <rect y="28" width="143" height="12" fill="white" />
+                    <defs>
+                      <linearGradient id="paint0_linear_14_71" x1="72.1299" y1="15.8718" x2="72.1299" y2="24.7949"
+                        gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#A7E4BC" />
+                        <stop offset="0.35" stop-color="#C9EFD6" stop-opacity="0.4" />
+                        <stop offset="0.900515" stop-color="white" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <div class="currency-amount">₹16,00,000.00</div>
+                </ion-col>
+                <ion-col>
+                  <span class="percentage-change">14% Previous 7 days</span>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-button class="custom-bottom-button">View</ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </swiper-slide>
+      <swiper-slide>
+        <ion-card class="custom-card">
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <span class="sales-title">
+                    Sales
+                  </span>
+                </ion-col>
+                <ion-col>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="143" height="40" viewBox="0 0 143 40" fill="none">
+                    <path
+                      d="M10.7006 21.3762C15.1412 15.9232 25.2068 6.65314 29.9435 13.1967C34.1375 17.1625 43.7096 24.3506 48.4463 21.3762C49.9266 17.9061 53.7751 13.048 57.3277 21.3762C58.8079 23.8548 62.8045 27.0275 66.9492 19.889C70.403 14.436 78.939 7.0993 85.452 21.3762C89.1525 24.8463 97.4418 28.6634 100.994 16.1711C104.942 8.23946 114.316 -5.2443 120.237 4.27365L129.119 16.1711L138 29.2564H132.079L7 30L10.7006 21.3762Z"
+                      fill="url(#paint0_linear_14_71)" stroke="#01822D" />
+                    <rect y="28" width="143" height="12" fill="white" />
+                    <defs>
+                      <linearGradient id="paint0_linear_14_71" x1="72.1299" y1="15.8718" x2="72.1299" y2="24.7949"
+                        gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#A7E4BC" />
+                        <stop offset="0.35" stop-color="#C9EFD6" stop-opacity="0.4" />
+                        <stop offset="0.900515" stop-color="white" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <div class="currency-amount">₹16,00,000.00</div>
+                </ion-col>
+                <ion-col>
+                  <span class="percentage-change">14% Previous 7 days</span>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-button class="custom-bottom-button">View</ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </swiper-slide>
+    </swiper-container>
+    <ion-card class="standalone-card">
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <span class="sales-title">
+                Purchase
+              </span>
+            </ion-col>
+            <ion-col>
+              <svg xmlns="http://www.w3.org/2000/svg" width="140" height="38" viewBox="0 0 140 38" fill="none">
+                <path
+                  d="M10.7006 21.3762C15.1412 15.9232 25.2068 6.65314 29.9435 13.1967C34.1375 17.1625 43.7096 24.3506 48.4463 21.3762C49.9266 17.9061 53.7751 13.048 57.3277 21.3762C58.8079 23.8548 62.8045 27.0275 66.9492 19.889C70.403 14.436 78.939 7.0993 85.452 21.3762C89.1525 24.8463 97.4418 28.6634 100.994 16.1711C104.942 8.23946 114.316 -5.2443 120.237 4.27365L129.119 16.1711L138 29.2564H132.079L7 30L10.7006 21.3762Z"
+                  fill="url(#paint0_linear_14_80)" stroke="#D51B03" />
+                <rect y="26" width="140" height="12" fill="white" />
+                <defs>
+                  <linearGradient id="paint0_linear_14_80" x1="72.1299" y1="15.8718" x2="72.1299" y2="24.7949"
+                    gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#F1D4D4" />
+                    <stop offset="0.35" stop-color="#F1D4D4" stop-opacity="0.4" />
+                    <stop offset="0.900515" stop-color="white" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <div class="currency-amount">₹16,00,000.00</div>
+            </ion-col>
+            <ion-col>
+              <span class="percentage-change">14% Previous 7 days</span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-button class="custom-bottom-button">View</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="new-card-1">
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <span class="receipt-span">Receipt</span>
+            </ion-col>
+            <ion-col>
+              <span class="total-span">Total</span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <span class="receipt-amount">Receipt Amount</span>
+            </ion-col>
+            <ion-col><span class="pending-amount">Pending</span></ion-col>
+            <ion-col><span class="credit-note">Credit Note</span></ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <span class="number-class">0</span>
+            </ion-col>
+            <ion-col><span class="number-class">0</span></ion-col>
+            <ion-col><span class="number-class">0</span></ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="new-card-2">
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <span class="receipt-span">Payment</span>
+            </ion-col>
+            <ion-col>
+              <span class="total-span">Total</span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <span class="receipt-amount">Paid Amount</span>
+            </ion-col>
+            <ion-col><span class="pending-amount">Unpaid Amount</span></ion-col>
+            <ion-col><span class="credit-note">Debit Note</span></ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <span class="number-class">0</span>
+            </ion-col>
+            <ion-col><span class="number-class">0</span></ion-col>
+            <ion-col><span class="number-class">0</span></ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </ion-content>
+</ion-page>
