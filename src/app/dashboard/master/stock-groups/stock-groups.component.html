@@ -33,13 +33,13 @@
             </ion-item>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Under *</ion-label>
-                <ion-select formControlName="under"  interface="action-sheet">
+                <ion-select formControlName="under"  interface="alert">
                     <ion-select-option value="Primary">Primary</ion-select-option>
                 </ion-select>
             </ion-item>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">HSN Details *</ion-label>
-                <ion-select formControlName="HSNDetails"  interface="action-sheet">
+                <ion-select formControlName="HSNDetails"  interface="alert">
                     <ion-select-option value="As Per Company/Group">As Per Company/Group</ion-select-option>
                     <ion-select-option value="Specify Details">Specify Details</ion-select-option>
                     <ion-select-option value="Use GST Classification">Use GST Classification</ion-select-option>
@@ -56,7 +56,7 @@
             </ion-item>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">GST Details *</ion-label>
-                <ion-select formControlName="GSTDetails"  interface="action-sheet">
+                <ion-select formControlName="GSTDetails"  interface="alert">
                     <ion-select-option value="As Per Company/Group">As Per Company/Group</ion-select-option>
                     <ion-select-option value="Specify Details">Specify Details</ion-select-option>
                     <ion-select-option value="Use GST Classification">Use GST Classification</ion-select-option>
@@ -65,7 +65,7 @@
             </ion-item>
             <ion-item *ngIf="stockGroupForm.get('GSTDetails')?.value === 'Specify Details'" class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Taxability Type *</ion-label>
-                <ion-select formControlName="taxabilityType"  interface="action-sheet">
+                <ion-select formControlName="taxabilityType"  interface="alert">
                     <ion-select-option value="Taxable">Taxable</ion-select-option>
                     <ion-select-option value="Exempted">Exempted</ion-select-option>
                     <ion-select-option value="Nil Rated">Nil Rated</ion-select-option>
@@ -78,7 +78,7 @@
             </ion-item>
             <ion-item *ngIf="stockGroupForm.get('taxabilityType')?.value === 'Taxable'" class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Cess Valuation *</ion-label>
-                <ion-select formControlName="cessValuation"  interface="action-sheet">
+                <ion-select formControlName="cessValuation"  interface="alert">
                     <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
                     <ion-select-option value="Based on Value">Based on Value</ion-select-option>
                     <ion-select-option value="Based on Quantity">Based on Quantity</ion-select-option>

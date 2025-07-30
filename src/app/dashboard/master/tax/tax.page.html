@@ -4,8 +4,9 @@
       <ion-button fill="clear" routerLink="/dashboard/home">
         <span slot="icon-only">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-            <path d="M14.25 9H3.75" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M9 14.25L3.75 9L9 3.75" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M14.25 9H3.75" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M9 14.25L3.75 9L9 3.75" stroke="white" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
           </svg>
         </span>
       </ion-button>
@@ -31,26 +32,33 @@
       </ion-item>
       <ion-item class="internal-form-item">
         <ion-label class="internal-form-label" position="floating">Type of Tax *</ion-label>
-        <ion-select formControlName="typeOfTax"  interface="action-sheet">
+        <ion-select formControlName="typeOfTax" interface="alert">
+          <ion-select-option value="Additional Tax">Additional Tax</ion-select-option>
+          <ion-select-option value="CENVAT">CENVAT</ion-select-option>
+          <ion-select-option value="CST">CST</ion-select-option>
           <ion-select-option value="GST">GST</ion-select-option>
-          <ion-select-option value="VAT">VAT</ion-select-option>
+          <ion-select-option value="Krishi Kalyan Cess">Krishi Kalyan Cess</ion-select-option>
+          <ion-select-option value="Others">Others</ion-select-option>
           <ion-select-option value="Service Tax">Service Tax</ion-select-option>
-          <ion-select-option value="Other">Other</ion-select-option>
+          <ion-select-option value="Swachh Bharat Cess">Swachh Bharat Cess</ion-select-option>
+          <ion-select-option value="TCS">TCS</ion-select-option>
+          <ion-select-option value="TDS">TDS</ion-select-option>
+          <ion-select-option value="VAT">VAT</ion-select-option>
         </ion-select>
       </ion-item>
       <!-- if GST will selected -->
-      <ion-item class="internal-form-item" *ngIf="taxForm.get('typeOfTax').value === 'GST'">
+      <ion-item class="internal-form-item" *ngIf="taxForm.get('typeOfTax')?.value === 'GST'">
         <ion-label class="internal-form-label" position="floating">Type Tax *</ion-label>
-        <ion-select formControlName="typeTax"  interface="action-sheet">
+        <ion-select formControlName="typeTax" interface="alert">
           <ion-select-option value="IGST">IGST</ion-select-option>
           <ion-select-option value="CGST">CGST</ion-select-option>
           <ion-select-option value="SGST/UTGST">SGST/UTGST</ion-select-option>
           <ion-select-option value="Cess">Cess</ion-select-option>
         </ion-select>
       </ion-item>
-      <ion-item class="internal-form-item" *ngIf="taxForm.get('typeOfTax').value !== 'GST'">
+      <ion-item class="internal-form-item" *ngIf="taxForm.get('typeTax')?.value === 'Cess'">
         <ion-label class="internal-form-label" position="floating">Valuation Type *</ion-label>
-        <ion-select formControlName="valuationType"  interface="action-sheet">
+        <ion-select formControlName="valuationType" interface="alert">
           <ion-select-option value="Based On Quantity">Based On Quantity</ion-select-option>
           <ion-select-option value="Based On Value">Based On Value</ion-select-option>
         </ion-select>
@@ -62,7 +70,7 @@
       </ion-item>
       <ion-item class="internal-form-item">
         <ion-label class="internal-form-label" position="floating">Rounding Method *</ion-label>
-        <ion-select formControlName="typeOfTax"  interface="action-sheet">
+        <ion-select formControlName="roundingMethod" interface="alert">
           <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
           <ion-select-option value="Downward Rounding">Downward Rounding</ion-select-option>
           <ion-select-option value="Normal Rounding">Normal Rounding</ion-select-option>
@@ -70,7 +78,7 @@
         </ion-select>
       </ion-item>
       <!-- if select Downward Rounding -->
-      <ion-item class="internal-form-item" *ngIf="taxForm.get('roundingMethod').value === 'Downward Rounding'">
+      <ion-item class="internal-form-item" *ngIf="taxForm.get('roundingMethod')?.value === 'Downward Rounding'">
         <ion-label class="internal-form-label" position="floating">Rounding Limit *</ion-label>
         <ion-input formControlName="roundingLimit"></ion-input>
       </ion-item>
@@ -93,32 +101,32 @@
       </ion-item>
       <ion-item class="internal-form-item">
         <ion-label class="internal-form-label" position="floating">Bank Details</ion-label>
-        <ion-select formControlName="bankDetails"  interface="action-sheet">
+        <ion-select formControlName="bankDetails" interface="alert">
           <ion-select-option value="Cheque">Cheque</ion-select-option>
           <ion-select-option value="e - fund Transfer">e - fund Transfer</ion-select-option>
           <ion-select-option value="Other">Other</ion-select-option>
         </ion-select>
       </ion-item>
       <!-- if Cheque selected -->
-      <ion-item class="internal-form-item" *ngIf="taxForm.get('bankDetails').value === 'Cheque'">
+      <ion-item class="internal-form-item" *ngIf="taxForm.get('bankDetails')?.value === 'Cheque'">
         <ion-label class="internal-form-label" position="floating">Cheque Number</ion-label>
         <ion-input formControlName="chequeNumber"></ion-input>
       </ion-item>
       <!-- if e-fund transfer -->
-      <ion-item class="internal-form-item" *ngIf="taxForm.get('bankDetails').value === 'e - fund Transfer'">
+      <ion-item class="internal-form-item" *ngIf="taxForm.get('bankDetails')?.value === 'e - fund Transfer'">
         <ion-label class="internal-form-label" position="floating">Account Number</ion-label>
         <ion-input formControlName="accountNumber"></ion-input>
       </ion-item>
-      <ion-item class="internal-form-item" *ngIf="taxForm.get('bankDetails').value === 'e - fund Transfer'">
+      <ion-item class="internal-form-item" *ngIf="taxForm.get('bankDetails')?.value === 'e - fund Transfer'">
         <ion-label class="internal-form-label" position="floating">IFSC Code</ion-label>
         <ion-input formControlName="ifscCode"></ion-input>
       </ion-item>
-      <ion-item class="internal-form-item" *ngIf="taxForm.get('bankDetails').value === 'e - fund Transfer'">
+      <ion-item class="internal-form-item" *ngIf="taxForm.get('bankDetails')?.value === 'e - fund Transfer'">
         <ion-label class="internal-form-label" position="floating">Bank Name</ion-label>
         <ion-input formControlName="bankName"></ion-input>
       </ion-item>
       <ion-item class="internal-form-item"
-        *ngIf="taxForm.get('bankDetails').value === 'e - fund Transfer' || taxForm.get('bankDetails').value === 'Other'">
+        *ngIf="taxForm.get('bankDetails')?.value === 'e - fund Transfer' || taxForm.get('bankDetails')?.value === 'Other'">
         <ion-label class="internal-form-label" position="floating">Opening Balance </ion-label>
         <ion-input formControlName="openingBalance"></ion-input>
       </ion-item>

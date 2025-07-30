@@ -1,22 +1,24 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-button fill="clear" routerLink="/dashboard/home">
-        <span slot="icon-only">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-            <path d="M14.25 9H3.75" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M9 14.25L3.75 9L9 3.75" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </span>
-      </ion-button>
-      <ion-title class="toolbar-title-text">Supplier</ion-title>
-    </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-button>
-        Save
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-button fill="clear" routerLink="/dashboard/home">
+                <span slot="icon-only">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <path d="M14.25 9H3.75" stroke="white" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M9 14.25L3.75 9L9 3.75" stroke="white" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </span>
+            </ion-button>
+            <ion-title class="toolbar-title-text">Supplier</ion-title>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button>
+                Save
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 <ion-content>
     <div class="centered-form-wrapper">
@@ -31,7 +33,7 @@
             </ion-item>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Billwise Balance</ion-label>
-                <ion-select formControlName="billwiseBalance"  interface="action-sheet">
+                <ion-select formControlName="billwiseBalance" interface="alert">
                     <ion-select-option value="Yes">Yes</ion-select-option>
                     <ion-select-option value="No">No</ion-select-option>
                 </ion-select>
@@ -74,7 +76,7 @@
             </ion-item> -->
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Registration Type *</ion-label>
-                <ion-select formControlName="registrationType"  interface="action-sheet">
+                <ion-select formControlName="registrationType" interface="alert">
                     <ion-select-option value="Unknown">Unknown</ion-select-option>
                     <ion-select-option value="Regular">Regular</ion-select-option>
                     <ion-select-option value="Unregistered/Consumer">Unregistered/Consumer</ion-select-option>

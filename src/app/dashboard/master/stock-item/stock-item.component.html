@@ -29,7 +29,7 @@
             </ion-item>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Under</ion-label>
-                <ion-select formControlName="under"  interface="action-sheet">
+                <ion-select formControlName="under"  interface="alert">
                     <ion-select-option value="Primary">Primary</ion-select-option>
                     <ion-select-option value="Fruits">Fruits</ion-select-option>
                     <ion-select-option value="Vegetables">Vegetables</ion-select-option>
@@ -37,7 +37,7 @@
             </ion-item>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Category *</ion-label>
-                <ion-select formControlName="category"  interface="action-sheet">
+                <ion-select formControlName="category"  interface="alert">
                     <ion-select-option value="Dairy">Dairy</ion-select-option>
                     <ion-select-option value="Frozen Foods">Frozen Foods</ion-select-option>
                     <ion-select-option value="Beverages">Beverages</ion-select-option>
@@ -45,7 +45,7 @@
             </ion-item>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Unit *</ion-label>
-                <ion-select formControlName="unit"  interface="action-sheet">
+                <ion-select formControlName="unit"  interface="alert">
                     <ion-select-option value="Units">Units</ion-select-option>
                     <ion-select-option value="Pcs">Pcs</ion-select-option>
                     <ion-select-option value="Kg.">Kg.</ion-select-option>
@@ -56,7 +56,7 @@
             </ion-item>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Alternate Unit</ion-label>
-                <ion-select formControlName="alternateUnit"  interface="action-sheet">
+                <ion-select formControlName="alternateUnit"  interface="alert">
                     <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
                     <ion-select-option value="Pcs">Pcs</ion-select-option>
                     <ion-select-option value="Kg.">Kg.</ion-select-option>
@@ -67,14 +67,14 @@
             </ion-item>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">GST Applicable *</ion-label>
-                <ion-select formControlName="gstApplicable"  interface="action-sheet">
+                <ion-select formControlName="gstApplicable"  interface="alert">
                     <ion-select-option value="Applicable">Applicable</ion-select-option>
                     <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
                 </ion-select>
             </ion-item>
             <ion-item *ngIf="stockItemForm.get('gstApplicable')?.value === 'Applicable'" class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">HSN Details*</ion-label>
-                <ion-select formControlName="HSNDetails"  interface="action-sheet">
+                <ion-select formControlName="HSNDetails"  interface="alert">
                     <ion-select-option value="As Per Company/Group">As Per Company/Group</ion-select-option>
                     <ion-select-option value="Specify Details">Specify Details</ion-select-option>
                     <ion-select-option value="Use GST Classification">Use GST Classification</ion-select-option>
@@ -91,7 +91,7 @@
             </ion-item>
             <ion-item *ngIf="stockItemForm.get('gstApplicable').value === 'Applicable'" class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">GST Rate Details *</ion-label>
-                <ion-select formControlName="gstRateDetails"  interface="action-sheet">
+                <ion-select formControlName="gstRateDetails"  interface="alert">
                     <ion-select-option value="As Per Company/Group">As Per Company/Group</ion-select-option>
                     <ion-select-option value="Specify Details">Specify Details</ion-select-option>
                     <ion-select-option value="Use GST Classification">Use GST Classification</ion-select-option>
@@ -101,7 +101,7 @@
             <ion-item *ngIf="stockItemForm.get('gstRateDetails')?.value === 'Specify Details'"
                 class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Taxability Type *</ion-label>
-                <ion-select formControlName="taxabilityType"  interface="action-sheet">
+                <ion-select formControlName="taxabilityType"  interface="alert">
                     <ion-select-option value="Taxable">Taxable</ion-select-option>
                     <ion-select-option value="Exempted">Exempted</ion-select-option>
                     <ion-select-option value="Nil Rated">Nil Rated</ion-select-option>
@@ -115,7 +115,7 @@
             </ion-item>
             <ion-item *ngIf="stockItemForm.get('taxabilityType')?.value === 'Taxable'" class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Cess Valuation *</ion-label>
-                <ion-select formControlName="cessValuation"  interface="action-sheet">
+                <ion-select formControlName="cessValuation"  interface="alert">
                     <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
                     <ion-select-option value="Based on Value">Based on Value</ion-select-option>
                     <ion-select-option value="Based on Quantity">Based on Quantity</ion-select-option>
@@ -140,7 +140,7 @@
             <ion-item *ngIf="stockItemForm.get('gstRateDetails')?.value === 'Specify Details'"
                 class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Supply Type *</ion-label>
-                <ion-select formControlName="supplyType"  interface="action-sheet">
+                <ion-select formControlName="supplyType"  interface="alert">
                     <ion-select-option value="Capital Goods">Capital Goods</ion-select-option>
                     <ion-select-option value="Goods">Goods</ion-select-option>
                     <ion-select-option value="Service">Service</ion-select-option>
@@ -213,7 +213,7 @@
                         </ion-item>
                         <ion-item class="internal-form-item">
                             <ion-label position="floating" class="internal-form-label">Item *</ion-label>
-                            <ion-select  interface="action-sheet">
+                            <ion-select  interface="alert">
                                 <ion-select-option value="Capital Goods">Capital Goods</ion-select-option>
                                 <ion-select-option value="Goods">Goods</ion-select-option>
                                 <ion-select-option value="Service">Service</ion-select-option>
@@ -221,7 +221,7 @@
                         </ion-item>
                         <ion-item class="internal-form-item">
                             <ion-label position="floating" class="internal-form-label">Godown *</ion-label>
-                            <ion-select  interface="action-sheet">
+                            <ion-select  interface="alert">
                                 <ion-select-option value="Capital Goods">Capital Goods</ion-select-option>
                                 <ion-select-option value="Goods">Goods</ion-select-option>
                                 <ion-select-option value="Service">Service</ion-select-option>

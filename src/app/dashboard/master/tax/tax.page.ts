@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
@@ -6,7 +6,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
   templateUrl: "./tax.page.html",
   styleUrls: ["./tax.page.scss"],
 })
-export class TaxPage {
+export class TaxPage implements OnInit {
   taxForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
@@ -32,9 +32,7 @@ export class TaxPage {
     });
   }
 
-  goBack() {
-    // Logic to navigate back to the previous page
-    // This could be a router navigation or a service call depending on your routing setup
-    window.history.back(); // Simple way to go back in history
+  ngOnInit() {
+  
   }
 }
