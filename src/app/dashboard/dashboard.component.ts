@@ -1,6 +1,8 @@
 import { Component, ViewChild, AfterViewInit, ElementRef } from "@angular/core";
 import { IonMenu } from "@ionic/angular";
+import { register } from "swiper/element/bundle";
 
+register();
 @Component({
   selector: "app-dashboard",
   templateUrl: "./dashboard.component.html",

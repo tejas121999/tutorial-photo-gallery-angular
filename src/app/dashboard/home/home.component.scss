@@ -1,40 +1,116 @@
-ion-header,
-ion-toolbar[color="primary"],
-ion-toolbar {
-  --background: #034099 !important;
-  --ion-color-base: #034099 !important;
+/* Top white horizontal line */
+.top-white-line {
+  width: 100%;
+  height: 2px;
+  background-color: #ffffff;
+  margin-bottom: 0px;
+  border-radius: 1px;
 }
 
-
-.home-page {
-  color: #222;
-  background: #fff;
-  min-height: 100vh;
-  padding: 32px 16px 16px 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  margin-top: 16px;
-}
-
-.home-page h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 0.5em;
-  color: #034099;
-}
-
-.home-page p {
-  font-size: 1.1rem;
-  margin-bottom: 0;
-  color: #444;
-}
-
-/* Home page styles */
-
+/* Custom header styles */
 .custom-header {
-  border-top: 2px solid #fff;
+  width: 100vw;
+  height: 100px;
+  flex-shrink: 0;
+  background: #083D7C;
+  position: relative;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: -16px 0 0 0;
+  padding: 0;
 }
+
+/* Ion-grid styles */
+.custom-header ion-grid {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+/* Span text styles */
+.custom-header span {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Column flex layout for span and SVG alignment */
+.custom-header ion-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+}
+
+.custom-header ion-col div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.custom-header ion-col svg {
+  margin-left: 4px;
+  flex-shrink: 0;
+}
+
+/* Custom header item div with white border */
+.header-item-div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 70px !important;
+  height: 24px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  border: 1px solid #FFF;
+  padding: 4px 8px;
+  font-size: 10px;
+}
+
+.header-item-div-overall {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 85px !important;
+  height: 24px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  border: 1px solid #FFF;
+  padding: 4px 8px;
+  font-size: 10px;
+}
+
+/* Custom ion-card styles */
+ion-card.custom-card {
+  width: 336px;
+  height: 126px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background: #FFF;
+  box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.20);
+  // margin: 0 auto;
+  display: block;
+  margin-top: 1px;
+}
+
+/* Swiper slide centering */
+swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Swiper container overlap with custom header */
+swiper-container {
+  margin-top: -50px;
+  // padding-top: 80px;
+  position: relative;
+  z-index: 2;
+  background: #ffffff;
+}
+
+/* Alternative swiper container centering */
+// swiper-container {
+//   // text-align: center;
+// }

@@ -31,28 +31,28 @@ export class LoginComponent implements OnInit {
     // await this.appPreference.set("email", this.email);
     // await this.appPreference.set("password", this.password);
 
-    // var temp = [
-    //   {
-    //     user_name: this.email,
-    //     user_password: this.password,
-    //     user_desk_url: "temp",
-    //   },
-    // ];
-    // this.apiService.userLogin(temp).subscribe(
-    //   async (response) => {
-    //     console.log("Login successful", response);
-    //     // Handle successful login, e.g., navigate to dashboard
-    //     // this.router.navigate(["/dashboard"]);
-    //     await this.appPreference.presentToast("Login Successfully!");
-    //   },
-    //   (error) => {
-    //     console.error("Login failed", error);
-    //     // Handle login failure, e.g., show error message
-    //     this.appPreference.presentToast("Login failed. Please try again.");
-    //   }
-    // );
+    var temp = [
+      {
+        user_name: this.email,
+        user_password: this.password,
+        user_desk_url: "temp",
+      },
+    ];
+    this.apiService.userLogin(temp).subscribe(
+      async (response) => {
+        console.log("Login successful", response);
+        // Handle successful login, e.g., navigate to dashboard
+        this.router.navigate(["/dashboard"]);
+        await this.appPreference.presentToast("Login Successfully!");
+      },
+      (error) => {
+        console.error("Login failed", error);
+        // Handle login failure, e.g., show error message
+        this.appPreference.presentToast("Login failed. Please try again.");
+      }
+    );
     
-    this.router.navigate(["/dashboard"]);
+    // this.router.navigate(["/dashboard"]);
   }
 }
 

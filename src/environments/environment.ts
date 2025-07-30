@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBase: "http://tomosdsrv.osdsolution.com/api/",
+  apiBase: "https://tomapi.osdsolution.com/api/",
 };
 
 /*

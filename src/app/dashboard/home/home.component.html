@@ -1,11 +1,74 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Home</ion-title>
-  </ion-toolbar>
-</ion-header>
+<div class="top-white-line"></div>
 <ion-content class="ion-padding">
-  <h2>Home</h2>
-  <p>This is the home page under Dashboard.</p>
+  <div class="custom-header">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4">
+          <span>Overview</span>
+        </ion-col>
+        <ion-col size="3">
+          <div class="header-item-div">
+            <span>TODAY</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="9" viewBox="0 0 13 9" fill="none">
+              <path
+                d="M1.46243 0.143523L6.25706 5.03103L10.9331 0.0299026L12.406 1.53461L6.29372 8.08614L0.0260568 1.68313L1.46243 0.143523Z"
+                fill="white" />
+            </svg>
+          </div>
+        </ion-col>
+        <ion-col size="3">
+          <div class="header-item-div-overall">
+            <span>OVERALL</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="9" viewBox="0 0 13 9" fill="none">
+              <path
+                d="M1.46243 0.143523L6.25706 5.03103L10.9331 0.0299026L12.406 1.53461L6.29372 8.08614L0.0260568 1.68313L1.46243 0.143523Z"
+                fill="white" />
+            </svg>
+          </div>
+        </ion-col>
+        <ion-col size="2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="21" height="23" viewBox="0 0 21 23" fill="none">
+            <path
+              d="M17.0333 16.1584C16.1703 16.1584 15.3981 16.5027 14.8076 17.0421L6.71113 12.2795C6.76791 12.0155 6.81333 11.7516 6.81333 11.4762C6.81333 11.2007 6.76791 10.9368 6.71113 10.6728L14.7168 5.95613C15.33 6.52994 16.1362 6.8857 17.0333 6.8857C18.9184 6.8857 20.44 5.34789 20.44 3.44285C20.44 1.53781 18.9184 0 17.0333 0C15.1483 0 13.6267 1.53781 13.6267 3.44285C13.6267 3.71828 13.6721 3.98223 13.7289 4.24618L5.7232 8.96289C5.11 8.38908 4.30376 8.03332 3.40667 8.03332C1.52164 8.03332 0 9.57113 0 11.4762C0 13.3812 1.52164 14.919 3.40667 14.919C4.30376 14.919 5.11 14.5633 5.7232 13.9894L13.8084 18.7635C13.7516 19.0045 13.7175 19.257 13.7175 19.5095C13.7175 21.3571 15.2051 22.8605 17.0333 22.8605C18.8616 22.8605 20.3492 21.3571 20.3492 19.5095C20.3492 17.6618 18.8616 16.1584 17.0333 16.1584ZM17.0333 2.29523C17.6579 2.29523 18.1689 2.81166 18.1689 3.44285C18.1689 4.07404 17.6579 4.59047 17.0333 4.59047C16.4088 4.59047 15.8978 4.07404 15.8978 3.44285C15.8978 2.81166 16.4088 2.29523 17.0333 2.29523ZM3.40667 12.6238C2.78211 12.6238 2.27111 12.1074 2.27111 11.4762C2.27111 10.845 2.78211 10.3286 3.40667 10.3286C4.03122 10.3286 4.54222 10.845 4.54222 11.4762C4.54222 12.1074 4.03122 12.6238 3.40667 12.6238ZM17.0333 20.6801C16.4088 20.6801 15.8978 20.1636 15.8978 19.5324C15.8978 18.9013 16.4088 18.3848 17.0333 18.3848C17.6579 18.3848 18.1689 18.9013 18.1689 19.5324C18.1689 20.1636 17.6579 20.6801 17.0333 20.6801Z"
+              fill="white" />
+          </svg>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <swiper-container [pagination]="true">
+    <swiper-slide>
+      <ion-card class="custom-card">
+        <ion-card-header>
+          <ion-card-title>Stored Credentials</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <div>Email: {{ email }}</div>
+          <div>Password: {{ password }}</div>
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+    <swiper-slide>
+      <ion-card class="custom-card">
+        <ion-card-header>
+          <ion-card-title>Slide 2</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Content for Slide 2</p>
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+    <swiper-slide>
+      <ion-card class="custom-card">
+        <ion-card-header>
+          <ion-card-title>Slide 3</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Content for Slide 3</p>
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+  </swiper-container>
   <ion-card>
     <ion-card-header>
       <ion-card-title>Stored Credentials</ion-card-title>
