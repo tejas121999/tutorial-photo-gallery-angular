@@ -60,11 +60,16 @@ export class TaxListComponent implements OnInit {
   handleInput(event: Event) {
     const target = event.target as HTMLIonSearchbarElement;
     const query = target.value?.toLowerCase() || "";
-    this.results = this.data.filter((d) => d.toLowerCase().includes(query));
+    this.results = this.data.filter((item: any) => {
+      if (!item?.ledger_name) return false;
+      return item?.ledger_name.toLowerCase().includes(query);
+    });
   }
 
   onDateChange(event: any) {
-    this.currentDate = event.detail.value;
+    // Use selected date directly, extract YYYY-MM-DD
+    this.currentDate = event.detail.value.substring(0, 10);
+    console.log("Selected date:", this.currentDate);
     this.filterByDate();
   }
   // Filter data by ledger_created date
@@ -73,11 +78,12 @@ export class TaxListComponent implements OnInit {
       this.results = [...this.data];
       return;
     }
+    // Always extract the first 10 characters (YYYY-MM-DD) for comparison
+    const selectedDate = this.currentDate.substring(0, 10);
     this.results = this.data.filter((item: any) => {
-      // ledger_created may include time, so compare only date part
-      if (!item.ledger_created) return false;
-      const itemDate = item.ledger_created.split("T")[0];
-      return itemDate === this.currentDate;
+      if (!item?.ledger_created) return false;
+      const itemDate = item?.ledger_created.substring(0, 10);
+      return itemDate === selectedDate;
     });
   }
 

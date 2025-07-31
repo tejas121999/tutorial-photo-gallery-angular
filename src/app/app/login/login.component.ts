@@ -63,7 +63,6 @@ export class LoginComponent implements OnInit {
                 branch_token_id: element.branch_token_id,
               });
             });
-
             await this.appPreference.set("_BranchList", _BranchList);
             this.router.navigate(["/dashboard"]);
             await this.appPreference.presentToast(
