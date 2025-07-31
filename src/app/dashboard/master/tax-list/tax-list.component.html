@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-buttons slot="start">
+    <ion-buttons slot="start" *ngIf="!showSearchbar">
       <ion-button fill="clear" routerLink="/dashboard/home">
         <span slot="icon-only">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -12,7 +12,14 @@
       </ion-button>
       <ion-title class="toolbar-title-text">Tax List</ion-title>
     </ion-buttons>
-    <ion-searchbar [debounce]="1000" (ionInput)="handleInput($event)"></ion-searchbar>
+    <ion-button slot="end" fill="clear" (click)="showSearchbar = true" *ngIf="!showSearchbar">
+      <ion-icon name="search-outline"></ion-icon>
+    </ion-button>
+    <div *ngIf="showSearchbar" class="searchbar-container">
+      <ion-searchbar [debounce]="1000" (ionInput)="handleInput($event)" autofocus="true" placeholder="Search...">
+      </ion-searchbar>
+      <ion-icon name="close-circle" class="searchbar-close-icon" (click)="showSearchbar = false"></ion-icon>
+    </div>
   </ion-toolbar>
 </ion-header>
 <ion-content>

@@ -1,3 +1,28 @@
+/* === Searchbar overlay styles (moved from tax-list.component.scss) === */
+.searchbar-container {
+  position: relative;
+  width: 100%;
+  background: #034099;
+  z-index: 1000;
+}
+
+.searchbar-close-icon {
+  position: absolute;
+  right: 16px;
+  top: 35%;
+  transform: translateY(-50%);
+  font-size: 1.8em;
+  color: var(--ion-color-medium);
+  cursor: pointer;
+  z-index: 1100;
+}
+
+.searchbar-container ion-searchbar {
+  --background: var(--ion-color-primary);
+  --color: #fff;
+  --placeholder-color: #fff;
+  width: 100%;
+}
 /* === Reusable FAB, Pagination, and Utility Styles === */
 .fab-add-btn {
   --background: #034099 !important;

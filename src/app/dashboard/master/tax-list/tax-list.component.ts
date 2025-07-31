@@ -6,6 +6,7 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./tax-list.component.scss"],
 })
 export class TaxListComponent implements OnInit {
+  showSearchbar = false;
   pageSize = 5;
   currentPage = 1;
 
