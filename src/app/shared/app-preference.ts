@@ -45,7 +45,12 @@ export class AppPreference {
   }
 
   async getAccessToken() {
-    return (await this.get(PreferenceKeys.ACCESS_TOKEN)) || null;
+    let accessToken = await this.get(PreferenceKeys.ACCESS_TOKEN);
+    if (accessToken && typeof accessToken === "object") {
+      accessToken = accessToken.token || null;
+    }
+
+    return accessToken;
   }
 
   isLogin() {

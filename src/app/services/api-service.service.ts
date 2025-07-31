@@ -7,10 +7,14 @@ import { ApiManager } from "../shared/api-manager";
 })
 export class ApiServiceService {
   constructor(
-    private apiManager: ApiManager, // Inject ApiManager
+    private apiManager: ApiManager // Inject ApiManager
   ) {}
   // UserLogin
   userLogin(body: any) {
     return this.apiManager.sendPOSTRequest(RestEnds.UserLogin, body, false);
+  }
+
+  getTaxList(body: any) {
+    return this.apiManager.sendPOSTRequest(RestEnds.GetTaxList, body, true);
   }
 }

@@ -3,4 +3,5 @@ export enum CustomEvents {
 }
 export enum RestEnds {
   UserLogin = "UserLogin/OnUserLoginApp",
+  GetTaxList = "Ledger/GetTaxList",
 }

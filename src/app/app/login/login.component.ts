@@ -45,14 +45,26 @@ export class LoginComponent implements OnInit {
       ];
       this.apiService.userLogin(temp).subscribe(
         async (response: any) => {
-          console.log("Login successful", response);
+          console.log("Login successful, response?._LoginToken", response);
           // Store the authorization token from response
           if (response && response?._AuthoriseToken) {
+            localStorage.setItem("ACCESS_TOKEN", response._AuthoriseToken);
+            await this.appPreference.set("_LoginToken", response?._LoginToken);
             await this.appPreference.set(
               "ACCESS_TOKEN",
               response._AuthoriseToken
             );
-            await this.appPreference.set("_LoginToken", response._LoginToken);
+
+            var _BranchList: any[] = [];
+            response._BranchList.forEach((element: any) => {
+              _BranchList.push({
+                branch_code: element.branch_code,
+                branch_name: element.branch_name,
+                branch_token_id: element.branch_token_id,
+              });
+            });
+
+            await this.appPreference.set("_BranchList", _BranchList);
             this.router.navigate(["/dashboard"]);
             await this.appPreference.presentToast(
               "Login Successfully!",

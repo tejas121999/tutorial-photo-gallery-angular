@@ -38,7 +38,8 @@ export class ApiManager {
       Accept: "application/json",
     };
     if (authenticate) {
-      headers["Authorization"] = this.appPreference.getAccessToken();
+      headers["Authorization"] =
+        "Bearer " + localStorage.getItem("ACCESS_TOKEN") || "";
     }
     console.log("Headers: ", headers);
     return {
