@@ -114,10 +114,24 @@ const routes: Routes = [
           import("./master/unit/unit.module").then((m) => m.UnitModule),
       },
       {
+        path: "unit-list",
+        loadChildren: () =>
+          import("./master/unit-list/unit-list.module").then(
+            (m) => m.UnitListModule
+          ),
+      },
+      {
         path: "voucher-type",
         loadChildren: () =>
           import("./master/voucher-type/voucher-type.module").then(
             (m) => m.VoucherTypeModule
+          ),
+      },
+      {
+        path: "voucher-type-list",
+        loadChildren: () =>
+          import("./master/voucher-type-list/voucher-type-list.module").then(
+            (m) => m.VoucherTypeListModule
           ),
       },
       {
@@ -156,10 +170,24 @@ const routes: Routes = [
           ),
       },
       {
+        path: "discount-list",
+        loadChildren: () =>
+          import("./master/discount-list/discount-list.module").then(
+            (m) => m.DiscountListModule
+          ),
+      },
+      {
         path: "other-charges",
         loadChildren: () =>
           import("./master/other-charges/other-charges.module").then(
             (m) => m.OtherChargesModule
+          ),
+      },
+      {
+        path: "other-charges-list",
+        loadChildren: () =>
+          import("./master/other-charges-list/other-charges-list.module").then(
+            (m) => m.OtherChargesListModule
           ),
       },
       {
@@ -170,10 +198,24 @@ const routes: Routes = [
           ),
       },
       {
+        path: "round-off-list",
+        loadChildren: () =>
+          import("./master/round-off-list/round-off-list.module").then(
+            (m) => m.RoundOffListModule
+          ),
+      },
+      {
         path: "cost-center",
         loadChildren: () =>
           import("./master/cost-center/cost-center.module").then(
             (m) => m.CostCenterModule
+          ),
+      },
+      {
+        path: "cost-center-list",
+        loadChildren: () =>
+          import("./master/cost-center-list/cost-center-list.module").then(
+            (m) => m.CostCenterListModule
           ),
       },
       {
@@ -182,10 +224,24 @@ const routes: Routes = [
           import("./master/godown/godown.module").then((m) => m.GodownModule),
       },
       {
+        path: "godown-list",
+        loadChildren: () =>
+          import("./master/godown-list/godown-list.module").then(
+            (m) => m.GodownListModule
+          ),
+      },
+      {
         path: "miscellaneous",
         loadChildren: () =>
           import("./master/miscellaneous/miscellaneous.module").then(
             (m) => m.MiscellaneousModule
+          ),
+      },
+      {
+        path: "miscellaneous-list",
+        loadChildren: () =>
+          import("./master/miscellaneous-list/miscellaneous-list.module").then(
+            (m) => m.MiscellaneousListModule
           ),
       },
     ],
