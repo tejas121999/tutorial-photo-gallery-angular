@@ -32,10 +32,24 @@ const routes: Routes = [
           import("./master/tax/tax.module").then((m) => m.TaxModule),
       },
       {
+        path: "tax-list",
+        loadChildren: () =>
+          import("./master/tax-list/tax-list.module").then(
+            (m) => m.TaxListModule
+          ),
+      },
+      {
         path: "supplier",
         loadChildren: () =>
           import("./master/supplier/supplier.module").then(
             (m) => m.SupplierModule
+          ),
+      },
+      {
+        path: "supplier-list",
+        loadChildren: () =>
+          import("./master/supplier-list/supplier-list.module").then(
+            (m) => m.SupplierListModule
           ),
       },
       {
@@ -46,10 +60,24 @@ const routes: Routes = [
           ),
       },
       {
+        path: "customer-list",
+        loadChildren: () =>
+          import("./master/customer-list/customer-list.module").then(
+            (m) => m.CustomerListModule
+          ),
+      },
+      {
         path: "sales-account",
         loadChildren: () =>
           import("./master/sales-account/sales-account.module").then(
             (m) => m.SalesAccountModule
+          ),
+      },
+      {
+        path: "sales-account-list",
+        loadChildren: () =>
+          import("./master/sales-account-list/sales-account-list.module").then(
+            (m) => m.SalesAccountListModule
           ),
       },
       {
@@ -60,10 +88,24 @@ const routes: Routes = [
           ),
       },
       {
+        path: "purchase-account-list",
+        loadChildren: () =>
+          import(
+            "./master/purchase-account-list/purchase-account-list.module"
+          ).then((m) => m.PurchaseAccountListModule),
+      },
+      {
         path: "stock-item",
         loadChildren: () =>
           import("./master/stock-item/stock-item.module").then(
             (m) => m.StockItemModule
+          ),
+      },
+      {
+        path: "stock-item-list",
+        loadChildren: () =>
+          import("./master/stock-item-list/stock-item-list.module").then(
+            (m) => m.StockItemListModule
           ),
       },
       {
@@ -86,10 +128,24 @@ const routes: Routes = [
           ),
       },
       {
+        path: "stock-category-list",
+        loadChildren: () =>
+          import(
+            "./master/stock-category-list/stock-category-list.module"
+          ).then((m) => m.StockCategoryListModule),
+      },
+      {
         path: "stock-groups",
         loadChildren: () =>
           import("./master/stock-groups/stock-groups.module").then(
             (m) => m.StockGroupsModule
+          ),
+      },
+      {
+        path: "stock-group-list",
+        loadChildren: () =>
+          import("./master/stock-group-list/stock-group-list.module").then(
+            (m) => m.StockGroupListModule
           ),
       },
       {

@@ -1,3 +1,74 @@
+/* === Reusable FAB, Pagination, and Utility Styles === */
+.fab-add-btn {
+  --background: #034099 !important;
+  color: #fff !important;
+}
+.fab-add {
+  position: fixed;
+  right: 24px;
+  bottom: 80px;
+  z-index: 200;
+}
+.pagination-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16px 0 8px 0;
+  gap: 8px;
+}
+.fixed-bottom {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 100;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
+  padding: 8px 0;
+}
+.pagination-info {
+  font-size: 1.1em;
+  font-weight: 500;
+  min-width: 90px;
+  text-align: center;
+}
+/* === Reusable Datetime Row and Arrow Icon Styles === */
+.datetime-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.arrow-icon {
+  font-size: 1.7em;
+  margin: 0 10px;
+  cursor: pointer;
+  color: #083d7c;
+  transition: color 0.2s;
+}
+.arrow-icon:hover {
+  color: #205bb5;
+}
+/* === Reusable Centered List Styles === */
+.centered-list .item-native {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Remove padding from ion-item's shadow DOM using ::ng-deep and ::part */
+.centered-list ::ng-deep ion-item,
+.centered-list ::ng-deep .item-native,
+.centered-list ::ng-deep .item-inner,
+.centered-list ::ng-deep .input-wrapper {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.centered-list ion-item::part(native) {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
 ion-action-sheet .action-sheet-wrapper {
   border-radius: 16px !important;
   overflow-y: auto !important;
