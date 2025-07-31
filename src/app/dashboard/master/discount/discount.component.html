@@ -1,11 +1,19 @@
+<!-- /dashboard/master/discount-list -->
 <ion-header>
     <ion-toolbar color="primary">
         <ion-buttons slot="start">
-            <ion-button routerLink="/dashboard/home">
-                <ion-icon name="arrow-back-outline" slot="icon-only"></ion-icon>
+            <ion-button fill="clear" routerLink="/dashboard/master/discount-list">
+                <span slot="icon-only">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <path d="M14.25 9H3.75" stroke="white" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M9 14.25L3.75 9L9 3.75" stroke="white" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </span>
             </ion-button>
+            <ion-title class="toolbar-title-text">Discount</ion-title>
         </ion-buttons>
-        <ion-title class="discount-title">Discount</ion-title>
         <ion-buttons slot="end">
             <ion-button>
                 Save
@@ -26,7 +34,7 @@
             </ion-item>
             <ion-item>
                 <ion-label position="floating">Billwise Balance *</ion-label>
-                <ion-select formControlName="billwiseBalance"  interface="action-sheet">
+                <ion-select formControlName="billwiseBalance" interface="action-sheet">
                     <ion-select-option value="Yes">Yes</ion-select-option>
                     <ion-select-option value="No">No</ion-select-option>
                 </ion-select>
@@ -37,14 +45,14 @@
             </ion-item>
             <ion-item>
                 <ion-label position="floating">Affect On Inventory *</ion-label>
-                <ion-select formControlName="affectOnInventory"  interface="action-sheet">
+                <ion-select formControlName="affectOnInventory" interface="action-sheet">
                     <ion-select-option value="Yes">Yes</ion-select-option>
                     <ion-select-option value="No">No</ion-select-option>
                 </ion-select>
             </ion-item>
             <ion-item>
                 <ion-label position="floating">Type Of Ledger *</ion-label>
-                <ion-select formControlName="typeOfLedger"  interface="action-sheet">
+                <ion-select formControlName="typeOfLedger" interface="action-sheet">
                     <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
                     <ion-select-option value="Discount">Discount</ion-select-option>
                     <ion-select-option value="Invoice Rounding">Invoice Rounding</ion-select-option>
@@ -52,7 +60,7 @@
             </ion-item>
             <ion-item *ngIf="discountForm.get('typeOfLedger')?.value === 'Invoice Rounding'">
                 <ion-label position="floating">Rounding Method *</ion-label>
-                <ion-select formControlName="roundingMethod"  interface="action-sheet">
+                <ion-select formControlName="roundingMethod" interface="action-sheet">
                     <ion-select-option value="Downward Rounding">Downward Rounding</ion-select-option>
                     <ion-select-option value="Normal Rounding">Normal Rounding</ion-select-option>
                     <ion-select-option value="Upward Rounding">Upward Rounding</ion-select-option>
@@ -64,14 +72,14 @@
             </ion-item>
             <ion-item>
                 <ion-label position="floating">GST Applicable *</ion-label>
-                <ion-select formControlName="GSTApplicant"  interface="action-sheet">
+                <ion-select formControlName="GSTApplicant" interface="action-sheet">
                     <ion-select-option value="Applicable">Applicable</ion-select-option>
                     <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
                 </ion-select>
             </ion-item>
             <ion-item *ngIf="discountForm.get('GSTApplicant')?.value === 'Applicable'">
                 <ion-label position="floating">GST Rate Details *</ion-label>
-                <ion-select formControlName="GSTRateDetails"  interface="action-sheet">
+                <ion-select formControlName="GSTRateDetails" interface="action-sheet">
                     <ion-select-option value="As Per Company/Group">As Per Company/Group</ion-select-option>
                     <ion-select-option value="Specify Details">Specify Details</ion-select-option>
                     <ion-select-option value="Use GST Classification">Use GST Classification</ion-select-option>
@@ -81,7 +89,7 @@
             </ion-item>
             <ion-item *ngIf="discountForm.get('GSTRateDetails')?.value === 'Specify Details'">
                 <ion-label position="floating">Taxability Type *</ion-label>
-                <ion-select formControlName="taxabilityType"  interface="action-sheet">
+                <ion-select formControlName="taxabilityType" interface="action-sheet">
                     <ion-select-option value="Taxable">Taxable</ion-select-option>
                     <ion-select-option value="Exempted">Exempted</ion-select-option>
                     <ion-select-option value="Nil Rated">Nil Rated</ion-select-option>
@@ -90,7 +98,7 @@
             </ion-item>
             <ion-item *ngIf="discountForm.get('taxabilityType')?.value === 'Taxable'">
                 <ion-label position="floating">Nature Of Transaction *</ion-label>
-                <ion-select formControlName="natureOfTransaction"  interface="action-sheet">
+                <ion-select formControlName="natureOfTransaction" interface="action-sheet">
                     <ion-select-option value="System Inferred">System Inferred</ion-select-option>
                     <ion-select-option value="Interstate Purchase - Taxable">Interstate Purchase -
                         Taxable</ion-select-option>
@@ -109,7 +117,7 @@
             </ion-item>
             <ion-item *ngIf="discountForm.get('taxabilityType')?.value === 'Taxable'">
                 <ion-label position="floating">Cess Valuation *</ion-label>
-                <ion-select formControlName="cessValuation"  interface="action-sheet">
+                <ion-select formControlName="cessValuation" interface="action-sheet">
                     <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
                     <ion-select-option value="Based On Value">Based On Value</ion-select-option>
                     <ion-select-option value="Based On Quantity">Based On Quantity</ion-select-option>
@@ -131,7 +139,7 @@
             </ion-item>
             <ion-item *ngIf="discountForm.get('GSTApplicant')?.value === 'Applicable'">
                 <ion-label position="floating">Type Of Supply *</ion-label>
-                <ion-select formControlName="typeOfSupply"  interface="action-sheet">
+                <ion-select formControlName="typeOfSupply" interface="action-sheet">
                     <ion-select-option value="Goods">Goods</ion-select-option>
                     <ion-select-option value="Capital Goods">Capital Goods</ion-select-option>
                     <ion-select-option value="Services">Services</ion-select-option>
@@ -152,7 +160,7 @@
         <div *ngIf="showAdditionalDetails">
             <ion-item>
                 <ion-label position="floating">Additional Cost In Purchase Invoice</ion-label>
-                <ion-select  interface="action-sheet">
+                <ion-select interface="action-sheet">
                     <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
                     <ion-select-option value="Appropriate By Qty">Appropriate By Qty</ion-select-option>
                     <ion-select-option value="Appropriate By Value">Appropriate By Value</ion-select-option>

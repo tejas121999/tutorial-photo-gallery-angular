@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar color="primary">
         <ion-buttons slot="start">
-            <ion-button fill="clear" routerLink="/dashboard/home">
+            <ion-button fill="clear" routerLink="/dashboard/master/purchase-account-list">
                 <span slot="icon-only">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
                         <path d="M14.25 9H3.75" stroke="white" stroke-width="2" stroke-linecap="round"
@@ -33,7 +33,7 @@
             </ion-item>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Ledger Type *</ion-label>
-                <ion-select formControlName="ledgerType"  interface="alert">
+                <ion-select formControlName="ledgerType" interface="alert">
                     <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
                     <ion-select-option value="Discount">Discount</ion-select-option>
                     <ion-select-option value="Invoice Rounding">Invoice Rounding</ion-select-option>
@@ -41,50 +41,56 @@
             </ion-item>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">GST Applicable *</ion-label>
-                <ion-select formControlName="gstApplicable"  interface="alert">
+                <ion-select formControlName="gstApplicable" interface="alert">
                     <ion-select-option value="Applicable">Applicable</ion-select-option>
                     <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
                 </ion-select>
             </ion-item>
             <!-- if gstApplicable is "Applicable" -->
-            <ion-item class="internal-form-item" *ngIf="purchaseAccountForm.get('gstApplicable').value === 'Applicable'">
+            <ion-item class="internal-form-item"
+                *ngIf="purchaseAccountForm.get('gstApplicable').value === 'Applicable'">
                 <ion-label class="internal-form-label" position="floating">HSN Details*</ion-label>
-                <ion-select formControlName="HSNDetails"  interface="alert">
+                <ion-select formControlName="HSNDetails" interface="alert">
                     <ion-select-option value="As Per Company/Group">As Per Company/Group</ion-select-option>
                     <ion-select-option value="Specify Details">Specify Details</ion-select-option>
                     <ion-select-option value="Use GST Classification">Use GST Classification</ion-select-option>
                     <ion-select-option value="Specify in Voucher">Specify in Voucher</ion-select-option>
                 </ion-select>
             </ion-item>
-            <ion-item class="internal-form-item" *ngIf="purchaseAccountForm.get('HSNDetails').value === 'Specify Details'">
+            <ion-item class="internal-form-item"
+                *ngIf="purchaseAccountForm.get('HSNDetails').value === 'Specify Details'">
                 <ion-label class="internal-form-label" position="floating">HSN *</ion-label>
                 <ion-input formControlName="hsn"></ion-input>
             </ion-item>
-            <ion-item class="internal-form-item" *ngIf="purchaseAccountForm.get('HSNDetails').value === 'Specify Details'">
+            <ion-item class="internal-form-item"
+                *ngIf="purchaseAccountForm.get('HSNDetails').value === 'Specify Details'">
                 <ion-label class="internal-form-label" position="floating">Description</ion-label>
                 <ion-input formControlName="description"></ion-input>
             </ion-item>
-            <ion-item class="internal-form-item" *ngIf="purchaseAccountForm.get('gstApplicable').value === 'Applicable'">
+            <ion-item class="internal-form-item"
+                *ngIf="purchaseAccountForm.get('gstApplicable').value === 'Applicable'">
                 <ion-label class="internal-form-label" position="floating">GST Rate Details *</ion-label>
-                <ion-select formControlName="gstRateDetails"  interface="alert">
+                <ion-select formControlName="gstRateDetails" interface="alert">
                     <ion-select-option value="As Per Company/Group">As Per Company/Group</ion-select-option>
                     <ion-select-option value="Specify Details">Specify Details</ion-select-option>
                     <ion-select-option value="Use GST Classification">Use GST Classification</ion-select-option>
                     <ion-select-option value="Specify in Voucher">Specify in Voucher</ion-select-option>
                 </ion-select>
             </ion-item>
-            <ion-item class="internal-form-item" *ngIf="purchaseAccountForm.get('gstRateDetails').value === 'Specify Details'">
+            <ion-item class="internal-form-item"
+                *ngIf="purchaseAccountForm.get('gstRateDetails').value === 'Specify Details'">
                 <ion-label class="internal-form-label" position="floating">Taxability Type *</ion-label>
-                <ion-select formControlName="taxabilityType"  interface="alert">
+                <ion-select formControlName="taxabilityType" interface="alert">
                     <ion-select-option value="Taxable">Taxable</ion-select-option>
                     <ion-select-option value="Exempted">Exempted</ion-select-option>
                     <ion-select-option value="Nil Rated">Nil Rated</ion-select-option>
                     <ion-select-option value="Non - GST">Non - GST</ion-select-option>
                 </ion-select>
             </ion-item>
-            <ion-item class="internal-form-item" *ngIf="purchaseAccountForm.get('gstRateDetails').value === 'Specify Details'">
+            <ion-item class="internal-form-item"
+                *ngIf="purchaseAccountForm.get('gstRateDetails').value === 'Specify Details'">
                 <ion-label class="internal-form-label" position="floating">Supply Type *</ion-label>
-                <ion-select formControlName="supplyType"  interface="alert">
+                <ion-select formControlName="supplyType" interface="alert">
                     <ion-select-option value="Services">Services</ion-select-option>
                     <ion-select-option value="Capital Goods">Capital Goods</ion-select-option>
                     <ion-select-option value="Goods">Goods</ion-select-option>
