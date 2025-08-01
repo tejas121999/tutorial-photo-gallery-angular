@@ -114,6 +114,7 @@ export class TaxListComponent implements OnInit {
         console.log("Tax List Response:", response?._Object);
         if (response && response?._Object) {
           this.data = response?._Object;
+          this.results = [...this.data];
           this.filterByDate();
         } else {
           console.error("Invalid response format:", response);

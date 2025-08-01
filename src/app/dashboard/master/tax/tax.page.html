@@ -12,7 +12,8 @@
       </ion-button>
       <ion-title class="toolbar-title-text">Tax</ion-title>
     </ion-buttons>
-    <ion-buttons slot="end">
+    <ion-spinner *ngIf="isLoading" slot="end"></ion-spinner>
+    <ion-buttons slot="end" *ngIf="!isLoading">
       <ion-button (click)="addTax()">
         Save
       </ion-button>
@@ -25,16 +26,15 @@
       <ion-item class="internal-form-item">
         <ion-label class="internal-form-label" position="floating">Tax Name *</ion-label>
         <ion-input formControlName="taxName"></ion-input>
-        <div *ngIf="taxForm.get('taxName')?.invalid && (taxForm.get('taxName')?.dirty || taxForm.get('taxName')?.touched)" class="error-message">
+        <div
+          *ngIf="taxForm.get('taxName')?.invalid && (taxForm.get('taxName')?.dirty || taxForm.get('taxName')?.touched)"
+          class="error-message">
           Tax Name is required.
         </div>
       </ion-item>
       <ion-item class="internal-form-item">
-        <ion-label class="internal-form-label" position="floating">Alias *</ion-label>
+        <ion-label class="internal-form-label" position="floating">Alias</ion-label>
         <ion-input formControlName="alias"></ion-input>
-        <div *ngIf="taxForm.get('alias')?.invalid && (taxForm.get('alias')?.dirty || taxForm.get('alias')?.touched)" class="error-message">
-          Alias is required.
-        </div>
       </ion-item>
       <ion-item class="internal-form-item">
         <ion-label class="internal-form-label" position="floating">Type of Tax *</ion-label>
@@ -51,60 +51,47 @@
           <ion-select-option value="TDS">TDS</ion-select-option>
           <ion-select-option value="VAT">VAT</ion-select-option>
         </ion-select>
-        <div *ngIf="taxForm.get('typeOfTax')?.invalid && (taxForm.get('typeOfTax')?.dirty || taxForm.get('typeOfTax')?.touched)" class="error-message">
+        <div
+          *ngIf="taxForm.get('typeOfTax')?.invalid && (taxForm.get('typeOfTax')?.dirty || taxForm.get('typeOfTax')?.touched)"
+          class="error-message">
           Type of Tax is required.
         </div>
       </ion-item>
       <!-- if GST will selected -->
       <ion-item class="internal-form-item" *ngIf="taxForm.get('typeOfTax')?.value === 'GST'">
-        <ion-label class="internal-form-label" position="floating">Type Tax *</ion-label>
+        <ion-label class="internal-form-label" position="floating">Type Tax</ion-label>
         <ion-select formControlName="typeTax" interface="alert">
           <ion-select-option value="IGST">IGST</ion-select-option>
           <ion-select-option value="CGST">CGST</ion-select-option>
           <ion-select-option value="SGST/UTGST">SGST/UTGST</ion-select-option>
           <ion-select-option value="Cess">Cess</ion-select-option>
         </ion-select>
-        <div *ngIf="taxForm.get('typeTax')?.invalid && (taxForm.get('typeTax')?.dirty || taxForm.get('typeTax')?.touched) && taxForm.get('typeOfTax')?.value === 'GST'" class="error-message">
-          Type Tax is required.
-        </div>
       </ion-item>
       <ion-item class="internal-form-item" *ngIf="taxForm.get('typeTax')?.value === 'Cess'">
-        <ion-label class="internal-form-label" position="floating">Valuation Type *</ion-label>
+        <ion-label class="internal-form-label" position="floating">Valuation Type</ion-label>
         <ion-select formControlName="valuationType" interface="alert">
           <ion-select-option value="Based On Quantity">Based On Quantity</ion-select-option>
           <ion-select-option value="Based On Value">Based On Value</ion-select-option>
         </ion-select>
-        <div *ngIf="taxForm.get('valuationType')?.invalid && (taxForm.get('valuationType')?.dirty || taxForm.get('valuationType')?.touched) && taxForm.get('typeTax')?.value === 'Cess'" class="error-message">
-          Valuation Type is required.
-        </div>
       </ion-item>
       <!-- ============================== -->
       <ion-item class="internal-form-item">
-        <ion-label class="internal-form-label" position="floating">Percentage *</ion-label>
+        <ion-label class="internal-form-label" position="floating">Percentage</ion-label>
         <ion-input formControlName="percentage"></ion-input>
-        <div *ngIf="taxForm.get('percentage')?.invalid && (taxForm.get('percentage')?.dirty || taxForm.get('percentage')?.touched)" class="error-message">
-          Percentage is required.
-        </div>
       </ion-item>
       <ion-item class="internal-form-item">
-        <ion-label class="internal-form-label" position="floating">Rounding Method *</ion-label>
+        <ion-label class="internal-form-label" position="floating">Rounding Method</ion-label>
         <ion-select formControlName="roundingMethod" interface="alert">
           <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
           <ion-select-option value="Downward Rounding">Downward Rounding</ion-select-option>
           <ion-select-option value="Normal Rounding">Normal Rounding</ion-select-option>
           <ion-select-option value="Upward Rounding">Upward Rounding</ion-select-option>
         </ion-select>
-        <div *ngIf="taxForm.get('roundingMethod')?.invalid && (taxForm.get('roundingMethod')?.dirty || taxForm.get('roundingMethod')?.touched)" class="error-message">
-          Rounding Method is required.
-        </div>
       </ion-item>
       <!-- if select Downward Rounding -->
       <ion-item class="internal-form-item" *ngIf="taxForm.get('roundingMethod')?.value === 'Downward Rounding'">
-        <ion-label class="internal-form-label" position="floating">Rounding Limit *</ion-label>
+        <ion-label class="internal-form-label" position="floating">Rounding Limit</ion-label>
         <ion-input formControlName="roundingLimit"></ion-input>
-        <div *ngIf="taxForm.get('roundingLimit')?.invalid && (taxForm.get('roundingLimit')?.dirty || taxForm.get('roundingLimit')?.touched) && taxForm.get('roundingMethod')?.value === 'Downward Rounding'" class="error-message">
-          Rounding Limit is required.
-        </div>
       </ion-item>
       <!-- -------------------------- -->
       <ion-item class="internal-form-item">

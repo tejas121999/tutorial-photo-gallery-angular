@@ -2,40 +2,23 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AppPreference } from "src/app/shared/app-preference";
 import { ApiServiceService } from "src/app/services/api-service.service";
+import { Router } from "@angular/router";
 @Component({
   selector: "app-tax",
   templateUrl: "./tax.page.html",
   styleUrls: ["./tax.page.scss"],
 })
 export class TaxPage implements OnInit {
-  // Recursively set all values in an object/array to null
-  resetPayloadValuesToNull(obj: any) {
-    if (Array.isArray(obj)) {
-      for (let i = 0; i < obj.length; i++) {
-        if (typeof obj[i] === "object" && obj[i] !== null) {
-          this.resetPayloadValuesToNull(obj[i]);
-        } else {
-          obj[i] = null;
-        }
-      }
-    } else if (typeof obj === "object" && obj !== null) {
-      for (const key of Object.keys(obj)) {
-        if (typeof obj[key] === "object" && obj[key] !== null) {
-          this.resetPayloadValuesToNull(obj[key]);
-        } else {
-          obj[key] = null;
-        }
-      }
-    }
-  }
   taxForm: FormGroup;
   branch_token: any;
   login_token: any;
+  isLoading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private appPreference: AppPreference,
-    private apiService: ApiServiceService
+    private apiService: ApiServiceService,
+    private router: Router
   ) {
     this.initializeData();
   }
@@ -43,13 +26,13 @@ export class TaxPage implements OnInit {
   async initializeData() {
     this.taxForm = this.fb.group({
       taxName: ["", Validators.required],
-      alias: ["", Validators.required],
+      alias: [""],
       typeOfTax: ["", Validators.required],
       typeTax: [""],
-      valuationType: ["", Validators.required],
-      percentage: ["", Validators.required],
-      roundingMethod: ["", Validators.required],
-      roundingLimit: ["", Validators.required],
+      valuationType: [""],
+      percentage: [""],
+      roundingMethod: [""],
+      roundingLimit: [""],
       name: [""],
       address: [""],
       mobile: [""],
@@ -141,27 +124,6 @@ export class TaxPage implements OnInit {
                   exemption_limit: null,
                 },
               },
-              txa_tcs_data: {
-                tcs_applicable: null,
-                tcs_nature_of_payment: null,
-                tsc_nature_of_payment_data: {
-                  nature_name: null,
-                  section: null,
-                  payment_code: null,
-                  remittance_code: null,
-                  huf_data: {
-                    with_pan: null,
-                    without_pan: null,
-                  },
-                  dedutee_data: {
-                    with_pan: null,
-                    without_pan: null,
-                  },
-                  basd_on_realisation: null,
-                  is_zero_rate: null,
-                  exemption_limit: null,
-                },
-              },
             },
           },
           tax_reg_data: {
@@ -173,8 +135,30 @@ export class TaxPage implements OnInit {
     },
   ];
 
+  // Recursively set all values in an object/array to null
+  resetPayloadValuesToNull(obj: any) {
+    if (Array.isArray(obj)) {
+      for (let i = 0; i < obj.length; i++) {
+        if (typeof obj[i] === "object" && obj[i] !== null) {
+          this.resetPayloadValuesToNull(obj[i]);
+        } else {
+          obj[i] = "";
+        }
+      }
+    } else if (typeof obj === "object" && obj !== null) {
+      for (const key of Object.keys(obj)) {
+        if (typeof obj[key] === "object" && obj[key] !== null) {
+          this.resetPayloadValuesToNull(obj[key]);
+        } else {
+          obj[key] = "";
+        }
+      }
+    }
+  }
+
   createPayload() {
     this.payload[0].object_flag_tpd_id = 1;
+    this.payload[0].tpd_status_report_id = 0;
     this.payload[0].login_token = this.login_token;
     this.payload[0].branch_token = this.branch_token;
     this.payload[0].tax_data[0].tax_name = this.taxForm.get("taxName")?.value;
@@ -213,13 +197,41 @@ export class TaxPage implements OnInit {
       this.taxForm.get("roundingMethod")?.value;
     this.payload[0].tax_data[0].rounding_limit =
       this.taxForm.get("roundingLimit")?.value;
+    this.payload[0].tax_data[0].statutory_detaial_data.other_satutory_detail_data.tax_tds_data.tds_nature_of_payment_data.huf_data.with_pan =
+      this.taxForm.get("pan")?.value;
+    this.payload[0].tax_data[0].statutory_detaial_data.other_satutory_detail_data.tax_tds_data.tds_nature_of_payment_data.dedutee_data.with_pan =
+      this.taxForm.get("pan")?.value;
     this.payload[0].tax_data[0].openning_balance =
       this.taxForm.get("openingBalance")?.value;
   }
 
   addTax() {
-    this.resetPayloadValuesToNull(this.payload);
-    this.createPayload();
-    console.log("Payload:", this.payload);
+    this.isLoading = true;
+    if (
+      this.taxForm.get("taxName").value ||
+      this.taxForm.get("typeOfTax").value
+    ) {
+      // Call the API to add the tax
+      this.resetPayloadValuesToNull(this.payload);
+      this.createPayload();
+      console.log("Payload:", this.payload);
+      this.apiService.addTax(this.payload).subscribe(
+        (response) => {
+          console.log("Tax added successfully:", response);
+          // Call getTaxList after successful add
+          this.isLoading = false;
+          this.router.navigate(["/dashboard/master/tax-list"]);
+          // Optionally, reset the form or navigate to another page
+          this.taxForm.reset();
+        },
+        (error) => {
+          console.error("Error adding tax:", error);
+          this.isLoading = false;
+        }
+      );
+    } else {
+      this.isLoading = false;
+      this.taxForm.markAllAsTouched();
+    }
   }
 }

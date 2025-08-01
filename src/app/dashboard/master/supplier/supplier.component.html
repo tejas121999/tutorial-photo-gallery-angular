@@ -13,8 +13,9 @@
             </ion-button>
             <ion-title class="toolbar-title-text">Supplier</ion-title>
         </ion-buttons>
-        <ion-buttons slot="end">
-            <ion-button>
+        <ion-spinner *ngIf="isLoading" slot="end"></ion-spinner>
+        <ion-buttons slot="end" *ngIf="!isLoading">
+            <ion-button (click)="addSupplier()">
                 Save
             </ion-button>
         </ion-buttons>
@@ -26,10 +27,16 @@
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Supplier Name *</ion-label>
                 <ion-input formControlName="supplierName"></ion-input>
+                <div *ngIf="supplierForm.get('supplierName')?.invalid && (supplierForm.get('supplierName')?.dirty || supplierForm.get('supplierName')?.touched)" class="error-message">
+                  Supplier Name is required.
+                </div>
             </ion-item>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Alias *</ion-label>
                 <ion-input formControlName="alias"></ion-input>
+                <div *ngIf="supplierForm.get('alias')?.invalid && (supplierForm.get('alias')?.dirty || supplierForm.get('alias')?.touched)" class="error-message">
+                  Alias is required.
+                </div>
             </ion-item>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Billwise Balance</ion-label>
@@ -37,6 +44,10 @@
                     <ion-select-option value="Yes">Yes</ion-select-option>
                     <ion-select-option value="No">No</ion-select-option>
                 </ion-select>
+            </ion-item>
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">Credit Period</ion-label>
+                <ion-input formControlName="creditPeriod"></ion-input>
             </ion-item>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Credit Limit</ion-label>
@@ -70,10 +81,6 @@
                 <ion-label class="internal-form-label" position="floating">PAN</ion-label>
                 <ion-input formControlName="pan"></ion-input>
             </ion-item>
-            <!-- <ion-item>
-                <ion-label position="floating">Registration Type *</ion-label>
-                <ion-input formControlName="registrationType"></ion-input>
-            </ion-item> -->
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Registration Type *</ion-label>
                 <ion-select formControlName="registrationType" interface="alert">
@@ -89,6 +96,9 @@
                     <ion-select-option value="Embassy/UN Body">Embassy/UN Body</ion-select-option>
                     <ion-select-option value="Non - Resident Taxpayer">Non - Resident Taxpayer</ion-select-option>
                 </ion-select>
+                <div *ngIf="supplierForm.get('registrationType')?.invalid && (supplierForm.get('registrationType')?.dirty || supplierForm.get('registrationType')?.touched)" class="error-message">
+                  Registration Type is required.
+                </div>
             </ion-item>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">GSTIN/UIN *</ion-label>
@@ -96,10 +106,33 @@
             </ion-item>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Bank Details</ion-label>
-                <ion-input formControlName="bankDetails"></ion-input>
+                <ion-select formControlName="bankDetails" interface="alert">
+                    <ion-select-option value="Cheque">Cheque</ion-select-option>
+                    <ion-select-option value="e - fund Transfer">e - fund Transfer</ion-select-option>
+                    <ion-select-option value="Other">Other</ion-select-option>
+                </ion-select>
             </ion-item>
-            <ion-item class="internal-form-item">
-                <ion-label class="internal-form-label" position="floating">Opening Balance</ion-label>
+            <!-- if Cheque selected -->
+            <ion-item class="internal-form-item" *ngIf="supplierForm.get('bankDetails')?.value === 'Cheque'">
+                <ion-label class="internal-form-label" position="floating">Cheque Number</ion-label>
+                <ion-input formControlName="chequeNumber"></ion-input>
+            </ion-item>
+            <!-- if e-fund transfer -->
+            <ion-item class="internal-form-item" *ngIf="supplierForm.get('bankDetails')?.value === 'e - fund Transfer'">
+                <ion-label class="internal-form-label" position="floating">Account Number</ion-label>
+                <ion-input formControlName="accountNumber"></ion-input>
+            </ion-item>
+            <ion-item class="internal-form-item" *ngIf="supplierForm.get('bankDetails')?.value === 'e - fund Transfer'">
+                <ion-label class="internal-form-label" position="floating">IFSC Code</ion-label>
+                <ion-input formControlName="ifscCode"></ion-input>
+            </ion-item>
+            <ion-item class="internal-form-item" *ngIf="supplierForm.get('bankDetails')?.value === 'e - fund Transfer'">
+                <ion-label class="internal-form-label" position="floating">Bank Name</ion-label>
+                <ion-input formControlName="bankName"></ion-input>
+            </ion-item>
+            <ion-item class="internal-form-item"
+                *ngIf="supplierForm.get('bankDetails')?.value === 'e - fund Transfer' || supplierForm.get('bankDetails')?.value === 'Other'">
+                <ion-label class="internal-form-label" position="floating">Opening Balance </ion-label>
                 <ion-input formControlName="openingBalance"></ion-input>
             </ion-item>
         </form>
