@@ -114,7 +114,6 @@ export class TaxListComponent implements OnInit {
         object_flag_tpd_id: 1,
       },
     ];
-    console.log("temp", temp);
     this.apiService.getTaxList(temp).subscribe(
       (response: any) => {
         console.log("Tax List Response:", response?._Object);

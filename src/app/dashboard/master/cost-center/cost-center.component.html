@@ -13,32 +13,62 @@
             </ion-button>
             <ion-title class="toolbar-title-text">Cost Center</ion-title>
         </ion-buttons>
-        <ion-buttons slot="end">
-            <ion-button>
+        <ion-spinner *ngIf="isLoading" slot="end"></ion-spinner>
+        <ion-buttons slot="end" *ngIf="!isLoading">
+            <ion-button (click)="addCostCenter()">
                 Save
             </ion-button>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
+
 <ion-content>
-    <div class="centered-form-wrapper">
-        <form [formGroup]="costCenterForm">
+    <form [formGroup]="costCenterForm">
+        <div class="centered-form-wrapper">
             <!-- Example fields, adapt as needed for cost center -->
-            <ion-item class="internal-form-item">
+            <ion-item class="internal-form-item"
+                [class.invalid-item]="costCenterForm.get('costCenterName')?.invalid && (costCenterForm.get('costCenterName')?.touched || costCenterForm.get('costCenterName')?.dirty)">
                 <ion-label class="internal-form-label" position="floating">Cost Center Name *</ion-label>
                 <ion-input formControlName="costCenterName"></ion-input>
             </ion-item>
-            <ion-item class="internal-form-item">
+            <div class="error-message"
+                *ngIf="costCenterForm.get('costCenterName')?.invalid && (costCenterForm.get('costCenterName')?.touched || costCenterForm.get('costCenterName')?.dirty)">
+                Cost Center Name is required.
+            </div>
+            <ion-item class="internal-form-item"
+                [class.invalid-item]="costCenterForm.get('alias')?.invalid && (costCenterForm.get('alias')?.touched || costCenterForm.get('alias')?.dirty)">
                 <ion-label class="internal-form-label" position="floating">Alias *</ion-label>
                 <ion-input formControlName="alias"></ion-input>
             </ion-item>
-            <ion-item class="internal-form-item">
+            <div class="error-message"
+                *ngIf="costCenterForm.get('alias')?.invalid && (costCenterForm.get('alias')?.touched || costCenterForm.get('alias')?.dirty)">
+                Alias is required.
+            </div>
+            <ion-item class="internal-form-item"
+                [class.invalid-item]="costCenterForm.get('under')?.invalid && (costCenterForm.get('under')?.touched || costCenterForm.get('under')?.dirty)">
                 <ion-label class="internal-form-label" position="floating">Under *</ion-label>
                 <ion-select formControlName="under" interface="alert">
                     <ion-select-option value="Primary">Primary</ion-select-option>
                     <ion-select-option value="Secondary">Secondary</ion-select-option>
                 </ion-select>
             </ion-item>
+            <div class="error-message"
+                *ngIf="costCenterForm.get('under')?.invalid && (costCenterForm.get('under')?.touched || costCenterForm.get('under')?.dirty)">
+                Under is required.
+            </div>
+            <style>
+                .error-message {
+                    color: #e74c3c;
+                    font-size: 13px;
+                    margin: 0 0 10px 10px;
+                }
+
+                .invalid-item {
+                    --highlight-background: #ffeaea;
+                    --background: #fff6f6;
+                    border-left: 3px solid #e74c3c;
+                }
+            </style>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Email ID</ion-label>
                 <ion-input formControlName="emailId"></ion-input>
@@ -70,24 +100,27 @@
                 <ion-label class="internal-form-label" position="floating">Bank Name</ion-label>
                 <ion-input formControlName="bankName"></ion-input>
             </ion-item>
-        </form>
-    </div>
-    <!-- Additional Details copied from stock-item -->
-    <ion-item-group>
-        <ion-item button (click)="showAdditionalDetails = !showAdditionalDetails" detail="false" lines="none">
-            <ion-label class="cost-center-additional-details-label">Additional Details</ion-label>
-            <ion-icon slot="end" name="chevron-down-outline" *ngIf="!showAdditionalDetails"></ion-icon>
-            <ion-icon slot="end" name="chevron-up-outline" *ngIf="showAdditionalDetails"></ion-icon>
-        </ion-item>
-        <div *ngIf="showAdditionalDetails">
-            <ion-item class="internal-form-item">
-                <ion-checkbox class="cost-center-checkbox" slot="end" [(ngModel)]="checkBox1"></ion-checkbox>
-                <ion-label class="internal-form-label">Use For Job Costing</ion-label>
-            </ion-item>
-            <ion-item class="internal-form-item">
-                <ion-checkbox class="cost-center-checkbox" slot="end" [(ngModel)]="checkBox2"></ion-checkbox>
-                <ion-label class="internal-form-label">Showing opening Balance For Revenue Items In Reports</ion-label>
-            </ion-item>
+            <!-- Additional Details copied from stock-item -->
+            <ion-item-group>
+                <ion-item button (click)="showAdditionalDetails = !showAdditionalDetails" detail="false" lines="none">
+                    <ion-label class="cost-center-additional-details-label">Additional Details</ion-label>
+                    <ion-icon slot="end" name="chevron-down-outline" *ngIf="!showAdditionalDetails"></ion-icon>
+                    <ion-icon slot="end" name="chevron-up-outline" *ngIf="showAdditionalDetails"></ion-icon>
+                </ion-item>
+                <div *ngIf="showAdditionalDetails">
+                    <ion-item class="internal-form-item">
+                        <ion-checkbox class="cost-center-checkbox" slot="end"
+                            formControlName="useForJobCosting"></ion-checkbox>
+                        <ion-label class="internal-form-label">Use For Job Costing</ion-label>
+                    </ion-item>
+                    <ion-item class="internal-form-item">
+                        <ion-checkbox class="cost-center-checkbox" slot="end"
+                            formControlName="showOpeningBalance"></ion-checkbox>
+                        <ion-label class="internal-form-label">Showing opening Balance For Revenue Items In
+                            Reports</ion-label>
+                    </ion-item>
+                </div>
+            </ion-item-group>
         </div>
-    </ion-item-group>
+    </form>
 </ion-content>

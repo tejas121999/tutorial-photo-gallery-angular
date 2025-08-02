@@ -16,4 +16,9 @@ export enum RestEnds {
   GetItemGroupList = "ItemGroup/GetItemGroupList",
   GetItemCategoryList = "ItemCategory/GetItemCategoryList",
   GetUnitSimpleList = "Unit/GetUnitSimpleList",
+  AddItemGroupData = "ItemGroup/AddItemGroupData",
+  GetOtherExpenseList = "Ledger/GetOtherExpenseList",
+  GetRoundOffLessList = "Ledger/GetRoundOffLessList",
+  GetCostCenterList = "CostCenter/GetCostCenterList",
+  AddCostCenterData = "CostCenter/AddCostCenterData",
 }

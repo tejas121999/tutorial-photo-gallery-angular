@@ -1,4 +1,7 @@
 import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { ApiServiceService } from "src/app/services/api-service.service";
+import { AppPreference } from "src/app/shared/app-preference";
 
 @Component({
   selector: "app-voucher-type-list",
@@ -8,6 +11,30 @@ import { Component, OnInit } from "@angular/core";
 export class VoucherTypeListComponent implements OnInit {
   pageSize = 5;
   currentPage = 1;
+  currentDate: string;
+  public data = [];
+  public results = [...this.data];
+  branch_token: any;
+  login_token: any;
+
+  constructor(
+    private appPreference: AppPreference,
+    private apiService: ApiServiceService,
+    private route: ActivatedRoute
+  ) {
+    // Set current date in ISO format (YYYY-MM-DD)
+    const today = new Date();
+    this.currentDate = today.toISOString().split("T")[0];
+  }
+
+  ngOnInit() {
+    this.route.queryParams.subscribe(async () => {
+      this.branch_token = (
+        await this.appPreference.get("_BranchList")
+      )[0]?.branch_token_id;
+      this.login_token = await this.appPreference.get("_LoginToken");
+    });
+  }
 
   get totalPages() {
     return Math.ceil(this.results.length / this.pageSize) || 1;
@@ -26,30 +53,6 @@ export class VoucherTypeListComponent implements OnInit {
   }
   deleteItem(item: string) {
     this.results = this.results.filter((result) => result !== item);
-  }
-  currentDate: string;
-  public data = [
-    "Amsterdam",
-    "Buenos Aires",
-    "Cairo",
-    "Geneva",
-    "Hong Kong",
-    "Istanbul",
-    "London",
-    "Madrid",
-    "New York",
-    "Panama City",
-  ];
-  public results = [...this.data];
-
-  constructor() {
-    // Set current date in ISO format (YYYY-MM-DD)
-    const today = new Date();
-    this.currentDate = today.toISOString().split("T")[0];
-  }
-
-  ngOnInit() {
-    console.log("VoucherTypeListComponent initialized");
   }
 
   handleInput(event: Event) {

@@ -352,6 +352,8 @@ export class StockItemComponent implements OnInit {
     }
     this.payload[0].item_data[0].statutory_detail_data.hsns_sac_data.classification_create_data.gst_rate_related_detail_data.taxtability_type =
       this.stockItemForm.get("taxabilityType")?.value;
+    this.payload[0].item_data[0].statutory_detail_data.gst_rate_data.other_statutor_detail_data.excise_data.excise_data.alter_excise_triff_data.reporting_unit =
+      this.stockItemForm.get("unit")?.value;
     this.payload[0].item_data[0].statutory_detail_data.gst_rate_data.gst_Detail =
       this.stockItemForm.get("gstRateDetails")?.value;
     this.payload[0].item_data[0].statutory_detail_data.gst_rate_data.specify_slab_based_rule.cess_gst_detail_data.cess_rate =
@@ -392,6 +394,14 @@ export class StockItemComponent implements OnInit {
           )?.value,
         });
     }
+    this.payload[0].item_data[0].openning_balance =
+      this.stockItemForm.get("openingBalance")?.value;
+    this.payload[0].item_data[0].allocation_data.quantity =
+      this.stockItemForm.get("quantity")?.value;
+    this.payload[0].item_data[0].allocation_data.rate =
+      this.stockItemForm.get("rate")?.value;
+    this.payload[0].item_data[0].allocation_data.amount =
+      this.stockItemForm.get("value")?.value;
   }
 
   getItemGroupList() {

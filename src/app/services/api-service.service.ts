@@ -101,4 +101,44 @@ export class ApiServiceService {
       true
     );
   }
+
+  addItemGroupData(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.AddItemGroupData,
+      body,
+      true
+    );
+  }
+
+  getOtherExpenseList(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.GetOtherExpenseList,
+      body,
+      true
+    );
+  }
+
+  getRoundOffLessList(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.GetRoundOffLessList,
+      body,
+      true
+    );
+  }
+
+  getCostCenterList(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.GetCostCenterList,
+      body,
+      true
+    );
+  }
+
+  addCostCenterData(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.AddCostCenterData,
+      body,
+      true
+    );
+  }
 }
