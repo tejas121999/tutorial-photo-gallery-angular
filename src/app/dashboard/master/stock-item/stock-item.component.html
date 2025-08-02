@@ -34,14 +34,16 @@
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Under</ion-label>
                 <ion-select formControlName="under" interface="alert">
-                    <ion-select-option *ngFor="let item of itemGroupList" [value]="item">{{ item?.item_group_name
+                    <ion-select-option *ngFor="let item of itemGroupList" [value]="item.item_group_name">{{
+                        item?.item_group_name
                         }}</ion-select-option>
                 </ion-select>
             </ion-item>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Category *</ion-label>
                 <ion-select formControlName="category" interface="alert">
-                    <ion-select-option *ngFor="let item of itemCategoryList" [value]="item">{{ item?.item_category_name
+                    <ion-select-option *ngFor="let item of itemCategoryList" [value]="item.item_category_name">{{
+                        item?.item_category_name
                         }}</ion-select-option>
                 </ion-select>
             </ion-item>
@@ -52,7 +54,8 @@
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Unit *</ion-label>
                 <ion-select formControlName="unit" interface="alert">
-                    <ion-select-option *ngFor="let item of unitList" [value]="item">{{ item?.unit_name }}</ion-select-option>
+                    <ion-select-option *ngFor="let item of unitList" [value]="item.unit_name">{{ item?.unit_name
+                        }}</ion-select-option>
                 </ion-select>
             </ion-item>
             <div *ngIf="stockItemForm.get('unit')?.touched && stockItemForm.get('unit')?.invalid" class="error-message">
