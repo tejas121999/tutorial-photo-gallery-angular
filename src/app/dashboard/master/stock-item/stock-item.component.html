@@ -34,31 +34,25 @@
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Under</ion-label>
                 <ion-select formControlName="under" interface="alert">
-                    <ion-select-option value="Primary">Primary</ion-select-option>
-                    <ion-select-option value="Fruits">Fruits</ion-select-option>
-                    <ion-select-option value="Vegetables">Vegetables</ion-select-option>
+                    <ion-select-option *ngFor="let item of itemGroupList" [value]="item">{{ item?.item_group_name
+                        }}</ion-select-option>
                 </ion-select>
             </ion-item>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Category *</ion-label>
                 <ion-select formControlName="category" interface="alert">
-                    <ion-select-option value="Dairy">Dairy</ion-select-option>
-                    <ion-select-option value="Frozen Foods">Frozen Foods</ion-select-option>
-                    <ion-select-option value="Beverages">Beverages</ion-select-option>
+                    <ion-select-option *ngFor="let item of itemCategoryList" [value]="item">{{ item?.item_category_name
+                        }}</ion-select-option>
                 </ion-select>
             </ion-item>
-            <div *ngIf="stockItemForm.get('category')?.touched && stockItemForm.get('category')?.invalid" class="error-message">
+            <div *ngIf="stockItemForm.get('category')?.touched && stockItemForm.get('category')?.invalid"
+                class="error-message">
                 Category is required.
             </div>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Unit *</ion-label>
                 <ion-select formControlName="unit" interface="alert">
-                    <ion-select-option value="Units">Units</ion-select-option>
-                    <ion-select-option value="Pcs">Pcs</ion-select-option>
-                    <ion-select-option value="Kg.">Kg.</ion-select-option>
-                    <ion-select-option value="Box">Box</ion-select-option>
-                    <ion-select-option value="Dos.">Dos.</ion-select-option>
-                    <ion-select-option value="Nos.">Nos.</ion-select-option>
+                    <ion-select-option *ngFor="let item of unitList" [value]="item">{{ item?.unit_name }}</ion-select-option>
                 </ion-select>
             </ion-item>
             <div *ngIf="stockItemForm.get('unit')?.touched && stockItemForm.get('unit')?.invalid" class="error-message">
@@ -82,7 +76,8 @@
                     <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
                 </ion-select>
             </ion-item>
-            <div *ngIf="stockItemForm.get('gstApplicable')?.touched && stockItemForm.get('gstApplicable')?.invalid" class="error-message">
+            <div *ngIf="stockItemForm.get('gstApplicable')?.touched && stockItemForm.get('gstApplicable')?.invalid"
+                class="error-message">
                 GST Applicable is required.
             </div>
             <ion-item *ngIf="stockItemForm.get('gstApplicable')?.value === 'Applicable'" class="internal-form-item">

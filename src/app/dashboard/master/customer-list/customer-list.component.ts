@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { ApiServiceService } from "src/app/services/api-service.service";
 import { AppPreference } from "src/app/shared/app-preference";
 
@@ -17,7 +18,8 @@ export class CustomerListComponent implements OnInit {
 
   constructor(
     private appPreference: AppPreference,
-    private apiService: ApiServiceService
+    private apiService: ApiServiceService,
+    private route: ActivatedRoute
   ) {
     // Set current date in ISO format (YYYY-MM-DD)
     const today = new Date();
@@ -25,6 +27,9 @@ export class CustomerListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(() => {
+      this.getCustomerList();
+    });
     this.getCustomerList();
   }
 

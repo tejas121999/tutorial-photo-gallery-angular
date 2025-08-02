@@ -24,7 +24,9 @@ export class SupplierComponent implements OnInit {
     this.initializeData();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log("hello supplier");
+  }
 
   async initializeData() {
     this.supplierForm = this.fb.group({
@@ -280,7 +282,9 @@ export class SupplierComponent implements OnInit {
         () => {
           this.isLoading = false;
           this.supplierForm.reset();
-          this.router.navigate(["/dashboard/master/supplier-list"]);
+          this.router.navigate(["/dashboard/master/supplier-list"], {
+            queryParams: { reload: new Date().getTime() },
+          });
         },
         (error) => {
           this.isLoading = false;

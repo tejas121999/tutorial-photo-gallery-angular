@@ -4,6 +4,38 @@ import { DashboardComponent } from "./dashboard.component";
 import { HomeComponent } from "./home/home.component";
 import { PaymentComponent } from "./payment/payment.component";
 import { TransactionComponent } from "./transaction/transaction.component";
+import { TaxPage } from "./master/tax/tax.page";
+import { TaxListComponent } from "./master/tax-list/tax-list.component";
+import { SupplierComponent } from "./master/supplier/supplier.component";
+import { SupplierListComponent } from "./master/supplier-list/supplier-list.component";
+import { CustommerComponent } from "./master/custommer/custommer.component";
+import { CustomerListComponent } from "./master/customer-list/customer-list.component";
+import { SalesAccountComponent } from "./master/sales-account/sales-account.component";
+import { SalesAccountListComponent } from "./master/sales-account-list/sales-account-list.component";
+import { PurchaseAccountComponent } from "./master/purchase-account/purchase-account.component";
+import { PurchaseAccountListComponent } from "./master/purchase-account-list/purchase-account-list.component";
+import { StockItemComponent } from "./master/stock-item/stock-item.component";
+import { StockItemListComponent } from "./master/stock-item-list/stock-item-list.component";
+import { UnitComponent } from "./master/unit/unit.component";
+import { UnitListComponent } from "./master/unit-list/unit-list.component";
+import { VoucherTypeComponent } from "./master/voucher-type/voucher-type.component";
+import { VoucherTypeListComponent } from "./master/voucher-type-list/voucher-type-list.component";
+import { StockCategoryComponent } from "./master/stock-category/stock-category.component";
+import { StockCategoryListComponent } from "./master/stock-category-list/stock-category-list.component";
+import { StockGroupsComponent } from "./master/stock-groups/stock-groups.component";
+import { StockGroupListComponent } from "./master/stock-group-list/stock-group-list.component";
+import { DiscountComponent } from "./master/discount/discount.component";
+import { DiscountListComponent } from "./master/discount-list/discount-list.component";
+import { OtherChargesComponent } from "./master/other-charges/other-charges.component";
+import { OtherChargesListComponent } from "./master/other-charges-list/other-charges-list.component";
+import { RoundOffComponent } from "./master/round-off/round-off.component";
+import { RoundOffListComponent } from "./master/round-off-list/round-off-list.component";
+import { CostCenterComponent } from "./master/cost-center/cost-center.component";
+import { CostCenterListComponent } from "./master/cost-center-list/cost-center-list.component";
+import { GodownComponent } from "./master/godown/godown.component";
+import { GodownListComponent } from "./master/godown-list/godown-list.component";
+import { MiscellaneousComponent } from "./master/miscellaneous/miscellaneous.component";
+import { MiscellaneousListComponent } from "./master/miscellaneous-list/miscellaneous-list.component";
 
 const routes: Routes = [
   {
@@ -28,221 +60,131 @@ const routes: Routes = [
     children: [
       {
         path: "tax",
-        loadChildren: () =>
-          import("./master/tax/tax.module").then((m) => m.TaxModule),
+        component: TaxPage,
       },
       {
         path: "tax-list",
-        loadChildren: () =>
-          import("./master/tax-list/tax-list.module").then(
-            (m) => m.TaxListModule
-          ),
+        component: TaxListComponent,
       },
       {
         path: "supplier",
-        loadChildren: () =>
-          import("./master/supplier/supplier.module").then(
-            (m) => m.SupplierModule
-          ),
+        component: SupplierComponent,
       },
       {
         path: "supplier-list",
-        loadChildren: () =>
-          import("./master/supplier-list/supplier-list.module").then(
-            (m) => m.SupplierListModule
-          ),
+        component: SupplierListComponent,
       },
       {
         path: "custommer",
-        loadChildren: () =>
-          import("./master/custommer/custommer.module").then(
-            (m) => m.CustommerModule
-          ),
+        component: CustommerComponent,
       },
       {
         path: "customer-list",
-        loadChildren: () =>
-          import("./master/customer-list/customer-list.module").then(
-            (m) => m.CustomerListModule
-          ),
+        component: CustomerListComponent,
       },
       {
         path: "sales-account",
-        loadChildren: () =>
-          import("./master/sales-account/sales-account.module").then(
-            (m) => m.SalesAccountModule
-          ),
+        component: SalesAccountComponent,
       },
       {
         path: "sales-account-list",
-        loadChildren: () =>
-          import("./master/sales-account-list/sales-account-list.module").then(
-            (m) => m.SalesAccountListModule
-          ),
+        component: SalesAccountListComponent,
       },
       {
         path: "purchase-account",
-        loadChildren: () =>
-          import("./master/purchase-account/purchase-account.module").then(
-            (m) => m.PurchaseAccountModule
-          ),
+        component: PurchaseAccountComponent,
       },
       {
         path: "purchase-account-list",
-        loadChildren: () =>
-          import(
-            "./master/purchase-account-list/purchase-account-list.module"
-          ).then((m) => m.PurchaseAccountListModule),
+        component: PurchaseAccountListComponent,
       },
       {
         path: "stock-item",
-        loadChildren: () =>
-          import("./master/stock-item/stock-item.module").then(
-            (m) => m.StockItemModule
-          ),
+        component: StockItemComponent,
       },
       {
         path: "stock-item-list",
-        loadChildren: () =>
-          import("./master/stock-item-list/stock-item-list.module").then(
-            (m) => m.StockItemListModule
-          ),
+        component: StockItemListComponent,
       },
       {
         path: "unit",
-        loadChildren: () =>
-          import("./master/unit/unit.module").then((m) => m.UnitModule),
+        component: UnitComponent,
       },
       {
         path: "unit-list",
-        loadChildren: () =>
-          import("./master/unit-list/unit-list.module").then(
-            (m) => m.UnitListModule
-          ),
+        component: UnitListComponent,
       },
       {
         path: "voucher-type",
-        loadChildren: () =>
-          import("./master/voucher-type/voucher-type.module").then(
-            (m) => m.VoucherTypeModule
-          ),
+        component: VoucherTypeComponent,
       },
       {
         path: "voucher-type-list",
-        loadChildren: () =>
-          import("./master/voucher-type-list/voucher-type-list.module").then(
-            (m) => m.VoucherTypeListModule
-          ),
+        component: VoucherTypeListComponent,
       },
       {
         path: "stock-category",
-        loadChildren: () =>
-          import("./master/stock-category/stock-category.module").then(
-            (m) => m.StockCategoryModule
-          ),
+        component: StockCategoryComponent,
       },
       {
         path: "stock-category-list",
-        loadChildren: () =>
-          import(
-            "./master/stock-category-list/stock-category-list.module"
-          ).then((m) => m.StockCategoryListModule),
+        component: StockCategoryListComponent,
       },
       {
         path: "stock-groups",
-        loadChildren: () =>
-          import("./master/stock-groups/stock-groups.module").then(
-            (m) => m.StockGroupsModule
-          ),
+        component: StockGroupsComponent,
       },
       {
         path: "stock-group-list",
-        loadChildren: () =>
-          import("./master/stock-group-list/stock-group-list.module").then(
-            (m) => m.StockGroupListModule
-          ),
+        component: StockGroupListComponent,
       },
       {
         path: "discount",
-        loadChildren: () =>
-          import("./master/discount/discount.module").then(
-            (m) => m.DiscountModule
-          ),
+        component: DiscountComponent,
       },
       {
         path: "discount-list",
-        loadChildren: () =>
-          import("./master/discount-list/discount-list.module").then(
-            (m) => m.DiscountListModule
-          ),
+        component: DiscountListComponent,
       },
       {
         path: "other-charges",
-        loadChildren: () =>
-          import("./master/other-charges/other-charges.module").then(
-            (m) => m.OtherChargesModule
-          ),
+        component: OtherChargesComponent,
       },
       {
         path: "other-charges-list",
-        loadChildren: () =>
-          import("./master/other-charges-list/other-charges-list.module").then(
-            (m) => m.OtherChargesListModule
-          ),
+        component: OtherChargesListComponent,
       },
       {
         path: "round-off",
-        loadChildren: () =>
-          import("./master/round-off/round-off.module").then(
-            (m) => m.RoundOffModule
-          ),
+        component: RoundOffComponent,
       },
       {
         path: "round-off-list",
-        loadChildren: () =>
-          import("./master/round-off-list/round-off-list.module").then(
-            (m) => m.RoundOffListModule
-          ),
+        component: RoundOffListComponent,
       },
       {
         path: "cost-center",
-        loadChildren: () =>
-          import("./master/cost-center/cost-center.module").then(
-            (m) => m.CostCenterModule
-          ),
+        component: CostCenterComponent,
       },
       {
         path: "cost-center-list",
-        loadChildren: () =>
-          import("./master/cost-center-list/cost-center-list.module").then(
-            (m) => m.CostCenterListModule
-          ),
+        component: CostCenterListComponent,
       },
       {
         path: "godown",
-        loadChildren: () =>
-          import("./master/godown/godown.module").then((m) => m.GodownModule),
+        component: GodownComponent,
       },
       {
         path: "godown-list",
-        loadChildren: () =>
-          import("./master/godown-list/godown-list.module").then(
-            (m) => m.GodownListModule
-          ),
+        component: GodownListComponent,
       },
       {
         path: "miscellaneous",
-        loadChildren: () =>
-          import("./master/miscellaneous/miscellaneous.module").then(
-            (m) => m.MiscellaneousModule
-          ),
+        component: MiscellaneousComponent,
       },
       {
         path: "miscellaneous-list",
-        loadChildren: () =>
-          import("./master/miscellaneous-list/miscellaneous-list.module").then(
-            (m) => m.MiscellaneousListModule
-          ),
+        component: MiscellaneousListComponent,
       },
     ],
   },

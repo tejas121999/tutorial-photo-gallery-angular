@@ -48,7 +48,9 @@ export class VoucherTypeListComponent implements OnInit {
     this.currentDate = today.toISOString().split("T")[0];
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log("VoucherTypeListComponent initialized");
+  }
 
   handleInput(event: Event) {
     const target = event.target as HTMLIonSearchbarElement;

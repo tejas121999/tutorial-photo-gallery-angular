@@ -55,4 +55,50 @@ export class ApiServiceService {
   addItemData(body: any) {
     return this.apiManager.sendPOSTRequest(RestEnds.AddItemData, body, true);
   }
+
+  // Ledger/GetSalesList
+  getSalesList(body: any) {
+    return this.apiManager.sendPOSTRequest(RestEnds.GetSalesList, body, true);
+  }
+
+  // Ledger/GetPurchaseList
+  getPurchaseList(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.GetPurchaseList,
+      body,
+      true
+    );
+  }
+
+  addPurchaseData(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.AddPurchaseData,
+      body,
+      true
+    );
+  }
+
+  getItemGroupList(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.GetItemGroupList,
+      body,
+      true
+    );
+  }
+
+  getItemCategoryList(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.GetItemCategoryList,
+      body,
+      true
+    );
+  }
+
+  getUnitSimpleList(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.GetUnitSimpleList,
+      body,
+      true
+    );
+  }
 }

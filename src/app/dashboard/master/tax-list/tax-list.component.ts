@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from '@angular/router';
 import { ApiServiceService } from "src/app/services/api-service.service";
 import { AppPreference } from "src/app/shared/app-preference";
+
 
 @Component({
   selector: "app-tax-list",
@@ -8,16 +10,28 @@ import { AppPreference } from "src/app/shared/app-preference";
   styleUrls: ["./tax-list.component.scss"],
 })
 export class TaxListComponent implements OnInit {
+  branch_token: any;
+  showSearchbar = false;
+  pageSize = 5;
+  currentPage = 1;
+  currentDate: string;
+  public data: any = [];
+  public results = [...this.data];
+
   constructor(
     private appPreference: AppPreference,
-    private apiService: ApiServiceService
+    private apiService: ApiServiceService,
+    private route: ActivatedRoute
   ) {
     this.initializeData();
   }
 
-  async ngOnInit() {
+  ngOnInit() {
+    this.route.queryParams.subscribe(() => {
+      this.getTaxList();
+    });
     this.getTaxList();
-    console.log(this.results);
+    console.log("hello tax page");
   }
 
   async initializeData() {
@@ -29,14 +43,6 @@ export class TaxListComponent implements OnInit {
     )[0].branch_token_id;
   }
 
-  branch_token: any;
-
-  showSearchbar = false;
-  pageSize = 5;
-  currentPage = 1;
-  currentDate: string;
-  public data: any = [];
-  public results = [...this.data];
 
   get totalPages() {
     return Math.ceil(this.results.length / this.pageSize) || 1;

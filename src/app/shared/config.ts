@@ -10,4 +10,10 @@ export enum RestEnds {
   GetCustomerList = "Ledger/GetCustomerList",
   GetItemList = "Item/GetItemList",
   AddItemData = "Item/AddItemData",
+  GetSalesList = "Ledger/GetSalesList",
+  GetPurchaseList = "Ledger/GetPurchaseList",
+  AddPurchaseData = "Ledger/AddPurchaseData",
+  GetItemGroupList = "ItemGroup/GetItemGroupList",
+  GetItemCategoryList = "ItemCategory/GetItemCategoryList",
+  GetUnitSimpleList = "Unit/GetUnitSimpleList",
 }

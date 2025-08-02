@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ApiServiceService } from "src/app/services/api-service.service";
 import { AppPreference } from "src/app/shared/app-preference";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-stock-item-list",
@@ -15,7 +16,8 @@ export class StockItemListComponent implements OnInit {
   public results = [...this.data];
   constructor(
     private appPreference: AppPreference,
-    private apiService: ApiServiceService
+    private apiService: ApiServiceService,
+    private route: ActivatedRoute
   ) {
     // Set current date in ISO format (YYYY-MM-DD)
     const today = new Date();
@@ -23,7 +25,11 @@ export class StockItemListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(() => {
+      this.getStockItemList();
+    });
     this.getStockItemList();
+    console.log("StockItemListComponent initialized");
   }
 
   get totalPages() {

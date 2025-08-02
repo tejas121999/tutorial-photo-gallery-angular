@@ -18,7 +18,7 @@ export class TaxPage implements OnInit {
     private fb: FormBuilder,
     private appPreference: AppPreference,
     private apiService: ApiServiceService,
-    private router: Router
+    private router: Router,
   ) {
     this.initializeData();
   }
@@ -51,7 +51,9 @@ export class TaxPage implements OnInit {
     this.login_token = await this.appPreference.get("_LoginToken");
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log("TaxPage initialized");
+  }
 
   payload: any = [
     {
@@ -220,7 +222,9 @@ export class TaxPage implements OnInit {
           console.log("Tax added successfully:", response);
           // Call getTaxList after successful add
           this.isLoading = false;
-          this.router.navigate(["/dashboard/master/tax-list"]);
+          this.router.navigate(["/dashboard/master/tax-list"], {
+            queryParams: { reload: new Date().getTime() },
+          });
           // Optionally, reset the form or navigate to another page
           this.taxForm.reset();
         },

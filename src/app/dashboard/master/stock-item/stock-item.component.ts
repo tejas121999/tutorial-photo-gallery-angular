@@ -1,6 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { ApiServiceService } from "src/app/services/api-service.service";
 import { AppPreference } from "src/app/shared/app-preference";
 
@@ -11,7 +11,7 @@ import { AppPreference } from "src/app/shared/app-preference";
   templateUrl: "./stock-item.component.html",
   styleUrls: ["./stock-item.component.scss"],
 })
-export class StockItemComponent {
+export class StockItemComponent implements OnInit {
   setComponentsBOM: boolean = false;
   setMRPDetails: boolean = false;
   rateOfDuty: boolean = false;
@@ -23,14 +23,32 @@ export class StockItemComponent {
   branch_token: any;
   login_token: any;
   isLoading: boolean = false;
+  itemGroupList: any[] = [];
+  itemCategoryList: any[] = [];
+  unitList: any[] = [];
 
   constructor(
     private fb: FormBuilder,
     private appPreference: AppPreference,
     private apiService: ApiServiceService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.initializeData();
+  }
+
+  ngOnInit() {
+    this.route.queryParams.subscribe(async () => {
+      this.branch_token = (
+        await this.appPreference.get("_BranchList")
+      )[0]?.branch_token_id;
+      this.login_token = await this.appPreference.get("_LoginToken");
+      this.getItemGroupList();
+      this.getItemCategoryList();
+      this.getUnitSimpleList();
+    });
+    // this.getTaxList();
+    console.log("hello tax page");
   }
 
   async initializeData() {
@@ -80,10 +98,6 @@ export class StockItemComponent {
       rateOfDuty: [false],
       rate: [""],
     });
-    this.branch_token = (
-      await this.appPreference.get("_BranchList")
-    )[0]?.branch_token_id;
-    this.login_token = await this.appPreference.get("_LoginToken");
   }
 
   payload: any = [
@@ -380,6 +394,88 @@ export class StockItemComponent {
     }
   }
 
+  getItemGroupList() {
+    var temp = [
+      {
+        login_token: this.login_token,
+        branch_token: this.branch_token,
+        object_flag_tpd_id: 1,
+        page_number: 0,
+        page_size: 0,
+      },
+    ];
+    this.apiService.getItemGroupList(temp).subscribe(
+      (response: any) => {
+        console.log("Item Group List Response:", response?._Object);
+        if (response && response?._Object) {
+          // Handle the response as needed
+          console.log("Item Group List:", response._Object);
+          this.itemGroupList = response._Object;
+        } else {
+          console.error("Invalid response format:", response);
+        }
+      },
+      (error) => {
+        console.error("Error fetching item group list:", error);
+      }
+    );
+  }
+
+  getItemCategoryList() {
+    var temp = [
+      {
+        login_token: this.login_token,
+        branch_token: this.branch_token,
+        object_flag_tpd_id: 1,
+        page_number: 0,
+        page_size: 0,
+      },
+    ];
+    this.apiService.getItemCategoryList(temp).subscribe(
+      (response: any) => {
+        console.log("Item Category List Response:", response?._Object);
+        if (response && response?._Object) {
+          // Handle the response as needed
+          console.log("Item Category List:", response._Object);
+          this.itemCategoryList = response._Object;
+        } else {
+          console.error("Invalid response format:", response);
+        }
+      },
+      (error) => {
+        console.error("Error fetching item category list:", error);
+      }
+    );
+  }
+
+  getUnitSimpleList() {
+    var temp = [
+      {
+        login_token: this.login_token,
+        branch_token: this.branch_token,
+        object_flag_tpd_id: 1,
+        page_number: 0,
+        page_size: 0,
+      },
+    ];
+    this.apiService.getUnitSimpleList(temp).subscribe(
+      (response: any) => {
+        console.log("Unit Simple List Response:", response?._Object);
+        if (response && response?._Object) {
+          // Handle the response as needed
+          console.log("Unit Simple List:", response._Object);
+          this.unitList = response._Object;
+          // You can store the unit list in a variable if needed
+        } else {
+          console.error("Invalid response format:", response);
+        }
+      },
+      (error) => {
+        console.error("Error fetching unit simple list:", error);
+      }
+    );
+  }
+
   addStockItem() {
     this.isLoading = true;
     if (
@@ -394,7 +490,9 @@ export class StockItemComponent {
       this.apiService.addItemData(this.payload).subscribe(
         () => {
           this.isLoading = false;
-          this.router.navigate(["/dashboard/master/stock-item-list"]);
+          this.router.navigate(["/dashboard/master/stock-item-list"], {
+            queryParams: { reload: new Date().getTime() },
+          });
           this.stockItemForm.reset();
           this.additionalDetailsForm.reset();
         },
