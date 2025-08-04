@@ -29,6 +29,10 @@ export class SalesComponent implements OnInit {
     this.results = this.results.filter((result) => result !== item);
   }
   currentDate: string;
+  get formattedDate(): string {
+    const [year, month, day] = this.currentDate.split("-");
+    return `${day}-${month}-${year}`;
+  }
   public data = [
     "Amsterdam",
     "Buenos Aires",

@@ -38,6 +38,10 @@ import { MiscellaneousComponent } from "./master/miscellaneous/miscellaneous.com
 import { MiscellaneousListComponent } from "./master/miscellaneous-list/miscellaneous-list.component";
 import { SalesComponent } from "./sales/sales.component";
 import { PurchaseComponent } from "./purchase/purchase.component";
+import { DiscountPaidComponent } from "./master/discount-paid/discount-paid.component";
+import { DiscountPaidListComponent } from "./master/discount-paid-list/discount-paid-list.component";
+import { RoundOffAddComponent } from "./master/round-off-add/round-off-add.component";
+import { RoundOffAddListComponent } from "./master/round-off-add-list/round-off-add-list.component";
 
 const routes: Routes = [
   {
@@ -140,6 +144,7 @@ const routes: Routes = [
         path: "stock-group-list",
         component: StockGroupListComponent,
       },
+      // discount received
       {
         path: "discount",
         component: DiscountComponent,
@@ -148,6 +153,16 @@ const routes: Routes = [
         path: "discount-list",
         component: DiscountListComponent,
       },
+      // Discount Paid
+      {
+        path: "discount-paid",
+        component: DiscountPaidComponent,
+      },
+      {
+        path: "discount-paid-list",
+        component: DiscountPaidListComponent,
+      },
+      // ================================
       {
         path: "other-charges",
         component: OtherChargesComponent,
@@ -156,6 +171,7 @@ const routes: Routes = [
         path: "other-charges-list",
         component: OtherChargesListComponent,
       },
+      // round off less
       {
         path: "round-off",
         component: RoundOffComponent,
@@ -163,6 +179,15 @@ const routes: Routes = [
       {
         path: "round-off-list",
         component: RoundOffListComponent,
+      },
+      // round of add
+      {
+        path: "round-off-add",
+        component: RoundOffAddComponent,
+      },
+      {
+        path: "round-off-add-list",
+        component: RoundOffAddListComponent,
       },
       {
         path: "cost-center",

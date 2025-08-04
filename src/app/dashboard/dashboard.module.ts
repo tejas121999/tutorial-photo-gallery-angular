@@ -43,6 +43,10 @@ import { MiscellaneousComponent } from "./master/miscellaneous/miscellaneous.com
 import { MiscellaneousListComponent } from "./master/miscellaneous-list/miscellaneous-list.component";
 import { PurchaseComponent } from "./purchase/purchase.component";
 import { SalesComponent } from "./sales/sales.component";
+import { DiscountPaidComponent } from "./master/discount-paid/discount-paid.component";
+import { DiscountPaidListComponent } from "./master/discount-paid-list/discount-paid-list.component";
+import { RoundOffAddComponent } from "./master/round-off-add/round-off-add.component";
+import { RoundOffAddListComponent } from "./master/round-off-add-list/round-off-add-list.component";
 
 @NgModule({
   declarations: [
@@ -72,6 +76,8 @@ import { SalesComponent } from "./sales/sales.component";
     StockGroupListComponent,
     DiscountComponent,
     DiscountListComponent,
+    DiscountPaidComponent,
+    DiscountPaidListComponent,
     OtherChargesComponent,
     OtherChargesListComponent,
     RoundOffComponent,
@@ -84,6 +90,8 @@ import { SalesComponent } from "./sales/sales.component";
     MiscellaneousListComponent,
     PurchaseComponent,
     SalesComponent,
+    RoundOffAddComponent,
+    RoundOffAddListComponent, // Ensure this component is declared
   ],
   imports: [
     CommonModule,

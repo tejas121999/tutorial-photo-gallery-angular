@@ -4,20 +4,19 @@ import { ApiServiceService } from "src/app/services/api-service.service";
 import { AppPreference } from "src/app/shared/app-preference";
 
 @Component({
-  selector: "app-stock-group-list",
-  templateUrl: "./stock-group-list.component.html",
-  styleUrls: ["./stock-group-list.component.scss"],
+  selector: "app-discount-paid-list",
+  templateUrl: "./discount-paid-list.component.html",
+  styleUrls: ["./discount-paid-list.component.scss"],
 })
-export class StockGroupListComponent implements OnInit {
+export class DiscountPaidListComponent implements OnInit {
   pageSize = 5;
   currentPage = 1;
-  currentDate: string;
-  public data = [];
-  public results = [...this.data];
   showSearchbar = false;
+  currentDate: string;
   branch_token: any;
   login_token: any;
-  itemGroupList: any[] = [];
+  public data = [];
+  public results = [...this.data];
 
   constructor(
     private appPreference: AppPreference,
@@ -36,7 +35,7 @@ export class StockGroupListComponent implements OnInit {
         await this.appPreference.get("_BranchList")
       )[0]?.branch_token_id;
       this.login_token = await this.appPreference.get("_LoginToken");
-      this.getItemGroupList();
+      this.getReceivedDiscountList();
     });
   }
 
@@ -55,6 +54,7 @@ export class StockGroupListComponent implements OnInit {
       this.currentPage = nextPage;
     }
   }
+
   deleteItem(item: string) {
     this.results = this.results.filter((result) => result !== item);
   }
@@ -100,7 +100,7 @@ export class StockGroupListComponent implements OnInit {
     return item;
   }
 
-  getItemGroupList() {
+  getReceivedDiscountList() {
     var temp = [
       {
         login_token: this.login_token,
@@ -110,20 +110,15 @@ export class StockGroupListComponent implements OnInit {
         page_size: 0,
       },
     ];
-    this.apiService.getItemGroupList(temp).subscribe(
+    this.apiService.getPaidDiscountList(temp).subscribe(
       (response: any) => {
-        console.log("Item Group List Response:", response?._Object);
-        if (response && response?._Object) {
-          // Handle the response as needed
-          this.data = response?._Object || [];
+        if (response?._Object?.length > 0) {
+          this.data = response._Object || [];
           this.results = [...this.data];
-          // this.filterByDate();
-        } else {
-          console.error("Invalid response format:", response);
         }
       },
       (error) => {
-        console.error("Error fetching item group list:", error);
+        console.error("Error fetching received discount list:", error);
       }
     );
   }

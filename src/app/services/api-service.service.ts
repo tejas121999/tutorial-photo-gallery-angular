@@ -118,9 +118,18 @@ export class ApiServiceService {
     );
   }
 
+  // round off
   getRoundOffLessList(body: any) {
     return this.apiManager.sendPOSTRequest(
       RestEnds.GetRoundOffLessList,
+      body,
+      true
+    );
+  }
+
+  getRoundOffAddList(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.GetRoundOffAddList,
       body,
       true
     );
@@ -140,5 +149,46 @@ export class ApiServiceService {
       body,
       true
     );
+  }
+
+  // discount master
+  addReceivedDiscount(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.AddReceivedDiscount,
+      body,
+      true
+    );
+  }
+
+  getReceivedDiscountList(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.GetReceivedDiscountList,
+      body,
+      true
+    );
+  }
+
+  getPaidDiscountList(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.GetPaidDiscountList,
+      body,
+      true
+    );
+  }
+
+  addPaidDiscount(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.AddPaidDiscount,
+      body,
+      true
+    );
+  }
+
+  getStoreList(body: any) {
+    return this.apiManager.sendPOSTRequest(RestEnds.GetStoreList, body, true);
+  }
+
+  addStoreData(body: any) {
+    return this.apiManager.sendPOSTRequest(RestEnds.AddStoreData, body, true);
   }
 }

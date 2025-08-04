@@ -99,13 +99,33 @@
             </span>
             Voucher Type
           </ion-item>
-          <ion-item routerLink="/dashboard/master/discount-list" routerDirection="root" (click)="closeMenu()"
-            lines="none" class="sidebar-menu-item master-margin">
+          <ion-item routerDirection="root" (click)="showDiscount = !showDiscount" lines="none"
+            class="sidebar-menu-item master-margin">
             <span class="sidebar-icon-wrapper">
               <img src="assets/mdi_discount-outline.svg" alt="Discount" class="sidebar-icon" />
             </span>
-            Discount
+            <ion-label>
+              Discount
+            </ion-label>
+            <ion-icon slot="end" name="chevron-down-outline" *ngIf="!showDiscount"></ion-icon>
+            <ion-icon slot="end" name="chevron-up-outline" *ngIf="showDiscount"></ion-icon>
           </ion-item>
+          <div *ngIf="showDiscount" class="disc-margin">
+            <ion-item routerLink="/dashboard/master/discount-list" routerDirection="root" (click)="closeMenu()"
+              lines="none" class="sidebar-menu-item master-margin">
+              <span class="sidebar-icon-wrapper">
+                <img src="assets/mdi_discount-outline.svg" alt="Discount" class="sidebar-icon" />
+              </span>
+              Discount Received
+            </ion-item>
+            <ion-item routerLink="/dashboard/master/discount-paid-list" routerDirection="root" (click)="closeMenu()"
+              lines="none" class="sidebar-menu-item master-margin">
+              <span class="sidebar-icon-wrapper">
+                <img src="assets/mdi_discount-outline.svg" alt="Discount" class="sidebar-icon" />
+              </span>
+              Discount Paid
+            </ion-item>
+          </div>
           <ion-item routerLink="/dashboard/master/other-charges-list" routerDirection="root" (click)="closeMenu()"
             lines="none" class="sidebar-menu-item master-margin">
             <span class="sidebar-icon-wrapper">
@@ -113,13 +133,33 @@
             </span>
             Other Charges
           </ion-item>
-          <ion-item routerLink="/dashboard/master/round-off-list" routerDirection="root" (click)="closeMenu()"
-            lines="none" class="sidebar-menu-item master-margin">
+          <ion-item routerDirection="root" (click)="showRoundOff = !showRoundOff" lines="none"
+            class="sidebar-menu-item master-margin">
             <span class="sidebar-icon-wrapper">
               <img src="assets/refresh-cw.svg" alt="Round Off" class="sidebar-icon" />
             </span>
-            Round Off
+            <ion-label>
+              Round Off
+            </ion-label>
+            <ion-icon slot="end" name="chevron-down-outline" *ngIf="!showRoundOff"></ion-icon>
+            <ion-icon slot="end" name="chevron-up-outline" *ngIf="showRoundOff"></ion-icon>
           </ion-item>
+          <div *ngIf="showRoundOff" class="disc-margin">
+            <ion-item routerLink="/dashboard/master/round-off-add-list" routerDirection="root" (click)="closeMenu()"
+              lines="none" class="sidebar-menu-item master-margin">
+              <span class="sidebar-icon-wrapper">
+                <img src="assets/refresh-cw.svg" alt="Round Off" class="sidebar-icon" />
+              </span>
+              Round Off Add
+            </ion-item>
+            <ion-item routerLink="/dashboard/master/round-off-list" routerDirection="root" (click)="closeMenu()"
+              lines="none" class="sidebar-menu-item master-margin">
+              <span class="sidebar-icon-wrapper">
+                <img src="assets/refresh-cw.svg" alt="Round Off" class="sidebar-icon" />
+              </span>
+              Round Off Less
+            </ion-item>
+          </div>
           <ion-item routerLink="/dashboard/master/cost-center-list" routerDirection="root" (click)="closeMenu()"
             lines="none" class="sidebar-menu-item master-margin">
             <span class="sidebar-icon-wrapper">

@@ -13,24 +13,33 @@
             </ion-button>
             <ion-title class="toolbar-title-text">Godown</ion-title>
         </ion-buttons>
-        <ion-buttons slot="end">
-            <ion-button>
+        <ion-spinner *ngIf="isLoading" slot="end"></ion-spinner>
+        <ion-buttons slot="end" *ngIf="!isLoading">
+            <ion-button fill="clear" (click)="createGodown()">
                 Save
             </ion-button>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <div class="centered-form-wrapper">
-        <form [formGroup]="godownForm">
+    <form [formGroup]="godownForm">
+        <div class="centered-form-wrapper">
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Name *</ion-label>
                 <ion-input formControlName="name"></ion-input>
             </ion-item>
+            <div *ngIf="godownForm.get('name')?.touched && godownForm.get('name')?.invalid">
+                <span class="error-message" *ngIf="godownForm.get('name')?.errors?.['required']">Name is
+                    required.</span>
+            </div>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Alias *</ion-label>
                 <ion-input formControlName="alias"></ion-input>
             </ion-item>
+            <div *ngIf="godownForm.get('alias')?.touched && godownForm.get('alias')?.invalid">
+                <span class="error-message" *ngIf="godownForm.get('alias')?.errors?.['required']">Alias is
+                    required.</span>
+            </div>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Under *</ion-label>
                 <ion-select formControlName="under" interface="alert">
@@ -38,6 +47,10 @@
                     <ion-select-option value="Main Location">Main Location</ion-select-option>
                 </ion-select>
             </ion-item>
+            <div *ngIf="godownForm.get('under')?.touched && godownForm.get('under')?.invalid">
+                <span class="error-message" *ngIf="godownForm.get('under')?.errors?.['required']">Under is
+                    required.</span>
+            </div>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Excise Tax Unit</ion-label>
                 <ion-select formControlName="exciseTaxUnit" interface="alert">
@@ -62,24 +75,24 @@
                     <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
                 </ion-select>
             </ion-item>
-        </form>
-    </div>
-    <!-- Additional Details copied from cost-center -->
-    <ion-item-group>
-        <ion-item button (click)="showAdditionalDetails = !showAdditionalDetails" detail="false" lines="none">
-            <ion-label class="godown-additional-details-label">Additional Details</ion-label>
-            <ion-icon slot="end" name="chevron-down-outline" *ngIf="!showAdditionalDetails"></ion-icon>
-            <ion-icon slot="end" name="chevron-up-outline" *ngIf="showAdditionalDetails"></ion-icon>
-        </ion-item>
-        <div *ngIf="showAdditionalDetails">
-            <ion-item class="internal-form-item">
-                <ion-checkbox class="godown-checkbox" slot="end" [(ngModel)]="checkBox1"></ion-checkbox>
-                <ion-label class="internal-form-label">Use Stock With Third party</ion-label>
-            </ion-item>
-            <ion-item class="internal-form-item">
-                <ion-checkbox class="godown-checkbox" slot="end" [(ngModel)]="checkBox2"></ion-checkbox>
-                <ion-label class="internal-form-label">Use Third Party Stock With Us</ion-label>
-            </ion-item>
         </div>
-    </ion-item-group>
+        <!-- Additional Details copied from cost-center -->
+        <ion-item-group>
+            <ion-item button (click)="showAdditionalDetails = !showAdditionalDetails" detail="false" lines="none">
+                <ion-label class="additional-details-label">Additional Details</ion-label>
+                <ion-icon slot="end" name="chevron-down-outline" *ngIf="!showAdditionalDetails"></ion-icon>
+                <ion-icon slot="end" name="chevron-up-outline" *ngIf="showAdditionalDetails"></ion-icon>
+            </ion-item>
+            <div *ngIf="showAdditionalDetails">
+                <ion-item class="internal-form-item">
+                    <ion-checkbox class="godown-checkbox" slot="end" formControlName="checkBox1"></ion-checkbox>
+                    <ion-label class="internal-form-label">Use Stock With Third party</ion-label>
+                </ion-item>
+                <ion-item class="internal-form-item">
+                    <ion-checkbox class="godown-checkbox" slot="end" formControlName="checkBox2"></ion-checkbox>
+                    <ion-label class="internal-form-label">Use Third Party Stock With Us</ion-label>
+                </ion-item>
+            </div>
+        </ion-item-group>
+    </form>
 </ion-content>

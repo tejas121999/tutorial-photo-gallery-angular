@@ -1,0 +1,216 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button fill="clear" routerLink="/dashboard/home" routerDirection="back">
+        <span slot="icon-only">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M14.25 9H3.75" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M9 14.25L3.75 9L9 3.75" stroke="white" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </span>
+      </ion-button>
+      <ion-title class="toolbar-title-text">Discount Received</ion-title>
+    </ion-buttons>
+    <ion-spinner *ngIf="isLoading" slot="end"></ion-spinner>
+    <ion-buttons slot="end" *ngIf="!isLoading">
+      <ion-button (click)="createDiscount()">
+        Save
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="discountForm">
+    <div class="centered-form-wrapper">
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Name *</ion-label>
+        <ion-input formControlName="name"></ion-input>
+      </ion-item>
+      <div
+        *ngIf="discountForm.get('name')?.invalid && (discountForm.get('name')?.dirty || discountForm.get('name')?.touched)"
+        class="error-message">
+        Name is required.
+      </div>
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Alias *</ion-label>
+        <ion-input formControlName="alias"></ion-input>
+      </ion-item>
+      <div
+        *ngIf="discountForm.get('alias')?.invalid && (discountForm.get('alias')?.dirty || discountForm.get('alias')?.touched)"
+        class="error-message">
+        Alias is required.
+      </div>
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Billwise Balance *</ion-label>
+        <ion-select formControlName="billwiseBalance" interface="alert">
+          <ion-select-option value="Yes">Yes</ion-select-option>
+          <ion-select-option value="No">No</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div
+        *ngIf="discountForm.get('billwiseBalance')?.invalid && (discountForm.get('billwiseBalance')?.dirty || discountForm.get('billwiseBalance')?.touched)"
+        class="error-message">
+        Billwise Balance is required.
+      </div>
+      <ion-item class="internal-form-item" *ngIf="discountForm.get('billwiseBalance')?.value === 'Yes'">
+        <ion-label class="internal-form-label" position="floating">Credit Period</ion-label>
+        <ion-input formControlName="creditPeriod"></ion-input>
+      </ion-item>
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Affect On Inventory *</ion-label>
+        <ion-select formControlName="affectOnInventory" interface="alert">
+          <ion-select-option value="Yes">Yes</ion-select-option>
+          <ion-select-option value="No">No</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div
+        *ngIf="discountForm.get('affectOnInventory')?.invalid && (discountForm.get('affectOnInventory')?.dirty || discountForm.get('affectOnInventory')?.touched)"
+        class="error-message">
+        Affect On Inventory is required.
+      </div>
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Type Of Ledger *</ion-label>
+        <ion-select formControlName="typeOfLedger" interface="alert">
+          <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
+          <ion-select-option value="Discount">Discount</ion-select-option>
+          <ion-select-option value="Invoice Rounding">Invoice Rounding</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div
+        *ngIf="discountForm.get('typeOfLedger')?.invalid && (discountForm.get('typeOfLedger')?.dirty || discountForm.get('typeOfLedger')?.touched)"
+        class="error-message">
+        Type Of Ledger is required.
+      </div>
+      <ion-item class="internal-form-item" *ngIf="discountForm.get('typeOfLedger')?.value === 'Invoice Rounding'">
+        <ion-label class="internal-form-label" position="floating">Rounding Method *</ion-label>
+        <ion-select formControlName="roundingMethod" interface="alert">
+          <ion-select-option value="Downward Rounding">Downward Rounding</ion-select-option>
+          <ion-select-option value="Normal Rounding">Normal Rounding</ion-select-option>
+          <ion-select-option value="Upward Rounding">Upward Rounding</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Rounding Limit *</ion-label>
+        <ion-input formControlName="roundingLimit"></ion-input>
+      </ion-item>
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">GST Applicable *</ion-label>
+        <ion-select formControlName="GSTApplicant" interface="alert">
+          <ion-select-option value="Applicable">Applicable</ion-select-option>
+          <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div
+        *ngIf="discountForm.get('GSTApplicant')?.invalid && (discountForm.get('GSTApplicant')?.dirty || discountForm.get('GSTApplicant')?.touched)"
+        class="error-message">
+        GST Applicable is required.
+      </div>
+      <ion-item class="internal-form-item" *ngIf="discountForm.get('GSTApplicant')?.value === 'Applicable'">
+        <ion-label class="internal-form-label" position="floating">GST Rate Details *</ion-label>
+        <ion-select formControlName="GSTRateDetails" interface="alert">
+          <ion-select-option value="As Per Company/Group">As Per Company/Group</ion-select-option>
+          <ion-select-option value="Specify Details">Specify Details</ion-select-option>
+          <ion-select-option value="Use GST Classification">Use GST Classification</ion-select-option>
+          <ion-select-option value="Specify in Voucher">Specify in Voucher</ion-select-option>
+          <ion-select-option value="Specify Slab-Based Rates">Specify Slab-Based Rates</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item class="internal-form-item" *ngIf="discountForm.get('GSTRateDetails')?.value === 'Specify Details'">
+        <ion-label class="internal-form-label" position="floating">Taxability Type *</ion-label>
+        <ion-select formControlName="taxabilityType" interface="alert">
+          <ion-select-option value="Taxable">Taxable</ion-select-option>
+          <ion-select-option value="Exempted">Exempted</ion-select-option>
+          <ion-select-option value="Nil Rated">Nil Rated</ion-select-option>
+          <ion-select-option value="Non - GST">Non - GST</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item class="internal-form-item" *ngIf="discountForm.get('taxabilityType')?.value === 'Taxable'">
+        <ion-label class="internal-form-label" position="floating">Nature Of Transaction *</ion-label>
+        <ion-select formControlName="natureOfTransaction" interface="alert">
+          <ion-select-option value="System Inferred">System Inferred</ion-select-option>
+          <ion-select-option value="Interstate Purchase - Taxable">Interstate Purchase -
+            Taxable</ion-select-option>
+          <ion-select-option value="Local Purchase Deemed Exports - Taxable">Local Purchase Deemed Exports -
+            Taxable</ion-select-option>
+          <ion-select-option value="Interstate Purchase Deemed Exports - Taxable">Interstate Purchase Deemed
+            Exports - Taxable</ion-select-option>
+          <ion-select-option value="Imports - Taxable">Imports - Taxable</ion-select-option>
+          <ion-select-option value="Purchase from SEZ - Taxable">Purchase from SEZ -
+            Taxable</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item class="internal-form-item" *ngIf="discountForm.get('taxabilityType')?.value === 'Taxable'">
+        <ion-label class="internal-form-label" position="floating">GST Rate *</ion-label>
+        <ion-input formControlName="gstRate"></ion-input>
+      </ion-item>
+      <ion-item class="internal-form-item" *ngIf="discountForm.get('taxabilityType')?.value === 'Taxable'">
+        <ion-label class="internal-form-label" position="floating">Cess Valuation *</ion-label>
+        <ion-select formControlName="cessValuation" interface="alert">
+          <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
+          <ion-select-option value="Based On Value">Based On Value</ion-select-option>
+          <ion-select-option value="Based On Quantity">Based On Quantity</ion-select-option>
+          <ion-select-option value="Based On Value And Quantity">Based On Value And
+            Quantity</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item class="internal-form-item" *ngIf="discountForm.get('cessValuation')?.value === 'Based On Value'">
+        <ion-label class="internal-form-label" position="floating">Cess Rate *</ion-label>
+        <ion-input formControlName="cessRate"></ion-input>
+      </ion-item>
+      <ion-item class="internal-form-item"
+        *ngIf="discountForm.get('cessValuation')?.value === 'Based On Value And Quantity'">
+        <ion-label class="internal-form-label" position="floating">Cess Rate(Value) *</ion-label>
+        <ion-input formControlName="cessRateValue"></ion-input>
+      </ion-item>
+      <ion-item class="internal-form-item"
+        *ngIf="discountForm.get('cessValuation')?.value === 'Based On Value And Quantity'">
+        <ion-label class="internal-form-label" position="floating">Cess Rate(Unit) *</ion-label>
+        <ion-input formControlName="cessRateUnit"></ion-input>
+      </ion-item>
+      <ion-item class="internal-form-item" *ngIf="discountForm.get('GSTApplicant')?.value === 'Applicable'">
+        <ion-label class="internal-form-label" position="floating">Type Of Supply *</ion-label>
+        <ion-select formControlName="typeOfSupply" interface="alert">
+          <ion-select-option value="Goods">Goods</ion-select-option>
+          <ion-select-option value="Capital Goods">Capital Goods</ion-select-option>
+          <ion-select-option value="Services">Services</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Opening Balance *</ion-label>
+        <ion-input formControlName="openingBalance"></ion-input>
+      </ion-item>
+      <div
+        *ngIf="discountForm.get('openingBalance')?.invalid && (discountForm.get('openingBalance')?.dirty || discountForm.get('openingBalance')?.touched)"
+        class="error-message">
+        Opening Balance is required.
+      </div>
+    </div>
+    <ion-item-group>
+      <ion-item button (click)="showAdditionalDetails = !showAdditionalDetails" detail="false" lines="none">
+        <ion-label class="additional-details-label">Additional Details</ion-label>
+        <ion-icon slot="end" name="chevron-down-outline" *ngIf="!showAdditionalDetails"></ion-icon>
+        <ion-icon slot="end" name="chevron-up-outline" *ngIf="showAdditionalDetails"></ion-icon>
+      </ion-item>
+      <div *ngIf="showAdditionalDetails">
+        <ion-item class="internal-form-item">
+          <ion-label class="internal-form-label" position="floating">Additional Cost In Purchase
+            Invoice</ion-label>
+          <ion-select interface="alert" formControlName="cessValuation">
+            <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
+            <ion-select-option value="Appropriate By Qty">Appropriate By Qty</ion-select-option>
+            <ion-select-option value="Appropriate By Value">Appropriate By Value</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item class="internal-form-item">
+          <ion-checkbox class="square-checkbox" slot="end" formControlName="checkBox1"></ion-checkbox>
+          <ion-label class="internal-form-label">Use Stock With Third party</ion-label>
+        </ion-item>
+        <ion-item class="internal-form-item">
+          <ion-checkbox class="square-checkbox" slot="end" formControlName="checkBox2"></ion-checkbox>
+          <ion-label class="internal-form-label">Use Third Party Stock With Us</ion-label>
+        </ion-item>
+      </div>
+    </ion-item-group>
+  </form>
+</ion-content>

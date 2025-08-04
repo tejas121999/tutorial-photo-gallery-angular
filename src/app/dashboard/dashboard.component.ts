@@ -12,13 +12,12 @@ register();
 })
 export class DashboardComponent implements AfterViewInit {
   showMaster = false;
+  showDiscount = false;
+  showRoundOff = false;
   @ViewChild(IonMenu) menu: IonMenu;
   @ViewChild("dashboardMain", { static: true }) dashboardMain: ElementRef;
 
-  constructor(
-    private appPreference: AppPreference,
-    private router: Router
-  ) {}
+  constructor(private appPreference: AppPreference, private router: Router) {}
 
   closeMenu() {
     if (this.menu) {
@@ -44,7 +43,12 @@ export class DashboardComponent implements AfterViewInit {
       this.router.navigate(["/"]);
     } catch (error) {
       console.error("Logout failed", error);
-      await this.appPreference.presentToast("Logout failed. Please try again.", 2000, "bottom", "danger");
+      await this.appPreference.presentToast(
+        "Logout failed. Please try again.",
+        2000,
+        "bottom",
+        "danger"
+      );
     }
   }
 }

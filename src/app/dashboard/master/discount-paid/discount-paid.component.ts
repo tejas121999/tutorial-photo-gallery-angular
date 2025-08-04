@@ -5,11 +5,11 @@ import { ApiServiceService } from "src/app/services/api-service.service";
 import { AppPreference } from "src/app/shared/app-preference";
 
 @Component({
-  selector: "app-discount",
-  templateUrl: "./discount.component.html",
-  styleUrls: ["./discount.component.scss"],
+  selector: "app-discount-paid",
+  templateUrl: "./discount-paid.component.html",
+  styleUrls: ["./discount-paid.component.scss"],
 })
-export class DiscountComponent implements OnInit {
+export class DiscountPaidComponent implements OnInit {
   discountForm: FormGroup;
   isLoading: boolean = false;
   // Additional Details properties
@@ -267,32 +267,54 @@ export class DiscountComponent implements OnInit {
     this.payload[0].tpd_status_report_id = 0;
     this.payload[0].tpd_status_report_data = "";
     const receivedDiscount = this.payload[0].received_discount_data[0];
-    receivedDiscount.received_discount_name = this.discountForm.get("name")?.value;
+    receivedDiscount.received_discount_name =
+      this.discountForm.get("name")?.value;
     receivedDiscount.alias_name = this.discountForm.get("alias")?.value;
-    receivedDiscount.maintain_bill_by_bill = this.discountForm.get("billwiseBalance")?.value;
-    receivedDiscount.inventory_value_affect = this.discountForm.get("affectOnInventory")?.value;
-    receivedDiscount.type_of_ledger = this.discountForm.get("typeOfLedger")?.value;
-    receivedDiscount.gst_applicability = this.discountForm.get("GSTApplicant")?.value;
-    receivedDiscount.rounding_method = this.discountForm.get("roundingMethod")?.value;
-    receivedDiscount.rounding_limit = this.discountForm.get("roundingLimit")?.value;
+    receivedDiscount.maintain_bill_by_bill =
+      this.discountForm.get("billwiseBalance")?.value;
+    receivedDiscount.inventory_value_affect =
+      this.discountForm.get("affectOnInventory")?.value;
+    receivedDiscount.type_of_ledger =
+      this.discountForm.get("typeOfLedger")?.value;
+    receivedDiscount.gst_applicability =
+      this.discountForm.get("GSTApplicant")?.value;
+    receivedDiscount.rounding_method =
+      this.discountForm.get("roundingMethod")?.value;
+    receivedDiscount.rounding_limit =
+      this.discountForm.get("roundingLimit")?.value;
 
     // Defensive: ensure all nested objects exist before assignment
-    const gstApplicableData = receivedDiscount.gst_applicable_data = receivedDiscount.gst_applicable_data || {};
-    const hsnSacDetailData = gstApplicableData.hsn_sac_detail_data = gstApplicableData.hsn_sac_detail_data || {};
-    const classificationCreateData = hsnSacDetailData.classification_create_data = hsnSacDetailData.classification_create_data || {};
-    const gstRateRelatedDetail = classificationCreateData.GSTRateRelatedDetail_data = classificationCreateData.GSTRateRelatedDetail_data || {};
+    const gstApplicableData = (receivedDiscount.gst_applicable_data =
+      receivedDiscount.gst_applicable_data || {});
+    const hsnSacDetailData = (gstApplicableData.hsn_sac_detail_data =
+      gstApplicableData.hsn_sac_detail_data || {});
+    const classificationCreateData =
+      (hsnSacDetailData.classification_create_data =
+        hsnSacDetailData.classification_create_data || {});
+    const gstRateRelatedDetail =
+      (classificationCreateData.GSTRateRelatedDetail_data =
+        classificationCreateData.GSTRateRelatedDetail_data || {});
 
-    gstRateRelatedDetail.gstRetDetail = this.discountForm.get("GSTRateDetails")?.value;
-    gstRateRelatedDetail.type_of_suppile = this.discountForm.get("typeOfSupply")?.value;
-    gstRateRelatedDetail.taxtability_type = this.discountForm.get("taxabilityType")?.value;
-    gstRateRelatedDetail.nature_of_tansaction = this.discountForm.get("natureOfTransaction")?.value;
+    gstRateRelatedDetail.gstRetDetail =
+      this.discountForm.get("GSTRateDetails")?.value;
+    gstRateRelatedDetail.type_of_suppile =
+      this.discountForm.get("typeOfSupply")?.value;
+    gstRateRelatedDetail.taxtability_type =
+      this.discountForm.get("taxabilityType")?.value;
+    gstRateRelatedDetail.nature_of_tansaction = this.discountForm.get(
+      "natureOfTransaction"
+    )?.value;
 
     // Defensive: ensure cess_gst_detail_data exists
-    gstRateRelatedDetail.cess_gst_detail_data = gstRateRelatedDetail.cess_gst_detail_data || {};
-    gstRateRelatedDetail.cess_gst_detail_data.cess_rate = this.discountForm.get("cessRate")?.value;
-    gstRateRelatedDetail.cess_gst_detail_data.cess_unit = this.discountForm.get("cessRateUnit")?.value;
+    gstRateRelatedDetail.cess_gst_detail_data =
+      gstRateRelatedDetail.cess_gst_detail_data || {};
+    gstRateRelatedDetail.cess_gst_detail_data.cess_rate =
+      this.discountForm.get("cessRate")?.value;
+    gstRateRelatedDetail.cess_gst_detail_data.cess_unit =
+      this.discountForm.get("cessRateUnit")?.value;
 
-    receivedDiscount.openning_balance = this.discountForm.get("openingBalance")?.value;
+    receivedDiscount.openning_balance =
+      this.discountForm.get("openingBalance")?.value;
   }
 
   createDiscount() {
@@ -308,11 +330,11 @@ export class DiscountComponent implements OnInit {
       this.resetPayloadValuesToNull(this.payload);
       this.createPayload();
       console.log("Payload:", this.payload);
-      this.apiService.addReceivedDiscount(this.payload).subscribe(
+      this.apiService.addPaidDiscount(this.payload).subscribe(
         (response: any) => {
           this.isLoading = false;
           if (response.status === "success") {
-            this.router.navigate(["/dashboard/master/discount-list"], {
+            this.router.navigate(["/dashboard/master/discount-paid-list"], {
               queryParams: { reload: new Date().getTime() },
             });
           } else {

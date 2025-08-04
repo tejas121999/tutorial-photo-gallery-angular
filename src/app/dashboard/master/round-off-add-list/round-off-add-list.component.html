@@ -1,5 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
+    <!-- Start slot: Back button and title, or searchbar -->
     <ng-container *ngIf="!showSearchbar; else searchbarTpl">
       <ion-buttons slot="start" routerLink="/dashboard/home">
         <ion-button fill="clear" style="margin-right: 4px;">
@@ -10,7 +11,7 @@
           </svg>
         </ion-button>
       </ion-buttons>
-      <ion-title>Discount Received</ion-title>
+      <ion-title>Round Off Add</ion-title>
       <ion-buttons slot="end" style="color: white;">
         <ion-button (click)="showSearchbar = true">
           <ion-icon name="search-outline"></ion-icon>
@@ -50,7 +51,7 @@
     </ion-item>
   </ion-list>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="fab-add">
-    <ion-fab-button class="fab-add-btn" routerLink="/dashboard/master/discount">
+    <ion-fab-button class="fab-add-btn" routerLink="/dashboard/master/round-off">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
