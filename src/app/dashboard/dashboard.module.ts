@@ -41,6 +41,8 @@ import { GodownComponent } from "./master/godown/godown.component";
 import { GodownListComponent } from "./master/godown-list/godown-list.component";
 import { MiscellaneousComponent } from "./master/miscellaneous/miscellaneous.component";
 import { MiscellaneousListComponent } from "./master/miscellaneous-list/miscellaneous-list.component";
+import { PurchaseComponent } from "./purchase/purchase.component";
+import { SalesComponent } from "./sales/sales.component";
 
 @NgModule({
   declarations: [
@@ -80,6 +82,8 @@ import { MiscellaneousListComponent } from "./master/miscellaneous-list/miscella
     GodownListComponent,
     MiscellaneousComponent,
     MiscellaneousListComponent,
+    PurchaseComponent,
+    SalesComponent,
   ],
   imports: [
     CommonModule,

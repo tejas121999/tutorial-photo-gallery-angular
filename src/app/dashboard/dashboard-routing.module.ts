@@ -36,6 +36,8 @@ import { GodownComponent } from "./master/godown/godown.component";
 import { GodownListComponent } from "./master/godown-list/godown-list.component";
 import { MiscellaneousComponent } from "./master/miscellaneous/miscellaneous.component";
 import { MiscellaneousListComponent } from "./master/miscellaneous-list/miscellaneous-list.component";
+import { SalesComponent } from "./sales/sales.component";
+import { PurchaseComponent } from "./purchase/purchase.component";
 
 const routes: Routes = [
   {
@@ -196,6 +198,8 @@ const routes: Routes = [
       { path: "home", component: HomeComponent },
     ],
   },
+  { path: "sales", component: SalesComponent },
+  { path: "purchase", component: PurchaseComponent },
   { path: "payment", component: PaymentComponent },
   { path: "transaction", component: TransactionComponent },
 ];

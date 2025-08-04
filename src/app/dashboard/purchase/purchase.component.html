@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <!-- Start slot: Back button and title, or searchbar -->
+    <ng-container *ngIf="!showSearchbar; else searchbarTpl">
+      <ion-buttons slot="start" routerLink="/dashboard/home">
+        <ion-button fill="clear" style="margin-right: 4px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M14.25 9H3.75" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M9 14.25L3.75 9L9 3.75" stroke="white" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </ion-button>
+      </ion-buttons>
+      <ion-title>Purchase</ion-title>
+      <ion-buttons slot="end" style="color: white;">
+        <ion-button (click)="showSearchbar = true">
+          <ion-icon name="search-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ng-container>
+    <ng-template #searchbarTpl>
+      <ion-searchbar slot="start" (ionInput)="handleInput($event)" autofocus="true" placeholder="Search...">
+      </ion-searchbar>
+      <ion-buttons slot="end">
+        <ion-button (click)="showSearchbar = false">
+          <ion-icon name="close-circle"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ng-template>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col>
+        <span class="purchase-total">Total ₹16,00,000.00</span>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-around">
+      <ion-col size="6">
+        <div class="purchase-datetime-outer">
+          <ion-datetime [value]="formattedDate" [pickerFormat]="'DD-MM-YYYY'" placeholder="Select Date"
+            (ionChange)="onDateChange($event)"></ion-datetime>
+        </div>
+      </ion-col>
+      <ion-col size="6">
+        <div class="purchase-dataType-outer">
+          <span>
+            Latest
+          </span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="9" viewBox="0 0 13 9" fill="none">
+            <path
+              d="M1.45459 0.243133L6.2991 5.0812L10.9235 0.0323718L12.4118 1.52189L6.36709 8.13577L0.0340788 1.7974L1.45459 0.243133Z"
+              fill="#083D7C" />
+          </svg>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-list>
+    <ion-item class="purchase-list-item">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6" size-md="6" size-lg="2">
+            <span class="invoice-no">Invoice No.</span>
+          </ion-col>
+          <ion-col size="6" size-md="6" size-lg="2">
+            <span class="invoice-no">1254</span>
+          </ion-col>
+          <ion-col size="6" size-md="6" size-lg="2">
+            <span class="share-name">
+              Suzuki Motors
+            </span>
+          </ion-col>
+          <ion-col size="6" size-md="6" size-lg="2">
+            <span class="share-name">
+              ₹15,00,000.00
+            </span>
+          </ion-col>
+          <ion-col size="6" size-md="6" size-lg="2">
+            <span class="purchase-date">1 Jan 2024</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+</ion-content>
