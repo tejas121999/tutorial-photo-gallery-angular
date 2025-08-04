@@ -17,6 +17,7 @@ export class SupplierListComponent implements OnInit {
   currentDate: string;
   public data = [];
   public results = [...this.data];
+  showSearchbar = false;
 
   constructor(
     private appPreference: AppPreference,

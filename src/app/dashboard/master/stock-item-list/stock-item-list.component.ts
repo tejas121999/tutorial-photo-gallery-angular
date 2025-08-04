@@ -14,6 +14,7 @@ export class StockItemListComponent implements OnInit {
   currentDate: string;
   public data = [];
   public results = [...this.data];
+  showSearchbar = false;
   constructor(
     private appPreference: AppPreference,
     private apiService: ApiServiceService,

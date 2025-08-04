@@ -16,6 +16,7 @@ export class OtherChargesListComponent implements OnInit {
   public results = [...this.data];
   branch_token: any;
   login_token: any;
+  showSearchbar = false;
 
   constructor(
     private appPreference: AppPreference,

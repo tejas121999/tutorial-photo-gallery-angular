@@ -13,6 +13,7 @@ export class CustomerListComponent implements OnInit {
   currentPage = 1;
   currentDate: string;
   isLoading: boolean = false;
+  showSearchbar = false;
   public data = [];
   public results = [...this.data];
 

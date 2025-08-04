@@ -12,6 +12,7 @@ export class VoucherTypeListComponent implements OnInit {
   pageSize = 5;
   currentPage = 1;
   currentDate: string;
+    showSearchbar = false;
   public data = [];
   public results = [...this.data];
   branch_token: any;

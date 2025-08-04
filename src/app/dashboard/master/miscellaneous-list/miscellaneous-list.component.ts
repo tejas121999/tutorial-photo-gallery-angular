@@ -8,7 +8,7 @@ import { Component, OnInit } from "@angular/core";
 export class MiscellaneousListComponent implements OnInit {
   pageSize = 5;
   currentPage = 1;
-
+  showSearchbar = false;
   get totalPages() {
     return Math.ceil(this.results.length / this.pageSize) || 1;
   }

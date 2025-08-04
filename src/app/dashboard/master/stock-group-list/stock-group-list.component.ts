@@ -14,6 +14,7 @@ export class StockGroupListComponent implements OnInit {
   currentDate: string;
   public data = [];
   public results = [...this.data];
+  showSearchbar = false;
   branch_token: any;
   login_token: any;
   itemGroupList: any[] = [];
