@@ -112,8 +112,8 @@ export class RoundOffAddListComponent implements OnInit {
     ];
     this.apiService.getRoundOffAddList(temp).subscribe(
       (response: any) => {
-        if (response?.status === "success") {
-          this.data = response?.data || [];
+        if (response?._Object.length !== 0) {
+          this.data = response?._Object || [];
           this.results = [...this.data];
         } else {
           console.error("Failed to fetch round off add list:", response);

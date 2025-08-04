@@ -115,7 +115,7 @@ export class RoundOffListComponent implements OnInit {
         if (response && response?._Object) {
           // Handle the response as needed
           console.log("Unit Simple List:", response._Object);
-          this.data = response?._Object;
+          this.data = response?._Object || [];
           this.results = [...this.data];
           this.filterByDate();
           // You can store the unit list in a variable if needed
