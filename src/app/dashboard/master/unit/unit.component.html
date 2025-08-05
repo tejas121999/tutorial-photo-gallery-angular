@@ -13,10 +13,52 @@
             </ion-button>
             <ion-title class="toolbar-title-text">Unit</ion-title>
         </ion-buttons>
-        <ion-buttons slot="end">
-            <ion-button>
+        <ion-spinner *ngIf="isLoading" slot="end"></ion-spinner>
+        <ion-buttons slot="end" *ngIf="!isLoading">
+            <ion-button (click)="addUnit()">
                 Save
             </ion-button>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
+<ion-content>
+    <form [formGroup]="unitForm">
+        <div class="centered-form-wrapper">
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">Unit type *</ion-label>
+                <ion-input formControlName="unit_type"></ion-input>
+            </ion-item>
+            <div *ngIf="unitForm.get('unit_type')?.touched && unitForm.get('unit_type')?.invalid">
+                <span class="error-message" *ngIf="unitForm.get('unit_type')?.errors?.['required']">Unit type is
+                    required.</span>
+            </div>
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">Symbol *</ion-label>
+                <ion-input formControlName="symbol"></ion-input>
+            </ion-item>
+            <div *ngIf="unitForm.get('symbol')?.touched && unitForm.get('symbol')?.invalid">
+                <span class="error-message" *ngIf="unitForm.get('symbol')?.errors?.['required']">Symbol is
+                    required.</span>
+            </div>
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">Unit quantity code *</ion-label>
+                <ion-input formControlName="unit_quantity_code"></ion-input>
+            </ion-item>
+            <div *ngIf="unitForm.get('unit_quantity_code')?.touched && unitForm.get('unit_quantity_code')?.invalid">
+                <span class="error-message" *ngIf="unitForm.get('unit_quantity_code')?.errors?.['required']">Unit
+                    quantity code
+                    is
+                    required.</span>
+            </div>
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">Decimal number *</ion-label>
+                <ion-input formControlName="decimal_number"></ion-input>
+            </ion-item>
+            <div *ngIf="unitForm.get('decimal_number')?.touched && unitForm.get('decimal_number')?.invalid">
+                <span class="error-message" *ngIf="unitForm.get('decimal_number')?.errors?.['required']">Decimal number
+                    is
+                    required.</span>
+            </div>
+        </div>
+    </form>
+</ion-content>

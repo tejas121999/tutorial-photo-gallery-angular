@@ -13,10 +13,177 @@
             </ion-button>
             <ion-title class="toolbar-title-text">Sales Account</ion-title>
         </ion-buttons>
-        <ion-buttons slot="end">
-            <ion-button>
+        <ion-spinner *ngIf="isLoading" slot="end"></ion-spinner>
+        <ion-buttons slot="end" *ngIf="!isLoading">
+            <ion-button (click)="addSalesAccount()">
                 Save
             </ion-button>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
+<ion-content>
+    <div class="centered-form-wrapper">
+        <form [formGroup]="salesAccountForm">
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">Sales Name *</ion-label>
+                <ion-input formControlName="salesName"></ion-input>
+            </ion-item>
+            <div *ngIf="salesAccountForm.get('salesName')?.touched && salesAccountForm.get('salesName')?.invalid"
+                class="error-message">
+                Sales Name is required.
+            </div>
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">Alias *</ion-label>
+                <ion-input formControlName="alias"></ion-input>
+            </ion-item>
+            <div *ngIf="salesAccountForm.get('alias')?.touched && salesAccountForm.get('alias')?.invalid"
+                class="error-message">
+                Alias is required.
+            </div>
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">Ledger Type *</ion-label>
+                <ion-select formControlName="ledgerType" interface="alert">
+                    <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
+                    <ion-select-option value="Discount">Discount</ion-select-option>
+                    <ion-select-option value="Invoice Rounding">Invoice Rounding</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <div *ngIf="salesAccountForm.get('ledgerType')?.touched && salesAccountForm.get('ledgerType')?.invalid"
+                class="error-message">
+                Ledger Type is required.
+            </div>
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">GST Applicable *</ion-label>
+                <ion-select formControlName="gstApplicable" interface="alert">
+                    <ion-select-option value="Applicable">Applicable</ion-select-option>
+                    <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <div *ngIf="salesAccountForm.get('gstApplicable')?.touched && salesAccountForm.get('gstApplicable')?.invalid"
+                class="error-message">
+                GST Applicable is required.
+            </div>
+            <!-- if gstApplicable is "Applicable" -->
+            <ion-item class="internal-form-item" *ngIf="salesAccountForm.get('gstApplicable').value === 'Applicable'">
+                <ion-label class="internal-form-label" position="floating">HSN Details*</ion-label>
+                <ion-select formControlName="HSNDetails" interface="alert">
+                    <ion-select-option value="As Per Company/Group">As Per Company/Group</ion-select-option>
+                    <ion-select-option value="Specify Details">Specify Details</ion-select-option>
+                    <ion-select-option value="Use GST Classification">Use GST Classification</ion-select-option>
+                    <ion-select-option value="Specify in Voucher">Specify in Voucher</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <div *ngIf="salesAccountForm.get('HSNDetails')?.touched && salesAccountForm.get('HSNDetails')?.invalid && salesAccountForm.get('gstApplicable').value === 'Applicable'"
+                class="error-message">
+                HSN Details is required.
+            </div>
+            <ion-item class="internal-form-item" *ngIf="salesAccountForm.get('HSNDetails').value === 'Specify Details'">
+                <ion-label class="internal-form-label" position="floating">HSN *</ion-label>
+                <ion-input formControlName="hsn"></ion-input>
+            </ion-item>
+            <div *ngIf="salesAccountForm.get('hsn')?.touched && salesAccountForm.get('hsn')?.invalid && salesAccountForm.get('HSNDetails').value === 'Specify Details'"
+                class="error-message">
+                HSN is required.
+            </div>
+            <ion-item class="internal-form-item" *ngIf="salesAccountForm.get('HSNDetails').value === 'Specify Details'">
+                <ion-label class="internal-form-label" position="floating">Description</ion-label>
+                <ion-input formControlName="description"></ion-input>
+            </ion-item>
+            <ion-item class="internal-form-item" *ngIf="salesAccountForm.get('gstApplicable').value === 'Applicable'">
+                <ion-label class="internal-form-label" position="floating">GST Rate Details *</ion-label>
+                <ion-select formControlName="gstRateDetails" interface="alert">
+                    <ion-select-option value="As Per Company/Group">As Per Company/Group</ion-select-option>
+                    <ion-select-option value="Specify Details">Specify Details</ion-select-option>
+                    <ion-select-option value="Use GST Classification">Use GST Classification</ion-select-option>
+                    <ion-select-option value="Specify in Voucher">Specify in Voucher</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <div *ngIf="salesAccountForm.get('gstRateDetails')?.touched && salesAccountForm.get('gstRateDetails')?.invalid && salesAccountForm.get('gstApplicable').value === 'Applicable'"
+                class="error-message">
+                GST Rate Details is required.
+            </div>
+            <ion-item class="internal-form-item"
+                *ngIf="salesAccountForm.get('gstRateDetails').value === 'Specify Details'">
+                <ion-label class="internal-form-label" position="floating">Taxability Type *</ion-label>
+                <ion-select formControlName="taxabilityType" interface="alert">
+                    <ion-select-option value="Taxable">Taxable</ion-select-option>
+                    <ion-select-option value="Exempted">Exempted</ion-select-option>
+                    <ion-select-option value="Nil Rated">Nil Rated</ion-select-option>
+                    <ion-select-option value="Non - GST">Non - GST</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <div *ngIf="salesAccountForm.get('taxabilityType')?.touched && salesAccountForm.get('taxabilityType')?.invalid && salesAccountForm.get('gstRateDetails').value === 'Specify Details'"
+                class="error-message">
+                Taxability Type is required.
+            </div>
+            <ion-item class="internal-form-item" *ngIf="salesAccountForm.get('taxabilityType').value === 'Taxable'">
+                <ion-label class="internal-form-label" position="floating">GST Rate *</ion-label>
+                <ion-input formControlName="gstRate"></ion-input>
+            </ion-item>
+            <div *ngIf="salesAccountForm.get('gstRate')?.touched && salesAccountForm.get('gstRate')?.invalid && salesAccountForm.get('taxabilityType').value === 'Taxable'"
+                class="error-message">
+                GST Rate is required.
+            </div>
+            <ion-item class="internal-form-item"
+                *ngIf="salesAccountForm.get('gstRateDetails').value === 'Specify Details'">
+                <ion-label class="internal-form-label" position="floating">Supply Type *</ion-label>
+                <ion-select formControlName="supplyType" interface="alert">
+                    <ion-select-option value="Services">Services</ion-select-option>
+                    <ion-select-option value="Capital Goods">Capital Goods</ion-select-option>
+                    <ion-select-option value="Goods">Goods</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <div *ngIf="salesAccountForm.get('supplyType')?.touched && salesAccountForm.get('supplyType')?.invalid && salesAccountForm.get('gstRateDetails').value === 'Specify Details'"
+                class="error-message">
+                Supply Type is required.
+            </div>
+            <!-- ================================ -->
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">Name</ion-label>
+                <ion-input formControlName="name"></ion-input>
+            </ion-item>
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">Address</ion-label>
+                <ion-input formControlName="address"></ion-input>
+            </ion-item>
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">PAN</ion-label>
+                <ion-input formControlName="pan"></ion-input>
+            </ion-item>
+            <ion-item class="internal-form-item">
+                <ion-label class="internal-form-label" position="floating">Bank Details</ion-label>
+                <ion-select formControlName="bankDetails" interface="alert">
+                    <ion-select-option value="Cheque">Cheque</ion-select-option>
+                    <ion-select-option value="e - fund Transfer">e - fund Transfer</ion-select-option>
+                    <ion-select-option value="Other">Other</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <!-- if Cheque selected -->
+            <ion-item class="internal-form-item" *ngIf="salesAccountForm.get('bankDetails')?.value === 'Cheque'">
+                <ion-label class="internal-form-label" position="floating">Cheque Number</ion-label>
+                <ion-input formControlName="chequeNumber"></ion-input>
+            </ion-item>
+            <!-- if e-fund transfer -->
+            <ion-item class="internal-form-item"
+                *ngIf="salesAccountForm.get('bankDetails')?.value === 'e - fund Transfer'">
+                <ion-label class="internal-form-label" position="floating">Account Number</ion-label>
+                <ion-input formControlName="accountNumber"></ion-input>
+            </ion-item>
+            <ion-item class="internal-form-item"
+                *ngIf="salesAccountForm.get('bankDetails')?.value === 'e - fund Transfer'">
+                <ion-label class="internal-form-label" position="floating">IFSC Code</ion-label>
+                <ion-input formControlName="ifscCode"></ion-input>
+            </ion-item>
+            <ion-item class="internal-form-item"
+                *ngIf="salesAccountForm.get('bankDetails')?.value === 'e - fund Transfer'">
+                <ion-label class="internal-form-label" position="floating">Bank Name</ion-label>
+                <ion-input formControlName="bankName"></ion-input>
+            </ion-item>
+            <ion-item class="internal-form-item"
+                *ngIf="salesAccountForm.get('bankDetails')?.value === 'e - fund Transfer' || salesAccountForm.get('bankDetails')?.value === 'Other'">
+                <ion-label class="internal-form-label" position="floating">Opening Balance </ion-label>
+                <ion-input formControlName="openingBalance"></ion-input>
+            </ion-item>
+        </form>
+    </div>
+</ion-content>

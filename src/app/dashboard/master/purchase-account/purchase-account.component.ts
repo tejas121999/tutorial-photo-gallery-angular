@@ -334,6 +334,7 @@ export class PurchaseAccountComponent {
           this.purchaseAccountForm.reset();
         },
         (error) => {
+          this.isLoading = false;
           console.error("Error:", error);
         }
       );

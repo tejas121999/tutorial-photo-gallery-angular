@@ -352,7 +352,21 @@ export class StockItemComponent implements OnInit {
     }
     this.payload[0].item_data[0].statutory_detail_data.hsns_sac_data.classification_create_data.gst_rate_related_detail_data.taxtability_type =
       this.stockItemForm.get("taxabilityType")?.value;
-    this.payload[0].item_data[0].statutory_detail_data.gst_rate_data.other_statutor_detail_data.excise_data.excise_data.alter_excise_triff_data.reporting_unit =
+    // Ensure all nested objects exist before setting reporting_unit
+    const gstRateData = this.payload[0].item_data[0].statutory_detail_data.gst_rate_data;
+    if (!gstRateData.other_statutor_detail_data) {
+      gstRateData.other_statutor_detail_data = {};
+    }
+    if (!gstRateData.other_statutor_detail_data.excise_data) {
+      gstRateData.other_statutor_detail_data.excise_data = {};
+    }
+    if (!gstRateData.other_statutor_detail_data.excise_data.excise_data) {
+      gstRateData.other_statutor_detail_data.excise_data.excise_data = {};
+    }
+    if (!gstRateData.other_statutor_detail_data.excise_data.excise_data.alter_excise_triff_data) {
+      gstRateData.other_statutor_detail_data.excise_data.excise_data.alter_excise_triff_data = {};
+    }
+    gstRateData.other_statutor_detail_data.excise_data.excise_data.alter_excise_triff_data.reporting_unit =
       this.stockItemForm.get("unit")?.value;
     this.payload[0].item_data[0].statutory_detail_data.gst_rate_data.gst_Detail =
       this.stockItemForm.get("gstRateDetails")?.value;

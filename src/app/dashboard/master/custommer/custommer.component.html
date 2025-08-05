@@ -13,10 +13,143 @@
             </ion-button>
             <ion-title class="toolbar-title-text">Customer</ion-title>
         </ion-buttons>
-        <ion-buttons slot="end">
-            <ion-button>
+        <ion-spinner *ngIf="isLoading" slot="end"></ion-spinner>
+        <ion-buttons slot="end" *ngIf="!isLoading">
+            <ion-button (click)="addCustomer()">
                 Save
             </ion-button>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
+<ion-content>
+    <form [formGroup]="customerForm">
+        <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Customer Name *</ion-label>
+            <ion-input formControlName="customerName"></ion-input>
+        </ion-item>
+        <div *ngIf="customerForm.get('customerName')?.touched && customerForm.get('customerName')?.invalid" class="error-message">
+            Customer Name is required.
+        </div>
+        <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Alias *</ion-label>
+            <ion-input formControlName="alias"></ion-input>
+        </ion-item>
+        <div *ngIf="customerForm.get('alias')?.touched && customerForm.get('alias')?.invalid" class="error-message">
+            Alias is required.
+        </div>
+        <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Billwise Balance *</ion-label>
+            <ion-select formControlName="billwiseBalance" interface="alert">
+                <ion-select-option value="Yes">Yes</ion-select-option>
+                <ion-select-option value="No">No</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Credit Period *</ion-label>
+            <ion-input formControlName="creditPeriod"></ion-input>
+        </ion-item>
+        <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Credit Days Check</ion-label>
+            <ion-select formControlName="billwiseBalance" interface="alert">
+                <ion-select-option value="Yes">Yes</ion-select-option>
+                <ion-select-option value="No">No</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Credit Limit *</ion-label>
+            <ion-input formControlName="creditLimit"></ion-input>
+        </ion-item>
+        <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Name</ion-label>
+            <ion-input formControlName="name"></ion-input>
+        </ion-item>
+        <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Mobile</ion-label>
+            <ion-input formControlName="mobile"></ion-input>
+        </ion-item>
+        <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Address</ion-label>
+            <ion-input formControlName="address"></ion-input>
+        </ion-item>
+        <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">State</ion-label>
+            <ion-select formControlName="state" interface="alert">
+                <ion-select-option value="Maharashtra">Maharashtra</ion-select-option>
+                <ion-select-option value="Goa">Goa</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Country</ion-label>
+            <ion-select formControlName="country" interface="alert">
+                <ion-select-option value="India">India</ion-select-option>
+                <ion-select-option value="USA">USA</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Pin code</ion-label>
+            <ion-input formControlName="pincode"></ion-input>
+        </ion-item>
+        <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">PAN</ion-label>
+            <ion-input formControlName="pan"></ion-input>
+        </ion-item>
+        <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Registration Type *</ion-label>
+            <ion-select formControlName="registrationType" interface="alert">
+                <ion-select-option value="Unknown">Unknown</ion-select-option>
+                <ion-select-option value="Composition">Composition</ion-select-option>
+                <ion-select-option value="Regular">Regular</ion-select-option>
+                <ion-select-option value="Unregistered/Consumer">Unregistered/Consumer</ion-select-option>
+                <ion-select-option value="Government Entity/TDS">Government Entity/TDS</ion-select-option>
+                <ion-select-option value="Regular - SEZ">Regular - SEZ</ion-select-option>
+                <ion-select-option value="Regular - Deemed Exporter">Regular - Deemed Exporter</ion-select-option>
+                <ion-select-option value="Regular - Exports (EOU)">Regular - Exports (EOU)</ion-select-option>
+                <ion-select-option value="e - commerce Operator">e - commerce Operator</ion-select-option>
+                <ion-select-option value="Input Service Distributor">Input Service Distributor</ion-select-option>
+                <ion-select-option value="Embassy/UN Body">Embassy/UN Body</ion-select-option>
+                <ion-select-option value="Non - Resident Taxpayer">Non - Resident Taxpayer</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <div *ngIf="customerForm.get('registrationType')?.touched && customerForm.get('registrationType')?.invalid" class="error-message">
+            Registration Type is required.
+        </div>
+        <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">GSTIN/UIN *</ion-label>
+            <ion-input formControlName="gstinUin"></ion-input>
+        </ion-item>
+        <div *ngIf="customerForm.get('gstinUin')?.touched && customerForm.get('gstinUin')?.invalid" class="error-message">
+            GSTIN/UIN is required.
+        </div>
+        <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Bank Details</ion-label>
+            <ion-select formControlName="bankDetails" interface="alert">
+                <ion-select-option value="Cheque">Cheque</ion-select-option>
+                <ion-select-option value="e - fund Transfer">e - fund Transfer</ion-select-option>
+                <ion-select-option value="Other">Other</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <!-- if Cheque selected -->
+        <ion-item class="internal-form-item" *ngIf="customerForm.get('bankDetails')?.value === 'Cheque'">
+            <ion-label class="internal-form-label" position="floating">Cheque Number</ion-label>
+            <ion-input formControlName="chequeNumber"></ion-input>
+        </ion-item>
+        <!-- if e-fund transfer -->
+        <ion-item class="internal-form-item" *ngIf="customerForm.get('bankDetails')?.value === 'e - fund Transfer'">
+            <ion-label class="internal-form-label" position="floating">Account Number</ion-label>
+            <ion-input formControlName="accountNumber"></ion-input>
+        </ion-item>
+        <ion-item class="internal-form-item" *ngIf="customerForm.get('bankDetails')?.value === 'e - fund Transfer'">
+            <ion-label class="internal-form-label" position="floating">IFSC Code</ion-label>
+            <ion-input formControlName="ifscCode"></ion-input>
+        </ion-item>
+        <ion-item class="internal-form-item" *ngIf="customerForm.get('bankDetails')?.value === 'e - fund Transfer'">
+            <ion-label class="internal-form-label" position="floating">Bank Name</ion-label>
+            <ion-input formControlName="bankName"></ion-input>
+        </ion-item>
+        <ion-item class="internal-form-item"
+            *ngIf="customerForm.get('bankDetails')?.value === 'e - fund Transfer' || customerForm.get('bankDetails')?.value === 'Other'">
+            <ion-label class="internal-form-label" position="floating">Opening Balance </ion-label>
+            <ion-input formControlName="openingBalance"></ion-input>
+        </ion-item>
+    </form>
+</ion-content>
