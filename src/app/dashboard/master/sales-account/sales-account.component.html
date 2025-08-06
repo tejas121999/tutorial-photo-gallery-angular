@@ -179,8 +179,7 @@
                 <ion-label class="internal-form-label" position="floating">Bank Name</ion-label>
                 <ion-input formControlName="bankName"></ion-input>
             </ion-item>
-            <ion-item class="internal-form-item"
-                *ngIf="salesAccountForm.get('bankDetails')?.value === 'e - fund Transfer' || salesAccountForm.get('bankDetails')?.value === 'Other'">
+            <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Opening Balance </ion-label>
                 <ion-input formControlName="openingBalance"></ion-input>
             </ion-item>

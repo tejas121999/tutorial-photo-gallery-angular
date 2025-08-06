@@ -48,7 +48,6 @@ export class StockItemComponent implements OnInit {
       this.getUnitSimpleList();
     });
     // this.getTaxList();
-    console.log("hello tax page");
   }
 
   async initializeData() {

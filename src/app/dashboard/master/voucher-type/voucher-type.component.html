@@ -13,8 +13,9 @@
             </ion-button>
             <ion-title class="toolbar-title-text">Voucher Type</ion-title>
         </ion-buttons>
-        <ion-buttons slot="end">
-            <ion-button>
+        <ion-spinner *ngIf="isLoading" slot="end"></ion-spinner>
+        <ion-buttons slot="end" *ngIf="!isLoading">
+            <ion-button (click)="createVoucherType()">
                 Save
             </ion-button>
         </ion-buttons>
@@ -26,25 +27,33 @@
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Name *</ion-label>
                 <ion-input formControlName="name"></ion-input>
+                <div *ngIf="voucherTypeForm.get('name')?.invalid && voucherTypeForm.get('name')?.touched" class="error-message">
+                  Name is required and must be at least 3 characters.
+                </div>
             </ion-item>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Alias *</ion-label>
                 <ion-input formControlName="alias"></ion-input>
+                <div *ngIf="voucherTypeForm.get('alias')?.invalid && voucherTypeForm.get('alias')?.touched" class="error-message">
+                  Alias is required.
+                </div>
             </ion-item>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Voucher Type *</ion-label>
                 <ion-select formControlName="voucherType" interface="alert">
-                    <ion-select-option value="Attendance">Attendance</ion-select-option>
-                    <ion-select-option value="Contra">Contra</ion-select-option>
-                    <ion-select-option value="Credit Note">Credit Note</ion-select-option>
-                    <ion-select-option value="Debit Note">Debit Note</ion-select-option>
-                    <ion-select-option value="Purchase Order">Purchase Order</ion-select-option>
-                    <ion-select-option value="Sales Order">Sales Order</ion-select-option>
+                    <ion-select-option *ngFor="let type of voucherTypes" [value]="type.value">{{ type.name
+                        }}</ion-select-option>
                 </ion-select>
+                <div *ngIf="voucherTypeForm.get('voucherType')?.invalid && voucherTypeForm.get('voucherType')?.touched" class="error-message">
+                  Voucher Type is required.
+                </div>
             </ion-item>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Abbreviation *</ion-label>
                 <ion-input formControlName="abbreviation"></ion-input>
+                <div *ngIf="voucherTypeForm.get('abbreviation')?.invalid && voucherTypeForm.get('abbreviation')?.touched" class="error-message">
+                  Abbreviation is required.
+                </div>
             </ion-item>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Activate Voucher *</ion-label>
@@ -52,6 +61,9 @@
                     <ion-select-option value="Yes">Yes</ion-select-option>
                     <ion-select-option value="No">No</ion-select-option>
                 </ion-select>
+                <div *ngIf="voucherTypeForm.get('activeVoucher')?.invalid && voucherTypeForm.get('activeVoucher')?.touched" class="error-message">
+                  Activate Voucher is required.
+                </div>
             </ion-item>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Voucher Numbering Method</ion-label>

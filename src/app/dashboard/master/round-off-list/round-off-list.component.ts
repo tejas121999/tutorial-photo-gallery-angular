@@ -117,7 +117,7 @@ export class RoundOffListComponent implements OnInit {
           console.log("Unit Simple List:", response._Object);
           this.data = response?._Object || [];
           this.results = [...this.data];
-          this.filterByDate();
+          // this.filterByDate();
           // You can store the unit list in a variable if needed
         } else {
           console.error("Invalid response format:", response);

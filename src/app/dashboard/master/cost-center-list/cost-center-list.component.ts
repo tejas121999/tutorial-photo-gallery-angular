@@ -115,7 +115,7 @@ export class CostCenterListComponent implements OnInit {
           console.log("Cost Center List:", response._Object);
           this.data = response?._Object;
           this.results = [...this.data];
-          this.filterByDate();
+          // this.filterByDate();
           // You can store the cost center list in a variable if needed
         } else {
           console.error("Invalid response format:", response);

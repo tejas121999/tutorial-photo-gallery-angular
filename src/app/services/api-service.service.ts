@@ -146,10 +146,26 @@ export class ApiServiceService {
     );
   }
 
+  addOtherExpense(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.AddOtherExpense,
+      body,
+      true
+    );
+  }
+
   // round off
   getRoundOffLessList(body: any) {
     return this.apiManager.sendPOSTRequest(
       RestEnds.GetRoundOffLessList,
+      body,
+      true
+    );
+  }
+
+  addRoundOffLess(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.AddRoundOffLess,
       body,
       true
     );
@@ -161,6 +177,10 @@ export class ApiServiceService {
       body,
       true
     );
+  }
+
+  addRoundOffAdd(body: any) {
+    return this.apiManager.sendPOSTRequest(RestEnds.AddRoundOffAdd, body, true);
   }
 
   getCostCenterList(body: any) {
@@ -218,5 +238,91 @@ export class ApiServiceService {
 
   addStoreData(body: any) {
     return this.apiManager.sendPOSTRequest(RestEnds.AddStoreData, body, true);
+  }
+
+  // get voucher types
+  getVoucherTypeList(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.GetVoucherTypeList,
+      body,
+      true
+    );
+  }
+
+  // voucher
+  addVTSalesData(body: any) {
+    return this.apiManager.sendPOSTRequest(RestEnds.AddVTSalesData, body, true);
+  }
+
+  addVTPurchaseData(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.AddVTPurchaseData,
+      body,
+      true
+    );
+  }
+
+  addVTSalesOrderData(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.AddVTSalesOrderData,
+      body,
+      true
+    );
+  }
+
+  addVTPurchaseOrderData(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.AddVTPurchaseOrderData,
+      body,
+      true
+    );
+  }
+
+  addVTCreditNotData(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.AddVTCreditNotData,
+      body,
+      true
+    );
+  }
+
+  addVTDebitNotData(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.AddVTDebitNotData,
+      body,
+      true
+    );
+  }
+
+  addVTJournalData(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.AddVTJournalData,
+      body,
+      true
+    );
+  }
+
+  addVTDeliveryNoteData(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.AddVTDeliveryNoteData,
+      body,
+      true
+    );
+  }
+
+  addVTPaymentData(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.AddVTPaymentData,
+      body,
+      true
+    );
+  }
+
+  addVTReceiptData(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.AddVTReceiptData,
+      body,
+      true
+    );
   }
 }

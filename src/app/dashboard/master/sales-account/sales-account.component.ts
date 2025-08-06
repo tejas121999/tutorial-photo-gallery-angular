@@ -285,6 +285,9 @@ export class SalesAccountComponent {
       this.salesAccountForm.get("address")?.value;
     this.payload[0].sales_data[0].mailing_data.contact_person_data.cnt_name =
       this.salesAccountForm.get("name")?.value;
+    this.payload[0].sales_data[0].bank_data = {
+      opening_balance: "0",
+    };
     if (this.salesAccountForm.get("bankDetails")?.value === "Cheque") {
       this.payload[0].sales_data[0].bank_data = {
         cheque_number: this.salesAccountForm.get("chequeNumber")?.value,
@@ -300,11 +303,9 @@ export class SalesAccountComponent {
         opening_balance: this.salesAccountForm.get("openingBalance")?.value,
       };
     }
-    if (this.salesAccountForm.get("bankDetails")?.value === "Other") {
-      this.payload[0].sales_data[0].bank_data = {
-        opening_balance: this.salesAccountForm.get("openingBalance")?.value,
-      };
-    }
+
+    this.payload[0].sales_data[0].openning_balance =
+      this.salesAccountForm.get("openingBalance")?.value;
   }
 
   addSalesAccount() {

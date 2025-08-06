@@ -116,7 +116,7 @@ export class SalesAccountListComponent implements OnInit {
       (response: any) => {
         this.data = response?._Object || [];
         this.results = [...this.data];
-        this.filterByDate();
+        // this.filterByDate();
       },
       (error: any) => {
         console.error("Error fetching sales list:", error);

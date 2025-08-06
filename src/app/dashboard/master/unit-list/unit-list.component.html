@@ -30,14 +30,14 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <div>
+  <!-- <div>
     <div class="datetime-row">
       <ion-icon name="chevron-back-outline" class="arrow-icon" (click)="changeDate(-1)"></ion-icon>
       <ion-datetime [value]="currentDate" placeholder="Select Date" (ionChange)="onDateChange($event)"></ion-datetime>
       <ion-icon name="calendar-outline" style="font-size: 1.5em; margin-left: 8px;"></ion-icon>
       <ion-icon name="chevron-forward-outline" class="arrow-icon" (click)="changeDate(1)"></ion-icon>
     </div>
-  </div>
+  </div> -->
   <ion-list class="centered-list">
     <ion-item *ngFor="let result of pagedResults; trackBy: trackResult">
       <ion-grid>

@@ -108,7 +108,7 @@ export class StockItemListComponent implements OnInit {
       (response: any) => {
         this.data = response?._Object || [];
         this.results = [...this.data];
-        this.filterByDate();
+        // this.filterByDate();
       },
       (error) => {
         console.error("Error fetching stock item list:", error);

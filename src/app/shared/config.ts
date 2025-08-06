@@ -22,14 +22,34 @@ export enum RestEnds {
   AddUnitSimpleData = "Unit/AddUnitSimpleData",
   AddItemGroupData = "ItemGroup/AddItemGroupData",
   GetOtherExpenseList = "Ledger/GetOtherExpenseList",
+  AddOtherExpense = "Ledger/AddOtherExpense",
+  // Round Off Less
   GetRoundOffLessList = "Ledger/GetRoundOffLessList",
+  AddRoundOffLess = "Ledger/AddRoundOffLess",
+  // Round Off Add
   GetRoundOffAddList = "Ledger/GetRoundOffAddList",
+  AddRoundOffAdd = "Ledger/AddRoundOffAdd",
+  // cost center
   GetCostCenterList = "CostCenter/GetCostCenterList",
   AddCostCenterData = "CostCenter/AddCostCenterData",
+
   AddReceivedDiscount = "Ledger/AddReceivedDiscount",
   GetReceivedDiscountList = "Ledger/GetReceivedDiscountList",
   GetPaidDiscountList = "Ledger/GetPaidDiscountList",
   AddPaidDiscount = "Ledger/AddPaidDiscount",
   GetStoreList = "Store/GetStoreList",
   AddStoreData = "Store/AddStoreData",
+  // get voucher type list
+  GetVoucherTypeList = "VoucherType/GetVoucherTypeList",
+  // voucher
+  AddVTSalesData = "VoucherType/AddVTSalesData",
+  AddVTPurchaseData = "VoucherType/AddVTPurchaseData",
+  AddVTSalesOrderData = "VoucherType/AddVTSalesOrderData",
+  AddVTPurchaseOrderData = "VoucherType/AddVTPurchaseOrderData",
+  AddVTCreditNotData = "VoucherType/AddVTCreditNotData",
+  AddVTDebitNotData = "VoucherType/AddVTDebitNotData",
+  AddVTJournalData = "VoucherType/AddVTJournalData",
+  AddVTDeliveryNoteData = "VoucherType/AddVTDeliveryNoteData",
+  AddVTPaymentData = "VoucherType/AddVTPaymentData",
+  AddVTReceiptData = "VoucherType/AddVTReceiptData",
 }

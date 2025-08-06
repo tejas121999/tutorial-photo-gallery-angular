@@ -78,9 +78,9 @@ export class DiscountPaidComponent implements OnInit {
       tpd_status_data: null,
       tpd_status_report_id: null,
       tpd_status_report_data: null,
-      received_discount_data: [
+      paid_discount_data: [
         {
-          received_discount_name: null,
+          paid_discount_name: null,
           alias_name: null,
           mailing_data: {
             address: null,
@@ -261,60 +261,60 @@ export class DiscountPaidComponent implements OnInit {
   createPayload() {
     this.payload[0].login_token = this.login_token;
     this.payload[0].branch_token = this.branch_token;
-    this.payload[0].tpd_status_tally_entity_type = "received-discount";
-    this.payload[0].object_flag_tpd_id = 1;
+    this.payload[0].tpd_status_tally_entity_type = "paid-discount";
+    this.payload[0].object_flag_tpd_id = "1";
     this.payload[0].tpd_status_data = "text";
     this.payload[0].tpd_status_report_id = 0;
     this.payload[0].tpd_status_report_data = "";
-    const receivedDiscount = this.payload[0].received_discount_data[0];
-    receivedDiscount.received_discount_name =
-      this.discountForm.get("name")?.value;
-    receivedDiscount.alias_name = this.discountForm.get("alias")?.value;
-    receivedDiscount.maintain_bill_by_bill =
+    const pdData = this.payload[0].paid_discount_data[0];
+    pdData.paid_discount_name = this.discountForm.get("name")?.value;
+    pdData.alias_name = this.discountForm.get("alias")?.value;
+    pdData.maintain_bill_by_bill =
       this.discountForm.get("billwiseBalance")?.value;
-    receivedDiscount.inventory_value_affect =
+    pdData.inventory_value_affect =
       this.discountForm.get("affectOnInventory")?.value;
-    receivedDiscount.type_of_ledger =
-      this.discountForm.get("typeOfLedger")?.value;
-    receivedDiscount.gst_applicability =
-      this.discountForm.get("GSTApplicant")?.value;
-    receivedDiscount.rounding_method =
-      this.discountForm.get("roundingMethod")?.value;
-    receivedDiscount.rounding_limit =
-      this.discountForm.get("roundingLimit")?.value;
+    pdData.type_of_ledger = this.discountForm.get("typeOfLedger")?.value;
+    pdData.rounding_method =
+      this.discountForm.get("roundingMethod")?.value || "Rounding Method";
+    pdData.rounding_limit =
+      this.discountForm.get("roundingLimit")?.value || "0";
+    pdData.gst_applicability = this.discountForm.get("GSTApplicant")?.value;
 
-    // Defensive: ensure all nested objects exist before assignment
-    const gstApplicableData = (receivedDiscount.gst_applicable_data =
-      receivedDiscount.gst_applicable_data || {});
-    const hsnSacDetailData = (gstApplicableData.hsn_sac_detail_data =
-      gstApplicableData.hsn_sac_detail_data || {});
-    const classificationCreateData =
-      (hsnSacDetailData.classification_create_data =
-        hsnSacDetailData.classification_create_data || {});
-    const gstRateRelatedDetail =
-      (classificationCreateData.GSTRateRelatedDetail_data =
-        classificationCreateData.GSTRateRelatedDetail_data || {});
+    // Ensure nested objects exist before assignment
+    if (!pdData.gst_applicable_data) pdData.gst_applicable_data = {};
+    if (!pdData.gst_applicable_data.classification_create_data)
+      pdData.gst_applicable_data.classification_create_data = {};
+    if (
+      !pdData.gst_applicable_data.classification_create_data
+        .GSTRateRelatedDetail_data
+    )
+      pdData.gst_applicable_data.classification_create_data.GSTRateRelatedDetail_data =
+        {};
+    if (
+      !pdData.gst_applicable_data.classification_create_data
+        .GSTRateRelatedDetail_data.specify_slab_based_rule
+    )
+      pdData.gst_applicable_data.classification_create_data.GSTRateRelatedDetail_data.specify_slab_based_rule =
+        {};
+    if (
+      !pdData.gst_applicable_data.classification_create_data
+        .GSTRateRelatedDetail_data.specify_slab_based_rule.cess_gst_detail_data
+    )
+      pdData.gst_applicable_data.classification_create_data.GSTRateRelatedDetail_data.specify_slab_based_rule.cess_gst_detail_data =
+        {};
 
-    gstRateRelatedDetail.gstRetDetail =
+    pdData.gst_applicable_data.classification_create_data.GSTRateRelatedDetail_data.gstRetDetail =
       this.discountForm.get("GSTRateDetails")?.value;
-    gstRateRelatedDetail.type_of_suppile =
-      this.discountForm.get("typeOfSupply")?.value;
-    gstRateRelatedDetail.taxtability_type =
+    pdData.gst_applicable_data.classification_create_data.GSTRateRelatedDetail_data.taxtability_type =
       this.discountForm.get("taxabilityType")?.value;
-    gstRateRelatedDetail.nature_of_tansaction = this.discountForm.get(
-      "natureOfTransaction"
-    )?.value;
-
-    // Defensive: ensure cess_gst_detail_data exists
-    gstRateRelatedDetail.cess_gst_detail_data =
-      gstRateRelatedDetail.cess_gst_detail_data || {};
-    gstRateRelatedDetail.cess_gst_detail_data.cess_rate =
+    pdData.gst_applicable_data.classification_create_data.GSTRateRelatedDetail_data.nature_of_tansaction =
+      this.discountForm.get("natureOfTransaction")?.value;
+    pdData.gst_applicable_data.classification_create_data.GSTRateRelatedDetail_data.specify_slab_based_rule.cess_gst_detail_data.cess_rate =
       this.discountForm.get("cessRate")?.value;
-    gstRateRelatedDetail.cess_gst_detail_data.cess_unit =
+    pdData.gst_applicable_data.classification_create_data.GSTRateRelatedDetail_data.specify_slab_based_rule.cess_gst_detail_data.cess_unit =
       this.discountForm.get("cessRateUnit")?.value;
-
-    receivedDiscount.openning_balance =
-      this.discountForm.get("openingBalance")?.value;
+    pdData.openning_balance =
+      this.discountForm.get("openingBalance")?.value || 0;
   }
 
   createDiscount() {
@@ -333,7 +333,7 @@ export class DiscountPaidComponent implements OnInit {
       this.apiService.addPaidDiscount(this.payload).subscribe(
         (response: any) => {
           this.isLoading = false;
-          if (response.status === "success") {
+          if (response._Object.length !== 0) {
             this.router.navigate(["/dashboard/master/discount-paid-list"], {
               queryParams: { reload: new Date().getTime() },
             });

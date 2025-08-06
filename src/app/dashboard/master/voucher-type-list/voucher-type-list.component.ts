@@ -12,7 +12,7 @@ export class VoucherTypeListComponent implements OnInit {
   pageSize = 5;
   currentPage = 1;
   currentDate: string;
-    showSearchbar = false;
+  showSearchbar = false;
   public data = [];
   public results = [...this.data];
   branch_token: any;
@@ -34,6 +34,7 @@ export class VoucherTypeListComponent implements OnInit {
         await this.appPreference.get("_BranchList")
       )[0]?.branch_token_id;
       this.login_token = await this.appPreference.get("_LoginToken");
+      this.getVoucherTypes();
     });
   }
 
@@ -59,7 +60,10 @@ export class VoucherTypeListComponent implements OnInit {
   handleInput(event: Event) {
     const target = event.target as HTMLIonSearchbarElement;
     const query = target.value?.toLowerCase() || "";
-    this.results = this.data.filter((d) => d.toLowerCase().includes(query));
+    this.results = this.data.filter((item: any) => {
+      if (!item?.voucher_type_name) return false;
+      return item?.voucher_type_name.toLowerCase().includes(query);
+    });
   }
 
   onDateChange(event: any) {
@@ -76,5 +80,32 @@ export class VoucherTypeListComponent implements OnInit {
   // Add a trackBy function for ngFor
   trackResult(index: number, item: any) {
     return item;
+  }
+
+  getVoucherTypes() {
+    var temp = [
+      {
+        login_token: this.login_token,
+        branch_token: this.branch_token,
+        object_flag_tpd_id: 1,
+        page_number: 0,
+        page_size: 0,
+      },
+    ];
+
+    this.apiService.getVoucherTypeList(temp).subscribe(
+      (response: any) => {
+        if (response && response._Object.length > 0) {
+          this.data = response._Object;
+          this.results = [...this.data];
+        } else {
+          this.data = [];
+          this.results = [];
+        }
+      },
+      (error) => {
+        console.error("Error fetching voucher types:", error);
+      }
+    );
   }
 }

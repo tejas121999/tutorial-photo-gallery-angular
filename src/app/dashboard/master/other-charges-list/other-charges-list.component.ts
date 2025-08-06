@@ -115,7 +115,7 @@ export class OtherChargesListComponent implements OnInit {
           console.log("Other Charges List:", response._Object);
           this.data = response?._Object;
           this.results = [...this.data];
-          this.filterByDate();
+          // this.filterByDate();
         } else {
           console.error("Invalid response format:", response);
         }
