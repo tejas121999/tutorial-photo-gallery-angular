@@ -32,11 +32,8 @@
                 </div>
             </ion-item>
             <ion-item class="internal-form-item">
-                <ion-label class="internal-form-label" position="floating">Alias *</ion-label>
+                <ion-label class="internal-form-label" position="floating">Alias</ion-label>
                 <ion-input formControlName="alias"></ion-input>
-                <div *ngIf="supplierForm.get('alias')?.invalid && (supplierForm.get('alias')?.dirty || supplierForm.get('alias')?.touched)" class="error-message">
-                  Alias is required.
-                </div>
             </ion-item>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Billwise Balance</ion-label>
@@ -82,7 +79,7 @@
                 <ion-input formControlName="pan"></ion-input>
             </ion-item>
             <ion-item class="internal-form-item">
-                <ion-label class="internal-form-label" position="floating">Registration Type *</ion-label>
+                <ion-label class="internal-form-label" position="floating">Registration Type</ion-label>
                 <ion-select formControlName="registrationType" interface="alert">
                     <ion-select-option value="Unknown">Unknown</ion-select-option>
                     <ion-select-option value="Regular">Regular</ion-select-option>
@@ -96,12 +93,9 @@
                     <ion-select-option value="Embassy/UN Body">Embassy/UN Body</ion-select-option>
                     <ion-select-option value="Non - Resident Taxpayer">Non - Resident Taxpayer</ion-select-option>
                 </ion-select>
-                <div *ngIf="supplierForm.get('registrationType')?.invalid && (supplierForm.get('registrationType')?.dirty || supplierForm.get('registrationType')?.touched)" class="error-message">
-                  Registration Type is required.
-                </div>
             </ion-item>
             <ion-item class="internal-form-item">
-                <ion-label class="internal-form-label" position="floating">GSTIN/UIN *</ion-label>
+                <ion-label class="internal-form-label" position="floating">GSTIN/UIN</ion-label>
                 <ion-input formControlName="gstin"></ion-input>
             </ion-item>
             <ion-item class="internal-form-item">

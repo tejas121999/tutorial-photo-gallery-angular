@@ -27,30 +27,25 @@
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Name *</ion-label>
                 <ion-input formControlName="name"></ion-input>
+                <div *ngIf="godownForm.get('name')?.touched && godownForm.get('name')?.invalid">
+                    <span class="error-message" *ngIf="godownForm.get('name')?.errors?.['required']">Name is
+                        required.</span>
+                </div>
             </ion-item>
-            <div *ngIf="godownForm.get('name')?.touched && godownForm.get('name')?.invalid">
-                <span class="error-message" *ngIf="godownForm.get('name')?.errors?.['required']">Name is
-                    required.</span>
-            </div>
+
             <ion-item class="internal-form-item">
-                <ion-label class="internal-form-label" position="floating">Alias *</ion-label>
+                <ion-label class="internal-form-label" position="floating">Alias </ion-label>
                 <ion-input formControlName="alias"></ion-input>
             </ion-item>
-            <div *ngIf="godownForm.get('alias')?.touched && godownForm.get('alias')?.invalid">
-                <span class="error-message" *ngIf="godownForm.get('alias')?.errors?.['required']">Alias is
-                    required.</span>
-            </div>
+
             <ion-item class="internal-form-item">
-                <ion-label class="internal-form-label" position="floating">Under *</ion-label>
+                <ion-label class="internal-form-label" position="floating">Under </ion-label>
                 <ion-select formControlName="under" interface="alert">
                     <ion-select-option value="Primary">Primary</ion-select-option>
                     <ion-select-option value="Main Location">Main Location</ion-select-option>
                 </ion-select>
             </ion-item>
-            <div *ngIf="godownForm.get('under')?.touched && godownForm.get('under')?.invalid">
-                <span class="error-message" *ngIf="godownForm.get('under')?.errors?.['required']">Under is
-                    required.</span>
-            </div>
+
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Excise Tax Unit</ion-label>
                 <ion-select formControlName="exciseTaxUnit" interface="alert">

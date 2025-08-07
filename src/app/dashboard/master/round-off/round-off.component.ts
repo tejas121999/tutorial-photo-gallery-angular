@@ -38,12 +38,12 @@ export class RoundOffComponent implements OnInit {
   async initializeData() {
     this.roundOffLessForm = this.fb.group({
       name: ["", Validators.required],
-      alias: ["", Validators.required],
-      billwiseBalance: ["", Validators.required],
+      alias: [""],
+      billwiseBalance: [""],
       creditPeriod: [""],
-      affectOnInventory: ["", Validators.required],
-      typeOfLedger: ["", Validators.required],
-      GSTApplicable: ["", Validators.required],
+      affectOnInventory: [""],
+      typeOfLedger: [""],
+      GSTApplicable: [""],
       roundingMethod: [""],
       roundingLimit: [""],
       enableCostCenter: [""],
@@ -288,13 +288,7 @@ export class RoundOffComponent implements OnInit {
 
   createRoundOffLess() {
     this.isLoading = true;
-    if (
-      this.roundOffLessForm.get("name")?.value &&
-      this.roundOffLessForm.get("alias")?.value &&
-      this.roundOffLessForm.get("billwiseBalance")?.value &&
-      this.roundOffLessForm.get("affectOnInventory")?.value &&
-      this.roundOffLessForm.get("typeOfLedger")?.value
-    ) {
+    if (this.roundOffLessForm.get("name")?.value) {
       this.resetPayloadValuesToNull(this.payload);
       this.createPayload();
       console.log("Payload:", this.payload);

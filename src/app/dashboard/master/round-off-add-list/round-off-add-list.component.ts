@@ -105,7 +105,7 @@ export class RoundOffAddListComponent implements OnInit {
       {
         login_token: this.login_token,
         branch_token: this.branch_token,
-        object_flag_tpd_id: 1,
+        object_flag_tpd_id: 0,
         page_number: 0,
         page_size: 0,
       },

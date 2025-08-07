@@ -24,31 +24,33 @@
 <ion-content>
     <div class="centered-stock-group-form-wrapper">
         <form [formGroup]="stockGroupForm">
-            <ion-item class="internal-form-item" [class.invalid-item]="stockGroupForm.get('stockGroupName')?.invalid && (stockGroupForm.get('stockGroupName')?.touched || stockGroupForm.get('stockGroupName')?.dirty)">
-                <ion-label class="internal-form-label" position="floating">Name *</ion-label>
+            <ion-item class="internal-form-item"
+                [class.invalid-item]="stockGroupForm.get('stockGroupName')?.invalid && (stockGroupForm.get('stockGroupName')?.touched || stockGroupForm.get('stockGroupName')?.dirty)">
+                <ion-label class="internal-form-label" position="floating">Name*</ion-label>
                 <ion-input formControlName="stockGroupName"></ion-input>
+                <div class="form-error"
+                    *ngIf="stockGroupForm.get('stockGroupName')?.invalid && (stockGroupForm.get('stockGroupName')?.touched || stockGroupForm.get('stockGroupName')?.dirty)">
+                    Name is required.
+                </div>
             </ion-item>
-            <div class="form-error" *ngIf="stockGroupForm.get('stockGroupName')?.invalid && (stockGroupForm.get('stockGroupName')?.touched || stockGroupForm.get('stockGroupName')?.dirty)">
-                Name is required.
-            </div>
-            <ion-item class="internal-form-item" [class.invalid-item]="stockGroupForm.get('alias')?.invalid && (stockGroupForm.get('alias')?.touched || stockGroupForm.get('alias')?.dirty)">
-                <ion-label class="internal-form-label" position="floating">Alias *</ion-label>
+
+            <ion-item class="internal-form-item"
+                [class.invalid-item]="stockGroupForm.get('alias')?.invalid && (stockGroupForm.get('alias')?.touched || stockGroupForm.get('alias')?.dirty)">
+                <ion-label class="internal-form-label" position="floating">Alias</ion-label>
                 <ion-input formControlName="alias"></ion-input>
             </ion-item>
-            <div class="form-error" *ngIf="stockGroupForm.get('alias')?.invalid && (stockGroupForm.get('alias')?.touched || stockGroupForm.get('alias')?.dirty)">
-                Alias is required.
-            </div>
-            <ion-item class="internal-form-item" [class.invalid-item]="stockGroupForm.get('under')?.invalid && (stockGroupForm.get('under')?.touched || stockGroupForm.get('under')?.dirty)">
-                <ion-label class="internal-form-label" position="floating">Under *</ion-label>
+
+            <ion-item class="internal-form-item"
+                [class.invalid-item]="stockGroupForm.get('under')?.invalid && (stockGroupForm.get('under')?.touched || stockGroupForm.get('under')?.dirty)">
+                <ion-label class="internal-form-label" position="floating">Under</ion-label>
                 <ion-select formControlName="under" interface="alert">
                     <ion-select-option value="Primary">Primary</ion-select-option>
                 </ion-select>
             </ion-item>
-            <div class="form-error" *ngIf="stockGroupForm.get('under')?.invalid && (stockGroupForm.get('under')?.touched || stockGroupForm.get('under')?.dirty)">
-                Under is required.
-            </div>
-            <ion-item class="internal-form-item" [class.invalid-item]="stockGroupForm.get('HSNDetails')?.invalid && (stockGroupForm.get('HSNDetails')?.touched || stockGroupForm.get('HSNDetails')?.dirty)">
-                <ion-label class="internal-form-label" position="floating">HSN Details *</ion-label>
+
+            <ion-item class="internal-form-item"
+                [class.invalid-item]="stockGroupForm.get('HSNDetails')?.invalid && (stockGroupForm.get('HSNDetails')?.touched || stockGroupForm.get('HSNDetails')?.dirty)">
+                <ion-label class="internal-form-label" position="floating">HSN Details</ion-label>
                 <ion-select formControlName="HSNDetails" interface="alert">
                     <ion-select-option value="As Per Company/Group">As Per Company/Group</ion-select-option>
                     <ion-select-option value="Specify Details">Specify Details</ion-select-option>
@@ -56,22 +58,20 @@
                     <ion-select-option value="Specify in Voucher">Specify in Voucher</ion-select-option>
                 </ion-select>
             </ion-item>
-            <div class="form-error" *ngIf="stockGroupForm.get('HSNDetails')?.invalid && (stockGroupForm.get('HSNDetails')?.touched || stockGroupForm.get('HSNDetails')?.dirty)">
-                HSN Details is required.
-            </div>
-            <ion-item *ngIf="stockGroupForm.get('HSNDetails')?.value === 'Specify Details'" class="internal-form-item" [class.invalid-item]="stockGroupForm.get('HSN')?.invalid && (stockGroupForm.get('HSN')?.touched || stockGroupForm.get('HSN')?.dirty)">
-                <ion-label class="internal-form-label" position="floating">HSN *</ion-label>
+
+            <ion-item *ngIf="stockGroupForm.get('HSNDetails')?.value === 'Specify Details'" class="internal-form-item"
+                [class.invalid-item]="stockGroupForm.get('HSN')?.invalid && (stockGroupForm.get('HSN')?.touched || stockGroupForm.get('HSN')?.dirty)">
+                <ion-label class="internal-form-label" position="floating">HSN</ion-label>
                 <ion-input formControlName="HSN"></ion-input>
             </ion-item>
-            <div class="form-error" *ngIf="stockGroupForm.get('HSNDetails')?.value === 'Specify Details' && stockGroupForm.get('HSN')?.invalid && (stockGroupForm.get('HSN')?.touched || stockGroupForm.get('HSN')?.dirty)">
-                HSN is required.
-            </div>
+
             <ion-item *ngIf="stockGroupForm.get('HSNDetails')?.value === 'Specify Details'" class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Description</ion-label>
                 <ion-input formControlName="description"></ion-input>
             </ion-item>
-            <ion-item class="internal-form-item" [class.invalid-item]="stockGroupForm.get('GSTDetails')?.invalid && (stockGroupForm.get('GSTDetails')?.touched || stockGroupForm.get('GSTDetails')?.dirty)">
-                <ion-label class="internal-form-label" position="floating">GST Details *</ion-label>
+            <ion-item class="internal-form-item"
+                [class.invalid-item]="stockGroupForm.get('GSTDetails')?.invalid && (stockGroupForm.get('GSTDetails')?.touched || stockGroupForm.get('GSTDetails')?.dirty)">
+                <ion-label class="internal-form-label" position="floating">GST Details</ion-label>
                 <ion-select formControlName="GSTDetails" interface="alert">
                     <ion-select-option value="As Per Company/Group">As Per Company/Group</ion-select-option>
                     <ion-select-option value="Specify Details">Specify Details</ion-select-option>
@@ -79,11 +79,10 @@
                     <ion-select-option value="Specify in Voucher">Specify in Voucher</ion-select-option>
                 </ion-select>
             </ion-item>
-            <div class="form-error" *ngIf="stockGroupForm.get('GSTDetails')?.invalid && (stockGroupForm.get('GSTDetails')?.touched || stockGroupForm.get('GSTDetails')?.dirty)">
-                GST Details is required.
-            </div>
-            <ion-item *ngIf="stockGroupForm.get('GSTDetails')?.value === 'Specify Details'" class="internal-form-item" [class.invalid-item]="stockGroupForm.get('taxabilityType')?.invalid && (stockGroupForm.get('taxabilityType')?.touched || stockGroupForm.get('taxabilityType')?.dirty)">
-                <ion-label class="internal-form-label" position="floating">Taxability Type *</ion-label>
+
+            <ion-item *ngIf="stockGroupForm.get('GSTDetails')?.value === 'Specify Details'" class="internal-form-item"
+                [class.invalid-item]="stockGroupForm.get('taxabilityType')?.invalid && (stockGroupForm.get('taxabilityType')?.touched || stockGroupForm.get('taxabilityType')?.dirty)">
+                <ion-label class="internal-form-label" position="floating">Taxability Type</ion-label>
                 <ion-select formControlName="taxabilityType" interface="alert">
                     <ion-select-option value="Taxable">Taxable</ion-select-option>
                     <ion-select-option value="Exempted">Exempted</ion-select-option>
@@ -91,18 +90,16 @@
                     <ion-select-option value="Non - GST">Non - GST</ion-select-option>
                 </ion-select>
             </ion-item>
-            <div class="form-error" *ngIf="stockGroupForm.get('GSTDetails')?.value === 'Specify Details' && stockGroupForm.get('taxabilityType')?.invalid && (stockGroupForm.get('taxabilityType')?.touched || stockGroupForm.get('taxabilityType')?.dirty)">
-                Taxability Type is required.
-            </div>
-            <ion-item *ngIf="stockGroupForm.get('GSTDetails')?.value === 'Specify Details'" class="internal-form-item" [class.invalid-item]="stockGroupForm.get('GSTRate')?.invalid && (stockGroupForm.get('GSTRate')?.touched || stockGroupForm.get('GSTRate')?.dirty)">
-                <ion-label class="internal-form-label" position="floating">GST Rate *</ion-label>
+
+            <ion-item *ngIf="stockGroupForm.get('GSTDetails')?.value === 'Specify Details'" class="internal-form-item"
+                [class.invalid-item]="stockGroupForm.get('GSTRate')?.invalid && (stockGroupForm.get('GSTRate')?.touched || stockGroupForm.get('GSTRate')?.dirty)">
+                <ion-label class="internal-form-label" position="floating">GST Rate</ion-label>
                 <ion-input formControlName="GSTRate"></ion-input>
             </ion-item>
-            <div class="form-error" *ngIf="stockGroupForm.get('GSTDetails')?.value === 'Specify Details' && stockGroupForm.get('GSTRate')?.invalid && (stockGroupForm.get('GSTRate')?.touched || stockGroupForm.get('GSTRate')?.dirty)">
-                GST Rate is required.
-            </div>
-            <ion-item *ngIf="stockGroupForm.get('taxabilityType')?.value === 'Taxable'" class="internal-form-item" [class.invalid-item]="stockGroupForm.get('cessValuation')?.invalid && (stockGroupForm.get('cessValuation')?.touched || stockGroupForm.get('cessValuation')?.dirty)">
-                <ion-label class="internal-form-label" position="floating">Cess Valuation *</ion-label>
+
+            <ion-item *ngIf="stockGroupForm.get('taxabilityType')?.value === 'Taxable'" class="internal-form-item"
+                [class.invalid-item]="stockGroupForm.get('cessValuation')?.invalid && (stockGroupForm.get('cessValuation')?.touched || stockGroupForm.get('cessValuation')?.dirty)">
+                <ion-label class="internal-form-label" position="floating">Cess Valuation</ion-label>
                 <ion-select formControlName="cessValuation" interface="alert">
                     <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
                     <ion-select-option value="Based on Value">Based on Value</ion-select-option>
@@ -111,45 +108,40 @@
                         Quantity</ion-select-option>
                 </ion-select>
             </ion-item>
-            <div class="form-error" *ngIf="stockGroupForm.get('taxabilityType')?.value === 'Taxable' && stockGroupForm.get('cessValuation')?.invalid && (stockGroupForm.get('cessValuation')?.touched || stockGroupForm.get('cessValuation')?.dirty)">
-                Cess Valuation is required.
-            </div>
-            <ion-item *ngIf="stockGroupForm.get('cessValuation')?.value === 'Based on Value'"
-                class="internal-form-item" [class.invalid-item]="stockGroupForm.get('cessRate')?.invalid && (stockGroupForm.get('cessRate')?.touched || stockGroupForm.get('cessRate')?.dirty)">
-                <ion-label class="internal-form-label" position="floating">Cess Rate *</ion-label>
+
+            <ion-item *ngIf="stockGroupForm.get('cessValuation')?.value === 'Based on Value'" class="internal-form-item"
+                [class.invalid-item]="stockGroupForm.get('cessRate')?.invalid && (stockGroupForm.get('cessRate')?.touched || stockGroupForm.get('cessRate')?.dirty)">
+                <ion-label class="internal-form-label" position="floating">Cess Rate</ion-label>
                 <ion-input formControlName="cessRate"></ion-input>
             </ion-item>
-            <div class="form-error" *ngIf="stockGroupForm.get('cessValuation')?.value === 'Based on Value' && stockGroupForm.get('cessRate')?.invalid && (stockGroupForm.get('cessRate')?.touched || stockGroupForm.get('cessRate')?.dirty)">
-                Cess Rate is required.
-            </div>
+
             <ion-item *ngIf="stockGroupForm.get('cessValuation')?.value === 'Based on Value and Quantity'"
-                class="internal-form-item" [class.invalid-item]="stockGroupForm.get('cessRateValue')?.invalid && (stockGroupForm.get('cessRateValue')?.touched || stockGroupForm.get('cessRateValue')?.dirty)">
-                <ion-label class="internal-form-label" position="floating">Cess Rate(Value) *</ion-label>
+                class="internal-form-item"
+                [class.invalid-item]="stockGroupForm.get('cessRateValue')?.invalid && (stockGroupForm.get('cessRateValue')?.touched || stockGroupForm.get('cessRateValue')?.dirty)">
+                <ion-label class="internal-form-label" position="floating">Cess Rate(Value)</ion-label>
                 <ion-input formControlName="cessRateValue"></ion-input>
             </ion-item>
-            <div class="form-error" *ngIf="stockGroupForm.get('cessValuation')?.value === 'Based on Value and Quantity' && stockGroupForm.get('cessRateValue')?.invalid && (stockGroupForm.get('cessRateValue')?.touched || stockGroupForm.get('cessRateValue')?.dirty)">
-                Cess Rate(Value) is required.
-            </div>
+
             <ion-item *ngIf="stockGroupForm.get('cessValuation')?.value === 'Based on Value and Quantity'"
-                class="internal-form-item" [class.invalid-item]="stockGroupForm.get('cessRateUnit')?.invalid && (stockGroupForm.get('cessRateUnit')?.touched || stockGroupForm.get('cessRateUnit')?.dirty)">
-                <ion-label class="internal-form-label" position="floating">Cess Rate(Unit) *</ion-label>
+                class="internal-form-item"
+                [class.invalid-item]="stockGroupForm.get('cessRateUnit')?.invalid && (stockGroupForm.get('cessRateUnit')?.touched || stockGroupForm.get('cessRateUnit')?.dirty)">
+                <ion-label class="internal-form-label" position="floating">Cess Rate(Unit)</ion-label>
                 <ion-input formControlName="cessRateUnit"></ion-input>
             </ion-item>
-            <div class="form-error" *ngIf="stockGroupForm.get('cessValuation')?.value === 'Based on Value and Quantity' && stockGroupForm.get('cessRateUnit')?.invalid && (stockGroupForm.get('cessRateUnit')?.touched || stockGroupForm.get('cessRateUnit')?.dirty)">
-                Cess Rate(Unit) is required.
-            </div>
-    <style>
-    .form-error {
-        color: #e74c3c;
-        font-size: 13px;
-        margin: 0 0 10px 10px;
-    }
-    .invalid-item {
-        --highlight-background: #ffeaea;
-        --background: #fff6f6;
-        border-left: 3px solid #e74c3c;
-    }
-    </style>
+
+            <style>
+                .form-error {
+                    color: #e74c3c;
+                    font-size: 13px;
+                    margin: 0 0 10px 10px;
+                }
+
+                .invalid-item {
+                    --highlight-background: #ffeaea;
+                    --background: #fff6f6;
+                    border-left: 3px solid #e74c3c;
+                }
+            </style>
         </form>
     </div>
 </ion-content>

@@ -27,19 +27,15 @@
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Name *</ion-label>
                 <ion-input formControlName="name"></ion-input>
+                <div *ngIf="stockCategoryForm.get('name')?.touched && stockCategoryForm.get('name')?.invalid">
+                    <span class="error-message" *ngIf="stockCategoryForm.get('name')?.errors?.['required']">Name is
+                        required.</span>
+                </div>
             </ion-item>
-            <div *ngIf="stockCategoryForm.get('name')?.touched && stockCategoryForm.get('name')?.invalid">
-                <span class="error-message" *ngIf="stockCategoryForm.get('name')?.errors?.['required']">Name is
-                    required.</span>
-            </div>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Alias *</ion-label>
                 <ion-input formControlName="alias"></ion-input>
             </ion-item>
-            <div *ngIf="stockCategoryForm.get('alias')?.touched && stockCategoryForm.get('alias')?.invalid">
-                <span class="error-message" *ngIf="stockCategoryForm.get('alias')?.errors?.['required']">Alias is
-                    required.</span>
-            </div>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Under *</ion-label>
                 <ion-select formControlName="under" interface="alert">
@@ -47,10 +43,6 @@
                     <ion-select-option value="Main Location">Main Location</ion-select-option>
                 </ion-select>
             </ion-item>
-            <div *ngIf="stockCategoryForm.get('under')?.touched && stockCategoryForm.get('under')?.invalid">
-                <span class="error-message" *ngIf="stockCategoryForm.get('under')?.errors?.['required']">Under is
-                    required.</span>
-            </div>
         </div>
     </form>
 </ion-content>

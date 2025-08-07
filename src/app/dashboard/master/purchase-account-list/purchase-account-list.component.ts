@@ -10,6 +10,7 @@ import { AppPreference } from "src/app/shared/app-preference";
 })
 export class PurchaseAccountListComponent implements OnInit {
   branch_token: any;
+  login_token: any;
   showSearchbar = false;
   pageSize = 5;
   currentPage = 1;
@@ -27,7 +28,11 @@ export class PurchaseAccountListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(() => {
+    this.route.queryParams.subscribe(async () => {
+      this.branch_token = (
+        await this.appPreference.get("_BranchList")
+      )[0]?.branch_token_id;
+      this.login_token = await this.appPreference.get("_LoginToken");
       this.getPurchaseAccountList();
     });
     this.getPurchaseAccountList();
@@ -107,9 +112,9 @@ export class PurchaseAccountListComponent implements OnInit {
   async getPurchaseAccountList() {
     var temp = [
       {
-        login_token: await this.appPreference.get("_LoginToken"),
+        login_token: this.login_token,
         branch_token: this.branch_token,
-        object_flag_tpd_id: 1,
+        object_flag_tpd_id: 0,
       },
     ];
     console.log("temp", temp);

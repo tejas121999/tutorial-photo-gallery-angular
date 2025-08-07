@@ -9,6 +9,8 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./stock-item-list.component.scss"],
 })
 export class StockItemListComponent implements OnInit {
+  branch_token: any;
+  login_token: any;
   pageSize = 5;
   currentPage = 1;
   currentDate: string;
@@ -26,7 +28,11 @@ export class StockItemListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(() => {
+    this.route.queryParams.subscribe(async () => {
+      this.branch_token = (
+        await this.appPreference.get("_BranchList")
+      )[0]?.branch_token_id;
+      this.login_token = await this.appPreference.get("_LoginToken");
       this.getStockItemList();
     });
     this.getStockItemList();
@@ -99,7 +105,7 @@ export class StockItemListComponent implements OnInit {
         login_token: await this.appPreference.get("_LoginToken"),
         branch_token: (await this.appPreference.get("_BranchList"))[0]
           .branch_token_id,
-        object_flag_tpd_id: 1,
+        object_flag_tpd_id: 0,
         page_number: 0,
         page_size: 0,
       },

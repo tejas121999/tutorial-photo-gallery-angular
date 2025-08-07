@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { ApiServiceService } from "src/app/services/api-service.service";
 import { AppPreference } from "src/app/shared/app-preference";
 
@@ -19,19 +19,26 @@ export class SupplierComponent implements OnInit {
     private fb: FormBuilder,
     private appPreference: AppPreference,
     private apiService: ApiServiceService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.initializeData();
   }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(async () => {
+      this.branch_token = (
+        await this.appPreference.get("_BranchList")
+      )[0]?.branch_token_id;
+      this.login_token = await this.appPreference.get("_LoginToken");
+    });
     console.log("hello supplier");
   }
 
   async initializeData() {
     this.supplierForm = this.fb.group({
       supplierName: ["", Validators.required],
-      alias: ["", Validators.required],
+      alias: [""],
       billwiseBalance: [""],
       creditPeriod: [""],
       creditLimit: [""],
@@ -42,7 +49,7 @@ export class SupplierComponent implements OnInit {
       country: [""],
       pincode: [""],
       pan: [""],
-      registrationType: ["", Validators.required],
+      registrationType: [""],
       gstin: [""],
       bankDetails: [""],
       openingBalance: [""],
@@ -51,11 +58,6 @@ export class SupplierComponent implements OnInit {
       ifscCode: [""],
       bankName: [""],
     });
-
-    this.branch_token = (
-      await this.appPreference.get("_BranchList")
-    )[0]?.branch_token_id;
-    this.login_token = await this.appPreference.get("_LoginToken");
   }
 
   payload: any = [
@@ -271,20 +273,21 @@ export class SupplierComponent implements OnInit {
 
   addSupplier() {
     this.isLoading = true;
-    if (
-      this.supplierForm.get("registrationType")?.value ||
-      this.supplierForm.get("typeOfTax")?.value
-    ) {
+    if (this.supplierForm.get("supplierName")?.value) {
       this.resetPayloadValuesToNull(this.payload);
       this.createPayload();
       console.log("Payload:", this.payload);
       this.apiService.addSupplierData(this.payload).subscribe(
-        () => {
+        (response: any) => {
           this.isLoading = false;
-          this.supplierForm.reset();
-          this.router.navigate(["/dashboard/master/supplier-list"], {
-            queryParams: { reload: new Date().getTime() },
-          });
+          if (response?._Object !== null) {
+            this.supplierForm.reset();
+            this.router.navigate(["/dashboard/master/supplier-list"], {
+              queryParams: { reload: new Date().getTime() },
+            });
+          } else {
+            console.error("Error adding supplier:", response);
+          }
         },
         (error) => {
           this.isLoading = false;

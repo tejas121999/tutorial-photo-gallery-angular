@@ -36,9 +36,9 @@ export class UnitComponent {
   async initializeData() {
     this.unitForm = this.fb.group({
       unit_type: ["", Validators.required],
-      symbol: ["", Validators.required],
-      unit_quantity_code: ["", Validators.required],
-      decimal_number: ["", Validators.required],
+      symbol: [""],
+      unit_quantity_code: [""],
+      decimal_number: [""],
     });
   }
 
@@ -102,12 +102,7 @@ export class UnitComponent {
 
   addUnit() {
     this.isLoading = true;
-    if (
-      this.unitForm.get("unit_type")?.value &&
-      this.unitForm.get("symbol")?.value &&
-      this.unitForm.get("unit_quantity_code")?.value &&
-      this.unitForm.get("decimal_number")?.value
-    ) {
+    if (this.unitForm.get("unit_type")?.value) {
       this.resetPayloadValuesToNull(this.payload);
       this.createPayload();
       console.log("Payload:", this.payload);

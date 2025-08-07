@@ -38,11 +38,11 @@ export class OtherChargesComponent {
   async initializeData() {
     this.otherChargesForm = this.fb.group({
       name: ["", Validators.required],
-      alias: ["", Validators.required],
-      billwiseBalance: ["", Validators.required],
+      alias: [""],
+      billwiseBalance: [""],
       creditPeriod: [""],
-      affectOnInventory: ["", Validators.required],
-      typeOfLedger: ["", Validators.required],
+      affectOnInventory: [""],
+      typeOfLedger: [""],
       roundingMethod: [""],
       roundingLimit: [""],
       GSTApplicable: [""],
@@ -290,13 +290,7 @@ export class OtherChargesComponent {
 
   createOtherCharges() {
     this.isLoading = true;
-    if (
-      this.otherChargesForm.get("name")?.value &&
-      this.otherChargesForm.get("alias")?.value &&
-      this.otherChargesForm.get("billwiseBalance")?.value &&
-      this.otherChargesForm.get("affectOnInventory")?.value &&
-      this.otherChargesForm.get("typeOfLedger")?.value
-    ) {
+    if (this.otherChargesForm.get("name")?.value) {
       this.resetPayloadValuesToNull(this.payload);
       this.createPayload();
       console.log("Payload:", this.payload);

@@ -38,8 +38,8 @@ export class CostCenterComponent {
   async initializeData() {
     this.costCenterForm = this.fb.group({
       costCenterName: ["", Validators.required],
-      alias: ["", Validators.required],
-      under: ["", Validators.required],
+      alias: [""],
+      under: [""],
       emailId: [""],
       bankDetails: [""],
       crossUsing: [""],
@@ -124,11 +124,7 @@ export class CostCenterComponent {
 
   addCostCenter() {
     this.isLoading = true;
-    if (
-      this.costCenterForm.get("costCenterName")?.value &&
-      this.costCenterForm.get("alias")?.value &&
-      this.costCenterForm.get("under")?.value
-    ) {
+    if (this.costCenterForm.get("costCenterName")?.value) {
       this.resetPayloadValuesToNull(this.payload);
       this.createPayload();
       // Call your API service to add the cost center

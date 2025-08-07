@@ -45,11 +45,11 @@ export class DiscountPaidComponent implements OnInit {
   async initializeData() {
     this.discountForm = this.fb.group({
       name: ["", Validators.required],
-      alias: ["", Validators.required],
-      billwiseBalance: ["", Validators.required],
-      affectOnInventory: ["", Validators.required],
-      typeOfLedger: ["", Validators.required],
-      GSTApplicant: ["", Validators.required],
+      alias: [""],
+      billwiseBalance: [""],
+      affectOnInventory: [""],
+      typeOfLedger: [""],
+      GSTApplicant: [""],
       openingBalance: [""],
       creditPeriod: [""],
       roundingMethod: [""],
@@ -319,14 +319,7 @@ export class DiscountPaidComponent implements OnInit {
 
   createDiscount() {
     this.isLoading = true;
-    if (
-      this.discountForm.get("name")?.value &&
-      this.discountForm.get("alias")?.value &&
-      this.discountForm.get("billwiseBalance")?.value &&
-      this.discountForm.get("affectOnInventory")?.value &&
-      this.discountForm.get("typeOfLedger")?.value &&
-      this.discountForm.get("GSTApplicant")?.value
-    ) {
+    if (this.discountForm.get("name")?.value) {
       this.resetPayloadValuesToNull(this.payload);
       this.createPayload();
       console.log("Payload:", this.payload);

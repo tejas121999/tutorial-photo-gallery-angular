@@ -54,10 +54,10 @@ export class StockItemComponent implements OnInit {
     this.stockItemForm = this.fb.group({
       name: ["", Validators.required],
       under: [""],
-      category: ["", Validators.required],
-      unit: ["", Validators.required],
+      category: [""],
+      unit: [""],
       alternateUnit: [""],
-      gstApplicable: ["", Validators.required],
+      gstApplicable: [""],
       HSNDetails: [""],
       hsn: [""],
       description: [""],
@@ -352,7 +352,8 @@ export class StockItemComponent implements OnInit {
     this.payload[0].item_data[0].statutory_detail_data.hsns_sac_data.classification_create_data.gst_rate_related_detail_data.taxtability_type =
       this.stockItemForm.get("taxabilityType")?.value;
     // Ensure all nested objects exist before setting reporting_unit
-    const gstRateData = this.payload[0].item_data[0].statutory_detail_data.gst_rate_data;
+    const gstRateData =
+      this.payload[0].item_data[0].statutory_detail_data.gst_rate_data;
     if (!gstRateData.other_statutor_detail_data) {
       gstRateData.other_statutor_detail_data = {};
     }
@@ -362,8 +363,12 @@ export class StockItemComponent implements OnInit {
     if (!gstRateData.other_statutor_detail_data.excise_data.excise_data) {
       gstRateData.other_statutor_detail_data.excise_data.excise_data = {};
     }
-    if (!gstRateData.other_statutor_detail_data.excise_data.excise_data.alter_excise_triff_data) {
-      gstRateData.other_statutor_detail_data.excise_data.excise_data.alter_excise_triff_data = {};
+    if (
+      !gstRateData.other_statutor_detail_data.excise_data.excise_data
+        .alter_excise_triff_data
+    ) {
+      gstRateData.other_statutor_detail_data.excise_data.excise_data.alter_excise_triff_data =
+        {};
     }
     gstRateData.other_statutor_detail_data.excise_data.excise_data.alter_excise_triff_data.reporting_unit =
       this.stockItemForm.get("unit")?.value;
@@ -422,7 +427,7 @@ export class StockItemComponent implements OnInit {
       {
         login_token: this.login_token,
         branch_token: this.branch_token,
-        object_flag_tpd_id: 1,
+        object_flag_tpd_id: 0,
         page_number: 0,
         page_size: 0,
       },
@@ -449,7 +454,7 @@ export class StockItemComponent implements OnInit {
       {
         login_token: this.login_token,
         branch_token: this.branch_token,
-        object_flag_tpd_id: 1,
+        object_flag_tpd_id: 0,
         page_number: 0,
         page_size: 0,
       },
@@ -476,7 +481,7 @@ export class StockItemComponent implements OnInit {
       {
         login_token: this.login_token,
         branch_token: this.branch_token,
-        object_flag_tpd_id: 1,
+        object_flag_tpd_id: 0,
         page_number: 0,
         page_size: 0,
       },
@@ -502,10 +507,7 @@ export class StockItemComponent implements OnInit {
   addStockItem() {
     this.isLoading = true;
     if (
-      this.stockItemForm.get("name")?.value &&
-      this.stockItemForm.get("category")?.value &&
-      this.stockItemForm.get("unit")?.value &&
-      this.stockItemForm.get("gstApplicable")?.value
+      this.stockItemForm.get("name")?.value 
     ) {
       this.resetPayloadValuesToNull(this.payload);
       this.createPayload();

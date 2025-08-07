@@ -117,7 +117,7 @@ export class SupplierListComponent implements OnInit {
         login_token: await this.appPreference.get("_LoginToken"),
         branch_token: (await this.appPreference.get("_BranchList"))[0]
           .branch_token_id,
-        object_flag_tpd_id: 1,
+        object_flag_tpd_id: 0,
         page_number: 0,
         page_size: 0,
       },

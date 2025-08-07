@@ -27,10 +27,11 @@
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Name *</ion-label>
                 <ion-input formControlName="name"></ion-input>
+                <div *ngIf="stockItemForm.get('name')?.touched && stockItemForm.get('name')?.invalid"
+                    class="error-message">
+                    Name is required.
+                </div>
             </ion-item>
-            <div *ngIf="stockItemForm.get('name')?.touched && stockItemForm.get('name')?.invalid" class="error-message">
-                Name is required.
-            </div>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Under</ion-label>
                 <ion-select formControlName="under" interface="alert">
@@ -40,27 +41,20 @@
                 </ion-select>
             </ion-item>
             <ion-item class="internal-form-item">
-                <ion-label class="internal-form-label" position="floating">Category *</ion-label>
+                <ion-label class="internal-form-label" position="floating">Category</ion-label>
                 <ion-select formControlName="category" interface="alert">
                     <ion-select-option *ngFor="let item of itemCategoryList" [value]="item.item_category_name">{{
                         item?.item_category_name
                         }}</ion-select-option>
                 </ion-select>
             </ion-item>
-            <div *ngIf="stockItemForm.get('category')?.touched && stockItemForm.get('category')?.invalid"
-                class="error-message">
-                Category is required.
-            </div>
             <ion-item class="internal-form-item">
-                <ion-label class="internal-form-label" position="floating">Unit *</ion-label>
+                <ion-label class="internal-form-label" position="floating">Unit</ion-label>
                 <ion-select formControlName="unit" interface="alert">
                     <ion-select-option *ngFor="let item of unitList" [value]="item.unit_name">{{ item?.unit_name
                         }}</ion-select-option>
                 </ion-select>
             </ion-item>
-            <div *ngIf="stockItemForm.get('unit')?.touched && stockItemForm.get('unit')?.invalid" class="error-message">
-                Unit is required.
-            </div>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Alternate Unit</ion-label>
                 <ion-select formControlName="alternateUnit" interface="alert">
@@ -73,18 +67,14 @@
                 </ion-select>
             </ion-item>
             <ion-item class="internal-form-item">
-                <ion-label class="internal-form-label" position="floating">GST Applicable *</ion-label>
+                <ion-label class="internal-form-label" position="floating">GST Applicable</ion-label>
                 <ion-select formControlName="gstApplicable" interface="alert">
                     <ion-select-option value="Applicable">Applicable</ion-select-option>
                     <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
                 </ion-select>
             </ion-item>
-            <div *ngIf="stockItemForm.get('gstApplicable')?.touched && stockItemForm.get('gstApplicable')?.invalid"
-                class="error-message">
-                GST Applicable is required.
-            </div>
             <ion-item *ngIf="stockItemForm.get('gstApplicable')?.value === 'Applicable'" class="internal-form-item">
-                <ion-label class="internal-form-label" position="floating">HSN Details*</ion-label>
+                <ion-label class="internal-form-label" position="floating">HSN Detail</ion-label>
                 <ion-select formControlName="HSNDetails" interface="alert">
                     <ion-select-option value="As Per Company/Group">As Per Company/Group</ion-select-option>
                     <ion-select-option value="Specify Details">Specify Details</ion-select-option>
@@ -93,7 +83,7 @@
                 </ion-select>
             </ion-item>
             <ion-item *ngIf="stockItemForm.get('HSNDetails')?.value === 'Specify Details'" class="internal-form-item">
-                <ion-label class="internal-form-label" position="floating">HSN *</ion-label>
+                <ion-label class="internal-form-label" position="floating">HSN</ion-label>
                 <ion-input formControlName="hsn"></ion-input>
             </ion-item>
             <ion-item *ngIf="stockItemForm.get('HSNDetails')?.value === 'Specify Details'" class="internal-form-item">
@@ -101,7 +91,7 @@
                 <ion-input formControlName="description"></ion-input>
             </ion-item>
             <ion-item *ngIf="stockItemForm.get('gstApplicable').value === 'Applicable'" class="internal-form-item">
-                <ion-label class="internal-form-label" position="floating">GST Rate Details *</ion-label>
+                <ion-label class="internal-form-label" position="floating">GST Rate Details</ion-label>
                 <ion-select formControlName="gstRateDetails" interface="alert">
                     <ion-select-option value="As Per Company/Group">As Per Company/Group</ion-select-option>
                     <ion-select-option value="Specify Details">Specify Details</ion-select-option>
@@ -111,7 +101,7 @@
             </ion-item>
             <ion-item *ngIf="stockItemForm.get('gstRateDetails')?.value === 'Specify Details'"
                 class="internal-form-item">
-                <ion-label class="internal-form-label" position="floating">Taxability Type *</ion-label>
+                <ion-label class="internal-form-label" position="floating">Taxability Type</ion-label>
                 <ion-select formControlName="taxabilityType" interface="alert">
                     <ion-select-option value="Taxable">Taxable</ion-select-option>
                     <ion-select-option value="Exempted">Exempted</ion-select-option>
@@ -121,11 +111,11 @@
             </ion-item>
             <ion-item *ngIf="stockItemForm.get('gstRateDetails')?.value === 'Specify Details'"
                 class="internal-form-item">
-                <ion-label class="internal-form-label" position="floating">GST Rate *</ion-label>
+                <ion-label class="internal-form-label" position="floating">GST Rate</ion-label>
                 <ion-input formControlName="gstRate"></ion-input>
             </ion-item>
             <ion-item *ngIf="stockItemForm.get('taxabilityType')?.value === 'Taxable'" class="internal-form-item">
-                <ion-label class="internal-form-label" position="floating">Cess Valuation *</ion-label>
+                <ion-label class="internal-form-label" position="floating">Cess Valuation</ion-label>
                 <ion-select formControlName="cessValuation" interface="alert">
                     <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
                     <ion-select-option value="Based on Value">Based on Value</ion-select-option>
@@ -135,22 +125,22 @@
                 </ion-select>
             </ion-item>
             <ion-item *ngIf="stockItemForm.get('cessValuation')?.value === 'Based on Value'" class="internal-form-item">
-                <ion-label class="internal-form-label" position="floating">Cess Rate *</ion-label>
+                <ion-label class="internal-form-label" position="floating">Cess Rate</ion-label>
                 <ion-input formControlName="cessRate"></ion-input>
             </ion-item>
             <ion-item *ngIf="stockItemForm.get('cessValuation')?.value === 'Based on Value and Quantity'"
                 class="internal-form-item">
-                <ion-label class="internal-form-label" position="floating">Cess Rate(Value) *</ion-label>
+                <ion-label class="internal-form-label" position="floating">Cess Rate(Value)</ion-label>
                 <ion-input formControlName="cessRateValue"></ion-input>
             </ion-item>
             <ion-item *ngIf="stockItemForm.get('cessValuation')?.value === 'Based on Value and Quantity'"
                 class="internal-form-item">
-                <ion-label class="internal-form-label" position="floating">Cess Rate(Unit) *</ion-label>
+                <ion-label class="internal-form-label" position="floating">Cess Rate(Unit)</ion-label>
                 <ion-input formControlName="cessRateUnit"></ion-input>
             </ion-item>
             <ion-item *ngIf="stockItemForm.get('gstRateDetails')?.value === 'Specify Details'"
                 class="internal-form-item">
-                <ion-label class="internal-form-label" position="floating">Supply Type *</ion-label>
+                <ion-label class="internal-form-label" position="floating">Supply Type</ion-label>
                 <ion-select formControlName="supplyType" interface="alert">
                     <ion-select-option value="Capital Goods">Capital Goods</ion-select-option>
                     <ion-select-option value="Goods">Goods</ion-select-option>
@@ -158,15 +148,15 @@
                 </ion-select>
             </ion-item>
             <ion-item class="internal-form-item">
-                <ion-label class="internal-form-label" position="floating">Opening Balance *</ion-label>
+                <ion-label class="internal-form-label" position="floating">Opening Balance</ion-label>
                 <ion-input formControlName="openingBalance"></ion-input>
             </ion-item>
             <ion-item class="internal-form-item">
-                <ion-label class="internal-form-label" position="floating">Quantity *</ion-label>
+                <ion-label class="internal-form-label" position="floating">Quantity</ion-label>
                 <ion-input formControlName="quantity"></ion-input>
             </ion-item>
             <ion-item class="internal-form-item">
-                <ion-label class="internal-form-label" position="floating">Rate *</ion-label>
+                <ion-label class="internal-form-label" position="floating">Rate</ion-label>
                 <ion-input formControlName="rate"></ion-input>
             </ion-item>
             <ion-item class="internal-form-item">
@@ -215,19 +205,19 @@
                     </ion-item>
                     <div *ngIf="additionalDetailsForm.get('setComponentsBOM')?.value">
                         <ion-item class="internal-form-item">
-                            <ion-label position="floating" class="internal-form-label">BOM Name *</ion-label>
+                            <ion-label position="floating" class="internal-form-label">BOM Name</ion-label>
                             <ion-input formControlName="bomName"></ion-input>
                         </ion-item>
                         <ion-item class="internal-form-item">
-                            <ion-label position="floating" class="internal-form-label">Component Name *</ion-label>
+                            <ion-label position="floating" class="internal-form-label">Component Name</ion-label>
                             <ion-input formControlName="componentName"></ion-input>
                         </ion-item>
                         <ion-item class="internal-form-item">
-                            <ion-label position="floating" class="internal-form-label">Manufacturing Unit *</ion-label>
+                            <ion-label position="floating" class="internal-form-label">Manufacturing Unit</ion-label>
                             <ion-input formControlName="manufacturingUnit"></ion-input>
                         </ion-item>
                         <ion-item class="internal-form-item">
-                            <ion-label position="floating" class="internal-form-label">Item *</ion-label>
+                            <ion-label position="floating" class="internal-form-label">Item</ion-label>
                             <ion-select formControlName="item" interface="alert">
                                 <ion-select-option value="Capital Goods">Capital Goods</ion-select-option>
                                 <ion-select-option value="Goods">Goods</ion-select-option>
@@ -235,7 +225,7 @@
                             </ion-select>
                         </ion-item>
                         <ion-item class="internal-form-item">
-                            <ion-label position="floating" class="internal-form-label">Godown *</ion-label>
+                            <ion-label position="floating" class="internal-form-label">Godown</ion-label>
                             <ion-select formControlName="godown" interface="alert">
                                 <ion-select-option value="Capital Goods">Capital Goods</ion-select-option>
                                 <ion-select-option value="Goods">Goods</ion-select-option>
@@ -243,7 +233,7 @@
                             </ion-select>
                         </ion-item>
                         <ion-item class="internal-form-item">
-                            <ion-label position="floating" class="internal-form-label">Quantity *</ion-label>
+                            <ion-label position="floating" class="internal-form-label">Quantity</ion-label>
                             <ion-input formControlName="quantity"></ion-input>
                         </ion-item>
                     </div>
@@ -253,7 +243,7 @@
                     </ion-item>
                     <div *ngIf="additionalDetailsForm.get('setMRPDetails')?.value">
                         <ion-item class="internal-form-item">
-                            <ion-label position="floating" class="internal-form-label">MRP *</ion-label>
+                            <ion-label position="floating" class="internal-form-label">MRP</ion-label>
                             <ion-input formControlName="quantityMRP"></ion-input>
                         </ion-item>
                     </div>
@@ -269,7 +259,7 @@
                             <ion-datetime displayFormat="MM/DD/YYYY" formControlName="standardCostDate"></ion-datetime>
                         </ion-item>
                         <ion-item class="internal-form-item">
-                            <ion-label position="floating" class="internal-form-label">Rate *</ion-label>
+                            <ion-label position="floating" class="internal-form-label">Rate</ion-label>
                             <ion-input formControlName="standardCostRate"></ion-input>
                         </ion-item>
                         <ion-label class="standard-cost-label">Standard Selling Price</ion-label>
@@ -279,7 +269,7 @@
                                 formControlName="standardSellingPriceDate"></ion-datetime>
                         </ion-item>
                         <ion-item class="internal-form-item">
-                            <ion-label position="floating" class="internal-form-label">Rate *</ion-label>
+                            <ion-label position="floating" class="internal-form-label">Rate</ion-label>
                             <ion-input formControlName="standardSellingPriceRate"></ion-input>
                         </ion-item>
                     </div>
@@ -289,7 +279,7 @@
                     </ion-item>
                     <div *ngIf="additionalDetailsForm.get('rateOfDuty')?.value">
                         <ion-item class="internal-form-item">
-                            <ion-label class="internal-form-label" position="floating">Rate *</ion-label>
+                            <ion-label class="internal-form-label" position="floating">Rate</ion-label>
                             <ion-input formControlName="rate"></ion-input>
                         </ion-item>
                     </div>

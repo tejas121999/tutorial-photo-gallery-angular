@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { ApiServiceService } from "src/app/services/api-service.service";
 import { AppPreference } from "src/app/shared/app-preference";
 
@@ -19,7 +19,8 @@ export class PurchaseAccountComponent {
     private fb: FormBuilder,
     private appPreference: AppPreference,
     private apiService: ApiServiceService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.initializeData();
   }
@@ -27,9 +28,9 @@ export class PurchaseAccountComponent {
   async initializeData() {
     this.purchaseAccountForm = this.fb.group({
       purchaseName: ["", Validators.required],
-      alias: ["", Validators.required],
-      ledgerType: ["", Validators.required],
-      gstApplicable: ["", Validators.required],
+      alias: [""],
+      ledgerType: [""],
+      gstApplicable: [""],
       HSNDetails: [""],
       hsn: [""],
       gstRateDetails: [""],
@@ -55,7 +56,14 @@ export class PurchaseAccountComponent {
     this.login_token = await this.appPreference.get("_LoginToken");
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.route.queryParams.subscribe(async () => {
+      this.branch_token = (
+        await this.appPreference.get("_BranchList")
+      )[0]?.branch_token_id;
+      this.login_token = await this.appPreference.get("_LoginToken");
+    });
+  }
 
   payload: any = [
     {
@@ -253,6 +261,8 @@ export class PurchaseAccountComponent {
     this.payload[0].tpd_status_data = "text";
     this.payload[0].tpd_status_report_id = 0;
     this.payload[0].tpd_status_report_data = "";
+    this.payload[0].purchase_data[0].rounding_method = "Rounding Method";
+    this.payload[0].purchase_data[0].rounding_limit = "6";
     this.payload[0].purchase_data[0].purchase_name =
       this.purchaseAccountForm.get("purchaseName")?.value;
     this.payload[0].purchase_data[0].alias_name =
@@ -312,14 +322,13 @@ export class PurchaseAccountComponent {
         opening_balance: this.purchaseAccountForm.get("openingBalance")?.value,
       };
     }
+
+    this.payload[0].purchase_data[0].bank_data = {
+      opening_balance: 0,
+    };
   }
   addPurchaseAccount() {
-    if (
-      this.purchaseAccountForm.get("purchaseName")?.value &&
-      this.purchaseAccountForm.get("alias")?.value &&
-      this.purchaseAccountForm.get("ledgerType")?.value &&
-      this.purchaseAccountForm.get("gstApplicable")?.value
-    ) {
+    if (this.purchaseAccountForm.get("purchaseName")?.value) {
       this.resetPayloadValuesToNull(this.payload);
       this.createPayload();
       console.log("Payload:", this.payload);

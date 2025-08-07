@@ -27,12 +27,12 @@ export class StockGroupsComponent {
   async initializeData() {
     this.stockGroupForm = this.fb.group({
       stockGroupName: ["", Validators.required],
-      alias: ["", Validators.required],
-      under: ["", Validators.required],
-      HSNDetails: ["", Validators.required],
+      alias: [""],
+      under: [""],
+      HSNDetails: [""],
       HSN: [""],
       description: [""],
-      GSTDetails: ["", Validators.required],
+      GSTDetails: [""],
       taxabilityType: [""],
       GSTRate: [""],
       cessValuation: [""],
@@ -246,7 +246,7 @@ export class StockGroupsComponent {
   createPayload() {
     this.payload[0].login_token = this.login_token;
     this.payload[0].branch_token = this.branch_token;
-    this.payload[0].object_flag_tpd_id = "1";
+    this.payload[0].object_flag_tpd_id = 1;
     this.payload[0].tpd_status_tally_entity_type = "Test";
     this.payload[0].tpd_status_data = "text";
     this.payload[0].tpd_status_report_id = 0;
@@ -287,17 +287,11 @@ export class StockGroupsComponent {
 
   addStockGroup() {
     this.isLoading = true;
-    if (
-      this.stockGroupForm.get("stockGroupName")?.value &&
-      this.stockGroupForm.get("alias")?.value &&
-      this.stockGroupForm.get("under")?.value &&
-      this.stockGroupForm.get("HSNDetails")?.value &&
-      this.stockGroupForm.get("GSTDetails")?.value
-    ) {
+    if (this.stockGroupForm.get("stockGroupName")?.value) {
       this.resetPayloadValuesToNull(this.payload);
       this.createPayload();
       this.apiService.addItemGroupData(this.payload).subscribe(
-        (response) => {
+        (response: any) => {
           this.isLoading = false;
           this.router.navigate(["/dashboard/master/stock-group-list"], {
             queryParams: { reload: new Date().getTime() },

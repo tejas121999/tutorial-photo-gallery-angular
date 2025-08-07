@@ -37,9 +37,9 @@ export class SalesAccountComponent {
   async initializeData() {
     this.salesAccountForm = this.fb.group({
       salesName: ["", Validators.required],
-      alias: ["", Validators.required],
-      ledgerType: ["", Validators.required],
-      gstApplicable: ["", Validators.required],
+      alias: [""],
+      ledgerType: [""],
+      gstApplicable: [""],
       HSNDetails: [""],
       hsn: [""],
       gstRateDetails: [""],
@@ -300,23 +300,17 @@ export class SalesAccountComponent {
         account_number: this.salesAccountForm.get("accountNumber")?.value,
         ifsc_code: this.salesAccountForm.get("ifscCode")?.value,
         bank_name: this.salesAccountForm.get("bankName")?.value,
-        opening_balance: this.salesAccountForm.get("openingBalance")?.value,
       };
     }
 
     this.payload[0].sales_data[0].openning_balance =
-      this.salesAccountForm.get("openingBalance")?.value;
+      this.salesAccountForm.get("openingBalance")?.value || "0";
   }
 
   addSalesAccount() {
     console.log("Adding Sales Account...");
     this.isLoading = true;
-    if (
-      this.salesAccountForm.get("salesName")?.value &&
-      this.salesAccountForm.get("alias")?.value &&
-      this.salesAccountForm.get("ledgerType")?.value &&
-      this.salesAccountForm.get("gstApplicable")?.value
-    ) {
+    if (this.salesAccountForm.get("salesName")?.value) {
       this.resetPayloadValuesToNull(this.payload);
       this.createPayload();
       console.log("Payload:", this.payload);

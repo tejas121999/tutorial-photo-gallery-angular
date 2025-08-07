@@ -36,8 +36,8 @@ export class StockCategoryComponent {
   async initializeData() {
     this.stockCategoryForm = this.fb.group({
       name: ["", Validators.required],
-      alias: ["", Validators.required],
-      under: ["", Validators.required],
+      alias: [""],
+      under: [""],
     });
   }
 
@@ -98,11 +98,7 @@ export class StockCategoryComponent {
 
   addStockCategory() {
     this.isLoading = true;
-    if (
-      this.stockCategoryForm.get("name")?.value &&
-      this.stockCategoryForm.get("alias")?.value &&
-      this.stockCategoryForm.get("under")?.value
-    ) {
+    if (this.stockCategoryForm.get("name")?.value) {
       this.resetPayloadValuesToNull(this.payload);
       this.createPayload();
       console.log("Payload:", this.payload);

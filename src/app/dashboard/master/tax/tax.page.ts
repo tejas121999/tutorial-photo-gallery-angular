@@ -18,7 +18,7 @@ export class TaxPage implements OnInit {
     private fb: FormBuilder,
     private appPreference: AppPreference,
     private apiService: ApiServiceService,
-    private router: Router,
+    private router: Router
   ) {
     this.initializeData();
   }
@@ -27,7 +27,7 @@ export class TaxPage implements OnInit {
     this.taxForm = this.fb.group({
       taxName: ["", Validators.required],
       alias: [""],
-      typeOfTax: ["", Validators.required],
+      typeOfTax: [""],
       typeTax: [""],
       valuationType: [""],
       percentage: [""],
@@ -209,10 +209,7 @@ export class TaxPage implements OnInit {
 
   addTax() {
     this.isLoading = true;
-    if (
-      this.taxForm.get("taxName").value ||
-      this.taxForm.get("typeOfTax").value
-    ) {
+    if (this.taxForm.get("taxName").value) {
       // Call the API to add the tax
       this.resetPayloadValuesToNull(this.payload);
       this.createPayload();

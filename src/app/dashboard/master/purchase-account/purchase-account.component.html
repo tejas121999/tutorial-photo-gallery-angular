@@ -27,6 +27,10 @@
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Purchase Name *</ion-label>
                 <ion-input formControlName="purchaseName"></ion-input>
+                <div *ngIf="purchaseAccountForm.get('purchaseName')?.invalid && (purchaseAccountForm.get('purchaseName')?.dirty || purchaseAccountForm.get('purchaseName')?.touched)"
+                    class="error-message">
+                    Name is required.
+                </div>
             </ion-item>
             <ion-item class="internal-form-item">
                 <ion-label class="internal-form-label" position="floating">Alias *</ion-label>

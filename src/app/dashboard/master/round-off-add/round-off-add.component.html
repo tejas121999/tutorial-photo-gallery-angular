@@ -33,54 +33,34 @@
         </div>
       </ion-item>
       <ion-item class="internal-form-item">
-        <ion-label class="internal-form-label" position="floating">Alias *</ion-label>
+        <ion-label class="internal-form-label" position="floating">Alias </ion-label>
         <ion-input formControlName="alias"></ion-input>
-        <div
-          *ngIf="roundOffAddForm.get('alias')?.invalid && (roundOffAddForm.get('alias')?.dirty || roundOffAddForm.get('alias')?.touched)"
-          class="error-message">
-          Alias is required.
-        </div>
       </ion-item>
       <ion-item class="internal-form-item">
-        <ion-label class="internal-form-label" position="floating">Billwise Balance *</ion-label>
+        <ion-label class="internal-form-label" position="floating">Billwise Balance </ion-label>
         <ion-select formControlName="billwiseBalance" interface="alert">
           <ion-select-option value="Yes">Yes</ion-select-option>
           <ion-select-option value="No">No</ion-select-option>
         </ion-select>
-        <div
-          *ngIf="roundOffAddForm.get('billwiseBalance')?.invalid && (roundOffAddForm.get('billwiseBalance')?.dirty || roundOffAddForm.get('billwiseBalance')?.touched)"
-          class="error-message">
-          Billwise Balance is required.
-        </div>
       </ion-item>
       <ion-item class="internal-form-item" *ngIf="roundOffAddForm.get('billwiseBalance')?.value === 'Yes'">
         <ion-label class="internal-form-label" position="floating">Credit Period</ion-label>
         <ion-input formControlName="creditPeriod"></ion-input>
       </ion-item>
       <ion-item class="internal-form-item">
-        <ion-label class="internal-form-label" position="floating">Affect On Inventory *</ion-label>
+        <ion-label class="internal-form-label" position="floating">Affect On Inventory </ion-label>
         <ion-select formControlName="affectOnInventory" interface="alert">
           <ion-select-option value="Yes">Yes</ion-select-option>
           <ion-select-option value="No">No</ion-select-option>
         </ion-select>
-        <div
-          *ngIf="roundOffAddForm.get('affectOnInventory')?.invalid && (roundOffAddForm.get('affectOnInventory')?.dirty || roundOffAddForm.get('affectOnInventory')?.touched)"
-          class="error-message">
-          Affect On Inventory is required.
-        </div>
       </ion-item>
       <ion-item class="internal-form-item">
-        <ion-label class="internal-form-label" position="floating">Type Of Ledger *</ion-label>
+        <ion-label class="internal-form-label" position="floating">Type Of Ledger </ion-label>
         <ion-select formControlName="typeOfLedger" interface="alert">
           <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
           <ion-select-option value="Discount">Discount</ion-select-option>
           <ion-select-option value="Invoice Rounding">Invoice Rounding</ion-select-option>
         </ion-select>
-        <div
-          *ngIf="roundOffAddForm.get('typeOfLedger')?.invalid && (roundOffAddForm.get('typeOfLedger')?.dirty || roundOffAddForm.get('typeOfLedger')?.touched)"
-          class="error-message">
-          Type Of Ledger is required.
-        </div>
       </ion-item>
       <ion-item class="internal-form-item" *ngIf="roundOffAddForm.get('typeOfLedger')?.value === 'Invoice Rounding'">
         <ion-label class="internal-form-label" position="floating">Rounding Method</ion-label>
@@ -95,16 +75,11 @@
         <ion-input formControlName="roundingLimit"></ion-input>
       </ion-item>
       <ion-item class="internal-form-item">
-        <ion-label class="internal-form-label" position="floating">GST Applicable *</ion-label>
+        <ion-label class="internal-form-label" position="floating">GST Applicable </ion-label>
         <ion-select formControlName="GSTApplicable" interface="alert">
           <ion-select-option value="Applicable">Applicable</ion-select-option>
           <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
         </ion-select>
-        <div
-          *ngIf="roundOffAddForm.get('GSTApplicable')?.invalid && (roundOffAddForm.get('GSTApplicable')?.dirty || roundOffAddForm.get('GSTApplicable')?.touched)"
-          class="error-message">
-          GST Applicable is required.
-        </div>
       </ion-item>
       <ion-item class="internal-form-item" *ngIf="roundOffAddForm.get('GSTApplicable').value === 'Applicable'">
         <ion-label class="internal-form-label" position="floating">HSN Details</ion-label>

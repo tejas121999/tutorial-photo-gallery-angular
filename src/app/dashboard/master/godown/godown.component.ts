@@ -46,8 +46,8 @@ export class GodownComponent {
   async initializeData() {
     this.godownForm = this.fb.group({
       name: ["", Validators.required],
-      alias: ["", Validators.required],
-      under: ["", Validators.required],
+      alias: [""],
+      under: [""],
       exciseTaxUnit: [""],
       address: [""],
       allowMaterialStorage: [""],
@@ -191,11 +191,7 @@ export class GodownComponent {
 
   createGodown() {
     this.isLoading = true;
-    if (
-      this.godownForm.get("name")?.value &&
-      this.godownForm.get("alias")?.value &&
-      this.godownForm.get("under")?.value
-    ) {
+    if (this.godownForm.get("name")?.value) {
       this.resetPayloadValuesToNull(this.payload);
       this.createPayload();
       console.log("Payload:", this.payload);

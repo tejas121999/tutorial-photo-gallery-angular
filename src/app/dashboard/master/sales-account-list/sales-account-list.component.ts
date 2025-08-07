@@ -108,7 +108,7 @@ export class SalesAccountListComponent implements OnInit {
       {
         login_token: await this.appPreference.get("_LoginToken"),
         branch_token: this.branch_token,
-        object_flag_tpd_id: 1,
+        object_flag_tpd_id: 0,
       },
     ];
     console.log("temp", temp);

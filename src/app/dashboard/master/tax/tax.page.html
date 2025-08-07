@@ -37,7 +37,7 @@
         <ion-input formControlName="alias"></ion-input>
       </ion-item>
       <ion-item class="internal-form-item">
-        <ion-label class="internal-form-label" position="floating">Type of Tax *</ion-label>
+        <ion-label class="internal-form-label" position="floating">Type of Tax</ion-label>
         <ion-select formControlName="typeOfTax" interface="alert">
           <ion-select-option value="Additional Tax">Additional Tax</ion-select-option>
           <ion-select-option value="CENVAT">CENVAT</ion-select-option>
@@ -51,11 +51,6 @@
           <ion-select-option value="TDS">TDS</ion-select-option>
           <ion-select-option value="VAT">VAT</ion-select-option>
         </ion-select>
-        <div
-          *ngIf="taxForm.get('typeOfTax')?.invalid && (taxForm.get('typeOfTax')?.dirty || taxForm.get('typeOfTax')?.touched)"
-          class="error-message">
-          Type of Tax is required.
-        </div>
       </ion-item>
       <!-- if GST will selected -->
       <ion-item class="internal-form-item" *ngIf="taxForm.get('typeOfTax')?.value === 'GST'">

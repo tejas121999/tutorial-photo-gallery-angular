@@ -37,7 +37,7 @@ export class CustommerComponent {
   async initializeData() {
     this.customerForm = this.fb.group({
       customerName: ["", Validators.required],
-      alias: ["", Validators.required],
+      alias: [""],
       billwiseBalance: [""],
       creditPeriod: [""],
       creditDaysCheck: [""],
@@ -49,8 +49,8 @@ export class CustommerComponent {
       country: [""],
       pincode: [""],
       pan: [""],
-      registrationType: ["", Validators.required],
-      gstinUin: ["", Validators.required],
+      registrationType: [""],
+      gstinUin: [""],
       bankDetails: [""],
       openingBalance: [""],
       chequeNumber: [""],
@@ -262,12 +262,7 @@ export class CustommerComponent {
 
   addCustomer() {
     this.isLoading = true;
-    if (
-      this.customerForm.get("customerName")?.value &&
-      this.customerForm.get("alias")?.value &&
-      this.customerForm.get("registrationType")?.value &&
-      this.customerForm.get("gstinUin")?.value
-    ) {
+    if (this.customerForm.get("customerName")?.value) {
       this.resetPayloadValuesToNull(this.payload);
       this.createPayload();
       console.log("Payload:", this.payload);

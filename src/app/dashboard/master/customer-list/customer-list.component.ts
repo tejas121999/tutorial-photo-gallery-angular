@@ -12,6 +12,8 @@ export class CustomerListComponent implements OnInit {
   pageSize = 5;
   currentPage = 1;
   currentDate: string;
+  branch_token: any;
+  login_token: any;
   isLoading: boolean = false;
   showSearchbar = false;
   public data = [];
@@ -28,7 +30,11 @@ export class CustomerListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(() => {
+    this.route.queryParams.subscribe(async () => {
+      this.branch_token = (
+        await this.appPreference.get("_BranchList")
+      )[0]?.branch_token_id;
+      this.login_token = await this.appPreference.get("_LoginToken");
       this.getCustomerList();
     });
     this.getCustomerList();
@@ -99,9 +105,8 @@ export class CustomerListComponent implements OnInit {
     this.isLoading = true;
     var body = [
       {
-        login_token: await this.appPreference.get("_LoginToken"),
-        branch_token: (await this.appPreference.get("_BranchList"))[0]
-          .branch_token_id,
+        login_token: this.login_token,
+        branch_token: this.branch_token,
         object_flag_tpd_id: 1,
         page_number: 0,
         page_size: 0,

@@ -1,8 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from "@angular/router";
 import { ApiServiceService } from "src/app/services/api-service.service";
 import { AppPreference } from "src/app/shared/app-preference";
-
 
 @Component({
   selector: "app-tax-list",
@@ -42,7 +41,6 @@ export class TaxListComponent implements OnInit {
       await this.appPreference.get("_BranchList")
     )[0].branch_token_id;
   }
-
 
   get totalPages() {
     return Math.ceil(this.results.length / this.pageSize) || 1;
@@ -111,7 +109,7 @@ export class TaxListComponent implements OnInit {
       {
         login_token: await this.appPreference.get("_LoginToken"),
         branch_token: this.branch_token,
-        object_flag_tpd_id: 1,
+        object_flag_tpd_id: 0,
       },
     ];
     this.apiService.getTaxList(temp).subscribe(
