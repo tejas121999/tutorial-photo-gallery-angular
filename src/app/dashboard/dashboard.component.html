@@ -244,7 +244,14 @@
     <ion-buttons slot="start">
       <ion-menu-button menu="first"></ion-menu-button>
     </ion-buttons>
-    <!-- <ion-title>Dashboard</ion-title> -->
+    <ion-title>{{ user_name || "user name" }}</ion-title>
+    <ion-buttons slot="end" routerLink="/dashboard/my-companies">
+      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="9" viewBox="0 0 13 9" fill="none">
+        <path
+          d="M1.46243 0.143523L6.25706 5.03103L10.9331 0.0299026L12.406 1.53461L6.29372 8.08614L0.0260568 1.68313L1.46243 0.143523Z"
+          fill="white" />
+      </svg>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content id="main-content">

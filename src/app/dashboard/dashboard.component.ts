@@ -2,7 +2,7 @@ import { Component, ViewChild, AfterViewInit, ElementRef } from "@angular/core";
 import { IonMenu } from "@ionic/angular";
 import { register } from "swiper/element/bundle";
 import { AppPreference } from "../shared/app-preference";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 register();
 @Component({
@@ -14,11 +14,27 @@ export class DashboardComponent implements AfterViewInit {
   showMaster = false;
   showDiscount = false;
   showRoundOff = false;
+  branch_token: any;
+  login_token: any;
+  user_name: string = "";
   @ViewChild(IonMenu) menu: IonMenu;
   @ViewChild("dashboardMain", { static: true }) dashboardMain: ElementRef;
 
-  constructor(private appPreference: AppPreference, private router: Router) {}
+  constructor(
+    private appPreference: AppPreference,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
+  ngOnInit() {
+    this.route.queryParams.subscribe(async () => {
+      this.branch_token = await this.appPreference.get("branch_token_id");
+      this.login_token = await this.appPreference.get("_LoginToken");
+      this.user_name =
+        (await this.appPreference.get("_UserDetail")) || "User name";
+      console.log("branch_token", this.branch_token);
+    });
+  }
   closeMenu() {
     if (this.menu) {
       this.menu.close();

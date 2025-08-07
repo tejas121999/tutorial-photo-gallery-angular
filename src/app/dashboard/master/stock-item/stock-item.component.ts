@@ -39,9 +39,7 @@ export class StockItemComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(async () => {
-      this.branch_token = (
-        await this.appPreference.get("_BranchList")
-      )[0]?.branch_token_id;
+      this.branch_token = await this.appPreference.get("branch_token_id");
       this.login_token = await this.appPreference.get("_LoginToken");
       this.getItemGroupList();
       this.getItemCategoryList();
@@ -506,9 +504,7 @@ export class StockItemComponent implements OnInit {
 
   addStockItem() {
     this.isLoading = true;
-    if (
-      this.stockItemForm.get("name")?.value 
-    ) {
+    if (this.stockItemForm.get("name")?.value) {
       this.resetPayloadValuesToNull(this.payload);
       this.createPayload();
       console.log("Payload to be sent:", this.payload);

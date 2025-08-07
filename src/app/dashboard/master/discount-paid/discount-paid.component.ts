@@ -35,9 +35,7 @@ export class DiscountPaidComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(async () => {
-      this.branch_token = (
-        await this.appPreference.get("_BranchList")
-      )[0]?.branch_token_id;
+      this.branch_token = await this.appPreference.get("branch_token_id");
       this.login_token = await this.appPreference.get("_LoginToken");
     });
   }

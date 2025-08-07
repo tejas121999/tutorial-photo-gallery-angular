@@ -47,6 +47,7 @@ import { DiscountPaidComponent } from "./master/discount-paid/discount-paid.comp
 import { DiscountPaidListComponent } from "./master/discount-paid-list/discount-paid-list.component";
 import { RoundOffAddComponent } from "./master/round-off-add/round-off-add.component";
 import { RoundOffAddListComponent } from "./master/round-off-add-list/round-off-add-list.component";
+import { MyCompaniesComponent } from "./my-companies/my-companies.component";
 
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import { RoundOffAddListComponent } from "./master/round-off-add-list/round-off-
     PurchaseComponent,
     SalesComponent,
     RoundOffAddComponent,
-    RoundOffAddListComponent, // Ensure this component is declared
+    RoundOffAddListComponent,
+    MyCompaniesComponent,
   ],
   imports: [
     CommonModule,

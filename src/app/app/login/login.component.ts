@@ -48,13 +48,19 @@ export class LoginComponent implements OnInit {
           console.log("Login successful, response?._LoginToken", response);
           // Store the authorization token from response
           if (response && response?._AuthoriseToken) {
+            // set auth token in localStorage
             localStorage.setItem("ACCESS_TOKEN", response._AuthoriseToken);
+            // Store user details in AppPreference
             await this.appPreference.set("_LoginToken", response?._LoginToken);
+            // Store user name in AppPreference
             await this.appPreference.set(
-              "ACCESS_TOKEN",
-              response._AuthoriseToken
+              "_UserDetail",
+              response?._UserDetail?.user_name
             );
-
+            await this.appPreference.set(
+              "branch_token_id",
+              response._BranchList[0].branch_token_id
+            );
             var _BranchList: any[] = [];
             response._BranchList.forEach((element: any) => {
               _BranchList.push({

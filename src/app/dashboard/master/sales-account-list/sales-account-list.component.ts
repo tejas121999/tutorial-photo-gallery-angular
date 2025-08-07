@@ -30,9 +30,7 @@ export class SalesAccountListComponent implements OnInit {
     // Set current date in ISO format (YYYY-MM-DD)
     const today = new Date();
     this.currentDate = today.toISOString().split("T")[0];
-    this.branch_token = (
-      await this.appPreference.get("_BranchList")
-    )[0].branch_token_id;
+    this.branch_token = await this.appPreference.get("branch_token_id");
   }
 
   ngOnInit() {

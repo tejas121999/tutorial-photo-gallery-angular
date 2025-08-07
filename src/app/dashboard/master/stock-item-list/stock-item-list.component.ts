@@ -29,9 +29,7 @@ export class StockItemListComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(async () => {
-      this.branch_token = (
-        await this.appPreference.get("_BranchList")
-      )[0]?.branch_token_id;
+      this.branch_token = await this.appPreference.get("branch_token_id");
       this.login_token = await this.appPreference.get("_LoginToken");
       this.getStockItemList();
     });
@@ -103,8 +101,7 @@ export class StockItemListComponent implements OnInit {
     const body = [
       {
         login_token: await this.appPreference.get("_LoginToken"),
-        branch_token: (await this.appPreference.get("_BranchList"))[0]
-          .branch_token_id,
+        branch_token: await this.appPreference.get("branch_token_id"),
         object_flag_tpd_id: 0,
         page_number: 0,
         page_size: 0,
