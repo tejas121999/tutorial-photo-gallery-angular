@@ -124,39 +124,39 @@ ion-tab-bar {
   --background: #083D7C !important;
 }
 
-// Custom style for Home tab button
-ion-tab-bar ion-tab-button.tab-home {
-  width: 50px; // reduced by 48px from 98px
-  height: 34px;
-  flex-shrink: 0;
-  border-radius: 20.5px;
-  background: #FFF !important;
-}
+// // Custom style for Home tab button
+// ion-tab-bar ion-tab-button.tab-home {
+//   width: 45px; // reduced by 48px from 98px
+//   height: 34px;
+//   flex-shrink: 0;
+//   border-radius: 20.5px;
+//   background: #FFF !important;
+// }
 
-// Custom style for Home tab label
-ion-tab-bar ion-tab-button.tab-home ion-label {
-  color: #000 !important;
-  font-family: "Open Sans", sans-serif !important;
-  font-size: 14px !important;
-  font-style: normal !important;
-  font-weight: 600 !important;
-  line-height: normal !important;
-}
+// // // Custom style for Home tab label
+// ion-tab-bar ion-tab-button.tab-home ion-label {
+//   color: #000 !important;
+//   font-family: "Open Sans", sans-serif !important;
+//   font-size: 13px !important;
+//   font-style: normal !important;
+//   font-weight: 600 !important;
+//   line-height: normal !important;
+// }
 
-ion-tab-bar ion-tab-button.tab-home .tab-home-flex {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
+// ion-tab-bar ion-tab-button.tab-home .tab-home-flex {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   height: 100%;
+// }
 
-ion-tab-bar ion-tab-button.tab-home .tab-home-svg {
-  display: flex;
-  align-items: center;
-  margin-right: 8px;
-}
+// ion-tab-bar ion-tab-button.tab-home .tab-home-svg {
+//   display: flex;
+//   align-items: center;
+//   margin-right: 8px;
+// }
 
-ion-tab-bar ion-tab-button[tab="settings 2"] div {
+ion-tab-bar ion-tab-button[tab="add-entry"] div {
   width: 22px;
   height: 20.204px;
   flex-shrink: 0;
@@ -168,7 +168,7 @@ ion-tab-bar ion-tab-button[tab="settings 2"] div {
   justify-content: center;
 }
 
-ion-tab-bar ion-tab-button[tab="settings 2"] div span {
+ion-tab-bar ion-tab-button[tab="add-entry"] div span {
   width: 14.769px;
   height: 33.231px;
   flex-shrink: 0;

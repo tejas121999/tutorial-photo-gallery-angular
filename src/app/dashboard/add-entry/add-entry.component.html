@@ -1,0 +1,381 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <!-- Start slot: Back button and title, or searchbar -->
+    <ng-container *ngIf="!showSearchbar; else searchbarTpl">
+      <ion-buttons slot="start" routerLink="/dashboard/home">
+        <ion-button fill="clear" style="margin-right: 4px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M14.25 9H3.75" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M9 14.25L3.75 9L9 3.75" stroke="white" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </ion-button>
+      </ion-buttons>
+      <ion-title>Add Data Entry</ion-title>
+      <ion-buttons slot="end" style="color: white;">
+        <ion-button (click)="showSearchbar = true">
+          <ion-icon name="search-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ng-container>
+    <ng-template #searchbarTpl>
+      <ion-searchbar slot="start" (ionInput)="handleInput($event)" autofocus="true" placeholder="Search...">
+      </ion-searchbar>
+      <ion-buttons slot="end">
+        <ion-button (click)="showSearchbar = false">
+          <ion-icon name="close-circle"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ng-template>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid class="tabs-ion-grid">
+    <ion-row>
+      <ion-col class="tabs-ion-col">
+        <span class="span-text-wrapper" (click)="selectedTab = 'sales'">
+          <span class="span-text">Sales</span>
+          <span class="underline" [class.active]="selectedTab === 'sales'"></span>
+        </span>
+      </ion-col>
+      <ion-col class="tabs-ion-col">
+        <span class="span-text-wrapper" (click)="selectedTab = 'purchase'">
+          <span class="span-text">Purchase</span>
+          <span class="underline" [class.active]="selectedTab === 'purchase'"></span>
+        </span>
+      </ion-col>
+      <ion-col class="tabs-ion-col">
+        <span class="span-text-wrapper" (click)="selectedTab = 'journal'">
+          <span class="span-text">Journal</span>
+          <span class="underline" [class.active]="selectedTab === 'journal'"></span>
+        </span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-list *ngIf="selectedTab === 'sales'">
+    <ion-item class="report-list-item">
+      <ion-grid>
+        <ion-row class="reporting-list-row">
+          <ion-col size="2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+              <g clip-path="url(#clip0_499_3183)">
+                <path
+                  d="M20.5833 5.41667V20.5833H5.41667V5.41667H20.5833ZM20.5833 3.25H5.41667C4.225 3.25 3.25 4.225 3.25 5.41667V20.5833C3.25 21.775 4.225 22.75 5.41667 22.75H20.5833C21.775 22.75 22.75 21.775 22.75 20.5833V5.41667C22.75 4.225 21.775 3.25 20.5833 3.25Z"
+                  fill="#003366" />
+                <path
+                  d="M15.1663 18.4167H7.58301V16.25H15.1663V18.4167ZM18.4163 14.0833H7.58301V11.9167H18.4163V14.0833ZM18.4163 9.74999H7.58301V7.58333H18.4163V9.74999Z"
+                  fill="#003366" />
+              </g>
+              <defs>
+                <clipPath id="clip0_499_3183">
+                  <rect width="26" height="26" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+          </ion-col>
+          <ion-col size="9">
+            <span class="upper-span">Sales Invoice</span>
+            <br />
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item class="report-list-item">
+      <ion-grid>
+        <ion-row class="reporting-list-row">
+          <ion-col size="2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+              <path
+                d="M18.3864 21.5523L22.0849 17.8804L20.9674 16.7629L18.3864 19.2906L17.3487 18.2529L16.2312 19.3971L18.3864 21.5523ZM6.38629 9.5788H19.158V7.45018H6.38629V9.5788ZM19.158 24.4792C17.6857 24.4792 16.4309 23.9605 15.3936 22.9231C14.3555 21.8851 13.8365 20.6299 13.8365 19.1576C13.8365 17.6853 14.3555 16.4301 15.3936 15.3921C16.4309 14.3547 17.6857 13.836 19.158 13.836C20.6303 13.836 21.8855 14.3547 22.9236 15.3921C23.9609 16.4301 24.4796 17.6853 24.4796 19.1576C24.4796 20.6299 23.9609 21.8851 22.9236 22.9231C21.8855 23.9605 20.6303 24.4792 19.158 24.4792ZM3.19336 23.4149V5.32156C3.19336 4.73618 3.40161 4.23489 3.81811 3.81768C4.23532 3.40118 4.73661 3.19293 5.32198 3.19293H20.2223C20.8077 3.19293 21.309 3.40118 21.7262 3.81768C22.1427 4.23489 22.351 4.73618 22.351 5.32156V12.4258C22.0139 12.2662 21.668 12.1332 21.3133 12.0267C20.9585 11.9203 20.5949 11.8405 20.2223 11.7872V5.32156H5.32198V20.2751H11.7877C11.8764 20.825 12.014 21.3483 12.2006 21.845C12.3865 22.3417 12.6303 22.8117 12.9318 23.2552L12.7722 23.4149L11.1757 21.8184L9.57923 23.4149L7.98276 21.8184L6.38629 23.4149L4.78983 21.8184L3.19336 23.4149ZM6.38629 18.0933H11.7877C11.8409 17.7208 11.9207 17.3571 12.0271 17.0024C12.1336 16.6476 12.2666 16.3017 12.4263 15.9647H6.38629V18.0933ZM6.38629 13.836H13.9429C14.617 13.1797 15.4017 12.6607 16.2972 12.279C17.1933 11.8979 18.1469 11.7074 19.158 11.7074H6.38629V13.836Z"
+                fill="#FF5722" />
+            </svg>
+          </ion-col>
+          <ion-col size="9">
+            <span class="upper-span">Sales Order</span>
+            <br />
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item class="report-list-item">
+      <ion-grid>
+        <ion-row class="reporting-list-row">
+          <ion-col size="2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="22" viewBox="0 0 17 22" fill="none">
+              <g clip-path="url(#clip0_499_3197)">
+                <path
+                  d="M4.04793 15.5123H12.6828V17.7687H4.04793V15.5123ZM4.04793 10.9995H12.6828V13.2559H4.04793V10.9995ZM10.5241 -0.282593H1.8892C0.701897 -0.282593 -0.269531 0.732792 -0.269531 1.97382V20.0251C-0.269531 21.2661 0.691103 22.2815 1.87841 22.2815H14.8416C16.0289 22.2815 17.0003 21.2661 17.0003 20.0251V6.48664L10.5241 -0.282593ZM14.8416 20.0251H1.8892V1.97382H9.44475V7.61484H14.8416V20.0251Z"
+                  fill="#F44336" />
+              </g>
+              <defs>
+                <clipPath id="clip0_499_3197">
+                  <rect width="17" height="22" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+          </ion-col>
+          <ion-col size="9">
+            <span class="upper-span">Credit Note</span>
+            <br />
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item class="report-list-item">
+      <ion-grid>
+        <ion-row class="reporting-list-row">
+          <ion-col size="2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+              <g clip-path="url(#clip0_499_3203)">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M21.667 3.25H4.33366C3.14199 3.25 2.16699 4.225 2.16699 5.41667V20.5833C2.16699 21.775 3.14199 22.75 4.33366 22.75H21.667C22.8587 22.75 23.8337 21.775 23.8337 20.5833V5.41667C23.8337 4.225 22.8587 3.25 21.667 3.25ZM21.667 20.5833H4.33366V5.41667H21.667V20.5833Z"
+                  fill="#00796B" />
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M21.0275 11.2883L19.4892 9.75L16.055 13.1842L14.5275 11.6458L13 13.1733L16.055 16.25L21.0275 11.2883Z"
+                  fill="#00796B" />
+                <path d="M10.8337 7.58334H5.41699V9.75001H10.8337V7.58334Z" fill="#00796B" />
+                <path d="M10.8337 11.9167H5.41699V14.0833H10.8337V11.9167Z" fill="#00796B" />
+                <path d="M10.8337 16.25H5.41699V18.4167H10.8337V16.25Z" fill="#00796B" />
+              </g>
+              <defs>
+                <clipPath id="clip0_499_3203">
+                  <rect width="26" height="26" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+          </ion-col>
+          <ion-col size="9">
+            <span class="upper-span">Create Quotation</span>
+            <br />
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item class="report-list-item">
+      <ion-grid>
+        <ion-row class="reporting-list-row">
+          <ion-col size="2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+              <g clip-path="url(#clip0_499_3216)">
+                <path
+                  d="M21.125 3.79169L19.5 2.16669L17.875 3.79169L16.25 2.16669L14.625 3.79169L13 2.16669L11.375 3.79169L9.75 2.16669L8.125 3.79169L6.5 2.16669V17.3334H3.25V20.5834C3.25 22.3817 4.70167 23.8334 6.5 23.8334H19.5C21.2983 23.8334 22.75 22.3817 22.75 20.5834V2.16669L21.125 3.79169ZM16.25 21.6667H6.5C5.90417 21.6667 5.41667 21.1792 5.41667 20.5834V19.5H16.25V21.6667ZM20.5833 20.5834C20.5833 21.1792 20.0958 21.6667 19.5 21.6667C18.9042 21.6667 18.4167 21.1792 18.4167 20.5834V17.3334H8.66667V5.41669H20.5833V20.5834Z"
+                  fill="#388E3C" />
+                <path d="M16.25 7.58337H9.75V9.75004H16.25V7.58337Z" fill="#388E3C" />
+                <path d="M19.4997 7.58337H17.333V9.75004H19.4997V7.58337Z" fill="#388E3C" />
+                <path d="M16.25 10.8334H9.75V13H16.25V10.8334Z" fill="#388E3C" />
+                <path d="M19.4997 10.8334H17.333V13H19.4997V10.8334Z" fill="#388E3C" />
+              </g>
+              <defs>
+                <clipPath id="clip0_499_3216">
+                  <rect width="26" height="26" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+          </ion-col>
+          <ion-col size="9">
+            <span class="upper-span">Receipt</span>
+            <br />
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item class="report-list-item">
+      <ion-grid>
+        <ion-row class="reporting-list-row">
+          <ion-col size="2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="none">
+              <g clip-path="url(#clip0_499_3227)">
+                <path
+                  d="M18.6875 3.35419L17.25 1.91669L15.8125 3.35419L14.375 1.91669L12.9375 3.35419L11.5 1.91669L10.0625 3.35419L8.625 1.91669L7.1875 3.35419L5.75 1.91669L4.3125 3.35419L2.875 1.91669V21.0834L4.3125 19.6459L5.75 21.0834L7.1875 19.6459L8.625 21.0834L10.0625 19.6459L11.5 21.0834L12.9375 19.6459L14.375 21.0834L15.8125 19.6459L17.25 21.0834L18.6875 19.6459L20.125 21.0834V1.91669L18.6875 3.35419ZM18.2083 18.2946H4.79167V4.70544H18.2083V18.2946ZM5.75 14.375H17.25V16.2917H5.75V14.375ZM5.75 10.5417H17.25V12.4584H5.75V10.5417ZM5.75 6.70835H17.25V8.62502H5.75V6.70835Z"
+                  fill="#FF9800" />
+              </g>
+              <defs>
+                <clipPath id="clip0_499_3227">
+                  <rect width="23" height="23" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+          </ion-col>
+          <ion-col size="9">
+            <span class="upper-span">Delivery Chalan</span>
+            <br />
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+  <ion-list *ngIf="selectedTab === 'purchase'">
+    <ion-item class="report-list-item">
+      <ion-grid>
+        <ion-row class="reporting-list-row">
+          <ion-col size="2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+              <g clip-path="url(#clip0_499_3255)">
+                <path
+                  d="M20.5833 5.41667V20.5833H5.41667V5.41667H20.5833ZM20.5833 3.25H5.41667C4.225 3.25 3.25 4.225 3.25 5.41667V20.5833C3.25 21.775 4.225 22.75 5.41667 22.75H20.5833C21.775 22.75 22.75 21.775 22.75 20.5833V5.41667C22.75 4.225 21.775 3.25 20.5833 3.25Z"
+                  fill="#003366" />
+                <path
+                  d="M15.1663 18.4167H7.58301V16.25H15.1663V18.4167ZM18.4163 14.0833H7.58301V11.9167H18.4163V14.0833ZM18.4163 9.74999H7.58301V7.58333H18.4163V9.74999Z"
+                  fill="#003366" />
+              </g>
+              <defs>
+                <clipPath id="clip0_499_3255">
+                  <rect width="26" height="26" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+          </ion-col>
+          <ion-col size="9">
+            <span class="upper-span">Purchase Voucher</span>
+            <br />
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item class="report-list-item">
+      <ion-grid>
+        <ion-row class="reporting-list-row">
+          <ion-col size="2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+              <g clip-path="url(#clip0_499_3264)">
+                <path
+                  d="M20.5833 5.41667V15.1667H15.1667V20.5833H5.41667V5.41667H20.5833ZM20.5833 3.25H5.41667C4.225 3.25 3.25 4.225 3.25 5.41667V20.5833C3.25 21.775 4.225 22.75 5.41667 22.75H16.25L22.75 16.25V5.41667C22.75 4.225 21.775 3.25 20.5833 3.25ZM13 15.1667H7.58333V13H13V15.1667ZM18.4167 10.8333H7.58333V8.66667H18.4167V10.8333Z"
+                  fill="#FF5722" />
+              </g>
+              <defs>
+                <clipPath id="clip0_499_3264">
+                  <rect width="26" height="26" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+          </ion-col>
+          <ion-col size="9">
+            <span class="upper-span">Purchase Order Voucher</span>
+            <br />
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item class="report-list-item">
+      <ion-grid>
+        <ion-row class="reporting-list-row">
+          <ion-col size="2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="22" viewBox="0 0 17 22" fill="none">
+              <g clip-path="url(#clip0_499_3270)">
+                <path
+                  d="M4.04793 15.5123H12.6828V17.7687H4.04793V15.5123ZM4.04793 10.9995H12.6828V13.2559H4.04793V10.9995ZM10.5241 -0.282593H1.8892C0.701897 -0.282593 -0.269531 0.732792 -0.269531 1.97382V20.0251C-0.269531 21.2661 0.691103 22.2815 1.87841 22.2815H14.8416C16.0289 22.2815 17.0003 21.2661 17.0003 20.0251V6.48664L10.5241 -0.282593ZM14.8416 20.0251H1.8892V1.97382H9.44475V7.61484H14.8416V20.0251Z"
+                  fill="#F44336" />
+              </g>
+              <defs>
+                <clipPath id="clip0_499_3270">
+                  <rect width="17" height="22" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+          </ion-col>
+          <ion-col size="9">
+            <span class="upper-span">Debit Note</span>
+            <br />
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item class="report-list-item">
+      <ion-grid>
+        <ion-row class="reporting-list-row">
+          <ion-col size="2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+              <g clip-path="url(#clip0_499_3203)">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M21.667 3.25H4.33366C3.14199 3.25 2.16699 4.225 2.16699 5.41667V20.5833C2.16699 21.775 3.14199 22.75 4.33366 22.75H21.667C22.8587 22.75 23.8337 21.775 23.8337 20.5833V5.41667C23.8337 4.225 22.8587 3.25 21.667 3.25ZM21.667 20.5833H4.33366V5.41667H21.667V20.5833Z"
+                  fill="#00796B" />
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M21.0275 11.2883L19.4892 9.75L16.055 13.1842L14.5275 11.6458L13 13.1733L16.055 16.25L21.0275 11.2883Z"
+                  fill="#00796B" />
+                <path d="M10.8337 7.58334H5.41699V9.75001H10.8337V7.58334Z" fill="#00796B" />
+                <path d="M10.8337 11.9167H5.41699V14.0833H10.8337V11.9167Z" fill="#00796B" />
+                <path d="M10.8337 16.25H5.41699V18.4167H10.8337V16.25Z" fill="#00796B" />
+              </g>
+              <defs>
+                <clipPath id="clip0_499_3203">
+                  <rect width="26" height="26" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+          </ion-col>
+          <ion-col size="9">
+            <span class="upper-span">Create Quotation</span>
+            <br />
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item class="report-list-item">
+      <ion-grid>
+        <ion-row class="reporting-list-row">
+          <ion-col size="2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <g clip-path="url(#clip0_499_3276)">
+                <path
+                  d="M22.167 16.3333V6.99999C22.167 5.71666 21.117 4.66666 19.8337 4.66666H3.50033C2.21699 4.66666 1.16699 5.71666 1.16699 6.99999V16.3333C1.16699 17.6167 2.21699 18.6667 3.50033 18.6667H19.8337C21.117 18.6667 22.167 17.6167 22.167 16.3333ZM19.8337 16.3333H3.50033V6.99999H19.8337V16.3333ZM11.667 8.16666C9.73033 8.16666 8.16699 9.72999 8.16699 11.6667C8.16699 13.6033 9.73033 15.1667 11.667 15.1667C13.6037 15.1667 15.167 13.6033 15.167 11.6667C15.167 9.72999 13.6037 8.16666 11.667 8.16666ZM26.8337 8.16666V21C26.8337 22.2833 25.7837 23.3333 24.5003 23.3333H4.66699V21H24.5003V8.16666H26.8337Z"
+                  fill="#388E3C" />
+              </g>
+              <defs>
+                <clipPath id="clip0_499_3276">
+                  <rect width="28" height="28" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+          </ion-col>
+          <ion-col size="9">
+            <span class="upper-span">Payment</span>
+            <br />
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+  <ion-list *ngIf="selectedTab === 'journal'">
+    <ion-item class="report-list-item">
+      <ion-grid>
+        <ion-row class="reporting-list-row">
+          <ion-col size="2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="22" viewBox="0 0 18 22" fill="none">
+              <path
+                d="M15.4997 0.166672H2.49967C1.30801 0.166672 0.333008 1.14167 0.333008 2.33334V19.6667C0.333008 20.8583 1.30801 21.8333 2.49967 21.8333H15.4997C16.6913 21.8333 17.6663 20.8583 17.6663 19.6667V2.33334C17.6663 1.14167 16.6913 0.166672 15.4997 0.166672ZM5.74967 2.33334H7.91634V7.75L6.83301 6.9375L5.74967 7.75V2.33334ZM15.4997 19.6667H2.49967V2.33334H3.58301V12.0833L6.83301 9.64584L10.083 12.0833V2.33334H15.4997V19.6667Z"
+                fill="#003366" />
+            </svg>
+          </ion-col>
+          <ion-col size="9">
+            <span class="upper-span">Create Journal</span>
+            <br />
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item class="report-list-item">
+      <ion-grid>
+        <ion-row class="reporting-list-row">
+          <ion-col size="2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+              <g clip-path="url(#clip0_499_3311)">
+                <path
+                  d="M4.33366 6.49999H2.16699V21.6667C2.16699 22.8583 3.14199 23.8333 4.33366 23.8333H19.5003V21.6667H4.33366V6.49999ZM21.667 2.16666H8.66699C7.47533 2.16666 6.50033 3.14166 6.50033 4.33332V17.3333C6.50033 18.525 7.47533 19.5 8.66699 19.5H21.667C22.8587 19.5 23.8337 18.525 23.8337 17.3333V4.33332C23.8337 3.14166 22.8587 2.16666 21.667 2.16666ZM21.667 17.3333H8.66699V4.33332H21.667V17.3333ZM10.8337 9.74999H19.5003V11.9167H10.8337V9.74999ZM10.8337 13H15.167V15.1667H10.8337V13ZM10.8337 6.49999H19.5003V8.66666H10.8337V6.49999Z"
+                  fill="#FF5722" />
+              </g>
+              <defs>
+                <clipPath id="clip0_499_3311">
+                  <rect width="26" height="26" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+          </ion-col>
+          <ion-col size="9">
+            <span class="upper-span">Create Contra</span>
+            <br />
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+</ion-content>

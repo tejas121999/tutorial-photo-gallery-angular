@@ -43,6 +43,9 @@ import { DiscountPaidListComponent } from "./master/discount-paid-list/discount-
 import { RoundOffAddComponent } from "./master/round-off-add/round-off-add.component";
 import { RoundOffAddListComponent } from "./master/round-off-add-list/round-off-add-list.component";
 import { MyCompaniesComponent } from "./my-companies/my-companies.component";
+import { StockComponent } from "./stock/stock.component";
+import { ReportComponent } from "./report/report.component";
+import { AddEntryComponent } from "./add-entry/add-entry.component";
 
 const routes: Routes = [
   {
@@ -228,6 +231,9 @@ const routes: Routes = [
     path: "my-companies",
     component: MyCompaniesComponent,
   },
+  { path: "stock", component: StockComponent },
+  { path: "report", component: ReportComponent },
+  { path: "add-entry", component: AddEntryComponent },
   { path: "sales", component: SalesComponent },
   { path: "purchase", component: PurchaseComponent },
   { path: "payment", component: PaymentComponent },

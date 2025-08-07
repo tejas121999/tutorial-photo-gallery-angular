@@ -1,0 +1,101 @@
+ion-list {
+    padding: 12px;
+}
+
+.tabs-ion-grid {
+    background: #083d7c !important;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0; // Remove default padding
+}
+
+.tabs-ion-col {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100%; // Ensure full height
+    padding: 0; // Remove default padding
+
+    ion-button {
+        background: transparent !important;
+        --background: transparent !important;
+        box-shadow: none !important;
+    }
+}
+
+.span-text-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    box-sizing: border-box;
+    height: 100%;
+    padding: 0; // Remove extra padding
+    margin: 0; // Remove extra margin
+}
+
+.span-text {
+    display: block;
+    width: 100%;
+    background: transparent !important;
+    color: #FFF;
+    font-family: "Open Sans";
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    pointer-events: none;
+    margin: 0; // Remove extra margin
+    padding: 0; // Remove extra padding
+}
+
+.underline {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: transparent;
+    transition: background 0.2s;
+    margin: 4px 0 0 0; // Add space between text and underline
+}
+
+.underline.active {
+    background: #fff;
+}
+
+.report-list-item {
+    --padding-start: 8px;
+    --padding-end: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    background: #FFF;
+    box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.25);
+}
+
+.reporting-list-row {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.upper-span {
+    color: #010101;
+    font-family: "Open Sans";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.lower-text-span {
+    color: #707070;
+    font-family: "Open Sans";
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}

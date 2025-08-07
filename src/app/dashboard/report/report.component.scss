@@ -1,0 +1,37 @@
+ion-list {
+    padding: 12px;
+}
+
+.reporting-list-row {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.report-list-item {
+    --padding-start: 8px;
+    --padding-end: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    background: #FFF;
+    box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.25);
+}
+
+.upper-span {
+    color: #010101;
+    font-family: "Open Sans";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.lower-text-span {
+    color: #707070;
+    font-family: "Open Sans";
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
