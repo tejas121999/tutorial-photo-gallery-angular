@@ -12,6 +12,11 @@ const routes: Routes = [
       import("./dashboard/dashboard.module").then((m) => m.DashboardModule),
     canActivate: [AuthGuard],
   },
+  {
+    path: "dashboard/home",
+    redirectTo: "dashboard",
+    pathMatch: "full",
+  },
   // master route removed
 ];
 @NgModule({

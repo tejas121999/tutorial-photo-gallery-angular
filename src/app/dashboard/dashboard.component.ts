@@ -3,6 +3,8 @@ import { IonMenu } from "@ionic/angular";
 import { register } from "swiper/element/bundle";
 import { AppPreference } from "../shared/app-preference";
 import { ActivatedRoute, Router } from "@angular/router";
+import { App } from "@capacitor/app";
+import { Platform } from "@ionic/angular";
 
 register();
 @Component({
@@ -23,7 +25,8 @@ export class DashboardComponent implements AfterViewInit {
   constructor(
     private appPreference: AppPreference,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private platform: Platform
   ) {}
 
   ngOnInit() {
@@ -33,6 +36,7 @@ export class DashboardComponent implements AfterViewInit {
       this.user_name =
         (await this.appPreference.get("_UserDetail")) || "User name";
       console.log("branch_token", this.branch_token);
+      this.closeMenu();
     });
   }
   closeMenu() {
