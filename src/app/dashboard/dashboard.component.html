@@ -12,7 +12,7 @@
   </ion-header>
   <ion-content class="menu-content">
     <ion-list>
-      <ion-item routerLink="/dashboard/home" routerDirection="root" (click)="closeMenu()" lines="none"
+  <ion-item routerLink="/dashboard/home" (click)="closeMenu()" lines="none"
         class="sidebar-menu-item">
         <span class="sidebar-icon-wrapper">
           <img src="assets/Vector.svg" alt="Home" class="sidebar-icon" />
@@ -29,84 +29,84 @@
           <ion-icon slot="end" name="chevron-up-outline" *ngIf="showMaster"></ion-icon>
         </ion-item>
         <div *ngIf="showMaster" class="master-margin">
-          <ion-item routerLink="/dashboard/master/tax-list" routerDirection="root" (click)="closeMenu()" lines="none"
+          <ion-item routerLink="/dashboard/master/tax-list" (click)="closeMenu()" lines="none"
             class="sidebar-menu-item master-margin">
             <span class="sidebar-icon-wrapper">
               <img src="assets/tax.png" alt="Tax" class="sidebar-icon" />
             </span>
             Tax
           </ion-item>
-          <ion-item routerLink="/dashboard/master/supplier-list" routerDirection="root" (click)="closeMenu()"
+          <ion-item routerLink="/dashboard/master/supplier-list" (click)="closeMenu()"
             lines="none" class="sidebar-menu-item master-margin">
             <span class="sidebar-icon-wrapper">
               <img src="assets/truck.svg" alt="Supplier" class="sidebar-icon" />
             </span>
             Supplier
           </ion-item>
-          <ion-item routerLink="/dashboard/master/customer-list" routerDirection="root" (click)="closeMenu()"
+          <ion-item routerLink="/dashboard/master/customer-list" (click)="closeMenu()"
             lines="none" class="sidebar-menu-item master-margin">
             <span class="sidebar-icon-wrapper">
               <img src="assets/user.svg" alt="Customer" class="sidebar-icon" />
             </span>
             Customer
           </ion-item>
-          <ion-item routerLink="/dashboard/master/sales-account-list" routerDirection="root" (click)="closeMenu()"
+          <ion-item routerLink="/dashboard/master/sales-account-list" (click)="closeMenu()"
             lines="none" class="sidebar-menu-item master-margin">
             <span class="sidebar-icon-wrapper">
               <img src="assets/Leaderboard.svg" alt="Sales Account" class="sidebar-icon" />
             </span>
             Sales Account
           </ion-item>
-          <ion-item routerLink="/dashboard/master/purchase-account-list" routerDirection="root" (click)="closeMenu()"
+          <ion-item routerLink="/dashboard/master/purchase-account-list" (click)="closeMenu()"
             lines="none" class="sidebar-menu-item master-margin">
             <span class="sidebar-icon-wrapper">
               <img src="assets/Shopping cart checkout.svg" alt="Purchase Account" class="sidebar-icon" />
             </span>
             Purchase Account
           </ion-item>
-          <ion-item routerLink="/dashboard/master/stock-item-list" routerDirection="root" (click)="closeMenu()"
+          <ion-item routerLink="/dashboard/master/stock-item-list" (click)="closeMenu()"
             lines="none" class="sidebar-menu-item master-margin">
             <span class="sidebar-icon-wrapper">
               <img src="assets/package.svg" alt="Stock Item" class="sidebar-icon" />
             </span>
             Stock Item
           </ion-item>
-          <ion-item routerLink="/dashboard/master/stock-group-list" routerDirection="root" (click)="closeMenu()"
+          <ion-item routerLink="/dashboard/master/stock-group-list" (click)="closeMenu()"
             lines="none" class="sidebar-menu-item master-margin">
             <span class="sidebar-icon-wrapper">
               <img src="assets/fluent-mdl2_engineering-group.svg" alt="Stock Groups" class="sidebar-icon" />
             </span>
             Stock Groups
           </ion-item>
-          <ion-item routerLink="/dashboard/master/stock-category-list" routerDirection="root" (click)="closeMenu()"
+          <ion-item routerLink="/dashboard/master/stock-category-list" (click)="closeMenu()"
             lines="none" class="sidebar-menu-item master-margin">
             <span class="sidebar-icon-wrapper">
               <img src="assets/layers.svg" alt="Stock Category" class="sidebar-icon" />
             </span>
             Stock Category
           </ion-item>
-          <ion-item routerLink="/dashboard/master/unit-list" routerDirection="root" (click)="closeMenu()" lines="none"
+          <ion-item routerLink="/dashboard/master/unit-list" (click)="closeMenu()" lines="none"
             class="sidebar-menu-item master-margin">
             <span class="sidebar-icon-wrapper">
               <img src="assets/lucide_weight.svg" alt="Unit" class="sidebar-icon" />
             </span>
             Unit
           </ion-item>
-          <ion-item routerLink="/dashboard/master/voucher-type-list" routerDirection="root" (click)="closeMenu()"
+          <ion-item routerLink="/dashboard/master/voucher-type-list" (click)="closeMenu()"
             lines="none" class="sidebar-menu-item master-margin">
             <span class="sidebar-icon-wrapper">
               <img src="assets/file-text.svg" alt="Voucher Type" class="sidebar-icon" />
             </span>
             Voucher Type
           </ion-item>
-          <ion-item routerLink="/dashboard/master/discount-list" routerDirection="root" (click)="closeMenu()"
+          <ion-item routerLink="/dashboard/master/discount-list" (click)="closeMenu()"
             lines="none" class="sidebar-menu-item master-margin">
             <span class="sidebar-icon-wrapper">
               <img src="assets/mdi_discount-outline.svg" alt="Discount" class="sidebar-icon" />
             </span>
             Discount Received
           </ion-item>
-          <ion-item routerLink="/dashboard/master/discount-paid-list" routerDirection="root" (click)="closeMenu()"
+          <ion-item routerLink="/dashboard/master/discount-paid-list" (click)="closeMenu()"
             lines="none" class="sidebar-menu-item master-margin">
             <span class="sidebar-icon-wrapper">
               <img src="assets/mdi_discount-outline.svg" alt="Discount" class="sidebar-icon" />
@@ -114,21 +114,21 @@
             Discount Paid
           </ion-item>
           <!-- </div> -->
-          <ion-item routerLink="/dashboard/master/other-charges-list" routerDirection="root" (click)="closeMenu()"
+          <ion-item routerLink="/dashboard/master/other-charges-list" (click)="closeMenu()"
             lines="none" class="sidebar-menu-item master-margin">
             <span class="sidebar-icon-wrapper">
               <span class="sidebar-rupee">₹</span>
             </span>
             Other Charges
           </ion-item>
-          <ion-item routerLink="/dashboard/master/round-off-add-list" routerDirection="root" (click)="closeMenu()"
+          <ion-item routerLink="/dashboard/master/round-off-add-list" (click)="closeMenu()"
             lines="none" class="sidebar-menu-item master-margin">
             <span class="sidebar-icon-wrapper">
               <img src="assets/refresh-cw.svg" alt="Round Off" class="sidebar-icon" />
             </span>
             Round Off Add
           </ion-item>
-          <ion-item routerLink="/dashboard/master/round-off-list" routerDirection="root" (click)="closeMenu()"
+          <ion-item routerLink="/dashboard/master/round-off-list" (click)="closeMenu()"
             lines="none" class="sidebar-menu-item master-margin">
             <span class="sidebar-icon-wrapper">
               <img src="assets/refresh-cw.svg" alt="Round Off" class="sidebar-icon" />
@@ -136,21 +136,21 @@
             Round Off Less
           </ion-item>
           <!-- </div> -->
-          <ion-item routerLink="/dashboard/master/cost-center-list" routerDirection="root" (click)="closeMenu()"
+          <ion-item routerLink="/dashboard/master/cost-center-list" (click)="closeMenu()"
             lines="none" class="sidebar-menu-item master-margin">
             <span class="sidebar-icon-wrapper">
               <img src="assets/material-symbols_money-bag-outline.svg" alt="Cost Center" class="sidebar-icon" />
             </span>
             Cost Center
           </ion-item>
-          <ion-item routerLink="/dashboard/master/godown-list" routerDirection="root" (click)="closeMenu()" lines="none"
+          <ion-item routerLink="/dashboard/master/godown-list" (click)="closeMenu()" lines="none"
             class="sidebar-menu-item master-margin">
             <span class="sidebar-icon-wrapper">
               <img src="assets/lsicon_marketplace-outline.svg" alt="Godown" class="sidebar-icon" />
             </span>
             Godown
           </ion-item>
-          <ion-item routerLink="/dashboard/master/miscellaneous-list" routerDirection="root" (click)="closeMenu()"
+          <ion-item routerLink="/dashboard/master/miscellaneous-list" (click)="closeMenu()"
             lines="none" class="sidebar-menu-item master-margin">
             <span class="sidebar-icon-wrapper">
               <img src="assets/codex_menu.svg" alt="Miscellaneous" class="sidebar-icon" />
@@ -159,28 +159,28 @@
           </ion-item>
         </div>
       </ion-item-group>
-      <ion-item routerLink="/dashboard/payment" routerDirection="root" (click)="closeMenu()" lines="none"
+  <ion-item routerLink="/dashboard/payment" (click)="closeMenu()" lines="none"
         class="sidebar-menu-item">
         <span class="sidebar-icon-wrapper">
           <img src="assets/Frame 1366.svg" alt="Payment" class="sidebar-icon" />
         </span>
         Payment
       </ion-item>
-      <ion-item routerLink="/dashboard/transaction" routerDirection="root" (click)="closeMenu()" lines="none"
+  <ion-item routerLink="/dashboard/transaction" (click)="closeMenu()" lines="none"
         class="sidebar-menu-item">
         <span class="sidebar-icon-wrapper">
           <img src="assets/proicons_arrow-swap.svg" alt="Transaction" class="sidebar-icon" />
         </span>
         Transaction
       </ion-item>
-      <ion-item routerLink="/dashboard/settings" routerDirection="root" (click)="closeMenu()" lines="none"
+  <ion-item routerLink="/dashboard/settings" (click)="closeMenu()" lines="none"
         class="sidebar-menu-item">
         <span class="sidebar-icon-wrapper">
           <img src="assets/Vector2.svg" alt="Settings" class="sidebar-icon" />
         </span>
         Settings
       </ion-item>
-      <ion-item routerLink="/dashboard/rate-us" routerDirection="root" (click)="closeMenu()" lines="none"
+  <ion-item routerLink="/dashboard/rate-us" (click)="closeMenu()" lines="none"
         class="sidebar-menu-item">
         <span class="sidebar-icon-wrapper">
           <img src="assets/Vector3.svg" alt="Rate Us" class="sidebar-icon" />
@@ -199,14 +199,14 @@
         </span>
         Feedback
       </ion-item>
-      <ion-item routerLink="/dashboard/configuration" routerDirection="root" (click)="closeMenu()" lines="none"
+  <ion-item routerLink="/dashboard/configuration" (click)="closeMenu()" lines="none"
         class="sidebar-menu-item">
         <span class="sidebar-icon-wrapper">
           <img src="assets/Vector2.svg" alt="Configuration" class="sidebar-icon" />
         </span>
         Configuration
       </ion-item>
-      <ion-item routerLink="/" routerDirection="root" (click)="onLogout()" lines="none" class="sidebar-menu-item">
+  <ion-item routerLink="/" (click)="onLogout()" lines="none" class="sidebar-menu-item">
         <span class="sidebar-icon-wrapper">
           <img src="assets/Vector4.svg" alt="Logout" class="sidebar-icon" />
         </span>

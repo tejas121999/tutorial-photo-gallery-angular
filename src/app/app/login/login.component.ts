@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit {
               });
             });
             await this.appPreference.set("_BranchList", _BranchList);
-            this.router.navigate(["/dashboard"]);
+            this.router.navigate(["/dashboard/home"]);
             await this.appPreference.presentToast(
               "Login Successfully!",
               2000,

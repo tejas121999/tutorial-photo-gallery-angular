@@ -1,12 +1,20 @@
-import { Component } from '@angular/core';
-import { SplashScreen } from '@capacitor/splash-screen'
+import { Component } from "@angular/core";
+import { SplashScreen } from "@capacitor/splash-screen";
+import { Platform } from "@ionic/angular";
+import { Router } from "@angular/router";
 @Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss']
+  selector: "app-root",
+  templateUrl: "app.component.html",
+  styleUrls: ["app.component.scss"],
 })
 export class AppComponent {
-  constructor() {
+  constructor(private platform: Platform, private router: Router) {
+    this.platform.ready().then(() => {
+      this.platform.backButton.subscribeWithPriority(9999, () => {
+        alert("Back button pressed");
+        this.router.navigate(["/dashboard/home"], { replaceUrl: true }); // navigates and clears history
+      });
+    });
     this.initializeApp();
   }
 
