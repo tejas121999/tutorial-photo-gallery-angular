@@ -12,6 +12,7 @@ import { PrivacyPolicyComponent } from "./privacy-policy/privacy-policy.componen
 import { TermsOfUseComponent } from "./terms-of-use/terms-of-use.component";
 import { HelpAndSupportComponent } from "./help-and-support/help-and-support.component";
 import { AboutUsComponent } from "./about-us/about-us.component";
+import { SetPinComponent } from "./set-pin/set-pin.component";
 
 const routes: Routes = [
   { path: "connect-to-tally", component: ConnectToTallyComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: "terms-of-use", component: TermsOfUseComponent },
   { path: "help-and-support", component: HelpAndSupportComponent },
   { path: "about-us", component: AboutUsComponent },
+  { path: "set-pin", component: SetPinComponent },
   {
     path: "",
     component: SettingsComponent,

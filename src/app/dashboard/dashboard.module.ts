@@ -51,6 +51,7 @@ import { MyCompaniesComponent } from "./my-companies/my-companies.component";
 import { StockComponent } from "./stock/stock.component";
 import { ReportComponent } from "./report/report.component";
 import { AddEntryComponent } from "./add-entry/add-entry.component";
+import { SetPinComponent } from "./settings/set-pin/set-pin.component";
 
 @NgModule({
   declarations: [
@@ -100,6 +101,7 @@ import { AddEntryComponent } from "./add-entry/add-entry.component";
     StockComponent,
     ReportComponent,
     AddEntryComponent,
+    SetPinComponent,
   ],
   imports: [
     CommonModule,

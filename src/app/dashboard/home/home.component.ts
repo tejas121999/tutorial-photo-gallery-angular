@@ -12,9 +12,15 @@ export class HomeComponent implements OnInit {
   constructor(private appPreference: AppPreference) {}
 
   async ngOnInit() {
-    console.log("ACCESS_TOKEN", await this.appPreference.get("ACCESS_TOKEN"));
+    console.log(
+      "await this.appPreference.getPin()",
+      await this.appPreference.getPin()
+    );
     console.log("_LoginToken", await this.appPreference.get("_LoginToken"));
     console.log("_BranchList", await this.appPreference.get("_BranchList"));
-    console.log("branch_token", await this.appPreference.get("branch_token_id"));
+    console.log(
+      "branch_token",
+      await this.appPreference.get("branch_token_id")
+    );
   }
 }

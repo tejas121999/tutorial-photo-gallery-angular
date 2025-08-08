@@ -1,15 +1,13 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouteReuseStrategy } from '@angular/router';
-
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-
-
-import { IonicStorageModule } from '@ionic/storage-angular';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { LoginModule } from './app/login.module';
-
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { RouteReuseStrategy } from "@angular/router";
+import { IonicModule, IonicRouteStrategy } from "@ionic/angular";
+import { IonicStorageModule } from "@ionic/storage-angular";
+import { Drivers } from "@ionic/storage";
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { LoginModule } from "./app/login.module";
+import * as CordovaSQLiteDriver from "localforage-cordovasqlitedriver";
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,11 +15,17 @@ import { LoginModule } from './app/login.module';
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    IonicStorageModule.forRoot(),
+    IonicStorageModule.forRoot({
+      driverOrder: [
+        CordovaSQLiteDriver._driver,
+        Drivers.IndexedDB,
+        Drivers.LocalStorage,
+      ],
+    }),
     AppRoutingModule,
-    LoginModule
+    LoginModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

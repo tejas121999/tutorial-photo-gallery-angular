@@ -1,11 +1,14 @@
 import { Storage } from "@ionic/storage-angular";
 import { ToastController } from "@ionic/angular";
 import { Inject, Injectable } from "@angular/core";
+import * as CordovaSQLiteDriver from "localforage-cordovasqlitedriver";
 
 export enum PreferenceKeys {
   ACCESS_TOKEN = "ACCESS_TOKEN",
   PROFILE_INFO = "PROFILE_INFO",
   PERMISSION = "PERMISSION",
+  PIN = "PIN",
+  PIN_ENABLED = "PIN_ENABLED",
 }
 
 @Injectable({
@@ -24,6 +27,7 @@ export class AppPreference {
 
   async init() {
     // If using, define driver order here (SQLite first)
+    await this.storage.defineDriver(CordovaSQLiteDriver);
     const storage = await this.storage.create();
     this._storage = storage;
   }
@@ -65,6 +69,29 @@ export class AppPreference {
   async isUserLoggedIn() {
     const accessToken: any = this.getAccessToken();
     return accessToken && accessToken != "";
+  }
+
+  async isPinEnabled(): Promise<boolean> {
+    return await this.get(PreferenceKeys.PIN_ENABLED) === true;
+  }
+
+  async getPin(): Promise<string | null> {
+    return await this.get(PreferenceKeys.PIN);
+  }
+
+  async verifyPin(enteredPin: string): Promise<boolean> {
+    const storedPin = await this.getPin();
+    return storedPin === enteredPin;
+  }
+
+  async enablePin(pin: string): Promise<void> {
+    await this.set(PreferenceKeys.PIN, pin);
+    await this.set(PreferenceKeys.PIN_ENABLED, true);
+  }
+
+  async disablePin(): Promise<void> {
+    await this.remove(PreferenceKeys.PIN);
+    await this.set(PreferenceKeys.PIN_ENABLED, false);
   }
 
   async presentToast(

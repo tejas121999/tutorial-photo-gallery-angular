@@ -14,4 +14,10 @@ export class SettingsComponent {
     // If not, a child route is active
     return this.router.url !== '/dashboard/settings';
   }
+
+  onSetPinToggle(event: any) {
+    if (event.detail.checked) {
+      this.router.navigate(['/dashboard/settings/set-pin']);
+    }
+  }
 }

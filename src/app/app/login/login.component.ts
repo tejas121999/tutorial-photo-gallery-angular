@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { AppPreference } from "../../shared/app-preference";
+import { AppPreference, PreferenceKeys } from "../../shared/app-preference";
 import { ApiServiceService } from "../../services/api-service.service";
 import { HttpClientModule } from "@angular/common/http";
 
@@ -27,8 +27,11 @@ export class LoginComponent implements OnInit {
       ]),
     });
   }
-
-  ngOnInit() {}
+  pin: any;
+  async ngOnInit() {
+    this.pin = await this.appPreference.getPin();
+    console.log("Login component initialized", this.pin);
+  }
 
   toggleShowPassword() {
     this.showPassword = !this.showPassword;

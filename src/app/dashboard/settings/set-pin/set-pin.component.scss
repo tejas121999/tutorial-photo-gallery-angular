@@ -1,0 +1,93 @@
+.pin-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    padding-bottom: 280px;
+    /* Add space for the keypad */
+}
+
+.pin-title {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: var(--ion-color-dark);
+}
+
+.pin-input-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.pin-input {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #034099;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 20px;
+    background: white;
+    color: #034099;
+}
+
+.keypad {
+    width: 316px; /* 92px * 3 buttons + 20px * 2 gaps */
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.keypad-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+    gap: 20px;
+    width: 100%;
+}
+
+.keypad-button {
+    width: 92px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 24px;
+    background: #FFF;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    border: none;
+    font-size: 24px;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:active {
+        background-color: #e0e0e0;
+    }
+
+    &.submit {
+        padding: 0;
+        width: 92px;
+        height: 48px;
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+        background: transparent;
+
+        svg {
+            width: 92px;
+            height: 48px;
+        }
+    }
+
+    &.delete {
+        font-size: 20px;
+        background: #FFDCE1;
+    }
+
+    ion-icon {
+        font-size: 24px;
+    }
+}
