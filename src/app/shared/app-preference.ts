@@ -23,9 +23,19 @@ export class AppPreference {
   }
 
   private _storage: Storage | null = null;
+  private initPromise: Promise<void> | null = null;
   isLoggedIn: boolean = false;
 
-  async init() {
+  init(): Promise<void> {
+    if (this.initPromise) {
+      return this.initPromise;
+    }
+
+    this.initPromise = this._init();
+    return this.initPromise;
+  }
+
+  private async _init(): Promise<void> {
     // If using, define driver order here (SQLite first)
     await this.storage.defineDriver(CordovaSQLiteDriver);
     const storage = await this.storage.create();
@@ -33,18 +43,22 @@ export class AppPreference {
   }
 
   async set(key: string, value: any) {
+    await this.init();
     await this._storage?.set(key, value);
   }
 
   async get(key: string) {
+    await this.init();
     return await this._storage?.get(key);
   }
 
   async remove(key: string) {
+    await this.init();
     await this._storage?.remove(key);
   }
 
   async clear() {
+    await this.init();
     await this._storage?.clear();
   }
 

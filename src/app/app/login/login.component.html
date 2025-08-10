@@ -1,8 +1,8 @@
 <ion-content class="login-content">
   <img src="assets/banner-img2.png" alt="Login Banner" class="login-banner-responsive" />
   <div class="login-center-wrapper">
-    <form [formGroup]="loginForm" class="login-form" (ngSubmit)="onLogin()">
-      <h2 class="login-title">Welcome back! {{ pin }}</h2>
+    <form [formGroup]="loginForm" class="login-form" (ngSubmit)="onLogin()" *ngIf="!usePin">
+      <h2 class="login-title">Welcome back!</h2>
       <div class="login-field">
         <label>Email</label>
         <input type="email" formControlName="user_name" autocomplete="username"
@@ -28,6 +28,7 @@
         <a class="forgot-password" href="#">forgot Password?</a>
       </div>
       <button type="submit" class="login-btn" [disabled]="loginForm.invalid">LOGIN</button>
+      <button type="button" class="login-btn" [disabled]="!confirmPin" (click)="usePin = true">Use Pin</button>
       <div class="or-divider">
         <span>OR</span>
       </div>
@@ -40,5 +41,48 @@
       </div>
       <div class="signup-link-space"></div>
     </form>
+
+    <!-- use pin view -->
+    <div class="pin-container" *ngIf="usePin">
+      <div class="pin-title">Enter 4-digit PIN</div>
+      <div class="pin-input-container">
+        <input type="password" maxlength="1" class="pin-input" readonly [value]="enteredPin[0]">
+        <input type="password" maxlength="1" class="pin-input" readonly [value]="enteredPin[1]">
+        <input type="password" maxlength="1" class="pin-input" readonly [value]="enteredPin[2]">
+        <input type="password" maxlength="1" class="pin-input" readonly [value]="enteredPin[3]">
+      </div>
+
+      <div class="keypad">
+        <div class="keypad-row">
+          <button class="keypad-button" (click)="addNumber('1')">1</button>
+          <button class="keypad-button" (click)="addNumber('2')">2</button>
+          <button class="keypad-button" (click)="addNumber('3')">3</button>
+        </div>
+        <div class="keypad-row">
+          <button class="keypad-button" (click)="addNumber('4')">4</button>
+          <button class="keypad-button" (click)="addNumber('5')">5</button>
+          <button class="keypad-button" (click)="addNumber('6')">6</button>
+        </div>
+        <div class="keypad-row">
+          <button class="keypad-button" (click)="addNumber('7')">7</button>
+          <button class="keypad-button" (click)="addNumber('8')">8</button>
+          <button class="keypad-button" (click)="addNumber('9')">9</button>
+        </div>
+        <div class="keypad-row">
+          <button class="keypad-button delete" (click)="deleteNumber()">
+            <ion-icon name="backspace-outline"></ion-icon>
+          </button>
+          <button class="keypad-button" (click)="addNumber('0')">0</button>
+          <button class="keypad-button submit" (click)="submitPin()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="92" height="48" viewBox="0 0 92 48" fill="none">
+              <rect width="92" height="48" rx="24" fill="#034099" />
+              <path
+                d="M41.6224 26.8065L33.6556 18.9587L31 21.5746L41.6224 32.0385L64.3846 9.616L61.729 7L41.6224 26.8065Z"
+                fill="white" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </ion-content>

@@ -58,7 +58,9 @@ export class DashboardComponent implements AfterViewInit {
 
   async onLogout() {
     try {
-      await this.appPreference.clear();
+      await this.appPreference.remove("_LoginToken");
+      await this.appPreference.remove("branch_token_id");
+      localStorage.removeItem("ACCESS_TOKEN");
       await this.appPreference.presentToast("Logged out successfully!");
       this.router.navigate(["/"]);
     } catch (error) {

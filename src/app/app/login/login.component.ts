@@ -13,6 +13,10 @@ import { HttpClientModule } from "@angular/common/http";
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   showPassword: boolean = false;
+  pin: string[] = ["", "", "", ""];
+  usePin: boolean = false;
+  confirmPin: any;
+  enteredPin: any;
 
   constructor(
     private router: Router,
@@ -27,10 +31,59 @@ export class LoginComponent implements OnInit {
       ]),
     });
   }
-  pin: any;
+
   async ngOnInit() {
-    this.pin = await this.appPreference.getPin();
-    console.log("Login component initialized", this.pin);
+    this.confirmPin = await this.appPreference.getPin();
+    console.log(
+      "Login component initialized",
+      await this.appPreference.getPin()
+    );
+  }
+
+  addNumber(num: string) {
+    const emptyIndex = this.pin.findIndex((digit) => digit === "");
+    if (emptyIndex !== -1) {
+      this.pin[emptyIndex] = num;
+
+      // If PIN is complete (all 4 digits entered)
+      if (emptyIndex === 3) {
+        // Here you can add logic to save the PIN
+        console.log("PIN complete:", this.pin.join(""));
+      }
+    }
+  }
+
+  deleteNumber() {
+    const lastFilledIndex = this.pin
+      .map((digit) => digit !== "")
+      .lastIndexOf(true);
+    if (lastFilledIndex !== -1) {
+      this.pin[lastFilledIndex] = "";
+    }
+  }
+
+  async submitPin() {
+    if (this.pin.every((digit) => digit !== "")) {
+      const finalPin = this.pin.join("");
+      try {
+        await this.appPreference.enablePin(finalPin);
+        await this.appPreference.presentToast(
+          "PIN set successfully",
+          2000,
+          "bottom",
+          "success"
+        );
+        this.router.navigate(["/dashboard/settings"]);
+      } catch (error) {
+        console.error("Error saving PIN:", error);
+        await this.appPreference.presentToast(
+          "Failed to set PIN",
+          2000,
+          "bottom",
+          "danger"
+        );
+      }
+    }
   }
 
   toggleShowPassword() {
