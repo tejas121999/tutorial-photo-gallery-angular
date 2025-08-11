@@ -237,7 +237,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  // padding: 20px;
   padding-bottom: 280px;
   /* Add space for the keypad */
 }
@@ -245,7 +245,7 @@
 .pin-title {
   font-size: 18px;
   margin-bottom: 20px;
-  color: var(--ion-color-dark);
+  color: #034099;
 }
 
 .pin-input-container {
@@ -269,7 +269,7 @@
   width: 316px;
   /* 92px * 3 buttons + 20px * 2 gaps */
   position: fixed;
-  bottom: 20px;
+  bottom: 50px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;

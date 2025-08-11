@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   pin: string[] = ["", "", "", ""];
   usePin: boolean = false;
   confirmPin: any;
-  enteredPin: any;
+  enteredPin: string[] = ["", "", "", ""];
 
   constructor(
     private router: Router,
@@ -34,46 +34,105 @@ export class LoginComponent implements OnInit {
 
   async ngOnInit() {
     this.confirmPin = await this.appPreference.getPin();
-    console.log(
-      "Login component initialized",
-      await this.appPreference.getPin()
-    );
   }
 
   addNumber(num: string) {
-    const emptyIndex = this.pin.findIndex((digit) => digit === "");
+    const emptyIndex = this.enteredPin.findIndex((digit) => digit === "");
     if (emptyIndex !== -1) {
-      this.pin[emptyIndex] = num;
+      this.enteredPin[emptyIndex] = num;
 
       // If PIN is complete (all 4 digits entered)
       if (emptyIndex === 3) {
         // Here you can add logic to save the PIN
-        console.log("PIN complete:", this.pin.join(""));
+        console.log("PIN complete:", this.enteredPin.join(""));
       }
     }
   }
 
   deleteNumber() {
-    const lastFilledIndex = this.pin
+    const lastFilledIndex = this.enteredPin
       .map((digit) => digit !== "")
       .lastIndexOf(true);
     if (lastFilledIndex !== -1) {
-      this.pin[lastFilledIndex] = "";
+      this.enteredPin[lastFilledIndex] = "";
     }
   }
 
   async submitPin() {
-    if (this.pin.every((digit) => digit !== "")) {
-      const finalPin = this.pin.join("");
+    if (this.enteredPin.every((digit) => digit !== "")) {
+      const finalPin = this.enteredPin.join("");
       try {
-        await this.appPreference.enablePin(finalPin);
-        await this.appPreference.presentToast(
-          "PIN set successfully",
-          2000,
-          "bottom",
-          "success"
-        );
-        this.router.navigate(["/dashboard/settings"]);
+        await this.appPreference
+          .verifyPin(finalPin)
+          .then(async (response: any) => {
+            if (response) {
+              var temp = [await this.appPreference.get("loginDetails")];
+              this.apiService.userLogin(temp).subscribe(
+                async (response: any) => {
+                  // Store the authorization token from response
+                  if (response && response?._AuthoriseToken) {
+                    // set auth token in localStorage
+                    localStorage.setItem(
+                      "ACCESS_TOKEN",
+                      response._AuthoriseToken
+                    );
+                    await this.appPreference.set(
+                      "_LoginToken",
+                      response?._LoginToken
+                    );
+                    // Store user name in AppPreference
+                    await this.appPreference.set(
+                      "_UserDetail",
+                      response?._UserDetail?.user_name
+                    );
+                    await this.appPreference.set(
+                      "branch_token_id",
+                      response._BranchList[0].branch_token_id
+                    );
+                    var _BranchList: any[] = [];
+                    response._BranchList.forEach((element: any) => {
+                      _BranchList.push({
+                        branch_code: element.branch_code,
+                        branch_name: element.branch_name,
+                        branch_token_id: element.branch_token_id,
+                      });
+                    });
+                    await this.appPreference.set("_BranchList", _BranchList);
+                    this.router.navigate(["/dashboard/home"]);
+                    await this.appPreference.presentToast(
+                      "Login Successfully!",
+                      2000,
+                      "bottom",
+                      "success"
+                    );
+                  } else {
+                    await this.appPreference.presentToast(
+                      response?._Message,
+                      2000,
+                      "bottom",
+                      "danger"
+                    );
+                  }
+                },
+                (error) => {
+                  console.error("Login failed", error);
+                  this.appPreference.presentToast(
+                    "Login failed. Please try again.",
+                    2000,
+                    "bottom",
+                    "danger"
+                  );
+                }
+              );
+            } else {
+              await this.appPreference.presentToast(
+                "PIN verification failed.",
+                2000,
+                "bottom",
+                "danger"
+              );
+            }
+          });
       } catch (error) {
         console.error("Error saving PIN:", error);
         await this.appPreference.presentToast(
@@ -107,6 +166,12 @@ export class LoginComponent implements OnInit {
             // set auth token in localStorage
             localStorage.setItem("ACCESS_TOKEN", response._AuthoriseToken);
             // Store user details in AppPreference
+            var loginDetails = {
+              user_name: this.loginForm.get("user_name")?.value,
+              user_password: this.loginForm.get("user_password")?.value,
+              user_desk_url: "temp",
+            };
+            await this.appPreference.set("loginDetails", loginDetails);
             await this.appPreference.set("_LoginToken", response?._LoginToken);
             // Store user name in AppPreference
             await this.appPreference.set(
