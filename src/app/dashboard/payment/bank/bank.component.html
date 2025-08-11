@@ -20,3 +20,104 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
+<ion-content>
+  <form [formGroup]="bankForm">
+    <div class="centered-form-wrapper">
+      <!-- Example fields, adapt as needed for cost center -->
+      <ion-item class="internal-form-item"
+        [class.invalid-item]="bankForm.get('name')?.invalid && (bankForm.get('name')?.touched || bankForm.get('name')?.dirty)">
+        <ion-label class="internal-form-label" position="floating">Name *</ion-label>
+        <ion-input formControlName="name"></ion-input>
+      </ion-item>
+
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Alias</ion-label>
+        <ion-input formControlName="alias"></ion-input>
+      </ion-item>
+
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Account Holder Name</ion-label>
+        <ion-input formControlName="acHolderName"></ion-input>
+      </ion-item>
+
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">IFSC Code</ion-label>
+        <ion-input formControlName="ifscCode"></ion-input>
+      </ion-item>
+
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">SWIFT Code</ion-label>
+        <ion-input formControlName="swiftCode"></ion-input>
+      </ion-item>
+
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Bank Name</ion-label>
+        <ion-input formControlName="bankName"></ion-input>
+      </ion-item>
+
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Branch</ion-label>
+        <ion-input formControlName="branch"></ion-input>
+      </ion-item>
+
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">BSR Code</ion-label>
+        <ion-input formControlName="bsrCode"></ion-input>
+      </ion-item>
+
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Contact Name</ion-label>
+        <ion-input formControlName="contactName"></ion-input>
+      </ion-item>
+
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Mobile</ion-label>
+        <ion-input formControlName="mobile"></ion-input>
+      </ion-item>
+
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Address</ion-label>
+        <ion-input formControlName="address"></ion-input>
+      </ion-item>
+
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">State</ion-label>
+        <ion-input formControlName="state"></ion-input>
+      </ion-item>
+
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Country</ion-label>
+        <ion-input formControlName="country"></ion-input>
+      </ion-item>
+
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Pin code</ion-label>
+        <ion-input formControlName="pincode"></ion-input>
+      </ion-item>
+
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">GSTIN/UIN</ion-label>
+        <ion-input formControlName="gstin"></ion-input>
+      </ion-item>
+
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Service Tax Details</ion-label>
+        <ion-select formControlName="serviceTaxDetails" interface="alert">
+          <ion-select-option value="Yes">Yes</ion-select-option>
+          <ion-select-option value="No">No</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item class="internal-form-item" *ngIf="bankForm.get('serviceTaxDetails').value === 'Yes'">
+        <ion-label class="internal-form-label" position="floating">Service Tax Number</ion-label>
+        <ion-input formControlName="serviceTaxNo"></ion-input>
+      </ion-item>
+
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Opening Balance</ion-label>
+        <ion-input formControlName="openingBalance"></ion-input>
+      </ion-item>
+    </div>
+  </form>
+</ion-content>

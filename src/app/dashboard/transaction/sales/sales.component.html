@@ -19,3 +19,16 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
+<ion-content>
+  <form [formGroup]="salesForm">
+    <div class="centered-form-wrapper">
+      <!-- Example fields, adapt as needed for cost center -->
+      <ion-item class="internal-form-item"
+        [class.invalid-item]="salesForm.get('name')?.invalid && (salesForm.get('name')?.touched || salesForm.get('name')?.dirty)">
+        <ion-label class="internal-form-label" position="floating">Name *</ion-label>
+        <ion-input formControlName="name"></ion-input>
+      </ion-item>
+    </div>
+  </form>
+</ion-content>

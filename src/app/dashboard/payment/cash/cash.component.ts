@@ -1,14 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import { ApiServiceService } from "src/app/services/api-service.service";
+import { AppPreference } from "src/app/shared/app-preference";
 
 @Component({
-  selector: 'app-cash',
-  templateUrl: './cash.component.html',
-  styleUrls: ['./cash.component.scss'],
+  selector: "app-cash",
+  templateUrl: "./cash.component.html",
+  styleUrls: ["./cash.component.scss"],
 })
 export class CashComponent implements OnInit {
+  cashForm: FormGroup;
+  branch_token: any;
+  login_token: any;
+  isLoading: boolean = false;
 
-  constructor() { }
+  constructor(
+    private fb: FormBuilder,
+    private appPreference: AppPreference,
+    private apiService: ApiServiceService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.initializeData();
+  }
 
-  ngOnInit() {}
+  async initializeData() {
+    this.cashForm = this.fb.group({
+      name: ["", Validators.required],
+    });
+  }
 
+  ngOnInit() {
+    this.route.queryParams.subscribe(async () => {
+      this.branch_token = await this.appPreference.get("branch_token_id");
+      this.login_token = await this.appPreference.get("_LoginToken");
+    });
+  }
 }

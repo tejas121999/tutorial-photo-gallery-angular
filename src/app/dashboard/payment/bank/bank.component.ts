@@ -1,14 +1,58 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import { ApiServiceService } from "src/app/services/api-service.service";
+import { AppPreference } from "src/app/shared/app-preference";
 
 @Component({
-  selector: 'app-bank',
-  templateUrl: './bank.component.html',
-  styleUrls: ['./bank.component.scss'],
+  selector: "app-bank",
+  templateUrl: "./bank.component.html",
+  styleUrls: ["./bank.component.scss"],
 })
 export class BankComponent implements OnInit {
+  branch_token: any;
+  login_token: any;
+  isLoading: boolean = false;
+  bankForm: FormGroup;
 
-  constructor() { }
+  constructor(
+    private fb: FormBuilder,
+    private appPreference: AppPreference,
+    private apiService: ApiServiceService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.initializeData();
+  }
 
-  ngOnInit() {}
+  async initializeData() {
+    this.bankForm = this.fb.group({
+      name: ["", Validators.required],
+      alias: [""],
+      acHolderName: [""],
+      acNumber: [""],
+      ifscCode: [""],
+      swiftCode: [""],
+      bankName: [""],
+      branch: [""],
+      bsrCode: [""],
+      contactName: [""],
+      mobile: [""],
+      address: [""],
+      state: [""],
+      country: [""],
+      pincode: [""],
+      gstin: [""],
+      serviceTaxDetails: [""],
+      serviceTaxNo: [""],
+      openingBalance: [""],
+    });
+  }
 
+  ngOnInit() {
+    this.route.queryParams.subscribe(async () => {
+      this.branch_token = await this.appPreference.get("branch_token_id");
+      this.login_token = await this.appPreference.get("_LoginToken");
+    });
+  }
 }
