@@ -28,10 +28,9 @@ export class AppComponent {
 
     App.addListener("backButton", async () => {
       const currentUrl = this.router.url;
-      const loginToken = await this.appPreference.get("_LoginToken");
 
       // If not logged in and at login page, handle exit
-      if (currentUrl === "/" && !loginToken) {
+      if (currentUrl === "/") {
         if (
           new Date().getTime() - this.lastTimeBackPress <
           this.timePeriodToExit
@@ -45,10 +44,7 @@ export class AppComponent {
       }
 
       // If logged in and at dashboard root or home, handle exit
-      if (
-        loginToken &&
-        (currentUrl === "/dashboard" || currentUrl === "/dashboard/home")
-      ) {
+      if (currentUrl === "/dashboard" || currentUrl === "/dashboard/home") {
         if (
           new Date().getTime() - this.lastTimeBackPress <
           this.timePeriodToExit
@@ -61,11 +57,11 @@ export class AppComponent {
         return;
       }
 
-      // If logged in, always try to go to dashboard root
-      if (loginToken) {
-        this.router.navigate(["/dashboard"], { replaceUrl: true });
-        return;
-      }
+      // // If logged in, always try to go to dashboard root
+      // if (loginToken) {
+      //   this.router.navigate(["/dashboard"], { replaceUrl: true });
+      //   return;
+      // }
 
       // If not logged in, go to login page
       this.router.navigate(["/"], { replaceUrl: true });

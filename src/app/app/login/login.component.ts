@@ -81,10 +81,11 @@ export class LoginComponent implements OnInit {
                       response?._LoginToken
                     );
                     // Store user name in AppPreference
-                    await this.appPreference.set(
-                      "_UserDetail",
-                      response?._UserDetail?.user_name
+                    let userDDetails = JSON.parse(
+                      response?._UserDetail?.user_detail
                     );
+                    console.log("User Details:", userDDetails);
+                    await this.appPreference.set("_UserDetail", userDDetails);
                     await this.appPreference.set(
                       "branch_token_id",
                       response._BranchList[0].branch_token_id
@@ -174,10 +175,8 @@ export class LoginComponent implements OnInit {
             await this.appPreference.set("loginDetails", loginDetails);
             await this.appPreference.set("_LoginToken", response?._LoginToken);
             // Store user name in AppPreference
-            await this.appPreference.set(
-              "_UserDetail",
-              response?._UserDetail?.user_name
-            );
+            let userDDetails = JSON.parse(response?._UserDetail?.user_detail);
+            await this.appPreference.set("_UserDetail", userDDetails);
             await this.appPreference.set(
               "branch_token_id",
               response._BranchList[0].branch_token_id

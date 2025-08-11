@@ -5,8 +5,6 @@ import { RouterModule } from "@angular/router";
 import { DashboardComponent } from "./dashboard.component";
 import { DashboardRoutingModule } from "./dashboard-routing.module";
 import { HomeComponent } from "./home/home.component";
-import { PaymentComponent } from "./payment/payment.component";
-import { TransactionComponent } from "./transaction/transaction.component";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { TaxPage } from "./master/tax/tax.page";
@@ -52,13 +50,39 @@ import { StockComponent } from "./stock/stock.component";
 import { ReportComponent } from "./report/report.component";
 import { AddEntryComponent } from "./add-entry/add-entry.component";
 import { SetPinComponent } from "./settings/set-pin/set-pin.component";
+import { SettingsModule } from "./settings/settings.module";
+import { ProfileComponent } from "./settings/profile/profile.component";
+import { BankComponent } from "./payment/bank/bank.component";
+import { CashComponent } from "./payment/cash/cash.component";
+import { EFundComponent } from "./payment/e-fund/e-fund.component";
+import { BankListComponent } from "./payment/bank-list/bank-list.component";
+import { CashListComponent } from "./payment/cash-list/cash-list.component";
+import { EFundListComponent } from "./payment/e-fund-list/e-fund-list.component";
+import { DeliveryNoteComponent } from './transaction/delivery-note/delivery-note.component';
+import { DeliveryNoteListComponent } from './transaction/delivery-note-list/delivery-note-list.component';
+import { JournalComponent } from './transaction/journal/journal.component';
+import { JournalListComponent } from './transaction/journal-list/journal-list.component';
+import { PaymentComponent } from './transaction/payment/payment.component';
+import { PaymentListComponent } from './transaction/payment-list/payment-list.component';
+import { PurchaseComponent as TransactionPurchaseComponent } from './transaction/purchase/purchase.component';
+import { PurchaseListComponent } from './transaction/purchase-list/purchase-list.component';
+import { PurchaseOrderComponent } from './transaction/purchase-order/purchase-order.component';
+import { PurchaseOrderListComponent } from './transaction/purchase-order-list/purchase-order-list.component';
+import { PurchaseReturnComponent } from './transaction/purchase-return/purchase-return.component';
+import { PurchaseReturnListComponent } from './transaction/purchase-return-list/purchase-return-list.component';
+import { ReceiptComponent } from './transaction/receipt/receipt.component';
+import { ReceiptListComponent } from './transaction/receipt-list/receipt-list.component';
+import { SalesComponent as TransactionSalesComponent } from './transaction/sales/sales.component';
+import { SalesListComponent } from './transaction/sales-list/sales-list.component';
+import { SalesOrderComponent } from './transaction/sales-order/sales-order.component';
+import { SalesOrderListComponent } from './transaction/sales-order-list/sales-order-list.component';
+import { SalesReturnComponent } from './transaction/sales-return/sales-return.component';
+import { SalesReturnListComponent } from './transaction/sales-return-list/sales-return-list.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     HomeComponent,
-    PaymentComponent,
-    TransactionComponent,
     TaxPage,
     TaxListComponent,
     SupplierComponent,
@@ -102,6 +126,35 @@ import { SetPinComponent } from "./settings/set-pin/set-pin.component";
     ReportComponent,
     AddEntryComponent,
     SetPinComponent,
+    BankComponent,
+    CashComponent,
+    EFundComponent,
+    BankListComponent,
+    BankComponent,
+    CashComponent,
+    CashListComponent,
+    EFundComponent,
+    EFundListComponent,
+    DeliveryNoteComponent,
+    DeliveryNoteListComponent,
+    JournalComponent,
+    JournalListComponent,
+    PaymentComponent,
+    PaymentListComponent,
+    TransactionPurchaseComponent,
+    PurchaseListComponent,
+    PurchaseOrderComponent,
+    PurchaseOrderListComponent,
+    PurchaseReturnComponent,
+    PurchaseReturnListComponent,
+    ReceiptComponent,
+    ReceiptListComponent,
+    TransactionSalesComponent,
+    SalesListComponent,
+    SalesOrderComponent,
+    SalesOrderListComponent,
+    SalesReturnComponent,
+    SalesReturnListComponent,
   ],
   imports: [
     CommonModule,
@@ -109,6 +162,7 @@ import { SetPinComponent } from "./settings/set-pin/set-pin.component";
     RouterModule,
     DashboardRoutingModule,
     ReactiveFormsModule,
+    SettingsModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

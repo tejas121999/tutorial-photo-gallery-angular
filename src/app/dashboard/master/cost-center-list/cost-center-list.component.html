@@ -1,6 +1,5 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <!-- Start slot: Back button and title, or searchbar -->
     <ng-container *ngIf="!showSearchbar; else searchbarTpl">
       <ion-buttons slot="start" routerLink="/dashboard/home">
         <ion-button fill="clear" style="margin-right: 4px;">

@@ -2,7 +2,7 @@
   <ion-toolbar color="primary">
     <!-- Start slot: Back button and title, or searchbar -->
     <ng-container>
-      <ion-buttons slot="start" routerLink="/dashboard/home">
+      <ion-buttons slot="start" routerLink="/dashboard/settings">
         <ion-button fill="clear" style="margin-right: 4px;">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
             <path d="M14.25 9H3.75" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -16,8 +16,42 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-avatar (click)="openGallery()">
-    <img [src]="avatarUrl" />
-  </ion-avatar>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col>
+        <ion-avatar (click)="openGallery()">
+          <img [src]="avatarUrl || 'assets/profile.png'" />
+        </ion-avatar>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <form [formGroup]="profileForm">
+    <div class="centered-form-wrapper">
+      <!-- Example fields, adapt as needed for cost center -->
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Name</ion-label>
+        <ion-input formControlName="name"></ion-input>
+      </ion-item>
 
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Email</ion-label>
+        <ion-input formControlName="e_mail"></ion-input>
+      </ion-item>
+
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Phone Number</ion-label>
+        <ion-input formControlName="phone_number"></ion-input>
+      </ion-item>
+
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Postal code</ion-label>
+        <ion-input formControlName="postal_code"></ion-input>
+      </ion-item>
+    </div>
+  </form>
 </ion-content>
+<ion-footer>
+  <ion-toolbar style="--background: #034099;">
+    <ion-button expand="block" style="--background: #034099;" (click)="updateProfile()">Update</ion-button>
+  </ion-toolbar>
+</ion-footer>

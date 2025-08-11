@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <!-- Start slot: Back button and title, or searchbar -->
+    <ng-container *ngIf="!showSearchbar; else searchbarTpl">
+      <ion-buttons slot="start" routerLink="/dashboard/home">
+        <ion-button fill="clear" style="margin-right: 4px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M14.25 9H3.75" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M9 14.25L3.75 9L9 3.75" stroke="white" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </ion-button>
+      </ion-buttons>
+      <ion-title>Delivery Note</ion-title>
+      <ion-buttons slot="end" style="color: white;">
+        <ion-button (click)="showSearchbar = true">
+          <ion-icon name="search-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ng-container>
+    <ng-template #searchbarTpl>
+      <ion-searchbar slot="start" (ionInput)="handleInput($event)" autofocus="true" placeholder="Search...">
+      </ion-searchbar>
+      <ion-buttons slot="end">
+        <ion-button (click)="showSearchbar = false">
+          <ion-icon name="close-circle"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ng-template>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div>
+    <div class="datetime-row">
+      <ion-icon name="chevron-back-outline" class="arrow-icon" (click)="changeDate(-1)"></ion-icon>
+      <ion-datetime [value]="currentDate" placeholder="Select Date" (ionChange)="onDateChange($event)"></ion-datetime>
+      <ion-icon name="calendar-outline" style="font-size: 1.5em; margin-left: 8px;"></ion-icon>
+      <ion-icon name="chevron-forward-outline" class="arrow-icon" (click)="changeDate(1)"></ion-icon>
+    </div>
+  </div>
+  <ion-list class="centered-list">
+    <ion-item *ngFor="let result of pagedResults; trackBy: trackResult">
+      <ion-grid>
+        <ion-row>
+          <ion-col><ion-label>{{ result }}</ion-label></ion-col>
+          <ion-col class="delete-col" style="text-align: right;">
+            <ion-icon name="trash-outline" class="delete-icon" (click)="deleteItem(result)"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="fab-add">
+    <ion-fab-button class="fab-add-btn" routerLink="/dashboard/transaction/delivery-note">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <div class="pagination-row fixed-bottom">
+    <ion-button fill="clear" [disabled]="currentPage === 1" (click)="changePage(-1)">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-button>
+    <span class="pagination-info">Page {{ currentPage }} of {{ totalPages }}</span>
+    <ion-button fill="clear" [disabled]="currentPage === totalPages" (click)="changePage(1)">
+      <ion-icon name="chevron-forward-outline"></ion-icon>
+    </ion-button>
+  </div>
+</ion-content>

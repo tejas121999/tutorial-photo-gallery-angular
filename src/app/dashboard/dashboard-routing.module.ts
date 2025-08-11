@@ -2,8 +2,6 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { DashboardComponent } from "./dashboard.component";
 import { HomeComponent } from "./home/home.component";
-import { PaymentComponent } from "./payment/payment.component";
-import { TransactionComponent } from "./transaction/transaction.component";
 import { TaxPage } from "./master/tax/tax.page";
 import { TaxListComponent } from "./master/tax-list/tax-list.component";
 import { SupplierComponent } from "./master/supplier/supplier.component";
@@ -46,6 +44,32 @@ import { MyCompaniesComponent } from "./my-companies/my-companies.component";
 import { StockComponent } from "./stock/stock.component";
 import { ReportComponent } from "./report/report.component";
 import { AddEntryComponent } from "./add-entry/add-entry.component";
+import { BankComponent } from "./payment/bank/bank.component";
+import { CashComponent } from "./payment/cash/cash.component";
+import { EFundComponent } from "./payment/e-fund/e-fund.component";
+import { BankListComponent } from "./payment/bank-list/bank-list.component";
+import { CashListComponent } from "./payment/cash-list/cash-list.component";
+import { EFundListComponent } from "./payment/e-fund-list/e-fund-list.component";
+import { DeliveryNoteComponent } from "./transaction/delivery-note/delivery-note.component";
+import { DeliveryNoteListComponent } from "./transaction/delivery-note-list/delivery-note-list.component";
+import { JournalComponent } from "./transaction/journal/journal.component";
+import { JournalListComponent } from "./transaction/journal-list/journal-list.component";
+import { PaymentComponent } from "./transaction/payment/payment.component";
+import { PaymentListComponent } from "./transaction/payment-list/payment-list.component";
+import { PurchaseComponent as TransactionPurchaseComponent } from "./transaction/purchase/purchase.component";
+import { PurchaseListComponent } from "./transaction/purchase-list/purchase-list.component";
+import { PurchaseOrderComponent } from "./transaction/purchase-order/purchase-order.component";
+import { PurchaseOrderListComponent } from "./transaction/purchase-order-list/purchase-order-list.component";
+import { PurchaseReturnComponent } from "./transaction/purchase-return/purchase-return.component";
+import { PurchaseReturnListComponent } from "./transaction/purchase-return-list/purchase-return-list.component";
+import { ReceiptComponent } from "./transaction/receipt/receipt.component";
+import { ReceiptListComponent } from "./transaction/receipt-list/receipt-list.component";
+import { SalesComponent as TransactionSalesComponent } from "./transaction/sales/sales.component";
+import { SalesListComponent } from "./transaction/sales-list/sales-list.component";
+import { SalesOrderComponent } from "./transaction/sales-order/sales-order.component";
+import { SalesOrderListComponent } from "./transaction/sales-order-list/sales-order-list.component";
+import { SalesReturnComponent } from "./transaction/sales-return/sales-return.component";
+import { SalesReturnListComponent } from "./transaction/sales-return-list/sales-return-list.component";
 
 const routes: Routes = [
   {
@@ -220,6 +244,60 @@ const routes: Routes = [
     ],
   },
   {
+    path: "payment",
+    children: [
+      {
+        path: "bank",
+        component: BankComponent,
+      },
+      {
+        path: "bank-list",
+        component: BankListComponent,
+      },
+      {
+        path: "cash",
+        component: CashComponent,
+      },
+      {
+        path: "cash-list",
+        component: CashListComponent,
+      },
+      {
+        path: "e-fund",
+        component: EFundComponent,
+      },
+      {
+        path: "e-fund-list",
+        component: EFundListComponent,
+      },
+    ],
+  },
+  {
+    path: "transaction",
+    children: [
+      { path: "delivery-note", component: DeliveryNoteComponent },
+      { path: "delivery-note-list", component: DeliveryNoteListComponent },
+      { path: "journal", component: JournalComponent },
+      { path: "journal-list", component: JournalListComponent },
+      { path: "payment", component: PaymentComponent },
+      { path: "payment-list", component: PaymentListComponent },
+      { path: "purchase", component: TransactionPurchaseComponent },
+      { path: "purchase-list", component: PurchaseListComponent },
+      { path: "purchase-order", component: PurchaseOrderComponent },
+      { path: "purchase-order-list", component: PurchaseOrderListComponent },
+      { path: "purchase-return", component: PurchaseReturnComponent },
+      { path: "purchase-return-list", component: PurchaseReturnListComponent },
+      { path: "receipt", component: ReceiptComponent },
+      { path: "receipt-list", component: ReceiptListComponent },
+      { path: "sales", component: TransactionSalesComponent },
+      { path: "sales-list", component: SalesListComponent },
+      { path: "sales-order", component: SalesOrderComponent },
+      { path: "sales-order-list", component: SalesOrderListComponent },
+      { path: "sales-return", component: SalesReturnComponent },
+      { path: "sales-return-list", component: SalesReturnListComponent },
+    ],
+  },
+  {
     path: "",
     component: DashboardComponent,
     children: [
@@ -236,8 +314,6 @@ const routes: Routes = [
   { path: "add-entry", component: AddEntryComponent },
   { path: "sales", component: SalesComponent },
   { path: "purchase", component: PurchaseComponent },
-  { path: "payment", component: PaymentComponent },
-  { path: "transaction", component: TransactionComponent },
 ];
 
 @NgModule({

@@ -18,6 +18,7 @@
         </span>
         Home
       </ion-item>
+      <!-- master -->
       <ion-item-group>
         <ion-item button (click)="showMaster = !showMaster" detail="false" lines="none" class="sidebar-menu-item">
           <span class="sidebar-icon-wrapper">
@@ -158,18 +159,124 @@
           </ion-item>
         </div>
       </ion-item-group>
-      <ion-item routerLink="/dashboard/payment" (click)="closeMenu()" lines="none" class="sidebar-menu-item">
-        <span class="sidebar-icon-wrapper">
-          <img src="assets/Frame 1366.svg" alt="Payment" class="sidebar-icon" />
-        </span>
-        Payment
-      </ion-item>
-      <ion-item routerLink="/dashboard/transaction" (click)="closeMenu()" lines="none" class="sidebar-menu-item">
-        <span class="sidebar-icon-wrapper">
-          <img src="assets/proicons_arrow-swap.svg" alt="Transaction" class="sidebar-icon" />
-        </span>
-        Transaction
-      </ion-item>
+      <!-- payment -->
+      <ion-item-group>
+        <ion-item button (click)="showPayment = !showPayment" detail="false" lines="none" class="sidebar-menu-item">
+          <span class="sidebar-icon-wrapper">
+            <img src="assets/crown.svg" alt="Crown" class="sidebar-icon" />
+          </span>
+          <ion-label>Payment</ion-label>
+          <ion-icon slot="end" name="chevron-down-outline" *ngIf="!showPayment"></ion-icon>
+          <ion-icon slot="end" name="chevron-up-outline" *ngIf="showPayment"></ion-icon>
+        </ion-item>
+        <div *ngIf="showPayment" class="master-margin">
+          <ion-item routerLink="/dashboard/payment/cash-list" (click)="closeMenu()" lines="none"
+            class="sidebar-menu-item master-margin">
+            <span class="sidebar-icon-wrapper">
+              <img src="assets/tdesign_money.svg" alt="Tax" class="sidebar-icon" />
+            </span>
+            Cash
+          </ion-item>
+          <ion-item routerLink="/dashboard/payment/bank-list" (click)="closeMenu()" lines="none"
+            class="sidebar-menu-item master-margin">
+            <span class="sidebar-icon-wrapper">
+              <img src="assets/ri_bank-line.svg" alt="Supplier" class="sidebar-icon" />
+            </span>
+            Bank
+          </ion-item>
+          <ion-item routerLink="/dashboard/payment/e-fund-list" (click)="closeMenu()" lines="none"
+            class="sidebar-menu-item master-margin">
+            <span class="sidebar-icon-wrapper">
+              <img src="assets/ri_refund-line.svg" alt="Supplier" class="sidebar-icon" />
+            </span>
+            E-Fund
+          </ion-item>
+        </div>
+      </ion-item-group>
+      <!-- Transaction -->
+      <ion-item-group>
+        <ion-item button (click)="showTransaction = !showTransaction" detail="false" lines="none"
+          class="sidebar-menu-item">
+          <span class="sidebar-icon-wrapper">
+            <img src="assets/crown.svg" alt="Crown" class="sidebar-icon" />
+          </span>
+          <ion-label>Transaction</ion-label>
+          <ion-icon slot="end" name="chevron-down-outline" *ngIf="!showTransaction"></ion-icon>
+          <ion-icon slot="end" name="chevron-up-outline" *ngIf="showTransaction"></ion-icon>
+        </ion-item>
+        <div *ngIf="showTransaction" class="master-margin">
+          <ion-item routerLink="/dashboard/transaction/delivery-note-list" (click)="closeMenu()" lines="none"
+            class="sidebar-menu-item master-margin">
+            <span class="sidebar-icon-wrapper">
+              <img src="assets/tdesign_money.svg" alt="Tax" class="sidebar-icon" />
+            </span>
+            Delivery Note
+          </ion-item>
+          <ion-item routerLink="/dashboard/transaction/journal-list" (click)="closeMenu()" lines="none"
+            class="sidebar-menu-item master-margin">
+            <span class="sidebar-icon-wrapper">
+              <img src="assets/ri_bank-line.svg" alt="Supplier" class="sidebar-icon" />
+            </span>
+            Journal
+          </ion-item>
+          <ion-item routerLink="/dashboard/transaction/payment-list" (click)="closeMenu()" lines="none"
+            class="sidebar-menu-item master-margin">
+            <span class="sidebar-icon-wrapper">
+              <img src="assets/ri_refund-line.svg" alt="Supplier" class="sidebar-icon" />
+            </span>
+            Payment
+          </ion-item>
+          <ion-item routerLink="/dashboard/transaction/purchase-list" (click)="closeMenu()" lines="none"
+            class="sidebar-menu-item master-margin">
+            <span class="sidebar-icon-wrapper">
+              <img src="assets/ri_refund-line.svg" alt="Supplier" class="sidebar-icon" />
+            </span>
+            Purchase
+          </ion-item>
+          <ion-item routerLink="/dashboard/transaction/purchase-order-list" (click)="closeMenu()" lines="none"
+            class="sidebar-menu-item master-margin">
+            <span class="sidebar-icon-wrapper">
+              <img src="assets/ri_refund-line.svg" alt="Supplier" class="sidebar-icon" />
+            </span>
+            Purchase Order
+          </ion-item>
+          <ion-item routerLink="/dashboard/transaction/purchase-return-list" (click)="closeMenu()" lines="none"
+            class="sidebar-menu-item master-margin">
+            <span class="sidebar-icon-wrapper">
+              <img src="assets/ri_refund-line.svg" alt="Supplier" class="sidebar-icon" />
+            </span>
+            Purchase Return
+          </ion-item>
+          <ion-item routerLink="/dashboard/transaction/receipt-list" (click)="closeMenu()" lines="none"
+            class="sidebar-menu-item master-margin">
+            <span class="sidebar-icon-wrapper">
+              <img src="assets/ri_refund-line.svg" alt="Supplier" class="sidebar-icon" />
+            </span>
+            Receipt
+          </ion-item>
+          <ion-item routerLink="/dashboard/transaction/sales-list" (click)="closeMenu()" lines="none"
+            class="sidebar-menu-item master-margin">
+            <span class="sidebar-icon-wrapper">
+              <img src="assets/ri_refund-line.svg" alt="Supplier" class="sidebar-icon" />
+            </span>
+            Sales
+          </ion-item>
+          <ion-item routerLink="/dashboard/transaction/sales-order-list" (click)="closeMenu()" lines="none"
+            class="sidebar-menu-item master-margin">
+            <span class="sidebar-icon-wrapper">
+              <img src="assets/ri_refund-line.svg" alt="Supplier" class="sidebar-icon" />
+            </span>
+            Sales Order
+          </ion-item>
+          <ion-item routerLink="/dashboard/transaction/sales-return-list" (click)="closeMenu()" lines="none"
+            class="sidebar-menu-item master-margin">
+            <span class="sidebar-icon-wrapper">
+              <img src="assets/ri_refund-line.svg" alt="Supplier" class="sidebar-icon" />
+            </span>
+            Sales Return
+          </ion-item>
+        </div>
+      </ion-item-group>
       <ion-item routerLink="/dashboard/settings" (click)="closeMenu()" lines="none" class="sidebar-menu-item">
         <span class="sidebar-icon-wrapper">
           <img src="assets/Vector2.svg" alt="Settings" class="sidebar-icon" />

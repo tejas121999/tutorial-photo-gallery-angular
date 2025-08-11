@@ -1,12 +1,62 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/dashboard/settings"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Connect to Tally</ion-title>
+    <!-- Start slot: Back button and title, or searchbar -->
+    <ng-container>
+      <ion-buttons slot="start" routerLink="/dashboard/settings">
+        <ion-button fill="clear" style="margin-right: 4px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M14.25 9H3.75" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M9 14.25L3.75 9L9 3.75" stroke="white" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </ion-button>
+      </ion-buttons>
+      <ion-title>Connect to Tally</ion-title>
+    </ng-container>
   </ion-toolbar>
 </ion-header>
-<ion-content class="ion-padding">
-  <h2>Connect to Tally</h2>
-  <p>This is the Connect to Tally page.</p>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" class="align-center">
+        <span class="span-text">Follow the steps mention below</span>
+      </ion-col>
+      <ion-col size="12" class="align-center">
+        <ion-button class="step-button">
+          Step-1
+        </ion-button>
+      </ion-col>
+      <ion-col size="12" class="align-center">
+        <div class="outer-box">
+          <svg xmlns="http://www.w3.org/2000/svg" width="72" height="65" viewBox="0 0 72 65" fill="none">
+            <path
+              d="M65.4545 0H6.54545C2.94545 0 0 2.925 0 6.5V45.5C0 49.075 2.94545 52 6.54545 52H29.4545V58.5H22.9091V65H49.0909V58.5H42.5455V52H65.4545C69.0545 52 72 49.075 72 45.5V6.5C72 2.925 69.0545 0 65.4545 0ZM65.4545 45.5H6.54545V6.5H65.4545V45.5Z"
+              fill="#083D7C" fill-opacity="0.5" />
+          </svg>
+        </div>
+      </ion-col>
+      <ion-col size="12" class="align-center">
+        <ion-button class="step-button">
+          Step-2
+        </ion-button>
+      </ion-col>
+      <ion-col size="12" class="align-center">
+        <div class="outer-box">
+          <svg xmlns="http://www.w3.org/2000/svg" width="58" height="58" viewBox="0 0 58 58" fill="none">
+            <path
+              d="M21.75 13.05V21.75H13.05V13.05H21.75ZM26.1 8.7H8.7V26.1H26.1V8.7ZM21.75 36.25V44.95H13.05V36.25H21.75ZM26.1 31.9H8.7V49.3H26.1V31.9ZM44.95 13.05V21.75H36.25V13.05H44.95ZM49.3 8.7H31.9V26.1H49.3V8.7ZM31.9 31.9H36.25V36.25H31.9V31.9ZM36.25 36.25H40.6V40.6H36.25V36.25ZM40.6 31.9H44.95V36.25H40.6V31.9ZM31.9 40.6H36.25V44.95H31.9V40.6ZM36.25 44.95H40.6V49.3H36.25V44.95ZM40.6 40.6H44.95V44.95H40.6V40.6ZM44.95 36.25H49.3V40.6H44.95V36.25ZM44.95 44.95H49.3V49.3H44.95V44.95ZM58 14.5H52.2V5.8H43.5V0H58V14.5ZM58 58V43.5H52.2V52.2H43.5V58H58ZM0 58H14.5V52.2H5.8V43.5H0V58ZM0 0V14.5H5.8V5.8H14.5V0H0Z"
+              fill="#083D7C" fill-opacity="0.5" />
+          </svg>
+        </div>
+      </ion-col>
+      <ion-col size="12" class="align-center">
+        <span class="span-text">Add QR Code option</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+<ion-footer>
+  <ion-toolbar style="--background: #034099;">
+    <ion-button expand="block" style="--background: #034099;">Connect</ion-button>
+  </ion-toolbar>
+</ion-footer>

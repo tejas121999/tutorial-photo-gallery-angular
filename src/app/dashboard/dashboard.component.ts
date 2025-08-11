@@ -14,6 +14,8 @@ register();
 })
 export class DashboardComponent implements AfterViewInit {
   showMaster = false;
+  showPayment = false;
+  showTransaction = false;
   showDiscount = false;
   showRoundOff = false;
   branch_token: any;
@@ -33,9 +35,8 @@ export class DashboardComponent implements AfterViewInit {
     this.route.queryParams.subscribe(async () => {
       this.branch_token = await this.appPreference.get("branch_token_id");
       this.login_token = await this.appPreference.get("_LoginToken");
-      this.user_name =
-        (await this.appPreference.get("_UserDetail")) || "User name";
-      console.log("branch_token", this.branch_token);
+      const userDetail = await this.appPreference.get("_UserDetail");
+      this.user_name = userDetail?.user_name;
       this.closeMenu();
     });
   }
