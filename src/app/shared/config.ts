@@ -52,4 +52,45 @@ export enum RestEnds {
   AddVTDeliveryNoteData = "VoucherType/AddVTDeliveryNoteData",
   AddVTPaymentData = "VoucherType/AddVTPaymentData",
   AddVTReceiptData = "VoucherType/AddVTReceiptData",
+
+  // payment module
+  // bank component
+  GetBankList = "Ledger/GetBankList",
+  AddBankData = "Ledger/AddBankData",
+
+  // cash component
+  GetCashList = "Ledger/GetCashList",
+  AddCashData = "Ledger/AddCashData",
+
+  // Transaction
+  // Purchase
+  GetPurchaseVoucherList = "Voucher/GetPurchaseVoucherList",
+  AddPurchaseVoucherData = "Voucher/AddPurchaseVoucherData",
+  // Sales
+  GetSalesVoucherList = "Voucher/GetSalesVoucherList",
+  AddSalesVoucherData = "Voucher/AddSalesVoucherData",
+  // Purchase Order
+  GetPurchaseOrderVoucherList = "Voucher/GetPurchaseOrderVoucherList",
+  AddPurchaseOrderVoucherData = "Voucher/AddPurchaseOrderVoucherData",
+  // Sales Order
+  GetSalesOrderVoucherList = "Voucher/GetSalesOrderVoucherList",
+  AddSalesOrderVoucherData = "Voucher/AddSalesOrderVoucherData",
+  // Purchase Return
+  GetDebitNoteVoucherList = "Voucher/GetDebitNoteVoucherList",
+  AddPurchaseReturnVoucherData = "Voucher/AddPurchaseVoucherData",
+  // Sales Return
+  GetCreditNotVoucherList = "Voucher/GetCreditNotVoucherList",
+  AddSalesReturnVoucherData = "Voucher/AddSalesVoucherData",
+  // Get Journal
+  GetJournalVoucherList = "Voucher/GetJournalVoucherList",
+  AddJournalVoucherData = "Voucher/AddJournalVoucherData",
+  // Delivery Note
+  GetDeliveryNoteVoucherList = "Voucher/GetDeliveryNoteVoucherList",
+  AddDeliveryNoteVoucherData = "Voucher/AddDeliveryNoteVoucherData",
+  // Payment
+  GetPaymentVoucherList = "Voucher/GetPaymentVoucherList",
+  AddPaymentData = "Voucher/AddPaymentAndReceiptData",
+  // Receipt
+  GetReceiptVoucherList = "Voucher/GetReceiptVoucherList",
+  AddReceiptData = "Voucher/AddPaymentAndReceiptData",
 }

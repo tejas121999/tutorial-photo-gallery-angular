@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-button fill="clear" routerLink="/dashboard/home">
+      <ion-button fill="clear" routerLink="/dashboard/payment/bank-list">
         <span slot="icon-only">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
             <path d="M14.25 9H3.75" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -12,9 +12,9 @@
       </ion-button>
       <ion-title class="toolbar-title-text">Bank</ion-title>
     </ion-buttons>
-    <!-- <ion-spinner *ngIf="isLoading" slot="end"></ion-spinner> -->
-    <ion-buttons slot="end">
-      <ion-button>
+    <ion-spinner *ngIf="isLoading" slot="end"></ion-spinner>
+    <ion-buttons slot="end" *ngIf="!isLoading">
+      <ion-button (click)="addBankData()">
         Save
       </ion-button>
     </ion-buttons>
@@ -42,6 +42,11 @@
       </ion-item>
 
       <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">A/C Number</ion-label>
+        <ion-input formControlName="acNumber"></ion-input>
+      </ion-item>
+
+      <ion-item class="internal-form-item">
         <ion-label class="internal-form-label" position="floating">IFSC Code</ion-label>
         <ion-input formControlName="ifscCode"></ion-input>
       </ion-item>
@@ -53,7 +58,9 @@
 
       <ion-item class="internal-form-item">
         <ion-label class="internal-form-label" position="floating">Bank Name</ion-label>
-        <ion-input formControlName="bankName"></ion-input>
+        <ion-select formControlName="bankName" interface="alert">
+          <ion-select-option *ngFor="let bank of banks" [value]="bank">{{ bank }}</ion-select-option>
+        </ion-select>
       </ion-item>
 
       <ion-item class="internal-form-item">

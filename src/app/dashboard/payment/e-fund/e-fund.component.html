@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-button fill="clear" routerLink="/dashboard/home">
+      <ion-button fill="clear" routerLink="/dashboard/payment/e-fund-list">
         <span slot="icon-only">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
             <path d="M14.25 9H3.75" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -19,6 +19,7 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
 <ion-content>
   <form [formGroup]="e_fundForm">
     <div class="centered-form-wrapper">
@@ -27,6 +28,33 @@
         [class.invalid-item]="e_fundForm.get('name')?.invalid && (e_fundForm.get('name')?.touched || e_fundForm.get('name')?.dirty)">
         <ion-label class="internal-form-label" position="floating">Name *</ion-label>
         <ion-input formControlName="name"></ion-input>
+      </ion-item>
+
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Alias</ion-label>
+        <ion-input formControlName="alias"></ion-input>
+      </ion-item>
+
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">A/C Number</ion-label>
+        <ion-input formControlName="acNumber"></ion-input>
+      </ion-item>
+
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">IFSC Code</ion-label>
+        <ion-input formControlName="ifscCode"></ion-input>
+      </ion-item>
+
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Bank Name</ion-label>
+        <ion-select formControlName="bankName" interface="alert">
+          <ion-select-option *ngFor="let bank of banks" [value]="bank">{{ bank }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Opening Balance</ion-label>
+        <ion-input formControlName="openingBalance"></ion-input>
       </ion-item>
     </div>
   </form>

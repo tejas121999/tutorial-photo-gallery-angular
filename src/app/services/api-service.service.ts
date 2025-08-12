@@ -325,4 +325,185 @@ export class ApiServiceService {
       true
     );
   }
+
+  // bank component
+  getBankList(body: any) {
+    return this.apiManager.sendPOSTRequest(RestEnds.GetBankList, body, true);
+  }
+
+  addBankData(body: any) {
+    return this.apiManager.sendPOSTRequest(RestEnds.AddBankData, body, true);
+  }
+
+  // cash component
+  getCashList(body: any) {
+    return this.apiManager.sendPOSTRequest(RestEnds.GetCashList, body, true);
+  }
+
+  addCashData(body: any) {
+    return this.apiManager.sendPOSTRequest(RestEnds.AddCashData, body, true);
+  }
+
+  // Transaction
+  // Purchase
+  getPurchaseVoucherList(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.GetPurchaseVoucherList,
+      body,
+      true
+    );
+  }
+
+  addPurchaseVoucherData(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.AddPurchaseVoucherData,
+      body,
+      true
+    );
+  }
+
+  // Sales
+  getSalesVoucherList(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.GetSalesVoucherList,
+      body,
+      true
+    );
+  }
+
+  addSalesVoucherData(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.AddSalesVoucherData,
+      body,
+      true
+    );
+  }
+
+  // Purchase Order
+  getPurchaseOrderVoucherList(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.GetPurchaseOrderVoucherList,
+      body,
+      true
+    );
+  }
+
+  addPurchaseOrderVoucherData(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.AddPurchaseOrderVoucherData,
+      body,
+      true
+    );
+  }
+
+  // Sales Order
+  getSalesOrderVoucherList(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.GetSalesOrderVoucherList,
+      body,
+      true
+    );
+  }
+
+  addSalesOrderVoucherData(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.AddSalesOrderVoucherData,
+      body,
+      true
+    );
+  }
+
+  // Purchase Return
+  getPurchaseReturnVoucherList(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.GetDebitNoteVoucherList,
+      body,
+      true
+    );
+  }
+
+  addPurchaseReturnVoucherData(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.AddPurchaseReturnVoucherData,
+      body,
+      true
+    );
+  }
+
+  // Sales Return
+  getSalesReturnVoucherList(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.GetCreditNotVoucherList,
+      body,
+      true
+    );
+  }
+
+  addSalesReturnVoucherData(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.AddSalesReturnVoucherData,
+      body,
+      true
+    );
+  }
+
+  // Get Journal
+  getJournalVoucherList(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.GetJournalVoucherList,
+      body,
+      true
+    );
+  }
+
+  addJournalVoucherData(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.AddJournalVoucherData,
+      body,
+      true
+    );
+  }
+
+  // Delivery Note
+  getDeliveryNoteVoucherList(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.GetDeliveryNoteVoucherList,
+      body,
+      true
+    );
+  }
+
+  addDeliveryNoteVoucherData(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.AddDeliveryNoteVoucherData,
+      body,
+      true
+    );
+  }
+
+  // Payment
+  getPaymentVoucherList(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.GetPaymentVoucherList,
+      body,
+      true
+    );
+  }
+
+  addPaymentVoucherData(body: any) {
+    return this.apiManager.sendPOSTRequest(RestEnds.AddPaymentData, body, true);
+  }
+
+  // Receipt
+  getReceiptVoucherList(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.GetReceiptVoucherList,
+      body,
+      true
+    );
+  }
+
+  addReceiptVoucherData(body: any) {
+    return this.apiManager.sendPOSTRequest(RestEnds.AddReceiptData, body, true);
+  }
 }
