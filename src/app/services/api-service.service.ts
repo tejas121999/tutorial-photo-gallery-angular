@@ -506,4 +506,12 @@ export class ApiServiceService {
   addReceiptVoucherData(body: any) {
     return this.apiManager.sendPOSTRequest(RestEnds.AddReceiptData, body, true);
   }
+
+  getVoucherTypePurchaseList(body: any) {
+    return this.apiManager.sendPOSTRequest(
+      RestEnds.GetVoucherTypePurchaseList,
+      body,
+      true
+    );
+  }
 }

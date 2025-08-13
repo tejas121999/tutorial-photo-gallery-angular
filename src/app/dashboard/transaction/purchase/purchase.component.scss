@@ -1,0 +1,33 @@
+.add-item-label {
+    color: #000 !important;
+    font-size: 13px !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    line-height: normal !important;
+}
+
+.add-item-button {
+    --background: #034099 !important;
+    --color: #ffffff !important;
+}
+
+/* Make label use custom style when checkbox is checked */
+ion-item .square-checkbox[aria-checked="true"]~ion-label,
+ion-item .square-checkbox:checked~ion-label {
+    color: #000 !important;
+    font-family: "Open Sans", sans-serif !important;
+    font-size: 13px !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    line-height: normal !important;
+}
+
+/* Square style for ion-checkbox */
+.square-checkbox {
+    --size: 14px;
+    width: 14px;
+    height: 14px;
+    --border-radius: 0;
+    --checkmark-color: #ffffff;
+    --background-checked: #034099;
+}

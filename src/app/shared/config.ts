@@ -93,4 +93,6 @@ export enum RestEnds {
   // Receipt
   GetReceiptVoucherList = "Voucher/GetReceiptVoucherList",
   AddReceiptData = "Voucher/AddPaymentAndReceiptData",
+
+  GetVoucherTypePurchaseList = "VoucherType/GetVoucherTypePurchaseList",
 }

@@ -9,7 +9,7 @@ import { AppPreference } from "src/app/shared/app-preference";
   styleUrls: ["./purchase-list.component.scss"],
 })
 export class PurchaseListComponent implements OnInit {
-  pageSize = 5;
+  pageSize = 10;
   currentPage = 1;
   branch_token: any;
   login_token: any;
@@ -58,7 +58,10 @@ export class PurchaseListComponent implements OnInit {
   handleInput(event: Event) {
     const target = event.target as HTMLIonSearchbarElement;
     const query = target.value?.toLowerCase() || "";
-    this.results = this.data.filter((d) => d.toLowerCase().includes(query));
+    this.results = this.data.filter((item: any) => {
+      if (!item?.voucher_type_name) return false;
+      return item?.voucher_type_name.toLowerCase().includes(query);
+    });
   }
 
   closeSearchbar() {
@@ -87,7 +90,7 @@ export class PurchaseListComponent implements OnInit {
       {
         login_token: this.login_token,
         branch_token: this.branch_token,
-        object_flag_tpd_id: 0,
+        object_flag_tpd_id: -1,
         page_number: 0,
         page_size: 0,
       },
