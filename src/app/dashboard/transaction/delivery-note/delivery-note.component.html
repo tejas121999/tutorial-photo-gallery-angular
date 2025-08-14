@@ -23,10 +23,9 @@
   <form [formGroup]="deliveryNote">
     <div class="centered-form-wrapper">
       <!-- Example fields, adapt as needed for cost center -->
-      <ion-item class="internal-form-item"
-        [class.invalid-item]="deliveryNote.get('name')?.invalid && (deliveryNote.get('name')?.touched || deliveryNote.get('name')?.dirty)">
-        <ion-label class="internal-form-label" position="floating">Name *</ion-label>
-        <ion-input formControlName="name"></ion-input>
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Delivery Note No</ion-label>
+        <ion-input formControlName="deliveryNoteNo"></ion-input>
       </ion-item>
     </div>
   </form>

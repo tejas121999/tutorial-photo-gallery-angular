@@ -78,84 +78,50 @@
       </ion-item>
       <!-- Add Item -->
       <ion-item-group>
-        <ion-item detail="false" lines="none" button (click)="add_item = !add_item">
+        <ion-item detail="false" lines="none" button routerLink="/dashboard/transaction/add-item">
           <ion-label class="add-item-label">Add Item</ion-label>
           <ion-icon slot="end" name="add-circle-outline"></ion-icon>
         </ion-item>
         <!-- list -->
-        <div *ngIf="addedItem.length > 0">
-          <ion-item class="internal-form-item" *ngFor="let item of addedItem">
+        <div *ngIf="itemFormArray.length > 0" formArrayName="addedItem">
+          <ion-item class="internal-form-item" *ngFor="let item of itemFormArray.controls; let i = index"
+            [formGroupName]="i">
             <ion-grid>
               <ion-row>
-                <ion-col size="8">
-                  <ion-label style="margin-top: 20px;font-size: 15px;font-weight: 600;">
-                    {{ item.stock_item_name }}
+                <ion-col size="6">
+                  <ion-label style="font-size: 15px;">
+                    {{ item.get('item_name')?.value }}
                   </ion-label>
                 </ion-col>
-                <ion-col size="2" style="display: flex; flex-direction: column; align-items: flex-end;">
-                  <span style="font-size: 14px;">Rate</span>
-                  <ion-input [value]="item.stock_item_rate"
-                    style="border: 1px solid #ccc; border-radius: 5px;width: 60px;"></ion-input>
+                <ion-col size="6">
+                  <ion-label style="font-size: 15px;">
+                    ({{ item.get('unit_name')?.value }})
+                  </ion-label>
                 </ion-col>
-                <ion-col size="2" class="delete-col" style="text-align: right; margin-top: 20px;">
-                  <ion-icon name="trash-outline" class="delete-icon" (click)="deleteItem(item)"></ion-icon>
+              </ion-row>
+              <ion-row class="ion-align-items-center">
+                <ion-col size="5">
+                  <ion-item>
+                    <ion-label position="floating">Quantity</ion-label>
+                    <ion-input formControlName="quantity" type="number"></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="5">
+                  <ion-item>
+                    <ion-label position="floating">Amount</ion-label>
+                    <ion-input formControlName="amount" type="number"></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="2" style="text-align: right;">
+                  <ion-button fill="clear" (click)="deleteItem(i)">
+                    <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+                  </ion-button>
                 </ion-col>
               </ion-row>
             </ion-grid>
           </ion-item>
         </div>
-        <!-- form -->
-        <div *ngIf="add_item">
-          <ion-item class="internal-form-item">
-            <ion-label position="floating" class="internal-form-label">Item</ion-label>
-            <ion-select formControlName="item" interface="alert">
-              <ion-select-option *ngFor="let item of stockItem" [value]="item.item_name">
-                {{ item.item_name }}
-              </ion-select-option>
-            </ion-select>
-          </ion-item>
-          <ion-item class="internal-form-item">
-            <ion-label class="internal-form-label" position="floating">Unit</ion-label>
-            <ion-select formControlName="unit" interface="alert">
-              <ion-select-option *ngFor="let item of unitList" [value]="item.unit_name">
-                {{ item?.unit_name}}</ion-select-option>
-            </ion-select>
-          </ion-item>
-          <ion-item class="internal-form-item">
-            <ion-label class="internal-form-label" position="floating">Item Ledger</ion-label>
-            <ion-select formControlName="itemLedger" interface="alert">
-              <ion-select-option *ngFor="let item of purchaseList" [value]="item.ledger_name">
-                {{ item?.ledger_name }}
-              </ion-select-option>
-            </ion-select>
-          </ion-item>
-          <ion-item class="internal-form-item">
-            <ion-label class="internal-form-label" position="floating">Item Rate</ion-label>
-            <ion-input type="number" formControlName="itemRate"></ion-input>
-          </ion-item>
-          <ion-item class="internal-form-item">
-            <ion-label class="internal-form-label" position="floating">Item Quantity</ion-label>
-            <ion-input type="number" formControlName="itemQuantity"></ion-input>
-          </ion-item>
-          <ion-item class="internal-form-item">
-            <ion-label class="internal-form-label" position="floating">Item Amount</ion-label>
-            <ion-input type="number" formControlName="itemAmount"></ion-input>
-          </ion-item>
-          <ion-item class="internal-form-item">
-            <ion-label class="internal-form-label" position="floating">Item Discount %</ion-label>
-            <ion-input type="number" formControlName="itemDiscount"></ion-input>
-          </ion-item>
-          <ion-item class="internal-form-item">
-            <ion-label class="internal-form-label" position="floating">Item Taxable Amount</ion-label>
-            <ion-input type="number" formControlName="itemTaxableAmount"></ion-input>
-          </ion-item>
-          <ion-item class="internal-form-item">
-            <ion-label class="internal-form-label" position="floating">Item Total Amount</ion-label>
-            <ion-input type="number" formControlName="itemTotalAmount"></ion-input>
-          </ion-item>
-          <ion-button expand="block" style="--background: #034099; width: 100px;" (click)="addItem()">Add
-            Item</ion-button>
-        </div>
+
       </ion-item-group>
       <!-- Add More Ledgers -->
       <ion-item-group>
@@ -163,65 +129,35 @@
           <ion-label class="add-item-label">Add More Ledgers</ion-label>
           <ion-icon slot="end" name="add-circle-outline"></ion-icon>
         </ion-item>
-        <div *ngIf="addLedger.length > 0" formArrayName="ledgerDetails">
-          <ion-list>
-            <ion-item *ngFor="let ledger of addLedger; let i = index" [formGroupName]="i">
-              <ion-label>{{ ledger }}</ion-label>
-              <ion-input formControlName="tax_percentage"
-                [ngStyle]="{'border': disableLager ? 'none' : '1px solid #ccc', 'background': disableLager ? 'transparent' : 'initial'}"
-                style="border-radius: 5px;width: 30px;" [disabled]="disableLager"></ion-input>
-              <ion-input formControlName="tax_amount"
-                [ngStyle]="{'border': disableLager ? 'none' : '1px solid #ccc', 'background': disableLager ? 'transparent' : 'initial'}"
-                style="border-radius: 5px;width: 30px;" [disabled]="disableLager"></ion-input>
-              <ion-button fill="clear" (click)="editLedger(i)">
-                <ion-icon name="pencil-outline"></ion-icon>
-              </ion-button>
-              <ion-button fill="clear" (click)="removeLedger(i)">
-                <ion-icon name="trash-outline"></ion-icon>
-              </ion-button>
-            </ion-item>
-          </ion-list>
-        </div>
-        <div *ngIf="add_more_ledgers">
-          <!-- <ion-radio-group formControlName="taxType">
-            <ion-item class="internal-form-item" lines="none">
-              <ion-label>GST</ion-label>
-              <ion-radio slot="end" value="gst"></ion-radio>
-            </ion-item>
-            <ion-item class="internal-form-item" lines="none">
-              <ion-label>CGST</ion-label>
-              <ion-radio slot="end" value="cgst"></ion-radio>
-            </ion-item>
-            <ion-item class="internal-form-item" lines="none">
-              <ion-label>SGST</ion-label>
-              <ion-radio slot="end" value="sgst"></ion-radio>
-            </ion-item>
-            <ion-item class="internal-form-item" lines="none">
-              <ion-label>IGST</ion-label>
-              <ion-radio slot="end" value="igst"></ion-radio>
-            </ion-item>
-          </ion-radio-group> -->
-          <ion-searchbar slot="start" (ionInput)="handleInput($event)" autofocus="true" placeholder="Search...">
-          </ion-searchbar>
-          <div formArrayName="taxType">
-            <ion-item class="internal-form-item"
-              *ngFor="let result of pagedResults; let i = index; trackBy: trackResult">
-              <ion-checkbox class="square-checkbox" slot="end" [formControlName]="i"
-                (ngModelChange)="addLedgerData(result)"></ion-checkbox>
-              <ion-label class="internal-form-label">{{ result }}</ion-label>
-            </ion-item>
-          </div>
-          <div class="pagination-row fixed-bottom">
-            <ion-button fill="clear" [disabled]="currentPage === 1" (click)="changePage(-1)">
-              <ion-icon name="chevron-back-outline"></ion-icon>
-            </ion-button>
-            <span class="pagination-info">Page {{ currentPage }} of {{ totalPages }}</span>
-            <ion-button fill="clear" [disabled]="currentPage === totalPages" (click)="changePage(1)">
-              <ion-icon name="chevron-forward-outline"></ion-icon>
-            </ion-button>
-          </div>
-        </div>
       </ion-item-group>
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Narration</ion-label>
+        <ion-textarea formControlName="narration" rows="5"></ion-textarea>
+      </ion-item>
+      <ion-item class="internal-form-item">
+        <ion-label>Gross Total</ion-label>
+        <ion-label slot="end">{{grossTotal || "0.0"}}</ion-label>
+      </ion-item>
+      <ion-item class="internal-form-item">
+        <ion-label>Discount Total</ion-label>
+        <ion-label slot="end">{{discountTotal || "0.0"}}</ion-label>
+      </ion-item>
+      <ion-item class="internal-form-item">
+        <ion-label>Taxable</ion-label>
+        <ion-label slot="end">{{taxable || "0.0"}}</ion-label>
+      </ion-item>
+      <ion-item class="internal-form-item">
+        <ion-label>Tax Total</ion-label>
+        <ion-label slot="end">{{taxable || "0.0"}}</ion-label>
+      </ion-item>
+      <ion-item class="internal-form-item">
+        <ion-label>Bill Amount</ion-label>
+        <ion-label slot="end">{{billAmount || "0.0"}}</ion-label>
+      </ion-item>
+      <ion-item class="internal-form-item">
+        <ion-label style="font-weight: bold;">Total Amount</ion-label>
+        <ion-label style="font-weight: bold;" slot="end">{{totalAmount || "0.0"}}</ion-label>
+      </ion-item>
     </div>
   </form>
 </ion-content>

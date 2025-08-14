@@ -70,6 +70,7 @@ import { SalesOrderComponent } from "./transaction/sales-order/sales-order.compo
 import { SalesOrderListComponent } from "./transaction/sales-order-list/sales-order-list.component";
 import { SalesReturnComponent } from "./transaction/sales-return/sales-return.component";
 import { SalesReturnListComponent } from "./transaction/sales-return-list/sales-return-list.component";
+import { AddItemsComponent } from "./transaction/add-items/add-items.component";
 
 const routes: Routes = [
   {
@@ -282,6 +283,7 @@ const routes: Routes = [
       { path: "payment", component: PaymentComponent },
       { path: "payment-list", component: PaymentListComponent },
       { path: "purchase", component: TransactionPurchaseComponent },
+      { path: "add-item", component: AddItemsComponent },
       { path: "purchase-list", component: PurchaseListComponent },
       { path: "purchase-order", component: PurchaseOrderComponent },
       { path: "purchase-order-list", component: PurchaseOrderListComponent },

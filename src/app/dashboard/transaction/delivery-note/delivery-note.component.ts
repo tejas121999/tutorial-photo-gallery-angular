@@ -26,7 +26,7 @@ export class DeliveryNoteComponent implements OnInit {
 
   async initializeData() {
     this.deliveryNote = this.fb.group({
-      name: ["", Validators.required],
+      deliveryNoteNo: ["", Validators.required],
     });
   }
 
