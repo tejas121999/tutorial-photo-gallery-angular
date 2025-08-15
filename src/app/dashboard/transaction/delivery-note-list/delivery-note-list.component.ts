@@ -1,4 +1,7 @@
 import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { ApiServiceService } from "src/app/services/api-service.service";
+import { AppPreference } from "src/app/shared/app-preference";
 
 @Component({
   selector: "app-delivery-note-list",
@@ -9,6 +12,8 @@ export class DeliveryNoteListComponent implements OnInit {
   pageSize = 5;
   currentPage = 1;
   showSearchbar = false;
+  branch_token: any;
+  login_token: any;
   get totalPages() {
     return Math.ceil(this.results.length / this.pageSize) || 1;
   }
@@ -42,13 +47,23 @@ export class DeliveryNoteListComponent implements OnInit {
   ];
   public results = [...this.data];
 
-  constructor() {
+  constructor(
+    private appPreference: AppPreference,
+    private apiService: ApiServiceService,
+    private route: ActivatedRoute
+  ) {
     // Set current date in ISO format (YYYY-MM-DD)
     const today = new Date();
     this.currentDate = today.toISOString().split("T")[0];
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.route.queryParams.subscribe(async () => {
+      this.branch_token = await this.appPreference.get("branch_token_id");
+      this.login_token = await this.appPreference.get("_LoginToken");
+      console.log("Branch Token:", this.branch_token);
+    });
+  }
 
   handleInput(event: Event) {
     const target = event.target as HTMLIonSearchbarElement;

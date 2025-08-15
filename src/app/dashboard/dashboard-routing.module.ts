@@ -72,6 +72,8 @@ import { SalesReturnComponent } from "./transaction/sales-return/sales-return.co
 import { SalesReturnListComponent } from "./transaction/sales-return-list/sales-return-list.component";
 import { AddItemsComponent } from "./transaction/add-items/add-items.component";
 import { AddMoreLagersComponent } from "./transaction/add-more-lagers/add-more-lagers.component";
+import { AddItemDeliveryNoteComponent } from "./transaction/add-item-delivery-note/add-item-delivery-note.component";
+import { AddLedgersDeliveryNoteComponent } from "./transaction/add-ledgers-delivery-note/add-ledgers-delivery-note.component";
 
 const routes: Routes = [
   {
@@ -299,6 +301,14 @@ const routes: Routes = [
       { path: "sales-return", component: SalesReturnComponent },
       { path: "sales-return-list", component: SalesReturnListComponent },
       { path: "add-more-lagers", component: AddMoreLagersComponent },
+      {
+        path: "add-item-delivery-note",
+        component: AddItemDeliveryNoteComponent,
+      },
+      {
+        path: "add-ledgers-delivery-note",
+        component: AddLedgersDeliveryNoteComponent,
+      },
     ],
   },
   {

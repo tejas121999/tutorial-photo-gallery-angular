@@ -24,9 +24,255 @@
     <div class="centered-form-wrapper">
       <!-- Example fields, adapt as needed for cost center -->
       <ion-item class="internal-form-item">
-        <ion-label class="internal-form-label" position="floating">Delivery Note No</ion-label>
+        <ion-label class="internal-form-label" position="floating">Delivery Note No.</ion-label>
         <ion-input formControlName="deliveryNoteNo"></ion-input>
       </ion-item>
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Reference No.</ion-label>
+        <ion-input formControlName="referenceNo"></ion-input>
+      </ion-item>
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Date</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" formControlName="date"></ion-datetime>
+      </ion-item>
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Bill Date</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" formControlName="billDate"></ion-datetime>
+      </ion-item>
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Party Name</ion-label>
+        <ion-input formControlName="partyName"></ion-input>
+      </ion-item>
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Sales Ledger</ion-label>
+        <ion-input formControlName="salesLedger"></ion-input>
+      </ion-item>
+      <!-- Order Details -->
+      <ion-item-group>
+        <ion-item button (click)="orderDetailsOpen = !orderDetailsOpen" detail="false" lines="none">
+          <ion-label class="additional-details-label">Order Details</ion-label>
+          <ion-icon slot="end" name="chevron-down-outline" *ngIf="!orderDetailsOpen"></ion-icon>
+          <ion-icon slot="end" name="chevron-up-outline" *ngIf="orderDetailsOpen"></ion-icon>
+        </ion-item>
+        <div *ngIf="orderDetailsOpen">
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Order No.</ion-label>
+            <ion-input formControlName="orderNo"></ion-input>
+          </ion-item>
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Terms Of Payment</ion-label>
+            <ion-input formControlName="termsOfPayment"></ion-input>
+          </ion-item>
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Other References</ion-label>
+            <ion-input formControlName="otherReferences"></ion-input>
+          </ion-item>
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Terms Of Delivery</ion-label>
+            <ion-input formControlName="termsOfDelivery"></ion-input>
+          </ion-item>
+        </div>
+      </ion-item-group>
+      <!-- Dispatch Details -->
+      <ion-item-group>
+        <ion-item button (click)="dispatchDetailsOpen = !dispatchDetailsOpen" detail="false" lines="none">
+          <ion-label class="additional-details-label">Dispatch Details</ion-label>
+          <ion-icon slot="end" name="chevron-down-outline" *ngIf="!dispatchDetailsOpen"></ion-icon>
+          <ion-icon slot="end" name="chevron-up-outline" *ngIf="dispatchDetailsOpen"></ion-icon>
+        </ion-item>
+        <div *ngIf="dispatchDetailsOpen">
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Dispatch Doc No.</ion-label>
+            <ion-input formControlName="dispatchDocNo"></ion-input>
+          </ion-item>
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Dispatched Through</ion-label>
+            <ion-input formControlName="dispatchedThrough"></ion-input>
+          </ion-item>
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Destination</ion-label>
+            <ion-input formControlName="destination"></ion-input>
+          </ion-item>
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Carrier/Agent Name</ion-label>
+            <ion-input formControlName="carrierAgentName"></ion-input>
+          </ion-item>
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Bill Of Landing</ion-label>
+            <ion-input formControlName="billOfLanding"></ion-input>
+          </ion-item>
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">dispatch date</ion-label>
+            <ion-input formControlName="dispatchDate" type="date"></ion-input>
+          </ion-item>
+        </div>
+      </ion-item-group>
+      <!-- Export Details -->
+      <ion-item-group>
+        <ion-item button (click)="exportDetailsOpen = !exportDetailsOpen" detail="false" lines="none">
+          <ion-label class="additional-details-label">Export Details</ion-label>
+          <ion-icon slot="end" name="chevron-down-outline" *ngIf="!exportDetailsOpen"></ion-icon>
+          <ion-icon slot="end" name="chevron-up-outline" *ngIf="exportDetailsOpen"></ion-icon>
+        </ion-item>
+        <div *ngIf="exportDetailsOpen">
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Receipt Location</ion-label>
+            <ion-input formControlName="receiptLocation"></ion-input>
+          </ion-item>
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Flight No.</ion-label>
+            <ion-input formControlName="flightNo"></ion-input>
+          </ion-item>
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Port Of Loading</ion-label>
+            <ion-input formControlName="portOfLoading"></ion-input>
+          </ion-item>
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Port Of Discharge</ion-label>
+            <ion-input formControlName="portOfDischarge"></ion-input>
+          </ion-item>
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Country</ion-label>
+            <ion-input formControlName="country"></ion-input>
+          </ion-item>
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Shipping Bill No.</ion-label>
+            <ion-input formControlName="shippingBillNo"></ion-input>
+          </ion-item>
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">export date</ion-label>
+            <ion-input formControlName="exportDate" type="date"></ion-input>
+          </ion-item>
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Port Code</ion-label>
+            <ion-input formControlName="portCode"></ion-input>
+          </ion-item>
+        </div>
+      </ion-item-group>
+      <!-- Party Details -->
+      <ion-item-group>
+        <ion-item button (click)="exportDetailsOpen = !exportDetailsOpen" detail="false" lines="none">
+          <ion-label class="additional-details-label">Export Details</ion-label>
+          <ion-icon slot="end" name="chevron-down-outline" *ngIf="!exportDetailsOpen"></ion-icon>
+          <ion-icon slot="end" name="chevron-up-outline" *ngIf="exportDetailsOpen"></ion-icon>
+        </ion-item>
+        <div *ngIf="exportDetailsOpen">
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Buyer</ion-label>
+            <ion-input formControlName="buyer"></ion-input>
+          </ion-item>
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Address Type</ion-label>
+            <ion-input formControlName="addressType"></ion-input>
+          </ion-item>
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Mailing Name</ion-label>
+            <ion-input formControlName="mailingName"></ion-input>
+          </ion-item>
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Address</ion-label>
+            <ion-input formControlName="address"></ion-input>
+          </ion-item>
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">State</ion-label>
+            <ion-input formControlName="state"></ion-input>
+          </ion-item>
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">party pincode</ion-label>
+            <ion-input formControlName="partyPincode"></ion-input>
+          </ion-item>
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Registration Type</ion-label>
+            <ion-input formControlName="registrationType"></ion-input>
+          </ion-item>
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">GSTIN/UIN</ion-label>
+            <ion-input formControlName="gstinUin"></ion-input>
+          </ion-item>
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Consignee</ion-label>
+            <ion-input formControlName="consignee"></ion-input>
+          </ion-item>
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Mailing Name</ion-label>
+            <ion-input formControlName="consigneeMailingName"></ion-input>
+          </ion-item>
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Place Of Supply</ion-label>
+            <ion-input formControlName="placeOfSupply"></ion-input>
+          </ion-item>
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Narration</ion-label>
+            <ion-input formControlName="narration"></ion-input>
+          </ion-item>
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Sub Total</ion-label>
+            <ion-input formControlName="subTotal"></ion-input>
+          </ion-item>
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Taxes</ion-label>
+            <ion-input formControlName="taxes"></ion-input>
+          </ion-item>
+          <ion-item class="internal-form-item">
+            <ion-label class="internal-form-label" position="floating">Total Amount</ion-label>
+            <ion-input formControlName="totalAmount"></ion-input>
+          </ion-item>
+        </div>
+      </ion-item-group>
+      <ion-item-group>
+        <ion-item detail="false" lines="none" button routerLink="/dashboard/transaction/add-item-delivery-note">
+          <ion-label class="add-item-label">Add Item</ion-label>
+          <ion-icon slot="end" name="add-circle-outline"></ion-icon>
+        </ion-item>
+        <!-- list -->
+        <div *ngIf="itemFormArray.length > 0" formArrayName="addedItem">
+          <div *ngFor="let item of itemFormArray.controls; let i = index" [formGroupName]="i">
+            <ion-grid>
+              <ion-row>
+                <ion-col size="12">
+                  {{ item.get("item").value ||"Rice" }}
+                </ion-col>
+              </ion-row>
+              <ion-row class="ion-align-items-center">
+                <ion-col size="6">
+                  {{item.get("quantity").value || 0}} * {{item.get("rate").value || 0}}
+                </ion-col>
+                <ion-col size="6"
+                  style="display: flex; flex-direction: row; justify-content: space-evenly; align-items: center;">
+                  <span>{{item.get("amount").value || 0}}</span>
+                  <ion-button fill="clear" (click)="removeItem(i)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+                      <path d="M1.875 3.75H3.125H13.125" stroke="#ACACAC" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                      <path
+                        d="M11.875 3.75V12.5C11.875 12.8315 11.7433 13.1495 11.5089 13.3839C11.2745 13.6183 10.9565 13.75 10.625 13.75H4.375C4.04348 13.75 3.72554 13.6183 3.49112 13.3839C3.2567 13.1495 3.125 12.8315 3.125 12.5V3.75M5 3.75V2.5C5 2.16848 5.1317 1.85054 5.36612 1.61612C5.60054 1.3817 5.91848 1.25 6.25 1.25H8.75C9.08152 1.25 9.39946 1.3817 9.63388 1.61612C9.8683 1.85054 10 2.16848 10 2.5V3.75"
+                        stroke="#ACACAC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                      <path d="M6.25 6.875V10.625" stroke="#ACACAC" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                      <path d="M8.75 6.875V10.625" stroke="#ACACAC" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </ion-button>
+                  <ion-button fill="clear" (click)="editLager(i)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+                      <path
+                        d="M10.625 1.87324C10.7892 1.70908 10.984 1.57887 11.1985 1.49003C11.413 1.40119 11.6429 1.35547 11.875 1.35547C12.1071 1.35547 12.337 1.40119 12.5515 1.49003C12.766 1.57887 12.9608 1.70908 13.125 1.87324C13.2892 2.03739 13.4194 2.23227 13.5082 2.44674C13.597 2.66122 13.6428 2.89109 13.6428 3.12324C13.6428 3.35538 13.597 3.58526 13.5082 3.79973C13.4194 4.01421 13.2892 4.20908 13.125 4.37324L4.6875 12.8107L1.25 13.7482L2.1875 10.3107L10.625 1.87324Z"
+                        stroke="#ACACAC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+        </div>
+      </ion-item-group>
+      <ion-item-group>
+        <ion-item detail="false" lines="none" button routerLink="/dashboard/transaction/add-ledgers-delivery-note">
+          <ion-label class="add-item-label">Add More Ledgers</ion-label>
+          <ion-icon slot="end" name="add-circle-outline"></ion-icon>
+        </ion-item>
+
+      </ion-item-group>
     </div>
   </form>
 </ion-content>

@@ -5,18 +5,38 @@ import { BehaviorSubject } from "rxjs";
   providedIn: "root",
 })
 export class DataSharingService {
+  // add item
   private dataSource = new BehaviorSubject<any[]>([]);
   currentData = this.dataSource.asObservable();
-  lagersData = new BehaviorSubject<any[]>([]);
-  currentLagersData = this.lagersData.asObservable();
-
-  constructor() {}
 
   changeData(data: any) {
     this.dataSource.next(data);
   }
 
+  // add lagers
+  lagersData = new BehaviorSubject<any[]>([]);
+  currentLagersData = this.lagersData.asObservable();
+
   changeLagersData(data: any) {
     this.lagersData.next(data);
   }
+
+  // delivery note add item
+  private deliveryNoteData = new BehaviorSubject<any[]>([]);
+  currentDeliveryNoteData = this.deliveryNoteData.asObservable();
+
+  changeDeliveryNoteData(data: any) {
+    console.log(data);
+    this.deliveryNoteData.next(data);
+  }
+
+  // delivery note lagers
+  deliveryNoteLagersData = new BehaviorSubject<any[]>([]);
+  currentDeliveryNoteLagersData = this.deliveryNoteLagersData.asObservable();
+
+  changeDeliveryNoteLagersData(data: any) {
+    this.deliveryNoteLagersData.next(data);
+  }
+
+  constructor() {}
 }

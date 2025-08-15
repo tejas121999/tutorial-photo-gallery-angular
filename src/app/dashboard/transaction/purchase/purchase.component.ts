@@ -24,11 +24,6 @@ export class PurchaseComponent implements OnInit {
   purchaseList: any[] = [];
   pageSize = 5;
   currentPage = 1;
-  // grossTotal: number = 0;
-  // discountTotal: number = 0;
-  // taxable: number = 0;
-  // billAmount: number = 0;
-  // totalAmount: number = 0;
   disableLager: boolean = true;
 
   public data = ["CGST", "SGST", "IGST", "Round Off", "CGST", "SGST"];
@@ -45,6 +40,7 @@ export class PurchaseComponent implements OnInit {
     private route: ActivatedRoute,
     private dataSharingService: DataSharingService
   ) {
+    console.log("data");
     this.purchaseForm = this.fb.group({
       changeMode: ["", Validators.required],
       purchaseNo: [""],
@@ -77,7 +73,6 @@ export class PurchaseComponent implements OnInit {
       if (selectedItems && selectedItems.length > 0) {
         console.log("Selected Items:", selectedItems);
         this.addItems(selectedItems);
-        // this.dataSharingService.updateData([]);
       }
     });
 
@@ -85,13 +80,13 @@ export class PurchaseComponent implements OnInit {
       if (selectedItems && selectedItems.length > 0) {
         console.log("Selected Ledgers:", selectedItems);
         this.addLagers(selectedItems);
-        // this.dataSharingService.updateLagersData([]);
       }
     });
   }
 
   ngOnInit() {
     this.route.queryParams.subscribe(async () => {
+      console.log("Query Params:", this.route.snapshot.queryParams);
       this.branch_token = await this.appPreference.get("branch_token_id");
       this.login_token = await this.appPreference.get("_LoginToken");
       this.getSupplierList();
