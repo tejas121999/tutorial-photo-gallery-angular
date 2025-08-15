@@ -79,6 +79,7 @@ import { SalesOrderListComponent } from "./transaction/sales-order-list/sales-or
 import { SalesReturnComponent } from "./transaction/sales-return/sales-return.component";
 import { SalesReturnListComponent } from "./transaction/sales-return-list/sales-return-list.component";
 import { AddItemsComponent } from "./transaction/add-items/add-items.component";
+import { AddMoreLagersComponent } from "./transaction/add-more-lagers/add-more-lagers.component";
 
 @NgModule({
   declarations: [
@@ -157,6 +158,7 @@ import { AddItemsComponent } from "./transaction/add-items/add-items.component";
     SalesReturnComponent,
     SalesReturnListComponent,
     AddItemsComponent,
+    AddMoreLagersComponent,
   ],
   imports: [
     CommonModule,

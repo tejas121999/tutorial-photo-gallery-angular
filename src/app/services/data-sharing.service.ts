@@ -7,10 +7,16 @@ import { BehaviorSubject } from "rxjs";
 export class DataSharingService {
   private dataSource = new BehaviorSubject<any[]>([]);
   currentData = this.dataSource.asObservable();
+  lagersData = new BehaviorSubject<any[]>([]);
+  currentLagersData = this.lagersData.asObservable();
 
   constructor() {}
 
   changeData(data: any) {
     this.dataSource.next(data);
+  }
+
+  changeLagersData(data: any) {
+    this.lagersData.next(data);
   }
 }

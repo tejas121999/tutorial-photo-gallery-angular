@@ -213,6 +213,11 @@ swiper-container {
 }
 
 /* Swiper pagination styling */
+swiper-container::part(pagination) {
+  position: relative;
+  bottom: 0px !important;
+}
+
 .swiper-pagination.swiper-pagination-bullets.swiper-pagination-horizontal {
   bottom: -30px !important;
   position: relative !important;

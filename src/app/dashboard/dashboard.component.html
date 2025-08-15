@@ -348,44 +348,53 @@
   <router-outlet></router-outlet>
 </ion-content>
 <ion-tab-bar slot="bottom">
-  <ion-tab-button tab="home" class="tab-home" routerLink="/dashboard/home">
-    <!-- <span class="tab-home-flex">
-      <span class="tab-home-svg"> -->
-    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="21" viewBox="0 0 26 21" fill="none">
-      <path d="M13 1L2.35484 10.9355L2 11.2903H5.19355V20.1613H10.1613V13.4194H16.1935V20.1613H20.8065V10.9355H24L13 1Z"
-        stroke="white" />
-    </svg>
-    <!-- </span> -->
-    <ion-label>Home</ion-label>
-    <!-- </span> -->
+  <ion-tab-button tab="home" class="tab-home" routerLink="/dashboard/home" routerLinkActive="tab-selected">
+    <div [ngClass]="isActive('/dashboard/home') ? 'active-button' : ''">
+      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="21" viewBox="0 0 26 21" fill="none">
+        <path
+          d="M13 1L2.35484 10.9355L2 11.2903H5.19355V20.1613H10.1613V13.4194H16.1935V20.1613H20.8065V10.9355H24L13 1Z"
+          [attr.stroke]="isActive('/dashboard/home') ? '#083D7C' : 'white'" />
+      </svg>
+      <ion-label class="button-label">Home</ion-label>
+    </div>
   </ion-tab-button>
-  <ion-tab-button tab="stock" routerLink="/dashboard/stock">
+  <ion-tab-button tab="stock" routerLink="/dashboard/stock" routerLinkActive="tab-selected">
+    <!-- <div [ngClass]="isActive('/dashboard/stock') ? 'active-button' : ''"> -->
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
       <path
         d="M23.2176 5.95656L12.6957 10.6523L7.34787 8.21745M23.2176 5.95656V13.3479M23.2176 5.95656L17.8262 3.47828M2 5.95656V18.4784L12.3479 23.0871L14.261 22.2176M7.34787 8.21745L2 5.78265L12.4349 1L17.8262 3.47828M7.34787 8.21745L17.8262 3.47828M16.6958 17.9567L18.261 19.6088L21.4784 16.6523"
-        stroke="white" />
+        [attr.stroke]="isActive('/dashboard/stock') ? '#083D7C' : 'white'" />
       <path
         d="M18.7827 13.0653C21.3879 13.0655 23.4995 15.1778 23.4995 17.7831C23.4993 20.3882 21.3878 22.4997 18.7827 22.4999C16.1774 22.4999 14.0651 20.3883 14.0649 17.7831C14.0649 15.1777 16.1773 13.0653 18.7827 13.0653Z"
-        stroke="white" />
+        [attr.stroke]="isActive('/dashboard/stock') ? '#083D7C' : 'white'" />
     </svg>
-    <ion-label>Stock</ion-label>
+    <!-- <ion-label>Stock</ion-label> -->
+    <!-- </div> -->
   </ion-tab-button>
-  <ion-tab-button tab="report" routerLink="/dashboard/report">
+  <ion-tab-button tab="report" routerLink="/dashboard/report" routerLinkActive="tab-selected">
+    <!-- <div [ngClass]="isActive('/dashboard/report') ? 'active-button' : ''"> -->
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
       <path
         d="M18.4886 1H6.21339V3.72782L6.17869 3.96971M18.4886 1L23 5.5114V5.61632M18.4886 1V5.61632C19.9924 5.65129 23 5.70025 23 5.61632M6.10848 13.0654V23.2423H23V5.61632M6.10848 13.0654C4.67462 13.0654 1.68101 12.4569 1.17741 10.0228C0.82769 8.76381 0.757746 5.91008 3.27574 4.56715C3.71787 4.28714 4.43574 3.9972 5.26919 3.93756M6.10848 13.0654C7.45137 12.4778 8.48659 11.5616 8.83635 11.1769C9.65881 10.3544 9.91512 9.37654 9.88155 8.44906M6.17869 3.96971C7.09437 4.1035 8.07246 4.56652 8.94126 5.61632C9.34856 6.21757 9.83975 7.29424 9.88155 8.44906M6.17869 3.96971C5.86597 3.92401 5.56052 3.91672 5.26919 3.93756M2.64628 8.13431C2.68126 9.21844 3.33873 11.3028 5.68886 10.967M5.26919 3.93756V8.34414L9.88155 8.44906M13.033 8.55397L20.2722 8.44906M13.033 10.3376H20.3771M11.5642 5.72123H16.81M11.4593 4.04257H16.9149M8.94126 19.2554L12.2986 15.5834L15.3412 19.4653L19.9575 14.2195"
-        stroke="white" />
-      <ellipse cx="8.83628" cy="19.3604" rx="0.944247" ry="0.944247" fill="white" />
-      <ellipse cx="12.4035" cy="15.5833" rx="0.944247" ry="0.944247" fill="white" />
-      <ellipse cx="15.3407" cy="19.3604" rx="0.944247" ry="0.944247" fill="white" />
-      <ellipse cx="19.958" cy="13.9047" rx="0.944247" ry="0.944247" fill="white" />
+        [attr.stroke]="isActive('/dashboard/report') ? '#083D7C' : 'white'" />
+      <ellipse cx="8.83628" cy="19.3604" rx="0.944247" ry="0.944247"
+        [attr.fill]="isActive('/dashboard/report') ? '#083D7C' : 'white'" />
+      <ellipse cx="12.4035" cy="15.5833" rx="0.944247" ry="0.944247"
+        [attr.fill]="isActive('/dashboard/report') ? '#083D7C' : 'white'" />
+      <ellipse cx="15.3407" cy="19.3604" rx="0.944247" ry="0.944247"
+        [attr.fill]="isActive('/dashboard/report') ? '#083D7C' : 'white'" />
+      <ellipse cx="19.958" cy="13.9047" rx="0.944247" ry="0.944247"
+        [attr.fill]="isActive('/dashboard/report') ? '#083D7C' : 'white'" />
     </svg>
-    <ion-label>Report</ion-label>
+    <!-- <ion-label>Report</ion-label> -->
+    <!-- </div> -->
   </ion-tab-button>
-  <ion-tab-button tab="add-entry" routerLink="/dashboard/add-entry">
+  <ion-tab-button tab="add-entry" routerLink="/dashboard/add-entry" routerLinkActive="tab-selected">
+    <!-- <div [ngClass]="isActive('/dashboard/add-entry') ? 'active-button' : ''"> -->
     <div>
       <span>+</span>
     </div>
-    <ion-label>Add Entry</ion-label>
+    <!-- <ion-label>Add Entry</ion-label> -->
+    <!-- </div> -->
   </ion-tab-button>
 </ion-tab-bar>

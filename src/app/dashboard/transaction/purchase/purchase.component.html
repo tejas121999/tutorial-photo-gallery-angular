@@ -33,6 +33,15 @@
       </ion-item>
 
       <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Purchase Voucher</ion-label>
+        <ion-select formControlName="purchaseLedger" interface="alert">
+          <ion-select-option *ngFor="let ledger of purchaseLedger" [value]="ledger.ledger_name">
+            {{ ledger.voucher_type_name }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item class="internal-form-item">
         <ion-label class="internal-form-label" position="floating">Purchase No</ion-label>
         <ion-input formControlName="purchaseNo"></ion-input>
       </ion-item>
@@ -60,14 +69,7 @@
           </ion-select-option>
         </ion-select>
       </ion-item>
-      <ion-item class="internal-form-item">
-        <ion-label class="internal-form-label" position="floating">Purchase Ledger</ion-label>
-        <ion-select formControlName="purchaseLedger" interface="alert">
-          <ion-select-option *ngFor="let ledger of purchaseLedger" [value]="ledger.ledger_name">
-            {{ ledger.voucher_type_name }}
-          </ion-select-option>
-        </ion-select>
-      </ion-item>
+
       <ion-item class="internal-form-item">
         <ion-label class="internal-form-label" position="floating">Cost Center</ion-label>
         <ion-select formControlName="costCenter" interface="alert">
@@ -95,7 +97,7 @@
                 </ion-col>
                 <ion-col size="6">
                   <ion-label style="font-size: 15px;">
-                    ({{ item.get('unit_name')?.value }})
+                    {{ item.get('unit_name')?.value || "" }}
                   </ion-label>
                 </ion-col>
               </ion-row>
@@ -103,13 +105,13 @@
                 <ion-col size="5">
                   <ion-item>
                     <ion-label position="floating">Quantity</ion-label>
-                    <ion-input formControlName="quantity" type="number"></ion-input>
+                    <ion-input formControlName="quantity" type="number" [disabled]="true"></ion-input>
                   </ion-item>
                 </ion-col>
                 <ion-col size="5">
                   <ion-item>
                     <ion-label position="floating">Amount</ion-label>
-                    <ion-input formControlName="amount" type="number"></ion-input>
+                    <ion-input formControlName="amount" type="number" [disabled]="true"></ion-input>
                   </ion-item>
                 </ion-col>
                 <ion-col size="2" style="text-align: right;">
@@ -125,10 +127,46 @@
       </ion-item-group>
       <!-- Add More Ledgers -->
       <ion-item-group>
-        <ion-item detail="false" lines="none" button (click)="add_more_ledgers = !add_more_ledgers">
+        <ion-item detail="false" lines="none" button routerLink="/dashboard/transaction/add-more-lagers">
           <ion-label class="add-item-label">Add More Ledgers</ion-label>
           <ion-icon slot="end" name="add-circle-outline"></ion-icon>
         </ion-item>
+        <div *ngIf="lagersFormArray.length > 0" formArrayName="lagers">
+          <ion-item class="internal-form-item" *ngFor="let lager of lagersFormArray.controls; let i = index"
+            [formGroupName]="i">
+            <ion-grid>
+              <ion-row>
+                <ion-col size="12">
+                  <ion-label style="font-size: 15px;">
+                    {{ lager.get('ledger_name')?.value }}
+                  </ion-label>
+                </ion-col>
+              </ion-row>
+              <ion-row class="ion-align-items-center">
+                <ion-col size="5">
+                  <ion-item>
+                    <ion-label position="floating">Percentage</ion-label>
+                    <ion-input formControlName="percentage" type="number"></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="5">
+                  <ion-item>
+                    <ion-label position="floating">Amount</ion-label>
+                    <ion-input formControlName="amount" type="number" [disabled]="true"></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="2" style="text-align: right;">
+                  <ion-button fill="clear" (click)="editLager(i)">
+                    <ion-icon name="create-outline" slot="icon-only"></ion-icon>
+                  </ion-button>
+                  <ion-button fill="clear" (click)="deleteLager(i)">
+                    <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </div>
       </ion-item-group>
       <ion-item class="internal-form-item">
         <ion-label class="internal-form-label" position="floating">Narration</ion-label>
@@ -136,27 +174,27 @@
       </ion-item>
       <ion-item class="internal-form-item">
         <ion-label>Gross Total</ion-label>
-        <ion-label slot="end">{{grossTotal || "0.0"}}</ion-label>
+        <ion-label slot="end">{{purchaseForm.get('grossTotal')?.value || "0.0"}}</ion-label>
       </ion-item>
       <ion-item class="internal-form-item">
         <ion-label>Discount Total</ion-label>
-        <ion-label slot="end">{{discountTotal || "0.0"}}</ion-label>
+        <ion-label slot="end">{{purchaseForm.get('discountTotal')?.value || "0.0"}}</ion-label>
       </ion-item>
       <ion-item class="internal-form-item">
         <ion-label>Taxable</ion-label>
-        <ion-label slot="end">{{taxable || "0.0"}}</ion-label>
+        <ion-label slot="end">{{purchaseForm.get('taxable')?.value || "0.0"}}</ion-label>
       </ion-item>
       <ion-item class="internal-form-item">
         <ion-label>Tax Total</ion-label>
-        <ion-label slot="end">{{taxable || "0.0"}}</ion-label>
+        <ion-label slot="end">{{purchaseForm.get('taxTotal')?.value || "0.0"}}</ion-label>
       </ion-item>
       <ion-item class="internal-form-item">
         <ion-label>Bill Amount</ion-label>
-        <ion-label slot="end">{{billAmount || "0.0"}}</ion-label>
+        <ion-label slot="end">{{purchaseForm.get('billAmount')?.value || "0.0"}}</ion-label>
       </ion-item>
       <ion-item class="internal-form-item">
         <ion-label style="font-weight: bold;">Total Amount</ion-label>
-        <ion-label style="font-weight: bold;" slot="end">{{totalAmount || "0.0"}}</ion-label>
+        <ion-label style="font-weight: bold;" slot="end">{{purchaseForm.get('totalAmount')?.value || "0.0"}}</ion-label>
       </ion-item>
     </div>
   </form>

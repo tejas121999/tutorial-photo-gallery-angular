@@ -24,11 +24,11 @@ export class PurchaseComponent implements OnInit {
   purchaseList: any[] = [];
   pageSize = 5;
   currentPage = 1;
-  grossTotal: number = 0;
-  discountTotal: number = 0;
-  taxable: number = 0;
-  billAmount: number = 0;
-  totalAmount: number = 0;
+  // grossTotal: number = 0;
+  // discountTotal: number = 0;
+  // taxable: number = 0;
+  // billAmount: number = 0;
+  // totalAmount: number = 0;
   disableLager: boolean = true;
 
   public data = ["CGST", "SGST", "IGST", "Round Off", "CGST", "SGST"];
@@ -45,10 +45,6 @@ export class PurchaseComponent implements OnInit {
     private route: ActivatedRoute,
     private dataSharingService: DataSharingService
   ) {
-    this.initializeData();
-  }
-
-  async initializeData() {
     this.purchaseForm = this.fb.group({
       changeMode: ["", Validators.required],
       purchaseNo: [""],
@@ -68,17 +64,30 @@ export class PurchaseComponent implements OnInit {
       itemDiscount: [""],
       itemTaxableAmount: [""],
       itemTotalAmount: [""],
-      taxType: this.fb.array(this.data.map(() => this.fb.control(false))),
+      lagers: this.fb.array([]),
       addedItem: this.fb.array([]),
+      grossTotal: [0],
+      discountTotal: [0],
+      taxable: [0],
+      billAmount: [0],
+      totalAmount: [0],
     });
-  }
 
-  get itemFormArray() {
-    return this.purchaseForm.get("addedItem") as FormArray;
-  }
+    this.dataSharingService?.currentData.subscribe((selectedItems) => {
+      if (selectedItems && selectedItems.length > 0) {
+        console.log("Selected Items:", selectedItems);
+        this.addItems(selectedItems);
+        // this.dataSharingService.updateData([]);
+      }
+    });
 
-  get taxTypesFormArray() {
-    return this.purchaseForm.controls.taxType as FormArray;
+    this.dataSharingService?.currentLagersData.subscribe((selectedItems) => {
+      if (selectedItems && selectedItems.length > 0) {
+        console.log("Selected Ledgers:", selectedItems);
+        this.addLagers(selectedItems);
+        // this.dataSharingService.updateLagersData([]);
+      }
+    });
   }
 
   ngOnInit() {
@@ -91,15 +100,42 @@ export class PurchaseComponent implements OnInit {
       this.getStockItemList();
       this.getUnitSimpleList();
       this.getPurchaseAccountList();
-      this.dataSharingService?.currentData.subscribe((selectedItems) => {
-        console.log("Selected Items from Data Sharing Service:", selectedItems);
-        if (selectedItems && selectedItems.length > 0) {
-          this.itemFormArray.clear(); // Clear previous items
-          this.addItems(selectedItems);
-        }
-        this.addedItem = selectedItems;
-      });
     });
+
+    this.lagersFormArray.valueChanges.subscribe(() => {
+      this.calculateTaxAndBillAmount();
+    });
+  }
+
+  get itemFormArray() {
+    return this.purchaseForm.get("addedItem") as FormArray;
+  }
+
+  get lagersFormArray() {
+    return this.purchaseForm.get("lagers") as FormArray;
+  }
+
+  addLagers(data: any[]) {
+    data.forEach((item) => {
+      const lagersGroup = this.fb.group({
+        ledger_name: [item.ledger_name],
+        percentage: [""],
+        amount: [""],
+      });
+
+      lagersGroup.get("percentage")?.valueChanges.subscribe((percentage) => {
+        const grossTotal = this.purchaseForm.get("grossTotal")?.value || 0;
+        if (percentage) {
+          const calculatedAmount = grossTotal * (parseFloat(percentage) / 100);
+          lagersGroup
+            .get("amount")
+            ?.setValue(calculatedAmount, { emitEvent: false });
+        }
+      });
+
+      this.lagersFormArray.push(lagersGroup);
+    });
+    this.calculateTaxAndBillAmount();
   }
 
   addItems(data: any[]) {
@@ -112,14 +148,22 @@ export class PurchaseComponent implements OnInit {
       });
       this.itemFormArray.push(itemGroup);
     });
+    this.calculateGrossTotal();
   }
 
   deleteItem(index: number) {
     this.itemFormArray.removeAt(index);
     this.addedItem.splice(index, 1);
+    this.calculateGrossTotal();
   }
 
-  editLedger(index: number) {
+  deleteLager(index: number) {
+    this.lagersFormArray.removeAt(index);
+    this.addLedger.splice(index, 1);
+    this.calculateTaxAndBillAmount();
+  }
+
+  editLager(index: number) {
     // Implement your edit logic here
     this.disableLager = !this.disableLager;
   }
@@ -143,16 +187,6 @@ export class PurchaseComponent implements OnInit {
     if (nextPage >= 1 && nextPage <= this.totalPages) {
       this.currentPage = nextPage;
     }
-  }
-
-  handleInput(event: Event) {
-    const target = event.target as HTMLIonSearchbarElement;
-    const query = target.value?.toLowerCase() || "";
-    this.results = this.data.filter((d) => d.toLowerCase().includes(query));
-    this.purchaseForm.setControl(
-      "taxType",
-      this.fb.array(this.results.map(() => this.fb.control(false)))
-    );
   }
 
   // Fetch supplier list from API
@@ -479,28 +513,37 @@ export class PurchaseComponent implements OnInit {
   }
 
   addItem() {
-    var temp = {
-      stock_item_name: this.purchaseForm.get("item")?.value,
-      stock_item_unit_name: this.purchaseForm.get("unit")?.value,
-      stock_ledger_name: this.purchaseForm.get("itemLedger")?.value,
-      stock_item_rate: this.purchaseForm.get("itemRate")?.value,
-      stock_item_qty: this.purchaseForm.get("itemQuantity")?.value,
-      stock_item_amount: this.purchaseForm.get("itemAmount")?.value,
-      stock_item_discount_amount: this.purchaseForm.get("itemDiscount")?.value,
-      stock_item_taxable_amount:
-        this.purchaseForm.get("itemTaxableAmount")?.value,
-      stock_item_total_amount: this.purchaseForm.get("itemTotalAmount")?.value,
-      stock_item_tax_detail: [],
-      stock_item_total_tax_percentage: "",
-      stock_item_total_tax_amount: "",
-      stock_item_batch_detail: [],
-    };
-    this.addedItem.push(temp);
-
+    this.itemFormArray.value.forEach((element: any) => {
+      console.log("Ledger:", element);
+      var temp = {
+        stock_item_name: element.item_name,
+        stock_item_unit_name: element.unit_name,
+        stock_item_qty: element.quantity,
+        stock_item_amount: element.amount,
+        stock_item_tax_detail: [],
+        stock_item_total_tax_percentage: "",
+        stock_item_total_tax_amount: "",
+        stock_item_batch_detail: [],
+      };
+      this.addedItem.push(temp);
+    });
     this.add_item = false;
   }
 
+  addLager() {
+    this.lagersFormArray.value.forEach((element: any) => {
+      var temp = {
+        tax_amount: element.amount,
+        tax_name: element.name,
+        tax_percentage: element.percentage,
+      };
+      this.addLedger.push(temp);
+    });
+  }
+
   cretePayload() {
+    this.addItem();
+    this.addLager();
     this.payload[0].login_token = this.login_token;
     this.payload[0].branch_token = this.branch_token;
     this.payload[0].tpd_status_tally_entity_type = "voucher";
@@ -508,26 +551,41 @@ export class PurchaseComponent implements OnInit {
     this.payload[0].tpd_status_report_id = 1;
     this.payload[0].tpd_status_report_data = "Test";
     this.payload[0].object_flag_tpd_id = 1;
-    this.payload[0].voucher_data[0].voucher_inventory_detail = this.addedItem;
-    this.payload[0].voucher_data[0] = {
-      voucher_no: this.purchaseForm.get("purchaseNo")?.value,
-      voucher_refference: this.purchaseForm.get("supplierInvoiceNo")?.value,
-      voucher_date: this.purchaseForm.get("date")?.value,
-      voucher_refference_date: this.purchaseForm.get("billDate")?.value,
-      voucher_party_detail: {
-        party_ledger_name: this.purchaseForm.get("partyName")?.value,
-        voucher_mode: this.purchaseForm.get("changeMode")?.value,
-      },
-      voucher_inventory_detail: this.addedItem,
-      voucher_inventory_tax_detail: [], //Add More Ledgers
-      voucher_type_name: "Purchase",
-      voucherTypeCode: "PUR",
-    };
+    this.payload[0].voucher_data[0].voucher_party_detail.voucher_mode =
+      this.purchaseForm.get("changeMode")?.value;
+    this.payload[0].voucher_data[0].voucher_type_name =
+      this.purchaseForm.get("purchaseLedger")?.value;
+    this.payload[0].voucher_data[0].voucher_no =
+      this.purchaseForm.get("purchaseNo")?.value;
+    this.payload[0].voucher_data[0].voucher_refference =
+      this.purchaseForm.get("supplierInvoiceNo")?.value;
+    this.payload[0].voucher_data[0].voucher_date =
+      this.purchaseForm.get("date")?.value;
+    this.payload[0].voucher_data[0].voucher_refference_date =
+      this.purchaseForm.get("billDate")?.value;
+    this.payload[0].voucher_data[0].voucher_party_detail.party_ledger_name =
+      this.purchaseForm.get("partyName")?.value;
+    this.payload[0].voucher_data[0].voucher_invenotry_detail = this.addedItem;
+    this.payload[0].voucher_data[0].voucher_inventory_tax_detail =
+      this.addLedger;
+    this.payload[0].voucher_data[0].voucher_narration =
+      this.purchaseForm.get("narration")?.value;
+    this.payload[0].voucher_data[0].gross_total =
+      this.purchaseForm.get("grossTotal")?.value;
+    this.payload[0].voucher_data[0].discount_total =
+      this.purchaseForm.get("discountTotal")?.value;
+    this.payload[0].voucher_data[0].taxable_total =
+      this.purchaseForm.get("taxableTotal")?.value;
+    this.payload[0].voucher_data[0].bill_amount =
+      this.purchaseForm.get("billAmount")?.value;
+    this.payload[0].voucher_data[0].voucherTypeCode = "PUR";
   }
 
   addPurchase() {
     this.isLoading = true;
+    this.resetPayloadValuesToNull(this.payload);
     this.cretePayload();
+    console.log("Payload:", this.payload);
     this.apiService.addPurchaseVoucherData(this.payload).subscribe(
       (response: any) => {
         this.isLoading = false;
@@ -545,5 +603,37 @@ export class PurchaseComponent implements OnInit {
         console.error("Error:", error);
       }
     );
+  }
+
+  calculateGrossTotal() {
+    const total = this.itemFormArray.value.reduce((sum: number, item: any) => {
+      const amount =
+        typeof item.amount === "string" ? parseFloat(item.amount) : item.amount;
+      return sum + (amount || 0);
+    }, 0);
+    this.purchaseForm.patchValue({ grossTotal: total });
+    this.calculateTaxAndBillAmount();
+  }
+
+  calculateTaxAndBillAmount() {
+    const grossTotal = this.purchaseForm.get("grossTotal")?.value || 0;
+    const ledgers = this.lagersFormArray.value;
+
+    const totalPercentage = ledgers.reduce((sum: number, ledger: any) => {
+      const percentage =
+        typeof ledger.percentage === "string"
+          ? parseFloat(ledger.percentage)
+          : ledger.percentage;
+      return sum + (percentage || 0);
+    }, 0);
+
+    const taxableAmount = grossTotal * (totalPercentage / 100);
+    const billAmount = grossTotal + taxableAmount;
+
+    this.purchaseForm.patchValue({
+      taxable: taxableAmount,
+      billAmount: billAmount,
+      totalAmount: billAmount,
+    });
   }
 }

@@ -514,4 +514,8 @@ export class ApiServiceService {
       true
     );
   }
+
+  getLedgerList(body: any) {
+    return this.apiManager.sendPOSTRequest(RestEnds.GetLedgerList, body, true);
+  }
 }

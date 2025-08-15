@@ -11,7 +11,7 @@
           </svg>
         </ion-button>
       </ion-buttons>
-      <ion-title>Add Items</ion-title>
+      <ion-title>Add More Lagers</ion-title>
       <ion-buttons slot="end" style="color: white;">
         <ion-button (click)="sendData()">
           Save
@@ -30,7 +30,7 @@
   </div>
   <ion-list class="centered-list" style="padding: 10px;">
     <ion-item *ngFor="let result of pagedResults; trackBy: trackResult" class="internal-form-item">
-      <ion-label>{{ result.item_name }}</ion-label>
+      <ion-label>{{ result.ledger_name }}</ion-label>
       <ion-checkbox class="square-checkbox" slot="end"
         (ionChange)="getLedgerData(result, $event.detail.checked)"></ion-checkbox>
     </ion-item>
