@@ -82,6 +82,7 @@ import { AddItemsComponent } from "./transaction/add-items/add-items.component";
 import { AddMoreLagersComponent } from "./transaction/add-more-lagers/add-more-lagers.component";
 import { AddItemDeliveryNoteComponent } from "./transaction/add-item-delivery-note/add-item-delivery-note.component";
 import { AddLedgersDeliveryNoteComponent } from "./transaction/add-ledgers-delivery-note/add-ledgers-delivery-note.component";
+import { AddLedgersPaymentComponent } from "./transaction/add-ledgers-payment/add-ledgers-payment.component";
 
 @NgModule({
   declarations: [
@@ -163,6 +164,7 @@ import { AddLedgersDeliveryNoteComponent } from "./transaction/add-ledgers-deliv
     AddMoreLagersComponent,
     AddItemDeliveryNoteComponent,
     AddLedgersDeliveryNoteComponent,
+    AddLedgersPaymentComponent
   ],
   imports: [
     CommonModule,

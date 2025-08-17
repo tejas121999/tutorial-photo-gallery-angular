@@ -140,7 +140,7 @@ export class AddLedgersDeliveryNoteComponent implements OnInit {
   }
 
   sendData() {
-    this.dataSharingService.changeLagersData(this.selectedItems);
+    this.dataSharingService.changeDeliveryNoteLagersData(this.selectedItems);
     this.router.navigate(["/dashboard/transaction/delivery-note"], {
       queryParams: { reload: new Date().getTime() },
     });

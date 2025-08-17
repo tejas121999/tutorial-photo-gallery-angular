@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { AppPreference } from "src/app/shared/app-preference";
 
 @Component({
   selector: "app-payment-list",
@@ -6,6 +8,8 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./payment-list.component.scss"],
 })
 export class PaymentListComponent implements OnInit {
+  branch_token: any;
+  login_token: any;
   pageSize = 5;
   currentPage = 1;
   showSearchbar = false;
@@ -42,13 +46,22 @@ export class PaymentListComponent implements OnInit {
   ];
   public results = [...this.data];
 
-  constructor() {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private appPreference: AppPreference
+  ) {
     // Set current date in ISO format (YYYY-MM-DD)
     const today = new Date();
     this.currentDate = today.toISOString().split("T")[0];
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.route.queryParams.subscribe(async () => {
+      this.branch_token = await this.appPreference.get("branch_token_id");
+      this.login_token = await this.appPreference.get("_LoginToken");
+    });
+  }
 
   handleInput(event: Event) {
     const target = event.target as HTMLIonSearchbarElement;

@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <!-- Start slot: Back button and title, or searchbar -->
+    <ng-container>
+      <ion-buttons slot="start" routerLink="/dashboard/transaction/payment">
+        <ion-button fill="clear" style="margin-right: 4px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M14.25 9H3.75" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M9 14.25L3.75 9L9 3.75" stroke="white" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </ion-button>
+      </ion-buttons>
+      <ion-title>Add Item </ion-title>
+      <ion-buttons slot="end" style="color: white;">
+        <ion-button (click)="sendData()">
+          Save
+        </ion-button>
+      </ion-buttons>
+    </ng-container>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="paymentLedgerForm">
+    <div class="centered-form-wrapper">
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Debit/Credit</ion-label>
+        <ion-select formControlName="debit_credit" interface="alert">
+          <ion-select-option *ngFor="let ledger of paymentType" [value]="ledger.id">
+            {{ ledger?.name }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Ledger Type</ion-label>
+        <ion-select formControlName="ledger_type" interface="alert">
+          <ion-select-option *ngFor="let godown of ledgerType" [value]="godown.id">
+            {{ godown?.name }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Amount</ion-label>
+        <ion-input formControlName="amount"></ion-input>
+      </ion-item>
+    </div>
+  </form>
+</ion-content>

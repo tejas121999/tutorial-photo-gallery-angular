@@ -50,9 +50,9 @@
       <!-- Order Details -->
       <ion-item-group>
         <ion-item button (click)="orderDetailsOpen = !orderDetailsOpen" detail="false" lines="none">
-          <ion-label class="additional-details-label">Order Details</ion-label>
-          <ion-icon slot="end" name="chevron-down-outline" *ngIf="!orderDetailsOpen"></ion-icon>
-          <ion-icon slot="end" name="chevron-up-outline" *ngIf="orderDetailsOpen"></ion-icon>
+          <ion-label class="add-item-label">Order Details</ion-label>
+          <ion-icon class="arrow" slot="end" name="chevron-down-outline" *ngIf="!orderDetailsOpen"></ion-icon>
+          <ion-icon class="arrow" slot="end" name="chevron-up-outline" *ngIf="orderDetailsOpen"></ion-icon>
         </ion-item>
         <div *ngIf="orderDetailsOpen">
           <ion-item class="internal-form-item">
@@ -76,9 +76,9 @@
       <!-- Dispatch Details -->
       <ion-item-group>
         <ion-item button (click)="dispatchDetailsOpen = !dispatchDetailsOpen" detail="false" lines="none">
-          <ion-label class="additional-details-label">Dispatch Details</ion-label>
-          <ion-icon slot="end" name="chevron-down-outline" *ngIf="!dispatchDetailsOpen"></ion-icon>
-          <ion-icon slot="end" name="chevron-up-outline" *ngIf="dispatchDetailsOpen"></ion-icon>
+          <ion-label class="add-item-label">Dispatch Details</ion-label>
+          <ion-icon class="arrow" slot="end" name="chevron-down-outline" *ngIf="!dispatchDetailsOpen"></ion-icon>
+          <ion-icon class="arrow" slot="end" name="chevron-up-outline" *ngIf="dispatchDetailsOpen"></ion-icon>
         </ion-item>
         <div *ngIf="dispatchDetailsOpen">
           <ion-item class="internal-form-item">
@@ -110,9 +110,9 @@
       <!-- Export Details -->
       <ion-item-group>
         <ion-item button (click)="exportDetailsOpen = !exportDetailsOpen" detail="false" lines="none">
-          <ion-label class="additional-details-label">Export Details</ion-label>
-          <ion-icon slot="end" name="chevron-down-outline" *ngIf="!exportDetailsOpen"></ion-icon>
-          <ion-icon slot="end" name="chevron-up-outline" *ngIf="exportDetailsOpen"></ion-icon>
+          <ion-label class="add-item-label">Export Details</ion-label>
+          <ion-icon class="arrow" slot="end" name="chevron-down-outline" *ngIf="!exportDetailsOpen"></ion-icon>
+          <ion-icon class="arrow" slot="end" name="chevron-up-outline" *ngIf="exportDetailsOpen"></ion-icon>
         </ion-item>
         <div *ngIf="exportDetailsOpen">
           <ion-item class="internal-form-item">
@@ -152,9 +152,9 @@
       <!-- Party Details -->
       <ion-item-group>
         <ion-item button (click)="exportDetailsOpen = !exportDetailsOpen" detail="false" lines="none">
-          <ion-label class="additional-details-label">Export Details</ion-label>
-          <ion-icon slot="end" name="chevron-down-outline" *ngIf="!exportDetailsOpen"></ion-icon>
-          <ion-icon slot="end" name="chevron-up-outline" *ngIf="exportDetailsOpen"></ion-icon>
+          <ion-label class="add-item-label">Export Details</ion-label>
+          <ion-icon class="arrow" slot="end" name="chevron-down-outline" *ngIf="!exportDetailsOpen"></ion-icon>
+          <ion-icon class="arrow" slot="end" name="chevron-up-outline" *ngIf="exportDetailsOpen"></ion-icon>
         </ion-item>
         <div *ngIf="exportDetailsOpen">
           <ion-item class="internal-form-item">
@@ -222,7 +222,7 @@
       <ion-item-group>
         <ion-item detail="false" lines="none" button routerLink="/dashboard/transaction/add-item-delivery-note">
           <ion-label class="add-item-label">Add Item</ion-label>
-          <ion-icon slot="end" name="add-circle-outline"></ion-icon>
+          <ion-icon class="arrow" slot="end" name="add-circle-outline"></ion-icon>
         </ion-item>
         <!-- list -->
         <div *ngIf="itemFormArray.length > 0" formArrayName="addedItem">
@@ -230,16 +230,20 @@
             <ion-grid>
               <ion-row>
                 <ion-col size="12">
-                  {{ item.get("item").value ||"Rice" }}
+                  <span class="item-name">
+                    {{ item.get("item").value||"Rice" }}
+                  </span>
                 </ion-col>
               </ion-row>
               <ion-row class="ion-align-items-center">
                 <ion-col size="6">
-                  {{item.get("quantity").value || 0}} * {{item.get("rate").value || 0}}
+                  <span class="quantity-rate">
+                    {{ item.get("quantity").value || 0 }} * {{ item.get("rate").value || 0 }}
+                  </span>
                 </ion-col>
                 <ion-col size="6"
                   style="display: flex; flex-direction: row; justify-content: space-evenly; align-items: center;">
-                  <span>{{item.get("amount").value || 0}}</span>
+                  <span class="amount">{{item.get("amount").value || 0}}</span>
                   <ion-button fill="clear" (click)="removeItem(i)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
                       <path d="M1.875 3.75H3.125H13.125" stroke="#ACACAC" stroke-width="1.5" stroke-linecap="round"
@@ -253,7 +257,7 @@
                         stroke-linejoin="round" />
                     </svg>
                   </ion-button>
-                  <ion-button fill="clear" (click)="editLager(i)">
+                  <ion-button fill="clear" (click)="editItem(i)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
                       <path
                         d="M10.625 1.87324C10.7892 1.70908 10.984 1.57887 11.1985 1.49003C11.413 1.40119 11.6429 1.35547 11.875 1.35547C12.1071 1.35547 12.337 1.40119 12.5515 1.49003C12.766 1.57887 12.9608 1.70908 13.125 1.87324C13.2892 2.03739 13.4194 2.23227 13.5082 2.44674C13.597 2.66122 13.6428 2.89109 13.6428 3.12324C13.6428 3.35538 13.597 3.58526 13.5082 3.79973C13.4194 4.01421 13.2892 4.20908 13.125 4.37324L4.6875 12.8107L1.25 13.7482L2.1875 10.3107L10.625 1.87324Z"
@@ -269,10 +273,48 @@
       <ion-item-group>
         <ion-item detail="false" lines="none" button routerLink="/dashboard/transaction/add-ledgers-delivery-note">
           <ion-label class="add-item-label">Add More Ledgers</ion-label>
-          <ion-icon slot="end" name="add-circle-outline"></ion-icon>
+          <ion-icon class="arrow" slot="end" name="add-circle-outline"></ion-icon>
         </ion-item>
-
+        <!-- ledger  -->
+        <div *ngIf="lagersFormArray.length > 0" formArrayName="lagers">
+          <div *ngFor="let lager of lagersFormArray.controls; let i = index" [formGroupName]="i">
+            <ion-grid>
+              <ion-row>
+                <ion-col size="6">
+                  <span class="ledger-name">
+                    {{ lager.get("ledger_name").value }}
+                  </span>
+                </ion-col>
+                <ion-col size="6"
+                  style="display: flex; flex-direction: row; justify-content: space-evenly; align-items: center;">
+                  <span class="ledger-amount">
+                    {{ lager.get("percentage").value }}
+                  </span>
+                  <span class="ledger-amount">
+                    {{ lager.get("amount").value }}
+                  </span>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+        </div>
       </ion-item-group>
+      <ion-item class="internal-form-item">
+        <ion-label class="internal-form-label" position="floating">Narration</ion-label>
+        <ion-textarea formControlName="narration" rows="5"></ion-textarea>
+      </ion-item>
+      <ion-item class="internal-form-item">
+        <ion-label>Sub Total</ion-label>
+        <ion-label slot="end">{{deliveryNote.get('subTotal')?.value || "0.0"}}</ion-label>
+      </ion-item>
+      <ion-item class="internal-form-item">
+        <ion-label>Taxes</ion-label>
+        <ion-label slot="end">{{deliveryNote.get('taxes')?.value || "0.0"}}</ion-label>
+      </ion-item>
+      <ion-item class="internal-form-item">
+        <ion-label style="font-weight: bold;">Total Amount</ion-label>
+        <ion-label style="font-weight: bold;" slot="end">{{deliveryNote.get('totalAmount')?.value || "0.0"}}</ion-label>
+      </ion-item>
     </div>
   </form>
 </ion-content>

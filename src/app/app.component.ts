@@ -64,7 +64,7 @@ export class AppComponent {
       // }
 
       // If not logged in, go to login page
-      this.router.navigate(["/"], { replaceUrl: true });
+      // this.router.navigate(["/"], { replaceUrl: true });
     });
   }
 

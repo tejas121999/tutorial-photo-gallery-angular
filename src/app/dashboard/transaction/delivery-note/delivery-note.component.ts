@@ -28,7 +28,6 @@ export class DeliveryNoteComponent implements OnInit {
     private route: ActivatedRoute,
     private dataSharingService: DataSharingService
   ) {
-    console.log("data");
     this.deliveryNote = this.fb.group({
       deliveryNoteNo: [""],
       referenceNo: [""],
@@ -73,11 +72,17 @@ export class DeliveryNoteComponent implements OnInit {
       addedItem: this.fb.array([]),
     });
     this.dataSharingService.currentDeliveryNoteData.subscribe((data) => {
-      console.log("Delivery Note Data:", data);
-      this.addItem(data);
       if (data.length !== 0) {
         console.log("data", data);
         this.addItem(data);
+      }
+    });
+
+    this.dataSharingService.currentDeliveryNoteLagersData.subscribe((data) => {
+      console.log("data", data);
+      if (data.length !== 0) {
+        console.log("data", data);
+        this.addLagers(data);
       }
     });
   }
@@ -103,16 +108,26 @@ export class DeliveryNoteComponent implements OnInit {
     this.itemFormArray.push(itemGroup);
   }
 
+  addLagers(data: any[]) {
+    data.forEach((item) => {
+      const lagersGroup = this.fb.group({
+        ledger_name: [item.ledger_name],
+        percentage: ["20.0"],
+        amount: ["30.0"],
+      });
+
+      this.lagersFormArray.push(lagersGroup);
+    });
+  }
+
   removeItem(index: number) {
     this.itemFormArray.removeAt(index);
   }
 
-  editLager(index: number) {
-    const lagerGroup = this.lagersFormArray.at(index) as FormGroup;
+  editItem(index: number) {
+    const itemGroup = this.itemFormArray.at(index) as FormGroup;
     // Implement your edit logic here
   }
-
-  addLagers(data: any[]) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(async () => {
