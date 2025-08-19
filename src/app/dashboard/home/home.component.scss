@@ -7,52 +7,7 @@
   border-radius: 1px;
 }
 
-/* Custom header styles */
-.custom-header {
-  width: 100vw;
-  height: 100px;
-  flex-shrink: 0;
-  background: #083D7C;
-  position: relative;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  margin: -16px 0 0 0;
-  padding: 0;
-}
 
-/* Ion-grid styles */
-.custom-header ion-grid {
-  margin-left: 8px;
-  margin-right: 8px;
-}
-
-/* Span text styles */
-.custom-header span {
-  color: #ffffff;
-  font-size: 12px;
-  font-weight: 500;
-}
-
-/* Column flex layout for span and SVG alignment */
-.custom-header ion-col {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2px;
-}
-
-.custom-header ion-col div {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.custom-header ion-col svg {
-  margin-left: 4px;
-  flex-shrink: 0;
-}
 
 /* Custom header item div with white border */
 .header-item-div {

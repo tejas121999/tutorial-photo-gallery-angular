@@ -31,6 +31,7 @@ export class PurchaseComponent implements OnInit {
 
   addedItem: any[] = [];
   addLedger: any[] = [];
+  addSundryData: any[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -62,10 +63,12 @@ export class PurchaseComponent implements OnInit {
       itemTotalAmount: [""],
       lagers: this.fb.array([]),
       addedItem: this.fb.array([]),
+      voucherBillSundryDetail: this.fb.array([]),
       grossTotal: [0],
       discountTotal: [0],
       taxable: [0],
       billAmount: [0],
+      billingSundryAmount: [0],
       totalAmount: [0],
     });
 
@@ -82,6 +85,15 @@ export class PurchaseComponent implements OnInit {
         this.addLagers(selectedItems);
       }
     });
+
+    this.dataSharingService?.currentBillSandryDetailsData.subscribe(
+      (selectedItems) => {
+        if (selectedItems && selectedItems.length > 0) {
+          console.log("Selected Bill Sundry Details:", selectedItems);
+          this.addBillSundryDetails(selectedItems);
+        }
+      }
+    );
   }
 
   ngOnInit() {
@@ -100,6 +112,10 @@ export class PurchaseComponent implements OnInit {
     this.lagersFormArray.valueChanges.subscribe(() => {
       this.calculateTaxAndBillAmount();
     });
+
+    this.billSundryDetailsFormArray.valueChanges.subscribe(() => {
+      this.calculateBillingSundryAmount();
+    });
   }
 
   get itemFormArray() {
@@ -110,11 +126,31 @@ export class PurchaseComponent implements OnInit {
     return this.purchaseForm.get("lagers") as FormArray;
   }
 
+  get billSundryDetailsFormArray() {
+    return this.purchaseForm.get("voucherBillSundryDetail") as FormArray;
+  }
+
+  bill_sundry: any = [
+    { id: 1, name: "Round Off Add" },
+    { id: 2, name: "Round Off Less" },
+  ];
+
+  addBillSundryDetails(data: any[]) {
+    data.forEach((item) => {
+      const billSundryGroup = this.fb.group({
+        bill_sundry_name: [item.ledger_name],
+        bill_sundry_type_id: [""],
+        bill_sundry_amount: [""],
+      });
+      this.billSundryDetailsFormArray.push(billSundryGroup);
+    });
+  }
+
   addLagers(data: any[]) {
     data.forEach((item) => {
       const lagersGroup = this.fb.group({
         ledger_name: [item.ledger_name],
-        percentage: [""],
+        percentage: ["", [Validators.max(99)]],
         amount: [""],
       });
 
@@ -138,6 +174,7 @@ export class PurchaseComponent implements OnInit {
       const itemGroup = this.fb.group({
         item_name: [item.item_name],
         unit_name: [item.unit_name],
+        select_item_ledgers: [""],
         quantity: [item.quantity],
         amount: [item.amount],
       });
@@ -252,7 +289,6 @@ export class PurchaseComponent implements OnInit {
     this.apiService.getCostCenterList(temp).subscribe(
       (response: any) => {
         if (response?._Object) {
-          console.log("Cost Center List:", response._Object);
           this.costCenter = response?._Object;
           // this.filterByDate();
           // You can store the cost center list in a variable if needed
@@ -324,7 +360,6 @@ export class PurchaseComponent implements OnInit {
     ];
     this.apiService.getPurchaseList(temp).subscribe(
       (response: any) => {
-        console.log("Tax List Response:", response?._Object);
         if (response && response?._Object) {
           this.purchaseList = response?._Object;
           // this.filterByDate();
@@ -343,144 +378,66 @@ export class PurchaseComponent implements OnInit {
       login_token: null,
       branch_token: null,
       tpd_status_tally_entity_type: null,
-      tpd_status_data: null,
+      // tpd_status_data: null,    // this field is not there in payload
       tpd_status_report_id: null,
       tpd_status_report_data: null,
       object_flag_tpd_id: null,
       voucher_data: [
         {
-          voucher_no: null,
-          voucher_date: null,
-          voucher_refference: null,
-          voucher_refference_date: null,
-          voucher_invenotry_detail: [
-            {
-              stock_item_name: null,
-              stock_item_unit_name: null,
-              stock_item_rate: null,
-              stock_item_qty: null,
-              stock_item_amount: null,
-              stock_item_discount_amount: null,
-              stock_item_taxable_amount: null,
-              stock_item_tax_detail: [
-                {
-                  tax_amount: null,
-                  tax_name: null,
-                  tax_percentage: null,
-                },
-                {
-                  tax_amount: null,
-                  tax_name: null,
-                  tax_percentage: null,
-                },
-              ],
-              stock_item_total_tax_percentage: null,
-              stock_item_total_tax_amount: null,
-              stock_item_total_amount: null,
-              stock_ledger_name: null,
-              stock_item_batch_detail: [
-                {
-                  mrp: null,
-                  batch_no: null,
-                  item_code: null,
-                  part_name: null,
-                  part_number: null,
-                  item_description: null,
-                },
-              ],
-            },
-          ],
+          voucher_no: "",
+          voucher_date: "",
+          voucher_refference_detail: [],
+          voucher_refference: "",
+          voucher_refference_date: "",
+          voucherTypeCode: "",
+          voucher_type_id: 0,
+          voucher_type_name: "",
+          voucher_config_detail: {
+            cost_centre_name: "",
+            ledger_auto_create: 0,
+            item_auto_create: 0,
+            voucher_mode_type_id: 0,
+          },
+          voucher_invenotry_detail: [],
           voucher_discount_detail: {
-            stock_item_discount_name: null,
-            stock_item_discount_amount: null,
-            stock_bill_discount_name: null,
-            stock_bill_discount_amount: null,
+            stock_item_discount_id: 0,
+            stock_item_discount_name: "",
+            stock_item_discount_amount: 0,
+            stock_bill_discount_id: 0,
+            stock_bill_discount_name: "",
+            stock_bill_discount_amount: 0,
           },
-          voucher_party_detail: {
-            voucher_mode: null,
-            address_type: null,
-            buyer_bill_to: null,
-            country: null,
-            gst_reg_type: null,
-            gstin_uin: null,
-            mailing_address: null,
-            party_ledger_name: null,
-            place_of_supply: null,
-            state: null,
-          },
-          voucher_bill_sundry_detail: [
-            {
-              bill_sundry_name: null,
-              bill_sundry_type_id: null,
-              bill_sundry_amount: null,
-            },
-            {
-              bill_sundry_name: null,
-              bill_sundry_type_id: null,
-              bill_sundry_amount: null,
-            },
-          ],
-          voucher_inventory_tax_detail: [
-            {
-              tax_amount: null,
-              tax_name: null,
-              tax_percentage: null,
-            },
-            {
-              tax_amount: null,
-              tax_name: null,
-              tax_percentage: null,
-            },
-            {
-              tax_amount: null,
-              tax_name: null,
-              tax_percentage: null,
-            },
-            {
-              tax_amount: null,
-              tax_name: null,
-              tax_percentage: null,
-            },
-            {
-              tax_amount: null,
-              tax_name: null,
-              tax_percentage: null,
-            },
-          ],
-          voucher_tds_tax_detail: [
-            {
-              tax_amount: null,
-              tax_name: null,
-              tax_percentage: null,
-            },
-          ],
+          voucher_inventory_tax_detail: [],
           voucher_tcs_tax_detail: [],
-          voucher_narration: null,
-          gross_total: null,
-          discount_total: null,
-          taxable_total: null,
-          tax_total: null,
-          bill_sundry_total: null,
-          bill_amount: null,
-          branch_detail: null,
-          created_date: null,
-          data_type: null,
-          deleted_date: null,
-          edited_date: null,
-          inactive: null,
-          inactive_name: null,
-          org_detail: null,
-          tdp_status_name: null,
-          voucher_address: {
-            billing_address: null,
-            delivery_address: null,
-            delivery_godown_address: null,
-            godown_address: null,
+          voucher_vat_tax_detail: [],
+          voucher_tds_tax_detail: [],
+          voucher_bill_sundry_detail: [],
+          voucher_ledger_id: 0,
+          voucher_party_detail: {
+            party_ledger_id: 0,
+            party_ledger_name: "",
+            buyer_bill_to: "",
+            address_type: "",
+            mailing_address: "",
+            state: "",
+            country: "",
+            gst_reg_type: "",
+            gstin_uin: "",
+            place_of_supply: "",
           },
-          voucher_group_code: null,
-          voucher_group_name: null,
-          voucher_type_name: null,
-          voucherTypeCode: null,
+          voucher_narration: "",
+          voucher_address: {
+            billing_address: "",
+            godown_address: "",
+            delivery_address: "",
+            delivery_godown_address: "",
+          },
+          gross_total: "",
+          discount_total: "",
+          taxable_total: "",
+          tax_total: 0,
+          bill_sundry_total: "",
+          bill_amount: "",
         },
       ],
     },
@@ -507,21 +464,45 @@ export class PurchaseComponent implements OnInit {
     }
   }
 
+  addSundry() {
+    this.billSundryDetailsFormArray.value.forEach((element: any) => {
+      console.log("Element:", element);
+      var temp = {
+        // bill_sundry_id: 0,
+        bill_sundry_name: element.bill_sundry_name,
+        bill_sundry_type_id: element.bill_sundry_type_id,
+        bill_sundry_amount: element.bill_sundry_amount,
+      };
+      this.addSundryData.push(temp);
+    });
+    console.log("Sundry Data:", this.addSundryData);
+    this.purchaseForm
+      .get("voucherBillSundryDetail")
+      ?.setValue(this.addSundryData);
+    // this.addSundryData = [];
+  }
+
   addItem() {
     this.itemFormArray.value.forEach((element: any) => {
-      console.log("Ledger:", element);
       var temp = {
         stock_item_name: element.item_name,
-        stock_item_unit_name: element.unit_name,
-        stock_item_qty: element.quantity,
-        stock_item_amount: element.amount,
+        stock_item_unit_name: element.unit_name || "Plastics",
+        stock_item_qty: Number(element.quantity) || 0,
+        stock_item_amount: Number(element.amount) || 0,
         stock_item_tax_detail: [],
-        stock_item_total_tax_percentage: "",
-        stock_item_total_tax_amount: "",
+        stock_item_total_tax_percentage: 0,
+        stock_item_total_tax_amount: 0,
+        stock_item_rate: 0,
+        stock_ledger_id: element.select_item_ledgers, // fetch from data
+        stock_ledger_name:
+          this.purchaseList.find(
+            (p) => p.ledger_id === element.select_item_ledgers
+          )?.ledger_name || "", // fetch from data
         stock_item_batch_detail: [],
       };
       this.addedItem.push(temp);
     });
+    console.log("Added Items:", this.addedItem);
     this.add_item = false;
   }
 
@@ -529,25 +510,24 @@ export class PurchaseComponent implements OnInit {
     this.lagersFormArray.value.forEach((element: any) => {
       var temp = {
         tax_amount: element.amount,
-        tax_name: element.name,
+        tax_name: element.ledger_name,
         tax_percentage: element.percentage,
       };
       this.addLedger.push(temp);
     });
+    console.log("Added Ledgers:", this.addLedger);
   }
-
+  // voucher_mode is missing in the updated payload
   cretePayload() {
     this.addItem();
     this.addLager();
+    this.addSundry();
     this.payload[0].login_token = this.login_token;
     this.payload[0].branch_token = this.branch_token;
     this.payload[0].tpd_status_tally_entity_type = "voucher";
-    this.payload[0].tpd_status_data = "text";
     this.payload[0].tpd_status_report_id = 1;
     this.payload[0].tpd_status_report_data = "Test";
     this.payload[0].object_flag_tpd_id = 1;
-    this.payload[0].voucher_data[0].voucher_party_detail.voucher_mode =
-      this.purchaseForm.get("changeMode")?.value;
     this.payload[0].voucher_data[0].voucher_type_name =
       this.purchaseForm.get("purchaseLedger")?.value;
     this.payload[0].voucher_data[0].voucher_no =
@@ -563,22 +543,26 @@ export class PurchaseComponent implements OnInit {
     this.payload[0].voucher_data[0].voucher_invenotry_detail = this.addedItem;
     this.payload[0].voucher_data[0].voucher_inventory_tax_detail =
       this.addLedger;
+    this.payload[0].voucher_data[0].voucher_bill_sundry_detail =
+      this.addSundryData;
     this.payload[0].voucher_data[0].voucher_narration =
       this.purchaseForm.get("narration")?.value;
     this.payload[0].voucher_data[0].gross_total =
-      this.purchaseForm.get("grossTotal")?.value;
+      this.purchaseForm.get("grossTotal")?.value || 0;
     this.payload[0].voucher_data[0].discount_total =
-      this.purchaseForm.get("discountTotal")?.value;
+      this.purchaseForm.get("discountTotal")?.value || 0;
     this.payload[0].voucher_data[0].taxable_total =
-      this.purchaseForm.get("taxableTotal")?.value;
+      this.purchaseForm.get("taxable")?.value || 0;
     this.payload[0].voucher_data[0].bill_amount =
-      this.purchaseForm.get("billAmount")?.value;
+      this.purchaseForm.get("billAmount")?.value || 0;
+    this.payload[0].voucher_data[0].bill_sundry_total =
+      this.purchaseForm.get("billingSundryAmount")?.value || 0;
     this.payload[0].voucher_data[0].voucherTypeCode = "PUR";
   }
 
   addPurchase() {
     this.isLoading = true;
-    this.resetPayloadValuesToNull(this.payload);
+    // this.resetPayloadValuesToNull(this.payload);
     this.cretePayload();
     console.log("Payload:", this.payload);
     this.apiService.addPurchaseVoucherData(this.payload).subscribe(
@@ -613,6 +597,8 @@ export class PurchaseComponent implements OnInit {
   calculateTaxAndBillAmount() {
     const grossTotal = this.purchaseForm.get("grossTotal")?.value || 0;
     const ledgers = this.lagersFormArray.value;
+    const billingSundryAmount =
+      this.purchaseForm.get("billingSundryAmount")?.value || 0;
 
     const totalPercentage = ledgers.reduce((sum: number, ledger: any) => {
       const percentage =
@@ -623,12 +609,34 @@ export class PurchaseComponent implements OnInit {
     }, 0);
 
     const taxableAmount = grossTotal * (totalPercentage / 100);
-    const billAmount = grossTotal + taxableAmount;
+    const billAmount = grossTotal + taxableAmount + billingSundryAmount;
 
     this.purchaseForm.patchValue({
       taxable: taxableAmount,
       billAmount: billAmount,
       totalAmount: billAmount,
     });
+  }
+
+  calculateBillingSundryAmount() {
+    const billSundryDetails = this.billSundryDetailsFormArray.value;
+    let totalBillingSundryAmount = 0;
+
+    billSundryDetails.forEach((item: any) => {
+      const amount =
+        typeof item.bill_sundry_amount === "string"
+          ? parseFloat(item.bill_sundry_amount)
+          : item.bill_sundry_amount;
+      if (item.bill_sundry_name === "Round Off Add") {
+        totalBillingSundryAmount += amount || 0;
+      } else if (item.bill_sundry_name === "Round Off Less") {
+        totalBillingSundryAmount -= amount || 0;
+      }
+    });
+
+    this.purchaseForm.patchValue({
+      billingSundryAmount: totalBillingSundryAmount,
+    });
+    this.calculateTaxAndBillAmount();
   }
 }

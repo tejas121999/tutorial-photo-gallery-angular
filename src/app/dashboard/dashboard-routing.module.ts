@@ -75,6 +75,7 @@ import { AddMoreLagersComponent } from "./transaction/add-more-lagers/add-more-l
 import { AddItemDeliveryNoteComponent } from "./transaction/add-item-delivery-note/add-item-delivery-note.component";
 import { AddLedgersDeliveryNoteComponent } from "./transaction/add-ledgers-delivery-note/add-ledgers-delivery-note.component";
 import { AddLedgersPaymentComponent } from "./transaction/add-ledgers-payment/add-ledgers-payment.component";
+import { AddBillSandryDetailsComponent } from "./transaction/add-bill-sandry-details/add-bill-sandry-details.component";
 
 const routes: Routes = [
   {
@@ -313,6 +314,10 @@ const routes: Routes = [
       {
         path: "add-ledgers-payment",
         component: AddLedgersPaymentComponent,
+      },
+      {
+        path: "add-bill-sundry-details",
+        component: AddBillSandryDetailsComponent,
       },
     ],
   },

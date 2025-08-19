@@ -45,5 +45,12 @@ export class DataSharingService {
     this.lagerPaymentData.next(data);
   }
 
+  billSandryDetailsData = new BehaviorSubject<any[]>([]);
+  currentBillSandryDetailsData = this.billSandryDetailsData.asObservable();
+
+  changeBillSandryDetailsData(data: any) {
+    this.billSandryDetailsData.next(data);
+  }
+
   constructor() {}
 }

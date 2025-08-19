@@ -1,11 +1,11 @@
 // Margin for master section items and container
-ion-header,
-ion-toolbar[color="primary"],
-ion-toolbar {
-  --background: #034099 !important;
-  --ion-color-base: #034099 !important;
-  --border-color: transparent !important;
-}
+// ion-header,
+// ion-toolbar[color="primary"],
+// ion-toolbar {
+//   --background: #034099 !important;
+//   --ion-color-base: #034099 !important;
+//   --border-color: transparent !important;
+// }
 
 .active-button {
   width: 80px;
@@ -140,38 +140,6 @@ ion-toolbar {
 ion-tab-bar {
   --background: #083D7C !important;
 }
-
-// // Custom style for Home tab button
-// ion-tab-bar ion-tab-button.tab-home {
-//   width: 45px; // reduced by 48px from 98px
-//   height: 34px;
-//   flex-shrink: 0;
-//   border-radius: 20.5px;
-//   background: #FFF !important;
-// }
-
-// // // Custom style for Home tab label
-// ion-tab-bar ion-tab-button.tab-home ion-label {
-//   color: #000 !important;
-//   font-family: "Open Sans", sans-serif !important;
-//   font-size: 13px !important;
-//   font-style: normal !important;
-//   font-weight: 600 !important;
-//   line-height: normal !important;
-// }
-
-// ion-tab-bar ion-tab-button.tab-home .tab-home-flex {
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   height: 100%;
-// }
-
-// ion-tab-bar ion-tab-button.tab-home .tab-home-svg {
-//   display: flex;
-//   align-items: center;
-//   margin-right: 8px;
-// }
 
 ion-tab-bar ion-tab-button[tab="add-entry"] div {
   width: 22px;

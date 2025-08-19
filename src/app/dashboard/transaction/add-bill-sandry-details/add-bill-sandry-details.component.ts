@@ -5,11 +5,11 @@ import { DataSharingService } from "src/app/services/data-sharing.service";
 import { AppPreference } from "src/app/shared/app-preference";
 
 @Component({
-  selector: "app-add-more-lagers",
-  templateUrl: "./add-more-lagers.component.html",
-  styleUrls: ["./add-more-lagers.component.scss"],
+  selector: "app-add-bill-sandry-details",
+  templateUrl: "./add-bill-sandry-details.component.html",
+  styleUrls: ["./add-bill-sandry-details.component.scss"],
 })
-export class AddMoreLagersComponent implements OnInit {
+export class AddBillSandryDetailsComponent implements OnInit {
   pageSize = 10;
   currentPage = 1;
   showSearchbar = false;
@@ -64,13 +64,11 @@ export class AddMoreLagersComponent implements OnInit {
       {
         login_token: this.login_token,
         branch_token: this.branch_token,
-        // use this in bill sendry
         object_flag_tpd_id: 0,
-        include_tax_flag: 1,
-        include_tds_flag: 1,
-        include_tcs_flag: 1,
-        include_gst_flag: 1,
-        include_vat_flag: 1,
+        include_round_of_less_flag: 1,
+        include_round_of_add_flag: 1,
+        include_expense_flag: 1,
+        include_other_expense_flag: 1,
       },
     ];
     this.apiService.getLedgerList(body).subscribe(
@@ -126,7 +124,7 @@ export class AddMoreLagersComponent implements OnInit {
   }
 
   sendData() {
-    this.dataSharingService.changeLagersData(this.selectedItems);
+    this.dataSharingService.changeBillSandryDetailsData(this.selectedItems);
     this.router.navigate(["/dashboard/transaction/purchase"], {
       queryParams: { reload: new Date().getTime() },
     });

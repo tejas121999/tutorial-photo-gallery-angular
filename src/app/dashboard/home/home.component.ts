@@ -13,6 +13,10 @@ export class HomeComponent implements OnInit {
 
   async ngOnInit() {
     console.log(
+      "await this.appPreference.isPinEnabled()",
+      await this.appPreference.isPinEnabled()
+    );
+    console.log(
       "await this.appPreference.getPin()",
       await this.appPreference.getPin()
     );

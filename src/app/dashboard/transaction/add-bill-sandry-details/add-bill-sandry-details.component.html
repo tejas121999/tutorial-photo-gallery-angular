@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <!-- Start slot: Back button and title, or searchbar -->
+    <ng-container>
+      <ion-buttons slot="start" routerLink="/dashboard/transaction/purchase">
+        <ion-button fill="clear" style="margin-right: 4px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M14.25 9H3.75" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M9 14.25L3.75 9L9 3.75" stroke="white" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </ion-button>
+      </ion-buttons>
+      <ion-title>Add More Lagers</ion-title>
+      <ion-buttons slot="end" style="color: white;">
+        <ion-button (click)="sendData()">
+          Save
+        </ion-button>
+      </ion-buttons>
+    </ng-container>
+
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div>
+    <div class="datetime-row">
+      <ion-searchbar slot="start" (ionInput)="handleInput($event)" autofocus="true" placeholder="Search...">
+      </ion-searchbar>
+    </div>
+  </div>
+  <ion-list class="centered-list" style="padding: 10px;">
+    <ion-item *ngFor="let result of pagedResults; trackBy: trackResult" class="internal-form-item">
+      <ion-label>{{ result.ledger_name }}</ion-label>
+      <ion-checkbox class="square-checkbox" slot="end"
+        (ionChange)="getLedgerData(result, $event.detail.checked)"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+  <div class="pagination-row fixed-bottom">
+    <ion-button fill="clear" [disabled]="currentPage === 1" (click)="changePage(-1)">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-button>
+    <span class="pagination-info">Page {{ currentPage }} of {{ totalPages }}</span>
+    <ion-button fill="clear" [disabled]="currentPage === totalPages" (click)="changePage(1)">
+      <ion-icon name="chevron-forward-outline"></ion-icon>
+    </ion-button>
+  </div>
+</ion-content>
