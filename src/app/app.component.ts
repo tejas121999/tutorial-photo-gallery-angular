@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { SplashScreen } from "@capacitor/splash-screen";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { App } from "@capacitor/app";
 import { Platform } from "@ionic/angular";
 import { AppPreference } from "./shared/app-preference";
@@ -13,14 +13,23 @@ import { AppPreference } from "./shared/app-preference";
 export class AppComponent {
   private lastTimeBackPress = 0;
   private timePeriodToExit = 2000;
+  login_token: any;
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private platform: Platform,
     private appPreference: AppPreference
   ) {
     this.initializeApp();
     this.setupBackButtonHandler();
+  }
+
+  ngOnInit() {
+    this.route.queryParams.subscribe(async () => {
+      this.login_token = await this.appPreference.get("_LoginToken");
+      const userDetail = await this.appPreference.get("_UserDetail");
+    });
   }
 
   private async setupBackButtonHandler() {
@@ -44,22 +53,47 @@ export class AppComponent {
       }
 
       // If logged in and at dashboard root or home, handle exit
-      if (currentUrl === "/dashboard" || currentUrl === "/dashboard/home") {
-        if (
-          new Date().getTime() - this.lastTimeBackPress <
-          this.timePeriodToExit
-        ) {
-          App.exitApp();
-        } else {
-          this.lastTimeBackPress = new Date().getTime();
-          this.appPreference.presentToast("Press back again to exit", 2000);
-        }
-        return;
-      }
+      // if (!this.login_token) {
+      //   if (currentUrl === "/dashboard" || currentUrl === "/dashboard/home") {
+      //     if (
+      //       new Date().getTime() - this.lastTimeBackPress <
+      //       this.timePeriodToExit
+      //     ) {
+      //       App.exitApp();
+      //     } else {
+      //       this.lastTimeBackPress = new Date().getTime();
+      //       this.appPreference.presentToast("Press back again to exit", 2000);
+      //     }
+      //     return;
+      //   }
+      // }
 
-      // // If logged in, always try to go to dashboard root
-      // if (loginToken) {
-      //   this.router.navigate(["/dashboard"], { replaceUrl: true });
+      // if (currentUrl === "/dashboard/master/tax-list") {
+      //   if (this.login_token) {
+      //     this.router.navigate(["/dashboard/home"], { replaceUrl: true });
+      //   }
+      // }
+
+      // if (currentUrl === "/dashboard/master/tax") {
+      //   if (this.login_token) {
+      //     this.router.navigate(["/dashboard/home"], { replaceUrl: true });
+      //   }
+      // }
+
+      // if (currentUrl === "/dashboard/master/supplier-list") {
+      //   if (this.login_token) {
+      //     this.router.navigate(["/dashboard/home"], { replaceUrl: true });
+      //   }
+      // }
+
+      // if (currentUrl === "/dashboard/master/supplier") {
+      //   if (this.login_token) {
+      //     this.router.navigate(["/dashboard/home"], { replaceUrl: true });
+      //   }
+      // }
+      // if (this.login_token) {
+      //   // // If logged in, always try to go to dashboard root
+      //   this.router.navigate(["/dashboard/home"], { replaceUrl: true });
       //   return;
       // }
 

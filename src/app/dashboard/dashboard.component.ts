@@ -21,6 +21,9 @@ export class DashboardComponent implements AfterViewInit {
   branch_token: any;
   login_token: any;
   user_name: string = "";
+  currentUrl: string = "";
+  showSearchbar = false;
+
   @ViewChild(IonMenu) menu: IonMenu;
   @ViewChild("dashboardMain", { static: true }) dashboardMain: ElementRef;
 
@@ -37,6 +40,7 @@ export class DashboardComponent implements AfterViewInit {
       this.login_token = await this.appPreference.get("_LoginToken");
       const userDetail = await this.appPreference.get("_UserDetail");
       this.user_name = userDetail?.user_name;
+      this.currentUrl = this.router.url;
       this.closeMenu();
     });
   }
@@ -74,6 +78,8 @@ export class DashboardComponent implements AfterViewInit {
       );
     }
   }
+
+  handleInput(event: Event) {}
 
   isActive(route: string): boolean {
     return this.router.isActive(route, true);

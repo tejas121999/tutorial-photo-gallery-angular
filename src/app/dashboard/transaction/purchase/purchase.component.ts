@@ -396,7 +396,7 @@ export class PurchaseComponent implements OnInit {
             cost_centre_name: "",
             ledger_auto_create: 0,
             item_auto_create: 0,
-            voucher_mode_type_id: 0,
+            voucher_mode_type_id: 2,
           },
           voucher_invenotry_detail: [],
           voucher_discount_detail: {
@@ -485,20 +485,40 @@ export class PurchaseComponent implements OnInit {
   addItem() {
     this.itemFormArray.value.forEach((element: any) => {
       var temp = {
+        stock_item_id: 0,
+        stock_item_description_detail: [],
         stock_item_name: element.item_name,
-        stock_item_unit_name: element.unit_name || "Plastics",
+        stock_item_unit_id: 0,
+        stock_item_unit_name: element.unit_name,
+        stock_item_rate: 0,
         stock_item_qty: Number(element.quantity) || 0,
         stock_item_amount: Number(element.amount) || 0,
+        stock_item_discount_percentage: 0,
+        stock_item_taxable_amount: Number(element.amount) || 0,
         stock_item_tax_detail: [],
         stock_item_total_tax_percentage: 0,
         stock_item_total_tax_amount: 0,
-        stock_item_rate: 0,
+        stock_item_total_amount: Number(element.amount) || 0,
         stock_ledger_id: element.select_item_ledgers, // fetch from data
         stock_ledger_name:
           this.purchaseList.find(
             (p) => p.ledger_id === element.select_item_ledgers
           )?.ledger_name || "", // fetch from data
-        stock_item_batch_detail: [],
+        stock_item_batch_detail: [
+          {
+            batch_no: "",
+            expired_date: "",
+            mf_date: "",
+            mrp: 0,
+            mrp_date: "",
+            mrp_state: 0,
+            mrp_country: 0,
+            part_number: "",
+            part_name: "",
+            item_description: "",
+            item_godown: "",
+          },
+        ],
       };
       this.addedItem.push(temp);
     });

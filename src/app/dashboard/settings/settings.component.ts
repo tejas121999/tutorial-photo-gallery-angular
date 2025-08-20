@@ -24,11 +24,11 @@ export class SettingsComponent {
     );
   }
 
-  isChildRouteActive(): boolean {
-    // Checks if the current route is exactly /dashboard/settings
-    // If not, a child route is active
-    return this.router.url !== "/dashboard/settings";
-  }
+  // isChildRouteActive(): boolean {
+  //   // Checks if the current route is exactly /dashboard/settings
+  //   // If not, a child route is active
+  //   return this.router.url !== "/dashboard/settings";
+  // }
 
   onSetPinToggle(event: any) {
     if (event.detail.checked) {

@@ -327,15 +327,15 @@ const routes: Routes = [
     children: [
       { path: "", redirectTo: "home", pathMatch: "full" },
       { path: "home", component: HomeComponent },
+      { path: "stock", component: StockComponent },
+      { path: "report", component: ReportComponent },
+      { path: "add-entry", component: AddEntryComponent },
     ],
   },
   {
     path: "my-companies",
     component: MyCompaniesComponent,
   },
-  { path: "stock", component: StockComponent },
-  { path: "report", component: ReportComponent },
-  { path: "add-entry", component: AddEntryComponent },
   { path: "sales", component: SalesComponent },
   { path: "purchase", component: PurchaseComponent },
 ];
