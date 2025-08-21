@@ -116,6 +116,10 @@ export class PurchaseComponent implements OnInit {
     this.billSundryDetailsFormArray.valueChanges.subscribe(() => {
       this.calculateBillingSundryAmount();
     });
+
+    this.itemFormArray.valueChanges.subscribe(() => {
+      this.calculateGrossTotal();
+    });
   }
 
   get itemFormArray() {
@@ -141,6 +145,9 @@ export class PurchaseComponent implements OnInit {
         bill_sundry_name: [item.ledger_name],
         bill_sundry_type_id: [""],
         bill_sundry_amount: [""],
+      });
+      billSundryGroup.get("bill_sundry_amount")?.valueChanges.subscribe(() => {
+        this.calculateBillingSundryAmount();
       });
       this.billSundryDetailsFormArray.push(billSundryGroup);
     });
@@ -170,14 +177,22 @@ export class PurchaseComponent implements OnInit {
   }
 
   addItems(data: any[]) {
-    data.forEach((item) => {
+    data.forEach((item: any) => {
       const itemGroup = this.fb.group({
         item_name: [item.item_name],
         unit_name: [item.unit_name],
         select_item_ledgers: [""],
         quantity: [item.quantity],
-        amount: [item.amount],
+        amount:
+          item.amount !== null && item.amount !== undefined
+            ? item.amount
+            : [""],
       });
+
+      itemGroup.get("amount")?.valueChanges.subscribe(() => {
+        this.calculateGrossTotal();
+      });
+
       this.itemFormArray.push(itemGroup);
     });
     this.calculateGrossTotal();
@@ -647,9 +662,9 @@ export class PurchaseComponent implements OnInit {
         typeof item.bill_sundry_amount === "string"
           ? parseFloat(item.bill_sundry_amount)
           : item.bill_sundry_amount;
-      if (item.bill_sundry_name === "Round Off Add") {
+      if (item.bill_sundry_type_id === 1) {
         totalBillingSundryAmount += amount || 0;
-      } else if (item.bill_sundry_name === "Round Off Less") {
+      } else if (item.bill_sundry_type_id === 2) {
         totalBillingSundryAmount -= amount || 0;
       }
     });
