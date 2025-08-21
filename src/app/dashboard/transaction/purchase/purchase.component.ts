@@ -165,6 +165,7 @@ export class PurchaseComponent implements OnInit {
         const grossTotal = this.purchaseForm.get("grossTotal")?.value || 0;
         if (percentage) {
           const calculatedAmount = grossTotal * (parseFloat(percentage) / 100);
+          console.log("Calculated Lager Amount:", calculatedAmount);
           lagersGroup
             .get("amount")
             ?.setValue(calculatedAmount, { emitEvent: false });
@@ -180,7 +181,10 @@ export class PurchaseComponent implements OnInit {
     data.forEach((item: any) => {
       const itemGroup = this.fb.group({
         item_name: [item.item_name],
-        unit_name: [item.unit_name],
+        unit_name:
+          item.unit_name !== null && item.unit_name !== undefined
+            ? item.unit_name
+            : [""],
         select_item_ledgers: [""],
         quantity: [item.quantity],
         amount:

@@ -107,6 +107,7 @@ export class StockItemComponent implements OnInit {
         {
           item_name: null,
           alias_name: null,
+          unit_name: null,
           part_no: null,
           description_item: null,
           item_notes: null,
@@ -327,6 +328,8 @@ export class StockItemComponent implements OnInit {
       this.stockItemForm.get("description")?.value;
     this.payload[0].item_data[0].statutory_detail_data.hsns_sac_data.classification_create_data.gst_rate_related_detail_data.gst_detail =
       this.stockItemForm.get("gstRateDetails")?.value;
+    this.payload[0].item_data[0].unit_name =
+      this.stockItemForm.get("unit")?.value;
     // Ensure all nested objects exist before setting cess_rate and cess_unit
     const hsns =
       this.payload[0].item_data[0].statutory_detail_data.hsns_sac_data;
