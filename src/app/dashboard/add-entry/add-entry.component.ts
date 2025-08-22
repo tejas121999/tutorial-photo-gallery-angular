@@ -6,7 +6,7 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./add-entry.component.scss"],
 })
 export class AddEntryComponent implements OnInit {
-  pageSize = 5;
+  pageSize = 10;
   currentPage = 1;
   showSearchbar = false;
   selectedTab: string = "sales";

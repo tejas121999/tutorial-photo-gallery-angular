@@ -251,7 +251,7 @@
 .pin-input-container {
   display: flex;
   gap: 15px;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 }
 
 .pin-input {
@@ -316,6 +316,15 @@
       width: 92px;
       height: 48px;
     }
+  }
+
+  .forgot-pin {
+    color: #083D7C;
+    font-family: "Open Sans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
   }
 
   &.delete {

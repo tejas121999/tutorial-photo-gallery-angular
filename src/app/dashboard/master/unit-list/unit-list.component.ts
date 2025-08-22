@@ -9,7 +9,7 @@ import { AppPreference } from "src/app/shared/app-preference";
   styleUrls: ["./unit-list.component.scss"],
 })
 export class UnitListComponent implements OnInit {
-  pageSize = 5;
+  pageSize = 10;
   currentPage = 1;
   currentDate: string;
   public data = [];

@@ -9,7 +9,7 @@ import { AppPreference } from "src/app/shared/app-preference";
   styleUrls: ["./voucher-type-list.component.scss"],
 })
 export class VoucherTypeListComponent implements OnInit {
-  pageSize = 5;
+  pageSize = 10;
   currentPage = 1;
   currentDate: string;
   showSearchbar = false;

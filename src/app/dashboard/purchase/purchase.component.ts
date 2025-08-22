@@ -6,7 +6,7 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./purchase.component.scss"],
 })
 export class PurchaseComponent implements OnInit {
-  pageSize = 5;
+  pageSize = 10;
   currentPage = 1;
   showSearchbar = false;
 

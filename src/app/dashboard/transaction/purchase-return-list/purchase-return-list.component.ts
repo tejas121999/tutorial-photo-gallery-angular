@@ -9,7 +9,7 @@ import { AppPreference } from "src/app/shared/app-preference";
   styleUrls: ["./purchase-return-list.component.scss"],
 })
 export class PurchaseReturnListComponent implements OnInit {
-  pageSize = 5;
+  pageSize = 10;
   currentPage = 1;
   branch_token: any;
   login_token: any;

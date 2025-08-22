@@ -10,7 +10,7 @@ import { AppPreference } from "src/app/shared/app-preference";
 export class PaymentListComponent implements OnInit {
   branch_token: any;
   login_token: any;
-  pageSize = 5;
+  pageSize = 10;
   currentPage = 1;
   showSearchbar = false;
   get totalPages() {

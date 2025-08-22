@@ -6,7 +6,7 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./e-fund-list.component.scss"],
 })
 export class EFundListComponent implements OnInit {
-  pageSize = 5;
+  pageSize = 10;
   currentPage = 1;
   showSearchbar = false;
   get totalPages() {

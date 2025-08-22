@@ -9,7 +9,7 @@ import { AppPreference } from "src/app/shared/app-preference";
   styleUrls: ["./discount-paid-list.component.scss"],
 })
 export class DiscountPaidListComponent implements OnInit {
-  pageSize = 5;
+  pageSize = 10;
   currentPage = 1;
   showSearchbar = false;
   currentDate: string;

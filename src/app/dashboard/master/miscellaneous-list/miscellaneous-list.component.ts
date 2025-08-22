@@ -6,7 +6,7 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./miscellaneous-list.component.scss"],
 })
 export class MiscellaneousListComponent implements OnInit {
-  pageSize = 5;
+  pageSize = 10;
   currentPage = 1;
   showSearchbar = false;
   get totalPages() {

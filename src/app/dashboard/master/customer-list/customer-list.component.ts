@@ -9,9 +9,9 @@ import { AppPreference } from "src/app/shared/app-preference";
   styleUrls: ["./customer-list.component.scss"],
 })
 export class CustomerListComponent implements OnInit {
-  pageSize = 5;
+  pageSize = 10;
   currentPage = 1;
-  currentDate: string;
+  currentYear: number;
   branch_token: any;
   login_token: any;
   isLoading: boolean = false;
@@ -24,9 +24,9 @@ export class CustomerListComponent implements OnInit {
     private apiService: ApiServiceService,
     private route: ActivatedRoute
   ) {
-    // Set current date in ISO format (YYYY-MM-DD)
+    // Set current year
     const today = new Date();
-    this.currentDate = today.toISOString().split("T")[0];
+    this.currentYear = today.getFullYear();
   }
 
   ngOnInit() {
@@ -67,31 +67,27 @@ export class CustomerListComponent implements OnInit {
   }
 
   onDateChange(event: any) {
-    this.currentDate = event.detail.value;
-    this.currentDate = event.detail.value.substring(0, 10);
-    console.log("Selected date:", this.currentDate);
-    this.filterByDate();
+    this.currentYear = new Date(event.detail.value).getFullYear();
+    console.log("Selected year:", this.currentYear);
+    this.filterByYear();
   }
 
-  filterByDate() {
-    if (!this.currentDate) {
+  filterByYear() {
+    if (!this.currentYear) {
       this.results = [...this.data];
       return;
     }
-    // Always extract the first 10 characters (YYYY-MM-DD) for comparison
-    const selectedDate = this.currentDate.substring(0, 10);
     this.results = this.data.filter((item: any) => {
       if (!item?.ledger_created) return false;
-      const itemDate = item?.ledger_created.substring(0, 10);
-      return itemDate === selectedDate;
+      const itemYear = new Date(item.ledger_created).getFullYear();
+      return itemYear === this.currentYear;
     });
   }
 
-  changeDate(direction: number) {
+  changeYear(direction: number) {
     // direction: -1 for previous, 1 for next
-    const current = new Date(this.currentDate);
-    current.setDate(current.getDate() + direction);
-    this.currentDate = current.toISOString().split("T")[0];
+    this.currentYear += direction;
+    this.filterByYear();
   }
 
   // Add a trackBy function for ngFor
@@ -115,7 +111,7 @@ export class CustomerListComponent implements OnInit {
         if (response && response._Object && response?._Object?.length > 0) {
           this.data = response._Object;
           this.results = [...this.data];
-          this.filterByDate();
+          this.filterByYear();
         } else {
           this.data = [];
           this.results = [];

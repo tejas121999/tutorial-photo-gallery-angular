@@ -1,7 +1,7 @@
 <ion-content class="login-content">
   <img src="assets/banner-img2.png" alt="Login Banner" class="login-banner-responsive" />
   <div class="login-center-wrapper">
-    <form [formGroup]="loginForm" class="login-form" (ngSubmit)="onLogin()" *ngIf="!usePin">
+    <form [formGroup]="loginForm" class="login-form" (ngSubmit)="onLogin()" *ngIf="(!usePin && !isPinEnabled) || forgotPinClicked">
       <h2 class="login-title">Welcome back!</h2>
       <div class="login-field">
         <label>Email</label>
@@ -28,7 +28,7 @@
         <a class="forgot-password" href="#">forgot Password?</a>
       </div>
       <button type="submit" class="login-btn" [disabled]="loginForm.invalid">LOGIN</button>
-      <button type="button" class="login-btn" [disabled]="!confirmPin" (click)="usePin = true">Use Pin</button>
+      <button type="button" class="login-btn" *ngIf="isPinEnabled" (click)="showPinView()">Use Pin</button>
       <div class="or-divider">
         <span>OR</span>
       </div>
@@ -43,13 +43,23 @@
     </form>
 
     <!-- use pin view -->
-    <div class="pin-container" *ngIf="usePin">
+    <div class="pin-container" *ngIf="(usePin || isPinEnabled) && !forgotPinClicked">
       <div class="pin-title">Enter 4-digit PIN</div>
       <div class="pin-input-container">
         <input type="password" maxlength="1" class="pin-input" readonly [value]="enteredPin[0]">
         <input type="password" maxlength="1" class="pin-input" readonly [value]="enteredPin[1]">
         <input type="password" maxlength="1" class="pin-input" readonly [value]="enteredPin[2]">
         <input type="password" maxlength="1" class="pin-input" readonly [value]="enteredPin[3]">
+      </div>
+      <div>
+        <span style=" 
+        color: #083D7C;font-family: 
+        Open Sans;font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;" (click)="onForgotPin()">
+          Forgot PIN?
+        </span>
       </div>
 
       <div class="keypad">

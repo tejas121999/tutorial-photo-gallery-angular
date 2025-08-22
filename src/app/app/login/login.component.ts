@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit {
   usePin: boolean = false;
   confirmPin: any;
   enteredPin: string[] = ["", "", "", ""];
+  isPinEnabled: any;
+  forgotPinClicked: boolean = false;
 
   constructor(
     private router: Router,
@@ -34,6 +36,17 @@ export class LoginComponent implements OnInit {
 
   async ngOnInit() {
     this.confirmPin = await this.appPreference.getPin();
+    this.isPinEnabled = await this.appPreference.isPinEnabled();
+    console.log("isPinEnabled", this.isPinEnabled);
+  }
+
+  onForgotPin() {
+    this.forgotPinClicked = true;
+  }
+
+  showPinView() {
+    this.usePin = true;
+    this.forgotPinClicked = false;
   }
 
   addNumber(num: string) {

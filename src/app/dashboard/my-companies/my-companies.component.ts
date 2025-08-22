@@ -12,7 +12,7 @@ export class MyCompaniesComponent implements OnInit {
   showSearchbar = false;
   public data = [];
   public results = [...this.data];
-  pageSize = 5;
+  pageSize = 10;
   currentPage = 1;
   branch_token: any;
   login_token: any;
@@ -52,14 +52,17 @@ export class MyCompaniesComponent implements OnInit {
     });
   }
 
-  async switchCompany(branch_token_id: any) {
-    console.log("Switching company to:", branch_token_id);
+  async switchCompany(branch_token_id: any, branch_name: any) {
+    console.log("Switching company to:", branch_token_id, branch_name);
     await this.appPreference.remove("branch_token_id");
     console.log("remove", await this.appPreference.get("branch_token_id"));
+
     await this.appPreference
       .set("branch_token_id", branch_token_id)
-      .then(() => {
-        this.router.navigate(["/dashboard"]);
+      .then(async () => {
+        await this.appPreference.set("branch_name", branch_name).then(() => {
+          this.router.navigate(["/dashboard"]);
+        });
       });
     console.log("new", await this.appPreference.get("branch_token_id"));
   }

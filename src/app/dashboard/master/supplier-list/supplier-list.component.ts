@@ -9,12 +9,12 @@ import { AppPreference } from "src/app/shared/app-preference";
   styleUrls: ["./supplier-list.component.scss"],
 })
 export class SupplierListComponent implements OnInit {
-  pageSize = 5;
+  pageSize = 10;
   currentPage = 1;
   branch_token: any;
   login_token: any;
   isLoading: boolean = false;
-  currentDate: string;
+  currentYear: number;
   public data = [];
   public results = [...this.data];
   showSearchbar = false;
@@ -24,9 +24,10 @@ export class SupplierListComponent implements OnInit {
     private apiService: ApiServiceService,
     private route: ActivatedRoute
   ) {
-    // Set current date in ISO format (YYYY-MM-DD)
+    // Set current year
     const today = new Date();
-    this.currentDate = today.toISOString().split("T")[0];
+    this.currentYear = today.getFullYear();
+    console.log("Selected year:", this.currentYear);
   }
 
   ngOnInit() {
@@ -37,9 +38,6 @@ export class SupplierListComponent implements OnInit {
   }
 
   async initializeData() {
-    // Set current date in ISO format (YYYY-MM-DD)
-    const today = new Date();
-    this.currentDate = today.toISOString().split("T")[0];
     this.branch_token = await this.appPreference.get("branch_token_id");
     this.login_token = await this.appPreference.get("_LoginToken");
     console.log("Branch Token:", this.branch_token);
@@ -76,30 +74,26 @@ export class SupplierListComponent implements OnInit {
   // Date filter code
   // Handle date change from date picker
   onDateChange(event: any) {
-    this.currentDate = event.detail.value.substring(0, 10);
-    console.log("Selected date:", this.currentDate);
-    this.filterByDate();
+    this.currentYear = new Date(event.detail.value).getFullYear();
+    this.filterByYear();
   }
 
-  filterByDate() {
-    if (!this.currentDate) {
+  filterByYear() {
+    if (!this.currentYear) {
       this.results = [...this.data];
       return;
     }
-    // Always extract the first 10 characters (YYYY-MM-DD) for comparison
-    const selectedDate = this.currentDate.substring(0, 10);
     this.results = this.data.filter((item: any) => {
       if (!item?.ledger_created) return false;
-      const itemDate = item?.ledger_created.substring(0, 10);
-      return itemDate === selectedDate;
+      const itemYear = new Date(item.ledger_created).getFullYear();
+      return itemYear === this.currentYear;
     });
   }
 
-  changeDate(direction: number) {
+  changeYear(direction: number) {
     // direction: -1 for previous, 1 for next
-    const current = new Date(this.currentDate);
-    current.setDate(current.getDate() + direction);
-    this.currentDate = current.toISOString().split("T")[0];
+    this.currentYear += direction;
+    this.filterByYear();
   }
 
   // Add a trackBy function for ngFor
@@ -125,7 +119,7 @@ export class SupplierListComponent implements OnInit {
         if (response && response._Object && response._Object.length > 0) {
           this.data = response?._Object;
           this.results = [...this.data];
-          this.filterByDate();
+          this.filterByYear();
         } else {
           this.data = [];
           this.results = [];
@@ -138,3 +132,4 @@ export class SupplierListComponent implements OnInit {
     );
   }
 }
+ 

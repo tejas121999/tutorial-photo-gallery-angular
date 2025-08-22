@@ -11,7 +11,7 @@ import { AppPreference } from "src/app/shared/app-preference";
 export class SalesAccountListComponent implements OnInit {
   branch_token: any;
   showSearchbar = false;
-  pageSize = 5;
+  pageSize = 10;
   currentPage = 1;
   currentDate: string;
   public data = [];

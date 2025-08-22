@@ -31,8 +31,18 @@ export class SettingsComponent {
   // }
 
   onSetPinToggle(event: any) {
+    console.log(event.detail.checked);
     if (event.detail.checked) {
       this.router.navigate(["/dashboard/settings/set-pin"]);
+    }
+    if (!event.detail.checked) {
+      this.appPreference.disablePin();
+      this.appPreference.presentToast(
+        "PIN disabled",
+        2000,
+        "bottom",
+        "success"
+      );
     }
   }
 }

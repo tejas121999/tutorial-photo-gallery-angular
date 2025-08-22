@@ -22,6 +22,7 @@ export class DashboardComponent implements AfterViewInit {
   login_token: any;
   user_name: string = "";
   currentUrl: string = "";
+  branch_name: any = "";
   showSearchbar = false;
 
   @ViewChild(IonMenu) menu: IonMenu;
@@ -37,6 +38,7 @@ export class DashboardComponent implements AfterViewInit {
   ngOnInit() {
     this.route.queryParams.subscribe(async () => {
       this.branch_token = await this.appPreference.get("branch_token_id");
+      this.branch_name = await this.appPreference.get("branch_name");
       this.login_token = await this.appPreference.get("_LoginToken");
       const userDetail = await this.appPreference.get("_UserDetail");
       this.user_name = userDetail?.user_name;
@@ -65,7 +67,7 @@ export class DashboardComponent implements AfterViewInit {
     try {
       await this.appPreference.remove("_LoginToken");
       await this.appPreference.remove("branch_token_id");
-      localStorage.removeItem("ACCESS_TOKEN");
+      // localStorage.removeItem("ACCESS_TOKEN");
       await this.appPreference.presentToast("Logged out successfully!");
       this.router.navigate(["/"]);
     } catch (error) {
