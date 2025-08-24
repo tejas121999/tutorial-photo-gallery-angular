@@ -12,6 +12,15 @@ ion-content {
   height: 100%;
 }
 
+/* Allow content to go under the status bar on iOS/Android and use safe-area insets */
+ion-app,
+ion-content,
+body,
+html {
+  /* Respect notches / status bar safe areas */
+  padding-top: env(safe-area-inset-top, 0);
+}
+
 /* === Searchbar overlay styles (moved from tax-list.component.scss) === */
 .searchbar-container {
   position: relative;
