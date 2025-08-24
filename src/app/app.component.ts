@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { App } from "@capacitor/app";
 import { Platform } from "@ionic/angular";
 import { AppPreference } from "./shared/app-preference";
+import { StatusBar, Style } from "@capacitor/status-bar";
 
 @Component({
   selector: "app-root",
@@ -23,6 +24,11 @@ export class AppComponent {
   ) {
     this.initializeApp();
     this.setupBackButtonHandler();
+    this.platform.ready().then(() => {
+      StatusBar.hide();
+      StatusBar.setStyle({ style: Style.Light }); // Optional: Adjust style
+      StatusBar.setOverlaysWebView({ overlay: false }); // Prevent overlap
+    });
   }
 
   ngOnInit() {
