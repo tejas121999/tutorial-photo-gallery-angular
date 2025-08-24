@@ -14,6 +14,7 @@ export class SupplierComponent implements OnInit {
   branch_token: any;
   login_token: any;
   isLoading: boolean = false;
+  showAdditionalDetails: boolean = false;
 
   constructor(
     private fb: FormBuilder,

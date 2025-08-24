@@ -46,10 +46,10 @@ export class GodownComponent {
       name: ["", Validators.required],
       alias: [""],
       under: [""],
-      exciseTaxUnit: [""],
+      exciseTaxUnit: ["Not Applicable"],
       address: [""],
       allowMaterialStorage: [""],
-      setJobForJobPosting: [""],
+      setJobForJobPosting: ["Not Applicable"],
       checkBox1: [false],
       checkBox2: [false],
     });

@@ -3,9 +3,6 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ApiServiceService } from "src/app/services/api-service.service";
 import { AppPreference } from "src/app/shared/app-preference";
-
-// Make sure to import FormsModule in your module for ngModel to work
-
 @Component({
   selector: "app-stock-item",
   templateUrl: "./stock-item.component.html",
@@ -54,8 +51,8 @@ export class StockItemComponent implements OnInit {
       under: [""],
       category: [""],
       unit: [""],
-      alternateUnit: [""],
-      gstApplicable: [""],
+      alternateUnit: ["Not Applicable"],
+      gstApplicable: ["Not Applicable"],
       HSNDetails: [""],
       hsn: [""],
       description: [""],
@@ -63,7 +60,7 @@ export class StockItemComponent implements OnInit {
       taxabilityType: [""],
       supplyType: [""],
       gstRate: [""],
-      cessValuation: [""],
+      cessValuation: ["Not Applicable"],
       cessRate: [""],
       cessRateValue: [""],
       cessRateUnit: [""],

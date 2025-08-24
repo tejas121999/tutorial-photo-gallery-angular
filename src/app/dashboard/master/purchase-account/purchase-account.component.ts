@@ -14,6 +14,7 @@ export class PurchaseAccountComponent {
   branch_token: any;
   login_token: any;
   isLoading: boolean = false;
+  showAdditionalDetails: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -29,8 +30,8 @@ export class PurchaseAccountComponent {
     this.purchaseAccountForm = this.fb.group({
       purchaseName: ["", Validators.required],
       alias: [""],
-      ledgerType: [""],
-      gstApplicable: [""],
+      ledgerType: ["Not Applicable"],
+      gstApplicable: ["Not Applicable"],
       HSNDetails: [""],
       hsn: [""],
       gstRateDetails: [""],

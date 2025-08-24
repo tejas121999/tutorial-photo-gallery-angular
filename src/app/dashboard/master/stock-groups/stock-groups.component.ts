@@ -35,7 +35,7 @@ export class StockGroupsComponent {
       GSTDetails: [""],
       taxabilityType: [""],
       GSTRate: [""],
-      cessValuation: [""],
+      cessValuation: ["Not Applicable"],
       cessRate: [""],
       cessRateValue: [""],
       cessRateUnit: [""],

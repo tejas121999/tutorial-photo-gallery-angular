@@ -13,6 +13,7 @@ export class TaxPage implements OnInit {
   branch_token: any;
   login_token: any;
   isLoading: boolean = false;
+  showAdditionalDetails: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -31,7 +32,7 @@ export class TaxPage implements OnInit {
       typeTax: [""],
       valuationType: [""],
       percentage: [""],
-      roundingMethod: [""],
+      roundingMethod: ["Not Applicable"],
       roundingLimit: [""],
       name: [""],
       address: [""],
