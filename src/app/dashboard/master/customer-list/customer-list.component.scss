@@ -1,0 +1,29 @@
+.purchase-dataType-outer {
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.custom-popover {
+	position: fixed;
+	z-index: 9999;
+	min-width: 160px;
+	max-width: 220px;
+	background: #fff;
+	color: #222;
+	border-radius: 8px;
+	box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+	padding: 4px 0;
+	overflow: hidden;
+}
+
+.custom-popover ion-item {
+	--padding-start: 12px;
+	--padding-end: 12px;
+}
+
+.custom-popover ion-item:hover {
+	background: rgba(0,0,0,0.04);
+}
+

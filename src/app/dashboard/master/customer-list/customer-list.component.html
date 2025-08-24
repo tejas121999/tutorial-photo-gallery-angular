@@ -30,13 +30,42 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <div>
-    <div class="datetime-row">
-      <ion-icon name="chevron-back-outline" class="arrow-icon" (click)="changeYear(-1)"></ion-icon>
-      <ion-datetime [value]="currentYear + '-01-01'" presentation="year" placeholder="Select Year" (ionChange)="onDateChange($event)"></ion-datetime>
-      <ion-icon name="calendar-outline" style="font-size: 1.5em; margin-left: 8px;"></ion-icon>
-      <ion-icon name="chevron-forward-outline" class="arrow-icon" (click)="changeYear(1)"></ion-icon>
-    </div>
+
+  <ion-grid>
+    <ion-row class="ion-justify-content-around">
+      <ion-col size="6">
+        <div class="purchase-datetime-outer">
+          <div class="datetime-row">
+            <ion-icon name="chevron-back-outline" class="arrow-icon" (click)="changeYear(-1)"></ion-icon>
+            <ion-datetime #yearPicker [value]="currentYear + '-01-01'" presentation="year" displayFormat="YYYY"
+              pickerFormat="YYYY" placeholder="Select Year" (ionChange)="onDateChange($event)" disabled="true">
+            </ion-datetime>
+            <ion-icon name="chevron-forward-outline" class="arrow-icon" (click)="changeYear(1)"></ion-icon>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col size="6">
+        <div class="purchase-dataType-outer" (click)="openDataTypePopover($event)">
+          <span>
+            Latest
+          </span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="9" viewBox="0 0 13 9" fill="none">
+            <path
+              d="M1.45459 0.243133L6.2991 5.0812L10.9235 0.0323718L12.4118 1.52189L6.36709 8.13577L0.0340788 1.7974L1.45459 0.243133Z"
+              fill="#083D7C" />
+          </svg>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Small custom popover for data type selection (works across Ionic versions) -->
+  <div *ngIf="showDataTypePopover" class="custom-popover" [ngStyle]="popoverStyles" (click)="$event.stopPropagation()">
+    <ion-list>
+      <ion-item button (click)="selectDataType('Latest')">Latest</ion-item>
+      <ion-item button (click)="selectDataType('Oldest')">Oldest</ion-item>
+      <ion-item button (click)="selectDataType('Most Active')">Most Active</ion-item>
+    </ion-list>
   </div>
   <ion-list class="centered-list">
     <ion-item *ngFor="let result of pagedResults; trackBy: trackResult">
