@@ -9,6 +9,7 @@ export enum PreferenceKeys {
   PERMISSION = "PERMISSION",
   PIN = "PIN",
   PIN_ENABLED = "PIN_ENABLED",
+  FINGER_PRINT = "FINGER_PRINT",
 }
 
 @Injectable({
@@ -86,7 +87,7 @@ export class AppPreference {
   }
 
   async isPinEnabled(): Promise<boolean> {
-    return await this.get(PreferenceKeys.PIN_ENABLED) === true;
+    return (await this.get(PreferenceKeys.PIN_ENABLED)) === true;
   }
 
   async getPin(): Promise<string | null> {
@@ -106,6 +107,18 @@ export class AppPreference {
   async disablePin(): Promise<void> {
     await this.remove(PreferenceKeys.PIN);
     await this.set(PreferenceKeys.PIN_ENABLED, false);
+  }
+
+  async isFingerprintEnabled(): Promise<boolean> {
+    return (await this.get(PreferenceKeys.FINGER_PRINT)) === true;
+  }
+
+  async enableFingerprint(): Promise<void> {
+    await this.set(PreferenceKeys.FINGER_PRINT, true);
+  }
+
+  async disableFingerprint(): Promise<void> {
+    await this.remove(PreferenceKeys.FINGER_PRINT);
   }
 
   async presentToast(

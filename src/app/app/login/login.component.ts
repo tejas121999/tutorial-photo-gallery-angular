@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { AppPreference, PreferenceKeys } from "../../shared/app-preference";
 import { ApiServiceService } from "../../services/api-service.service";
 import { HttpClientModule } from "@angular/common/http";
+import { FingerprintAIO } from "@ionic-native/fingerprint-aio/ngx";
 
 @Component({
   selector: "app-login",
@@ -18,12 +19,16 @@ export class LoginComponent implements OnInit {
   confirmPin: any;
   enteredPin: string[] = ["", "", "", ""];
   isPinEnabled: any;
+  isFingerprintEnabled: any;
   forgotPinClicked: boolean = false;
+  isFingerprintAvailable: boolean = false;
+  fingerprintType: string | null = null;
 
   constructor(
     private router: Router,
     private appPreference: AppPreference,
-    private apiService: ApiServiceService
+    private apiService: ApiServiceService,
+    private faio: FingerprintAIO
   ) {
     this.loginForm = new FormGroup({
       user_name: new FormControl("", [Validators.required]),
@@ -37,7 +42,21 @@ export class LoginComponent implements OnInit {
   async ngOnInit() {
     this.confirmPin = await this.appPreference.getPin();
     this.isPinEnabled = await this.appPreference.isPinEnabled();
+    this.isFingerprintEnabled = await this.appPreference.isFingerprintEnabled();
     console.log("isPinEnabled", this.isPinEnabled);
+
+    // Check fingerprint availability
+    try {
+      const available = await this.faio.isAvailable();
+      this.isFingerprintAvailable = true;
+      this.fingerprintType = (available as any) || null;
+      console.log("Fingerprint available:", this.fingerprintType);
+    } catch (err) {
+      this.isFingerprintEnabled = false;
+      this.isFingerprintAvailable = false;
+      this.fingerprintType = null;
+      console.log("Fingerprint not available", err);
+    }
   }
 
   onForgotPin() {
@@ -240,6 +259,108 @@ export class LoginComponent implements OnInit {
     } else {
       this.appPreference.presentToast(
         "Please fill in all required fields correctly.",
+        2000,
+        "bottom",
+        "danger"
+      );
+    }
+  }
+
+  // Trigger biometric authentication and perform login using stored credentials
+  async useFingerprint() {
+    // Ensure biometric is available
+    if (!this.isFingerprintAvailable && !this.isFingerprintEnabled) {
+      await this.appPreference.presentToast(
+        "Biometric authentication is not available on this device.",
+        2000,
+        "bottom",
+        "warning"
+      );
+      return;
+    }
+
+    // Ensure we have stored login details to use
+    const loginDetails = await this.appPreference.get("loginDetails");
+    if (!loginDetails) {
+      await this.appPreference.presentToast(
+        "No stored credentials found. Please login once using username/password to enable fingerprint login.",
+        3000,
+        "bottom",
+        "warning"
+      );
+      return;
+    }
+
+    try {
+      const result = await this.faio.show({
+        clientSecret: " ", // required for Android keystore cipher; can be any string
+        disableBackup: true,
+        localizedFallbackTitle: "Use PIN",
+        localizedReason: "Please authenticate to login",
+      } as any);
+
+      // result is usually 'Success' on success
+      if (result) {
+        // Use stored credentials to call API login (keeps same behavior as onLogin)
+        var temp = [loginDetails];
+        this.apiService.userLogin(temp).subscribe(
+          async (response: any) => {
+            if (response && response?._AuthoriseToken) {
+              localStorage.setItem("ACCESS_TOKEN", response._AuthoriseToken);
+              await this.appPreference.set(
+                "_LoginToken",
+                response?._LoginToken
+              );
+              let userDDetails = JSON.parse(response?._UserDetail?.user_detail);
+              await this.appPreference.set(
+                "branch_name",
+                response._BranchList[0].branch_name
+              );
+              await this.appPreference.set("_UserDetail", userDDetails);
+              await this.appPreference.set(
+                "branch_token_id",
+                response._BranchList[0].branch_token_id
+              );
+              var _BranchList: any[] = [];
+              response._BranchList.forEach((element: any) => {
+                _BranchList.push({
+                  branch_code: element.branch_code,
+                  branch_name: element.branch_name,
+                  branch_token_id: element.branch_token_id,
+                });
+              });
+              await this.appPreference.set("_BranchList", _BranchList);
+              this.router.navigate(["/dashboard/home"]);
+              await this.appPreference.presentToast(
+                "Login Successfully!",
+                2000,
+                "bottom",
+                "success"
+              );
+            } else {
+              await this.appPreference.presentToast(
+                response?._Message,
+                2000,
+                "bottom",
+                "danger"
+              );
+            }
+          },
+          (error) => {
+            console.error("Login failed", error);
+            this.appPreference.presentToast(
+              "Login failed. Please try again.",
+              2000,
+              "bottom",
+              "danger"
+            );
+          }
+        );
+      }
+    } catch (err) {
+      console.error("Biometric auth error", err);
+      await this.appPreference.presentToast(
+        "Biometric authentication failed or was cancelled.",
         2000,
         "bottom",
         "danger"

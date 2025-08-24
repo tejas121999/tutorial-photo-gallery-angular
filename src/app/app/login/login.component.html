@@ -1,7 +1,8 @@
 <ion-content class="login-content">
   <img src="assets/banner-img2.png" alt="Login Banner" class="login-banner-responsive" />
   <div class="login-center-wrapper">
-    <form [formGroup]="loginForm" class="login-form" (ngSubmit)="onLogin()" *ngIf="(!usePin && !isPinEnabled) || forgotPinClicked">
+    <form [formGroup]="loginForm" class="login-form" (ngSubmit)="onLogin()"
+      *ngIf="(!usePin && !isPinEnabled) || forgotPinClicked">
       <h2 class="login-title">Welcome back!</h2>
       <div class="login-field">
         <label>Email</label>
@@ -25,9 +26,15 @@
           <span *ngIf="user_password?.errors?.['required']">Password is required</span>
           <span *ngIf="user_password?.errors?.['minlength']">Password must be at least 6 characters</span>
         </div>
-        <a class="forgot-password" href="#">forgot Password?</a>
+        <div class="login-actions">
+          <a class="forgot-password">Forgot Password</a>
+          <a class="use-pin" (click)="useFingerprint()">Use
+            Fingerprint</a>
+        </div>
       </div>
       <button type="submit" class="login-btn" [disabled]="loginForm.invalid">LOGIN</button>
+      <!-- <button type="button" class="login-btn" *ngIf="isFingerprintAvailable" (click)="useFingerprint()">Use
+        Fingerprint</button> -->
       <button type="button" class="login-btn" *ngIf="isPinEnabled" (click)="showPinView()">Use Pin</button>
       <div class="or-divider">
         <span>OR</span>
@@ -45,6 +52,7 @@
     <!-- use pin view -->
     <div class="pin-container" *ngIf="(usePin || isPinEnabled) && !forgotPinClicked">
       <div class="pin-title">Enter 4-digit PIN</div>
+
       <div class="pin-input-container">
         <input type="password" maxlength="1" class="pin-input" readonly [value]="enteredPin[0]">
         <input type="password" maxlength="1" class="pin-input" readonly [value]="enteredPin[1]">

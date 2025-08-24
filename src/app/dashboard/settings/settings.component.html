@@ -62,7 +62,7 @@
               <img src="assets/settings icon/security icon/ion_finger-print-sharp.svg" slot="start"
                 class="settings-icon" alt="Finger Print" />
               <ion-label>Finger Print</ion-label>
-              <ion-toggle slot="end"
+              <ion-toggle slot="end" [checked]="isFingerprintEnabled" (ionChange)="onSetFingerPrint($event)"
                 style="--handle-width: 20px; --handle-height: 20px; width: 40px; --background-checked: #034099;"></ion-toggle>
             </ion-item>
             <ion-item>

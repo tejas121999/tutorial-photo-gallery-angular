@@ -7,6 +7,7 @@ import { Drivers } from "@ionic/storage";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { LoginModule } from "./app/login.module";
+import { FingerprintAIO } from "@ionic-native/fingerprint-aio/ngx";
 import * as CordovaSQLiteDriver from "localforage-cordovasqlitedriver";
 
 @NgModule({
@@ -25,7 +26,10 @@ import * as CordovaSQLiteDriver from "localforage-cordovasqlitedriver";
     AppRoutingModule,
     LoginModule,
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    FingerprintAIO,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -9,6 +9,7 @@ import { AppPreference } from "src/app/shared/app-preference";
 })
 export class SettingsComponent {
   isPinEnabled: boolean = false;
+  isFingerprintEnabled: boolean = false;
 
   constructor(private router: Router, private appPreference: AppPreference) {}
 
@@ -29,6 +30,26 @@ export class SettingsComponent {
   //   // If not, a child route is active
   //   return this.router.url !== "/dashboard/settings";
   // }
+
+  onSetFingerPrint(event: any) {
+    if (event.detail.checked) {
+      this.appPreference.enableFingerprint();
+      this.appPreference.presentToast(
+        "Fingerprint enabled",
+        2000,
+        "bottom",
+        "success"
+      );
+    } else {
+      this.appPreference.disableFingerprint();
+      this.appPreference.presentToast(
+        "Fingerprint disabled",
+        2000,
+        "bottom",
+        "warning"
+      );
+    }
+  }
 
   onSetPinToggle(event: any) {
     console.log(event.detail.checked);

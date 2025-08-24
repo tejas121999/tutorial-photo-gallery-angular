@@ -190,6 +190,32 @@
   text-decoration: none;
 }
 
+.use-pin {
+  color: #222;
+  font-size: 0.95rem;
+  text-align: right;
+  margin-top: 4px;
+}
+
+/* Container to keep forgot-password at left and use-pin at right */
+.login-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Ensure specific alignment for the two anchors */
+.forgot-password {
+  margin-left: 0; /* keep on the left */
+  text-align: left;
+}
+.use-pin {
+  margin-left: auto; /* push to the right */
+  text-align: right;
+}
+
 .login-btn {
   width: 100%;
   background: #083d7c;
