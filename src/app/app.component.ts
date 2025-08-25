@@ -55,7 +55,7 @@ export class AppComponent {
     App.addListener("backButton", async () => {
       const currentUrl = this.router.url;
 
-      // If not logged in and at login page, handle exit
+      // If not logged in and at login page, handle exit /dashboard/home
       if (currentUrl === "/") {
         if (
           new Date().getTime() - this.lastTimeBackPress <

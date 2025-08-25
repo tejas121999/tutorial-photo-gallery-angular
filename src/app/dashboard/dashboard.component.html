@@ -413,10 +413,10 @@
   </ion-tab-button>
   <ion-tab-button tab="add-entry" routerLink="/dashboard/add-entry" routerLinkActive="tab-selected">
     <div [ngClass]="isActive('/dashboard/add-entry') ? 'active-button' : ''">
-      <div>
-        <span>+</span>
+      <div [ngClass]="isActive('/dashboard/add-entry') ? 'activate-box-div' : 'square-box-div'">
+        <span class="plus-icon" [ngClass]="isActive('/dashboard/add-entry') ? 'active-plus-icon' : 'plus-icon'">+</span>
       </div>
-      <ion-label class="button-label" *ngIf="isActive('/dashboard/add-entry')">Add Entry</ion-label>
+      <ion-label class="button-label" *ngIf="isActive('/dashboard/add-entry')">Entry</ion-label>
     </div>
   </ion-tab-button>
 </ion-tab-bar>
