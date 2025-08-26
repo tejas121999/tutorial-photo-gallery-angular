@@ -24,22 +24,6 @@ export class AppComponent {
   ) {
     this.initializeApp();
     this.setupBackButtonHandler();
-    this.platform.ready().then(async () => {
-      try {
-        // On mobile platforms allow the webview to draw under the status bar
-        // then hide the status bar so the UI can use the full screen area.
-        if (this.platform.is("android") || this.platform.is("ios")) {
-          await StatusBar.setOverlaysWebView({ overlay: true });
-          await StatusBar.hide();
-          await StatusBar.setStyle({ style: Style.Light });
-        } else {
-          // For web/desktop keep a consistent style if possible
-          await StatusBar.setStyle({ style: Style.Light }).catch(() => {});
-        }
-      } catch (e) {
-        console.warn("StatusBar control failed", e);
-      }
-    });
   }
 
   ngOnInit() {
