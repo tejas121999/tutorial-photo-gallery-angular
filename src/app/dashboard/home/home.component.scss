@@ -120,6 +120,12 @@ swiper-container {
   margin-bottom: 10px;
 }
 
+/* Specific class for the second swiper to add extra spacing */
+.second-swiper {
+  margin-top: 24px !important;
+  margin-bottom: 20px !important;
+}
+
 /* Alternative swiper container centering */
 // swiper-container {
 //   // text-align: center;

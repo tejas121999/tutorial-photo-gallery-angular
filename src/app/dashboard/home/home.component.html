@@ -171,48 +171,142 @@
         </ion-card>
       </swiper-slide>
     </swiper-container>
-    <ion-card class="standalone-card">
-      <ion-card-content>
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-              <span class="sales-title">
-                Purchase
-              </span>
-            </ion-col>
-            <ion-col>
-              <svg xmlns="http://www.w3.org/2000/svg" width="140" height="38" viewBox="0 0 140 38" fill="none">
-                <path
-                  d="M10.7006 21.3762C15.1412 15.9232 25.2068 6.65314 29.9435 13.1967C34.1375 17.1625 43.7096 24.3506 48.4463 21.3762C49.9266 17.9061 53.7751 13.048 57.3277 21.3762C58.8079 23.8548 62.8045 27.0275 66.9492 19.889C70.403 14.436 78.939 7.0993 85.452 21.3762C89.1525 24.8463 97.4418 28.6634 100.994 16.1711C104.942 8.23946 114.316 -5.2443 120.237 4.27365L129.119 16.1711L138 29.2564H132.079L7 30L10.7006 21.3762Z"
-                  fill="url(#paint0_linear_14_80)" stroke="#D51B03" />
-                <rect y="26" width="140" height="12" fill="white" />
-                <defs>
-                  <linearGradient id="paint0_linear_14_80" x1="72.1299" y1="15.8718" x2="72.1299" y2="24.7949"
-                    gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#F1D4D4" />
-                    <stop offset="0.35" stop-color="#F1D4D4" stop-opacity="0.4" />
-                    <stop offset="0.900515" stop-color="white" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <div class="currency-amount">₹16,00,000.00</div>
-            </ion-col>
-            <ion-col>
-              <span class="percentage-change">14% Previous 7 days</span>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <ion-button class="custom-bottom-button" routerLink="/dashboard/purchase">View</ion-button>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card-content>
-    </ion-card>
+
+    <swiper-container class="second-swiper" [pagination]="true">
+      <swiper-slide>
+        <ion-card class="standalone-card">
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <span class="sales-title">
+                    Purchase
+                  </span>
+                </ion-col>
+                <ion-col>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="140" height="38" viewBox="0 0 140 38" fill="none">
+                    <path
+                      d="M10.7006 21.3762C15.1412 15.9232 25.2068 6.65314 29.9435 13.1967C34.1375 17.1625 43.7096 24.3506 48.4463 21.3762C49.9266 17.9061 53.7751 13.048 57.3277 21.3762C58.8079 23.8548 62.8045 27.0275 66.9492 19.889C70.403 14.436 78.939 7.0993 85.452 21.3762C89.1525 24.8463 97.4418 28.6634 100.994 16.1711C104.942 8.23946 114.316 -5.2443 120.237 4.27365L129.119 16.1711L138 29.2564H132.079L7 30L10.7006 21.3762Z"
+                      fill="url(#paint0_linear_14_80)" stroke="#D51B03" />
+                    <rect y="26" width="140" height="12" fill="white" />
+                    <defs>
+                      <linearGradient id="paint0_linear_14_80" x1="72.1299" y1="15.8718" x2="72.1299" y2="24.7949"
+                        gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#F1D4D4" />
+                        <stop offset="0.35" stop-color="#F1D4D4" stop-opacity="0.4" />
+                        <stop offset="0.900515" stop-color="white" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <div class="currency-amount">₹16,00,000.00</div>
+                </ion-col>
+                <ion-col>
+                  <span class="percentage-change">14% Previous 7 days</span>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-button class="custom-bottom-button" routerLink="/dashboard/purchase">View</ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </swiper-slide>
+      <swiper-slide>
+        <ion-card class="standalone-card">
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <span class="sales-title">
+                    Purchase
+                  </span>
+                </ion-col>
+                <ion-col>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="140" height="38" viewBox="0 0 140 38" fill="none">
+                    <path
+                      d="M10.7006 21.3762C15.1412 15.9232 25.2068 6.65314 29.9435 13.1967C34.1375 17.1625 43.7096 24.3506 48.4463 21.3762C49.9266 17.9061 53.7751 13.048 57.3277 21.3762C58.8079 23.8548 62.8045 27.0275 66.9492 19.889C70.403 14.436 78.939 7.0993 85.452 21.3762C89.1525 24.8463 97.4418 28.6634 100.994 16.1711C104.942 8.23946 114.316 -5.2443 120.237 4.27365L129.119 16.1711L138 29.2564H132.079L7 30L10.7006 21.3762Z"
+                      fill="url(#paint0_linear_14_80)" stroke="#D51B03" />
+                    <rect y="26" width="140" height="12" fill="white" />
+                    <defs>
+                      <linearGradient id="paint0_linear_14_80" x1="72.1299" y1="15.8718" x2="72.1299" y2="24.7949"
+                        gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#F1D4D4" />
+                        <stop offset="0.35" stop-color="#F1D4D4" stop-opacity="0.4" />
+                        <stop offset="0.900515" stop-color="white" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <div class="currency-amount">₹16,00,000.00</div>
+                </ion-col>
+                <ion-col>
+                  <span class="percentage-change">14% Previous 7 days</span>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-button class="custom-bottom-button" routerLink="/dashboard/purchase">View</ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </swiper-slide>
+      <swiper-slide>
+        <ion-card class="standalone-card">
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <span class="sales-title">
+                    Purchase
+                  </span>
+                </ion-col>
+                <ion-col>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="140" height="38" viewBox="0 0 140 38" fill="none">
+                    <path
+                      d="M10.7006 21.3762C15.1412 15.9232 25.2068 6.65314 29.9435 13.1967C34.1375 17.1625 43.7096 24.3506 48.4463 21.3762C49.9266 17.9061 53.7751 13.048 57.3277 21.3762C58.8079 23.8548 62.8045 27.0275 66.9492 19.889C70.403 14.436 78.939 7.0993 85.452 21.3762C89.1525 24.8463 97.4418 28.6634 100.994 16.1711C104.942 8.23946 114.316 -5.2443 120.237 4.27365L129.119 16.1711L138 29.2564H132.079L7 30L10.7006 21.3762Z"
+                      fill="url(#paint0_linear_14_80)" stroke="#D51B03" />
+                    <rect y="26" width="140" height="12" fill="white" />
+                    <defs>
+                      <linearGradient id="paint0_linear_14_80" x1="72.1299" y1="15.8718" x2="72.1299" y2="24.7949"
+                        gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#F1D4D4" />
+                        <stop offset="0.35" stop-color="#F1D4D4" stop-opacity="0.4" />
+                        <stop offset="0.900515" stop-color="white" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <div class="currency-amount">₹16,00,000.00</div>
+                </ion-col>
+                <ion-col>
+                  <span class="percentage-change">14% Previous 7 days</span>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-button class="custom-bottom-button" routerLink="/dashboard/purchase">View</ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </swiper-slide>
+    </swiper-container>
+
 
     <ion-card class="new-card-1">
       <ion-card-content>
