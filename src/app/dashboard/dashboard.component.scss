@@ -80,7 +80,7 @@
   --background: #083d7c !important;
   border-top-left-radius: 0 !important;
   border-top-right-radius: 0 !important;
-  min-height: 188px !important;
+  min-height: 215px !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -205,6 +205,6 @@ ion-tab-bar {
 
 @media (max-width: 600px) {
   .menu-content ion-list {
-    margin-top: 125px; // Smaller margin for mobile screens
+    margin-top: 135px; // Smaller margin for mobile screens
   }
 }
