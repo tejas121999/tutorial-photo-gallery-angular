@@ -1,8 +1,9 @@
 import { Component } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
 import { AppPreference } from "src/app/shared/app-preference";
+import { SettingsNavigationService } from "../settings-navigation.service";
 
 @Component({
   selector: "app-profile",
@@ -17,7 +18,8 @@ export class ProfileComponent {
   constructor(
     private fb: FormBuilder,
     private appPreference: AppPreference,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private settingsNavigation: SettingsNavigationService
   ) {
     this.initializeData();
   }
@@ -64,5 +66,17 @@ export class ProfileComponent {
   updateProfile() {
     // Logic to update profile will go here
     console.log("Profile update clicked");
+  }
+
+  navigateToHome() {
+    this.settingsNavigation.navigateToHomeWithRefresh();
+  }
+
+  navigateToReport() {
+    this.settingsNavigation.navigateToReportWithRefresh();
+  }
+
+  navigateToAddEntry() {
+    this.settingsNavigation.navigateToAddEntryWithRefresh();
   }
 }

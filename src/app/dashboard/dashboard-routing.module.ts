@@ -103,27 +103,19 @@ const routes: Routes = [
         (m) => m.ConfigurationModule
       ),
   },
-  {
-    path: "settings",
-    children: [
-      { path: "connect-to-tally", component: ConnectToTallyComponent },
-      { path: "pro", component: ProComponent },
-      { path: "payment-reminder", component: PaymentReminderComponent },
-      { path: "currency-format", component: CurrencyFormatComponent },
-      { path: "delete-account", component: DeleteAccountComponent },
-      { path: "themes", component: ThemesComponent },
-      { path: "privacy-policy", component: PrivacyPolicyComponent },
-      { path: "terms-of-use", component: TermsOfUseComponent },
-      { path: "help-and-support", component: HelpAndSupportComponent },
-      { path: "about-us", component: AboutUsComponent },
-      { path: "set-pin", component: SetPinComponent },
-      {
-        path: "",
-        component: SettingsComponent,
-      },
-      { path: "profile", component: ProfileComponent },
-    ],
-  },
+  { path: "settings", component: SettingsComponent },
+  { path: "settings/connect-to-tally", component: ConnectToTallyComponent },
+  { path: "settings/pro", component: ProComponent },
+  { path: "settings/payment-reminder", component: PaymentReminderComponent },
+  { path: "settings/currency-format", component: CurrencyFormatComponent },
+  { path: "settings/delete-account", component: DeleteAccountComponent },
+  { path: "settings/themes", component: ThemesComponent },
+  { path: "settings/privacy-policy", component: PrivacyPolicyComponent },
+  { path: "settings/terms-of-use", component: TermsOfUseComponent },
+  { path: "settings/help-and-support", component: HelpAndSupportComponent },
+  { path: "settings/about-us", component: AboutUsComponent },
+  { path: "settings/set-pin", component: SetPinComponent },
+  { path: "settings/profile", component: ProfileComponent },
   {
     path: "master",
     children: [
@@ -351,25 +343,26 @@ const routes: Routes = [
     ],
   },
   {
+    path: "my-companies",
+    component: MyCompaniesComponent,
+  },
+  { path: "sales", component: SalesComponent },
+  { path: "purchase", component: PurchaseComponent },
+  {
     path: "",
     component: DashboardComponent,
     children: [
+      { path: "", redirectTo: "home", pathMatch: "full" },
       { path: "home", component: HomeComponent },
       { path: "stock", component: StockComponent },
       { path: "report", component: ReportComponent },
       { path: "add-entry", component: AddEntryComponent },
     ],
   },
-  {
-    path: "my-companies",
-    component: MyCompaniesComponent,
-  },
-  { path: "sales", component: SalesComponent },
-  { path: "purchase", component: PurchaseComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class DashboardRoutingModule {}
+export class DashboardRoutingModule { }

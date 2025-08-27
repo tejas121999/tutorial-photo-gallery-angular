@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { AppPreference } from "src/app/shared/app-preference";
+import { SettingsNavigationService } from "./settings-navigation.service";
 
 @Component({
   selector: "app-settings",
@@ -12,9 +13,9 @@ export class SettingsComponent {
   isFingerprintEnabled: boolean = false;
 
   constructor(
-    private router: Router,
     private appPreference: AppPreference,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private settingsNavigation: SettingsNavigationService
   ) {}
 
   async ngOnInit() {
@@ -49,7 +50,7 @@ export class SettingsComponent {
   onSetPinToggle(event: any) {
     console.log(event.detail.checked);
     if (event.detail.checked) {
-      this.router.navigate(["/dashboard/settings/set-pin"]);
+      this.settingsNavigation.navigateToSetPin();
     }
     if (!event.detail.checked) {
       this.appPreference.disablePin();
@@ -60,5 +61,21 @@ export class SettingsComponent {
         "success"
       );
     }
+  }
+
+  navigateToHome() {
+    this.settingsNavigation.navigateToHomeWithRefresh();
+  }
+
+  navigateToReport() {
+    this.settingsNavigation.navigateToReportWithRefresh();
+  }
+
+  navigateToAddEntry() {
+    this.settingsNavigation.navigateToAddEntryWithRefresh();
+  }
+
+  navigateToProfile() {
+    this.settingsNavigation.navigateToProfile();
   }
 }

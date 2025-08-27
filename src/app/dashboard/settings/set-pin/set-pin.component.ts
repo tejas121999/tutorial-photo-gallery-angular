@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AppPreference, PreferenceKeys } from "src/app/shared/app-preference";
+import { SettingsNavigationService } from "../settings-navigation.service";
 
 @Component({
   selector: "app-set-pin",
@@ -13,7 +14,8 @@ export class SetPinComponent implements OnInit {
   constructor(
     private appPreference: AppPreference,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private settingsNavigation: SettingsNavigationService
   ) {}
 
   async ngOnInit() {
@@ -66,5 +68,17 @@ export class SetPinComponent implements OnInit {
         );
       }
     }
+  }
+
+  navigateToHome() {
+    this.settingsNavigation.navigateToHomeWithRefresh();
+  }
+
+  navigateToReport() {
+    this.settingsNavigation.navigateToReportWithRefresh();
+  }
+
+  navigateToAddEntry() {
+    this.settingsNavigation.navigateToAddEntryWithRefresh();
   }
 }
