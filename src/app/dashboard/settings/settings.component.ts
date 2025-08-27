@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { AppPreference } from "src/app/shared/app-preference";
 
 @Component({
@@ -11,19 +11,19 @@ export class SettingsComponent {
   isPinEnabled: boolean = false;
   isFingerprintEnabled: boolean = false;
 
-  constructor(private router: Router, private appPreference: AppPreference) {}
+  constructor(
+    private router: Router,
+    private appPreference: AppPreference,
+    private route: ActivatedRoute
+  ) {}
 
   async ngOnInit() {
-    this.isPinEnabled = await this.appPreference.isPinEnabled();
-    this.isFingerprintEnabled = await this.appPreference.isFingerprintEnabled();
-    console.log(
-      "await this.appPreference.isPinEnabled()",
-      await this.appPreference.isPinEnabled()
-    );
-    console.log(
-      "await this.appPreference.getPin()",
-      await this.appPreference.getPin()
-    );
+    this.route.queryParams.subscribe(async () => {
+      console.log("Query params changed settings");
+      this.isPinEnabled = await this.appPreference.isPinEnabled();
+      this.isFingerprintEnabled =
+        await this.appPreference.isFingerprintEnabled();
+    });
   }
 
   // isChildRouteActive(): boolean {

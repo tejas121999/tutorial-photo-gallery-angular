@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-add-entry",
@@ -48,13 +49,17 @@ export class AddEntryComponent implements OnInit {
   ];
   public results = [...this.data];
 
-  constructor() {
+  constructor(private route: ActivatedRoute) {
     // Set current date in ISO format (YYYY-MM-DD)
     const today = new Date();
     this.currentDate = today.toISOString().split("T")[0];
   }
 
-  ngOnInit() {}
+  async ngOnInit() {
+    this.route.queryParams.subscribe(async () => {
+      console.log("Query params changed add entry");
+    });
+  }
 
   handleInput(event: Event) {
     const target = event.target as HTMLIonSearchbarElement;

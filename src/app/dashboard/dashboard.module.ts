@@ -50,8 +50,6 @@ import { StockComponent } from "./stock/stock.component";
 import { ReportComponent } from "./report/report.component";
 import { AddEntryComponent } from "./add-entry/add-entry.component";
 import { SetPinComponent } from "./settings/set-pin/set-pin.component";
-import { SettingsModule } from "./settings/settings.module";
-import { ProfileComponent } from "./settings/profile/profile.component";
 import { BankComponent } from "./payment/bank/bank.component";
 import { CashComponent } from "./payment/cash/cash.component";
 import { EFundComponent } from "./payment/e-fund/e-fund.component";
@@ -84,6 +82,18 @@ import { AddItemDeliveryNoteComponent } from "./transaction/add-item-delivery-no
 import { AddLedgersDeliveryNoteComponent } from "./transaction/add-ledgers-delivery-note/add-ledgers-delivery-note.component";
 import { AddLedgersPaymentComponent } from "./transaction/add-ledgers-payment/add-ledgers-payment.component";
 import { AddBillSandryDetailsComponent } from "./transaction/add-bill-sandry-details/add-bill-sandry-details.component";
+import { AboutUsComponent } from "./settings/about-us/about-us.component";
+import { HelpAndSupportComponent } from "./settings/help-and-support/help-and-support.component";
+import { TermsOfUseComponent } from "./settings/terms-of-use/terms-of-use.component";
+import { PrivacyPolicyComponent } from "./settings/privacy-policy/privacy-policy.component";
+import { ThemesComponent } from "./settings/themes/themes.component";
+import { DeleteAccountComponent } from "./settings/delete-account/delete-account.component";
+import { CurrencyFormatComponent } from "./settings/currency-format/currency-format.component";
+import { PaymentReminderComponent } from "./settings/payment-reminder/payment-reminder.component";
+import { ProComponent } from "./settings/pro/pro.component";
+import { ConnectToTallyComponent } from "./settings/connect-to-tally/connect-to-tally.component";
+import { ProfileComponent } from "./settings/profile/profile.component";
+import { SettingsComponent } from "./settings/settings.component";
 
 @NgModule({
   declarations: [
@@ -167,6 +177,18 @@ import { AddBillSandryDetailsComponent } from "./transaction/add-bill-sandry-det
     AddLedgersDeliveryNoteComponent,
     AddLedgersPaymentComponent,
     AddBillSandryDetailsComponent,
+    SettingsComponent,
+    ProfileComponent,
+    ConnectToTallyComponent,
+    ProComponent,
+    PaymentReminderComponent,
+    CurrencyFormatComponent,
+    DeleteAccountComponent,
+    ThemesComponent,
+    PrivacyPolicyComponent,
+    TermsOfUseComponent,
+    HelpAndSupportComponent,
+    AboutUsComponent,
   ],
   imports: [
     CommonModule,
@@ -174,7 +196,6 @@ import { AddBillSandryDetailsComponent } from "./transaction/add-bill-sandry-det
     RouterModule,
     DashboardRoutingModule,
     ReactiveFormsModule,
-    SettingsModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

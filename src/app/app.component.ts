@@ -30,6 +30,9 @@ export class AppComponent {
   }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(async () => {
+      console.log("Query params changed");
+    });
     // No-op: initial navigation handled in initializeApp()
   }
 

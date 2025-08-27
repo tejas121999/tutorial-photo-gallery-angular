@@ -76,6 +76,19 @@ import { AddItemDeliveryNoteComponent } from "./transaction/add-item-delivery-no
 import { AddLedgersDeliveryNoteComponent } from "./transaction/add-ledgers-delivery-note/add-ledgers-delivery-note.component";
 import { AddLedgersPaymentComponent } from "./transaction/add-ledgers-payment/add-ledgers-payment.component";
 import { AddBillSandryDetailsComponent } from "./transaction/add-bill-sandry-details/add-bill-sandry-details.component";
+import { ProfileComponent } from "./settings/profile/profile.component";
+import { SettingsComponent } from "./settings/settings.component";
+import { SetPinComponent } from "./settings/set-pin/set-pin.component";
+import { AboutUsComponent } from "./settings/about-us/about-us.component";
+import { HelpAndSupportComponent } from "./settings/help-and-support/help-and-support.component";
+import { TermsOfUseComponent } from "./settings/terms-of-use/terms-of-use.component";
+import { PrivacyPolicyComponent } from "./settings/privacy-policy/privacy-policy.component";
+import { ThemesComponent } from "./settings/themes/themes.component";
+import { DeleteAccountComponent } from "./settings/delete-account/delete-account.component";
+import { CurrencyFormatComponent } from "./settings/currency-format/currency-format.component";
+import { PaymentReminderComponent } from "./settings/payment-reminder/payment-reminder.component";
+import { ProComponent } from "./settings/pro/pro.component";
+import { ConnectToTallyComponent } from "./settings/connect-to-tally/connect-to-tally.component";
 
 const routes: Routes = [
   {
@@ -92,8 +105,24 @@ const routes: Routes = [
   },
   {
     path: "settings",
-    loadChildren: () =>
-      import("./settings/settings.module").then((m) => m.SettingsModule),
+    children: [
+      { path: "connect-to-tally", component: ConnectToTallyComponent },
+      { path: "pro", component: ProComponent },
+      { path: "payment-reminder", component: PaymentReminderComponent },
+      { path: "currency-format", component: CurrencyFormatComponent },
+      { path: "delete-account", component: DeleteAccountComponent },
+      { path: "themes", component: ThemesComponent },
+      { path: "privacy-policy", component: PrivacyPolicyComponent },
+      { path: "terms-of-use", component: TermsOfUseComponent },
+      { path: "help-and-support", component: HelpAndSupportComponent },
+      { path: "about-us", component: AboutUsComponent },
+      { path: "set-pin", component: SetPinComponent },
+      {
+        path: "",
+        component: SettingsComponent,
+      },
+      { path: "profile", component: ProfileComponent },
+    ],
   },
   {
     path: "master",
@@ -325,7 +354,6 @@ const routes: Routes = [
     path: "",
     component: DashboardComponent,
     children: [
-      { path: "", redirectTo: "home", pathMatch: "full" },
       { path: "home", component: HomeComponent },
       { path: "stock", component: StockComponent },
       { path: "report", component: ReportComponent },

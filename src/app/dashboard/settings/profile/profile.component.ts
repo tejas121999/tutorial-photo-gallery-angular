@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
 import { AppPreference } from "src/app/shared/app-preference";
 
@@ -13,15 +14,24 @@ export class ProfileComponent {
   profileForm: FormGroup;
   user_details: any;
 
-  constructor(private fb: FormBuilder, private appPreference: AppPreference) {
+  constructor(
+    private fb: FormBuilder,
+    private appPreference: AppPreference,
+    private route: ActivatedRoute
+  ) {
     this.initializeData();
   }
 
   async ngOnInit() {
-    this.user_details = await this.appPreference.get("_UserDetail");
-    console.log("Profile component initialized", this.user_details.user_email);
-    this.patchData();
-    // await this.getPhoto();
+    this.route.queryParams.subscribe(async () => {
+      this.user_details = await this.appPreference.get("_UserDetail");
+      console.log(
+        "Profile component initialized profile",
+        this.user_details.user_email
+      );
+      this.patchData();
+      // await this.getPhoto();
+    });
   }
 
   async initializeData() {

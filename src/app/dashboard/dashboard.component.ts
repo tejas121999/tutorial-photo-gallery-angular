@@ -24,6 +24,7 @@ export class DashboardComponent implements AfterViewInit {
   currentUrl: string = "";
   branch_name: any = "";
   showSearchbar = false;
+  user_email: any;
 
   @ViewChild(IonMenu) menu: IonMenu;
   @ViewChild("dashboardMain", { static: true }) dashboardMain: ElementRef;
@@ -35,13 +36,16 @@ export class DashboardComponent implements AfterViewInit {
     private platform: Platform
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
+    // window.location.reload();
     this.route.queryParams.subscribe(async () => {
+      console.log("Query params changed dashboard");
       this.branch_token = await this.appPreference.get("branch_token_id");
       this.branch_name = await this.appPreference.get("branch_name");
       this.login_token = await this.appPreference.get("_LoginToken");
       const userDetail = await this.appPreference.get("_UserDetail");
       this.user_name = userDetail?.user_name;
+      this.user_email = userDetail?.user_email;
       this.currentUrl = this.router.url;
       this.closeMenu();
     });

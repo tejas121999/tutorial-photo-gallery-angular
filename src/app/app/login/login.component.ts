@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { AppPreference, PreferenceKeys } from "../../shared/app-preference";
 import { ApiServiceService } from "../../services/api-service.service";
@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private appPreference: AppPreference,
     private apiService: ApiServiceService,
     private faio: FingerprintAIO
@@ -40,11 +41,15 @@ export class LoginComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.confirmPin = await this.appPreference.getPin();
-    this.isPinEnabled = await this.appPreference.isPinEnabled();
-    this.isFingerprintEnabled = await this.appPreference.isFingerprintEnabled();
-    console.log("isFingerprintAvailable", this.isFingerprintEnabled);
-    console.log("isPinEnabled", this.isPinEnabled);
+    this.route.queryParams.subscribe(async () => {
+      console.log("Query params changed");
+      this.confirmPin = await this.appPreference.getPin();
+      this.isPinEnabled = await this.appPreference.isPinEnabled();
+      this.isFingerprintEnabled =
+        await this.appPreference.isFingerprintEnabled();
+      console.log("isFingerprintAvailable", this.isFingerprintEnabled);
+      console.log("isPinEnabled", this.isPinEnabled);
+    });
 
     // Check fingerprint availability
     try {
@@ -104,6 +109,7 @@ export class LoginComponent implements OnInit {
                   // Store the authorization token from response
                   if (response && response?._AuthoriseToken) {
                     // set auth token in localStorage
+                    this.appPreference.setAccessToken(response._AuthoriseToken);
                     localStorage.setItem(
                       "ACCESS_TOKEN",
                       response._AuthoriseToken
@@ -307,6 +313,7 @@ export class LoginComponent implements OnInit {
         this.apiService.userLogin(temp).subscribe(
           async (response: any) => {
             if (response && response?._AuthoriseToken) {
+              this.appPreference.setAccessToken(response._AuthoriseToken);
               localStorage.setItem("ACCESS_TOKEN", response._AuthoriseToken);
               await this.appPreference.set(
                 "_LoginToken",
