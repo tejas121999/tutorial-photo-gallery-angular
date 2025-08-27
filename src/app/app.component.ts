@@ -3,7 +3,7 @@ import { SplashScreen } from "@capacitor/splash-screen";
 import { ActivatedRoute, Router } from "@angular/router";
 import { App } from "@capacitor/app";
 import { Platform } from "@ionic/angular";
-import { AppPreference } from "./shared/app-preference";
+import { AppPreference, PreferenceKeys } from "./shared/app-preference";
 import { StatusBar, Style } from "@capacitor/status-bar";
 
 @Component({
@@ -15,6 +15,9 @@ export class AppComponent {
   private lastTimeBackPress = 0;
   private timePeriodToExit = 2000;
   login_token: any;
+  access_token: any;
+  isPinEnabled: any;
+  isFingerprintEnabled: any;
 
   constructor(
     private router: Router,
@@ -27,10 +30,7 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(async () => {
-      this.login_token = await this.appPreference.get("_LoginToken");
-      const userDetail = await this.appPreference.get("_UserDetail");
-    });
+    // No-op: initial navigation handled in initializeApp()
   }
 
   private async setupBackButtonHandler() {
@@ -103,7 +103,10 @@ export class AppComponent {
     });
   }
 
-  initializeApp() {
+  async initializeApp() {
+    // Wait for the platform to be ready before hiding splash and checking token
+    await this.platform.ready();
+
     /* To make sure we provide the fastest app loading experience
        for our users, hide the splash screen automatically
        when the app is ready to be used:
@@ -111,5 +114,42 @@ export class AppComponent {
         https://capacitor.ionicframework.com/docs/apis/splash-screen#hiding-the-splash-screen
     */
     SplashScreen.hide();
+
+    // Check for access token in storage. If present, redirect to dashboard home
+    try {
+      this.access_token = await this.appPreference.getAccessToken();
+      this.isPinEnabled = await this.appPreference.isPinEnabled();
+      this.isFingerprintEnabled =
+        await this.appPreference.isFingerprintEnabled();
+      console.log("Access Token in app component (init):", this.access_token);
+
+      // normalize possible return types for the flags (boolean or string)
+      const pinEnabled =
+        this.isPinEnabled === true ||
+        this.isPinEnabled === "true" ||
+        this.isPinEnabled === 1 ||
+        this.isPinEnabled === "1";
+      const fingerprintEnabled =
+        this.isFingerprintEnabled === true ||
+        this.isFingerprintEnabled === "true" ||
+        this.isFingerprintEnabled === 1 ||
+        this.isFingerprintEnabled === "1";
+
+      // If access token exists and neither PIN nor fingerprint lock is enabled,
+      // navigate directly to dashboard. If either lock is enabled, continue
+      // with the normal flow (e.g. show PIN/fingerprint screen or login flow).
+      if (
+        this.access_token !== "" &&
+        this.access_token !== undefined &&
+        this.access_token !== null &&
+        !pinEnabled &&
+        !fingerprintEnabled
+      ) {
+        // navigate to dashboard home and replace the current history entry
+        this.router.navigate(["/dashboard/home"], { replaceUrl: true });
+      }
+    } catch (err) {
+      console.error("Error reading access token during initializeApp()", err);
+    }
   }
 }

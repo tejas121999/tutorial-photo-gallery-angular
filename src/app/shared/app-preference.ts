@@ -63,6 +63,10 @@ export class AppPreference {
     await this._storage?.clear();
   }
 
+  async setAccessToken(token: string) {
+    this.set(PreferenceKeys.ACCESS_TOKEN, { token });
+  }
+
   async getAccessToken() {
     let accessToken = await this.get(PreferenceKeys.ACCESS_TOKEN);
     if (accessToken && typeof accessToken === "object") {

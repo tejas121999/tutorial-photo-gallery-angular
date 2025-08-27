@@ -437,14 +437,12 @@ ion-toolbar[color="primary"] {
 ion-toolbar {
   display: flex !important;
   align-items: flex-end !important;
-  min-height: 80px !important;
-  height: 80px !important;
 }
 
 ion-header,
 ion-toolbar {
-  min-height: 80px !important;
-  height: 80px !important;
+  // min-height: 80px !important;
+  height: 50px !important;
 }
 
 .toolbar-title-text,

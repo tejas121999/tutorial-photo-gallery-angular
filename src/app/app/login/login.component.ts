@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
     this.confirmPin = await this.appPreference.getPin();
     this.isPinEnabled = await this.appPreference.isPinEnabled();
     this.isFingerprintEnabled = await this.appPreference.isFingerprintEnabled();
+    console.log("isFingerprintAvailable", this.isFingerprintEnabled);
     console.log("isPinEnabled", this.isPinEnabled);
 
     // Check fingerprint availability
@@ -52,7 +53,6 @@ export class LoginComponent implements OnInit {
       this.fingerprintType = (available as any) || null;
       console.log("Fingerprint available:", this.fingerprintType);
     } catch (err) {
-      this.isFingerprintEnabled = false;
       this.isFingerprintAvailable = false;
       this.fingerprintType = null;
       console.log("Fingerprint not available", err);
@@ -202,6 +202,7 @@ export class LoginComponent implements OnInit {
           if (response && response?._AuthoriseToken) {
             // set auth token in localStorage
             localStorage.setItem("ACCESS_TOKEN", response._AuthoriseToken);
+            this.appPreference.setAccessToken(response._AuthoriseToken);
             // Store user details in AppPreference
             var loginDetails = {
               user_name: this.loginForm.get("user_name")?.value,

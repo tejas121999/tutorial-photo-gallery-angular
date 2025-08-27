@@ -15,6 +15,7 @@ export class SettingsComponent {
 
   async ngOnInit() {
     this.isPinEnabled = await this.appPreference.isPinEnabled();
+    this.isFingerprintEnabled = await this.appPreference.isFingerprintEnabled();
     console.log(
       "await this.appPreference.isPinEnabled()",
       await this.appPreference.isPinEnabled()
