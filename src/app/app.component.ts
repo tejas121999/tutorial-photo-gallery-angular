@@ -18,6 +18,7 @@ export class AppComponent {
   access_token: any;
   isPinEnabled: any;
   isFingerprintEnabled: any;
+  isInitializing = true; // Add loading state
 
   constructor(
     private router: Router,
@@ -116,10 +117,19 @@ export class AppComponent {
         !fingerprintEnabled
       ) {
         // navigate to dashboard home and replace the current history entry
-        this.router.navigate(["/dashboard/home"], { replaceUrl: true });
+        // Use a small delay to ensure smooth transition
+        setTimeout(() => {
+          this.router.navigate(["/dashboard/home"], { replaceUrl: true });
+        }, 100);
       }
     } catch (err) {
       console.error("Error reading access token during initializeApp()", err);
+    } finally {
+      // Add a longer delay before hiding the loading overlay to prevent flash
+      // This ensures the redirect happens before the loading overlay disappears
+      setTimeout(() => {
+        this.isInitializing = false;
+      }, 800); // Increased to 800ms for smoother transition
     }
   }
 }

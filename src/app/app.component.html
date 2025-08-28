@@ -1,3 +1,10 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <!-- Show loading spinner while checking authentication -->
+  <div *ngIf="isInitializing" class="auth-checking-overlay">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Checking authentication...</p>
+  </div>
+  
+  <!-- Only show router outlet after initialization is complete -->
+  <ion-router-outlet *ngIf="!isInitializing"></ion-router-outlet>
 </ion-app>
