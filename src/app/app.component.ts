@@ -57,52 +57,19 @@ export class AppComponent {
       }
 
       // If logged in and at dashboard root or home, handle exit
-      // if (!this.login_token) {
-      //   if (currentUrl === "/dashboard" || currentUrl === "/dashboard/home") {
-      //     if (
-      //       new Date().getTime() - this.lastTimeBackPress <
-      //       this.timePeriodToExit
-      //     ) {
-      //       App.exitApp();
-      //     } else {
-      //       this.lastTimeBackPress = new Date().getTime();
-      //       this.appPreference.presentToast("Press back again to exit", 2000);
-      //     }
-      //     return;
-      //   }
-      // }
 
-      // if (currentUrl === "/dashboard/master/tax-list") {
-      //   if (this.login_token) {
-      //     this.router.navigate(["/dashboard/home"], { replaceUrl: true });
-      //   }
-      // }
-
-      // if (currentUrl === "/dashboard/master/tax") {
-      //   if (this.login_token) {
-      //     this.router.navigate(["/dashboard/home"], { replaceUrl: true });
-      //   }
-      // }
-
-      // if (currentUrl === "/dashboard/master/supplier-list") {
-      //   if (this.login_token) {
-      //     this.router.navigate(["/dashboard/home"], { replaceUrl: true });
-      //   }
-      // }
-
-      // if (currentUrl === "/dashboard/master/supplier") {
-      //   if (this.login_token) {
-      //     this.router.navigate(["/dashboard/home"], { replaceUrl: true });
-      //   }
-      // }
-      // if (this.login_token) {
-      //   // // If logged in, always try to go to dashboard root
-      //   this.router.navigate(["/dashboard/home"], { replaceUrl: true });
-      //   return;
-      // }
-
-      // If not logged in, go to login page
-      // this.router.navigate(["/"], { replaceUrl: true });
+      if (currentUrl === "/dashboard" || currentUrl === "/dashboard/home") {
+        if (
+          new Date().getTime() - this.lastTimeBackPress <
+          this.timePeriodToExit
+        ) {
+          App.exitApp();
+        } else {
+          this.lastTimeBackPress = new Date().getTime();
+          this.appPreference.presentToast("Press back again to exit", 2000);
+        }
+        return;
+      }
     });
   }
 

@@ -34,7 +34,7 @@ export class DashboardComponent implements AfterViewInit {
     private router: Router,
     private route: ActivatedRoute,
     private platform: Platform
-  ) {}
+  ) { }
 
   async ngOnInit() {
     // window.location.reload();
@@ -71,7 +71,8 @@ export class DashboardComponent implements AfterViewInit {
     try {
       await this.appPreference.remove("_LoginToken");
       await this.appPreference.remove("branch_token_id");
-      // localStorage.removeItem("ACCESS_TOKEN");
+      await this.appPreference.remove('ACCESS_TOKEN')
+      localStorage.removeItem("ACCESS_TOKEN");
       await this.appPreference.presentToast("Logged out successfully!");
       this.router.navigate(["/"]);
     } catch (error) {
@@ -85,7 +86,7 @@ export class DashboardComponent implements AfterViewInit {
     }
   }
 
-  handleInput(event: Event) {}
+  handleInput(event: Event) { }
 
   isActive(route: string): boolean {
     return this.router.isActive(route, true);
