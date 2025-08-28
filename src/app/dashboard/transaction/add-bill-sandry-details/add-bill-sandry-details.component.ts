@@ -10,7 +10,7 @@ import { AppPreference } from "src/app/shared/app-preference";
   styleUrls: ["./add-bill-sandry-details.component.scss"],
 })
 export class AddBillSandryDetailsComponent implements OnInit {
-  pageSize = 10;
+  pageSize = 15;
   currentPage = 1;
   showSearchbar = false;
   branch_token: any;

@@ -15,7 +15,7 @@ export class CustomerListComponent implements OnInit {
   popoverEvent: any = null;
   popoverStyles: any = {};
   popoverTriggerEl: HTMLElement | null = null;
-  pageSize = 10;
+  pageSize = 15;
   currentPage = 1;
   currentYear: number;
   branch_token: any;

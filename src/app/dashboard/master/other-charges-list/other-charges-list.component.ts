@@ -9,7 +9,7 @@ import { AppPreference } from "src/app/shared/app-preference";
   styleUrls: ["./other-charges-list.component.scss"],
 })
 export class OtherChargesListComponent implements OnInit {
-  pageSize = 10;
+  pageSize = 15;
   currentPage = 1;
   currentDate: string;
   public data = [];

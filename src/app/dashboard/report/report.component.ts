@@ -7,7 +7,7 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./report.component.scss"],
 })
 export class ReportComponent implements OnInit {
-  pageSize = 10;
+  pageSize = 15;
   currentPage = 1;
   showSearchbar = false;
 

@@ -22,7 +22,7 @@ export class PurchaseComponent implements OnInit {
   stockItem: any[] = [];
   unitList: any[] = [];
   purchaseList: any[] = [];
-  pageSize = 10;
+  pageSize = 15;
   currentPage = 1;
   disableLager: boolean = true;
 

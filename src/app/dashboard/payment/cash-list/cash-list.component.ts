@@ -9,7 +9,7 @@ import { AppPreference } from "src/app/shared/app-preference";
   styleUrls: ["./cash-list.component.scss"],
 })
 export class CashListComponent implements OnInit {
-  pageSize = 10;
+  pageSize = 15;
   currentPage = 1;
   branch_token: any;
   login_token: any;

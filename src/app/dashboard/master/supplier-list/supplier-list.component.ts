@@ -16,7 +16,7 @@ export class SupplierListComponent implements OnInit {
   popoverEvent: any = null;
   popoverStyles: any = {};
   popoverTriggerEl: HTMLElement | null = null;
-  pageSize = 10;
+  pageSize = 15;
   currentPage = 1;
   branch_token: any;
   login_token: any;

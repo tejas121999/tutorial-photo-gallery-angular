@@ -6,7 +6,7 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./journal-list.component.scss"],
 })
 export class JournalListComponent implements OnInit {
-  pageSize = 10;
+  pageSize = 15;
   currentPage = 1;
   showSearchbar = false;
   get totalPages() {

@@ -7,7 +7,7 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./add-entry.component.scss"],
 })
 export class AddEntryComponent implements OnInit {
-  pageSize = 10;
+  pageSize = 15;
   currentPage = 1;
   showSearchbar = false;
   selectedTab: string = "sales";

@@ -11,7 +11,7 @@ import { ActivatedRoute } from "@angular/router";
 export class StockItemListComponent implements OnInit {
   branch_token: any;
   login_token: any;
-  pageSize = 10;
+  pageSize = 15;
   currentPage = 1;
   currentDate: string;
   public data = [];

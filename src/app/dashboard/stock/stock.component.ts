@@ -7,7 +7,7 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./stock.component.scss"],
 })
 export class StockComponent implements OnInit {
-  pageSize = 10;
+  pageSize = 15;
   currentPage = 1;
   showSearchbar = false;
 

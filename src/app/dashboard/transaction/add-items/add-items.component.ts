@@ -10,7 +10,7 @@ import { DataSharingService } from "src/app/services/data-sharing.service";
   styleUrls: ["./add-items.component.scss"],
 })
 export class AddItemsComponent implements OnInit {
-  pageSize = 10;
+  pageSize = 15;
   currentPage = 1;
   showSearchbar = false;
   branch_token: any;
