@@ -608,12 +608,11 @@ export class PurchaseComponent implements OnInit {
       (response: any) => {
         this.isLoading = false;
         if (response._Object) {
+          this.clearFormAndArrays();
           this.isLoading = false;
           this.router.navigate(["/dashboard/transaction/purchase-list"], {
             queryParams: { reload: new Date().getTime() },
           });
-          this.purchaseForm.reset();
-          this.addedItem = [];
         }
       },
       (error) => {
@@ -621,6 +620,54 @@ export class PurchaseComponent implements OnInit {
         console.error("Error:", error);
       }
     );
+  }
+
+  private clearFormAndArrays() {
+    this.purchaseForm.reset({
+      changeMode: "",
+      purchaseNo: "",
+      supplierInvoiceNo: "",
+      date: "",
+      billDate: "",
+      partyName: "",
+      purchaseLedger: "",
+      costCenter: "",
+      narration: "",
+      item: "",
+      unit: "",
+      itemLedger: "",
+      itemRate: "",
+      itemQuantity: "",
+      itemAmount: "",
+      itemDiscount: "",
+      itemTaxableAmount: "",
+      itemTotalAmount: "",
+      grossTotal: 0,
+      discountTotal: 0,
+      taxable: 0,
+      billAmount: 0,
+      billingSundryAmount: 0,
+      totalAmount: 0,
+    });
+
+    this.clearFormArray(this.lagersFormArray);
+    this.clearFormArray(this.itemFormArray);
+    this.clearFormArray(this.billSundryDetailsFormArray);
+
+    this.addedItem = [];
+    this.addLedger = [];
+    this.addSundryData = [];
+
+    // Clear shared selections to prevent immediate repopulation via subscriptions
+    this.dataSharingService.changeData([]);
+    this.dataSharingService.changeLagersData([]);
+    this.dataSharingService.changeBillSandryDetailsData([]);
+  }
+
+  private clearFormArray(formArray: FormArray) {
+    while (formArray.length !== 0) {
+      formArray.removeAt(0);
+    }
   }
 
   calculateGrossTotal() {
