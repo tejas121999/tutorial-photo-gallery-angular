@@ -607,6 +607,7 @@ export class PurchaseComponent implements OnInit {
     this.apiService.addPurchaseVoucherData(this.payload).subscribe(
       (response: any) => {
         this.isLoading = false;
+        // 
         if (response._Object) {
           this.clearFormAndArrays();
           this.isLoading = false;
